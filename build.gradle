@@ -1,16 +1,16 @@
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        applicationId "de.luhmer.owncloud.accountimporter"
-        minSdkVersion 7
-        targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
     }
+
+
     buildTypes {
         release {
             runProguard false
@@ -20,8 +20,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.0.+'
+    compile 'com.android.support:support-v4:20.+'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
-
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
