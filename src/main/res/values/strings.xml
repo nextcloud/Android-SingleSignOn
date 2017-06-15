@@ -2,6 +2,6 @@
     <string name="app_name">ownCloud Account Importer</string>
 
     <!-- Import Accounts -->
-    <string name="import_account_dialog_title">Import Account</string>
+    <string name="import_account_dialog_title">Select Account</string>
 
 </resources>
