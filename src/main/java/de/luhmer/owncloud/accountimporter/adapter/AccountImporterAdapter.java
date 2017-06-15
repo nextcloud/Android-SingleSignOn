@@ -13,21 +13,18 @@ import android.widget.TextView;
 
 import de.luhmer.owncloud.accountimporter.R;
 import de.luhmer.owncloud.accountimporter.helper.CheckableLinearLayout;
+import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
 
 /**
  * Created by David on 29.05.2014.
  */
-public class AccountImporterAdapter extends ArrayAdapter<AccountImporterAdapter.SingleAccount> implements AdapterView.OnItemClickListener {
+public class AccountImporterAdapter extends ArrayAdapter<SingleAccount> implements AdapterView.OnItemClickListener {
 
-    Context context;
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
 
     public AccountImporterAdapter(Activity context, SingleAccount[] accounts, ListView listView) {
         super(context, R.layout.simple_list_item_single_choice, accounts);
-        this.context = context;
-
         listView.setOnItemClickListener(this);
-
         inflater = context.getLayoutInflater();
     }
 
@@ -43,11 +40,10 @@ public class AccountImporterAdapter extends ArrayAdapter<AccountImporterAdapter.
             TextView text2 = (TextView) view.findViewById(R.id.text2);
             CheckBox cbChecked = (CheckBox) view.findViewById(R.id.checkbox);
             holder = new ViewHolder(text1, text2, cbChecked);
-
             view.setTag(holder);
         }
 
-        holder.text1.setText(getItem(position).type);
+        holder.text1.setText(getItem(position).username);
         holder.text2.setText(getItem(position).url);
         holder.cbChecked.setChecked(getItem(position).checked);
 
@@ -61,10 +57,7 @@ public class AccountImporterAdapter extends ArrayAdapter<AccountImporterAdapter.
             getItem(i).checked = false;
         }
         ((CheckableLinearLayout)view).toggle();
-
-
         view.findViewById(R.id.text1);
-
         notifyDataSetChanged();
     }
 
@@ -75,29 +68,11 @@ public class AccountImporterAdapter extends ArrayAdapter<AccountImporterAdapter.
         TextView text2;
         CheckBox cbChecked;
 
-        public ViewHolder(TextView text1, TextView text2,CheckBox cbChecked) {
+        ViewHolder(TextView text1, TextView text2, CheckBox cbChecked) {
             this.text1 = text1;
             this.text2 = text2;
             this.cbChecked = cbChecked;
         }
-    }
-
-
-
-
-
-    public static class SingleAccount {
-
-        public SingleAccount(String type, String url, Boolean checked) {
-            this.type = type;
-            this.url = url;
-            this.checked = checked;
-        }
-
-        public String type;
-        public String url;
-
-        public boolean checked;
     }
 
 }
