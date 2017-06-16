@@ -11,21 +11,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Checkable;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import de.luhmer.owncloud.accountimporter.adapter.AccountImporterAdapter;
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
-import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountsReceived;
 
@@ -42,7 +37,6 @@ public class ImportAccountsDialogFragment extends DialogFragment {
     private ProgressBar progressBar;
 
     public IAccountImport accountImportCallback;
-    private AccountImporter accountImporter;
     private static final String TAG = ImportAccountsDialogFragment.class.getCanonicalName();
 
     public static void show(FragmentActivity activity, IAccountImport accountImport) {
@@ -57,7 +51,6 @@ public class ImportAccountsDialogFragment extends DialogFragment {
     @SuppressLint("ValidFragment")
     public ImportAccountsDialogFragment(IAccountImport accountImportCallback) {
         this.accountImportCallback = accountImportCallback;
-        this.accountImporter = new AccountImporter();
     }
 
     @NonNull
@@ -96,8 +89,7 @@ public class ImportAccountsDialogFragment extends DialogFragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    accountImporter.addNewAccount();
-
+                    AccountImporter.AddNewAccount();
                     /*
                     if(accountImporter.addNewAccount()) {
                         //Dismiss once everything is OK.
@@ -112,20 +104,14 @@ public class ImportAccountsDialogFragment extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        accountImporter.onStart(getActivity(), accountsReceivedCallback);
+        AccountImporter.RequestAccounts(getActivity(), accountsReceivedCallback);
     }
 
-    @Override
-    public void onStop() {
-        accountImporter.onStop();
-        super.onStop();
-    }
-
-    private SingleAccount getSelectedSingleAccount() {
-        SingleAccount account = null;
+    private Account getSelectedSingleAccount() {
+        Account account = null;
         for (int i = 0; i < lvAccounts.getAdapter().getCount(); i++) {
             if (lvAccounts.getChildAt(i) instanceof Checkable && ((Checkable) lvAccounts.getChildAt(i)).isChecked()) {
-                account = (SingleAccount) lvAccounts.getAdapter().getItem(i);
+                account = ((AccountImporterAdapter) lvAccounts.getAdapter()).getItem(i);
                 break;
             }
         }
@@ -135,18 +121,9 @@ public class ImportAccountsDialogFragment extends DialogFragment {
 
     private IAccountsReceived accountsReceivedCallback = new IAccountsReceived() {
         @Override
-        public void accountsReceived(ArrayList<HashMap<String, String>> accounts) {
-            List<SingleAccount> accountList = new ArrayList<>();
-
-            for (HashMap<String, String> account : accounts) {
-                String username = account.get("username");
-                String password = account.get("password");
-                String url = account.get("url");
-                accountList.add(new SingleAccount(username, password, url));
-            }
-
+        public void accountsReceived(List<Account> accounts) {
             progressBar.setVisibility(View.GONE);
-            lvAccounts.setAdapter(new AccountImporterAdapter(getActivity(), accountList.toArray(new SingleAccount[accountList.size()]), lvAccounts));
+            lvAccounts.setAdapter(new AccountImporterAdapter(getActivity(), accounts.toArray(new Account[accounts.size()]), lvAccounts));
         }
     };
 }

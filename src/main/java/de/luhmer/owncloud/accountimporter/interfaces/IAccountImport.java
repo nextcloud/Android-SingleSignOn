@@ -1,12 +1,12 @@
 package de.luhmer.owncloud.accountimporter.interfaces;
 
-import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
+import android.accounts.Account;
 
 /**
  * Created by David on 28.05.2014.
  */
 public interface IAccountImport {
 
-    void accountAccessGranted(SingleAccount account);
+    void accountAccessGranted(Account account);
 
 }

@@ -10,13 +10,10 @@ public class SingleAccount {
         this.username = username;
         this.password = password;
         this.url = url;
-        this.checked = false;
     }
 
     public String username;
     public String password;
     public String url;
-
-    public boolean checked;
 
 }
