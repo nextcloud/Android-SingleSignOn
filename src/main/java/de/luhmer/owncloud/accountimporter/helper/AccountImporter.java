@@ -47,100 +47,53 @@ public class AccountImporter {
 
     private static final String TAG = AccountImporter.class.getCanonicalName();
 
-    private static final int MSG_REQUEST_PASSWORD = 1;
-    private static final int MSG_RESPONSE_PASSWORD = 2;
-    private static final int MSG_CREATE_NEW_ACCOUNT = 3;
+    public static boolean AddNewAccount() {
+        //TODO
+        return true;
+    }
 
-    private Messenger mService = null; // Messenger for communicating with the service.
-    private boolean mBound = false; // Flag indicating whether we have called bind on the service
-    private Context context;
-    private IAccountsReceived accountsReceivedCallback;
+    public static void RequestAccounts(Context context, IAccountsReceived accountsReceivedCallback) {
+        List<Account> accounts = FindAccounts(context);
+        accountsReceivedCallback.accountsReceived(accounts);
+    }
 
-    /**
-     * Class for interacting with the main interface of the service.
-     */
-    private ServiceConnection mConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            // This is called when the connection with the service has been
-            // established, giving us the object we can use to
-            // interact with the service.  We are communicating with the
-            // service using a Messenger, so here we get a client-side
-            // representation of that from the raw IBinder object.
-            mService = new Messenger(service);
-            mBound = true;
 
-            requestAccounts();
+    // Find all currently installed nextcloud accounts on the phone
+    public static List<Account> FindAccounts(Context context) {
+        final AccountManager accMgr = AccountManager.get(context);
+        final Account[] accounts = accMgr.getAccounts();
+
+        List<Account> accountsAvailable = new ArrayList<>();
+        for (Account account : accounts) {
+            if(account.type.equals("nextcloud")) {
+                accountsAvailable.add(account);
+            }
         }
+        return accountsAvailable;
+    }
 
-        public void onServiceDisconnected(ComponentName className) {
-            // This is called when the connection with the service has been
-            // unexpectedly disconnected -- that is, its process crashed.
-            mService = null;
-            mBound = false;
-        }
-    };
-
-    public boolean requestAccounts() {
-        if (!mBound) return false;
-
-        // Create and send a message to the service, using a supported 'what' value
-        Message msg = Message.obtain(null, MSG_REQUEST_PASSWORD, 0, 0);
-        msg.replyTo = new Messenger(new Handler() {
+    // Get the AuthToken (Password) for a selected account
+    public static void GetAuthToken(Activity activity, Account account, final AccountApproved callback) {
+        final AccountManager accMgr = AccountManager.get(activity);
+        Bundle options = new Bundle();
+        //accMgr.invalidateAuthToken(account.type, "NextcloudSSO"); // Invalidate credentials (//TODO is this really necessary after we're done debugging?)
+        accMgr.getAuthToken(account, "NextcloudSSO", options, activity, new AccountManagerCallback<Bundle>() {
             @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == MSG_RESPONSE_PASSWORD) {
-                    ArrayList<HashMap<String, String>> accounts = (ArrayList<HashMap<String, String>>) msg.getData().getSerializable("accounts");
-                    accountsReceivedCallback.accountsReceived(accounts);
+            public void run(AccountManagerFuture<Bundle> future) {
+                try {
+                    String username = future.getResult().getString("username");
+                    String password = future.getResult().getString("password");
+                    String server   = future.getResult().getString("server");
+                    callback.onAccessGranted(new SingleAccount(username, password, server));
+                } catch (Exception ex) {
+                    callback.onError(ex);
                 }
             }
-        });
-
-        try {
-            mService.send(msg);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return true;
+        }, null);
     }
 
-    public boolean addNewAccount() {
-        if (!mBound) return false;
-
-        Message msg = Message.obtain(null, MSG_CREATE_NEW_ACCOUNT, 0, 0);
-        try {
-            mService.send(msg);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    public void onStart(Context context, IAccountsReceived accountsReceivedCallback) {
-        this.context = context;
-        this.accountsReceivedCallback = accountsReceivedCallback;
-
-        try {
-            Intent intentService = new Intent();
-            intentService.setComponent(new ComponentName("com.nextcloud.client", "com.owncloud.android.services.AccountManagerService"));
-            if (context.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
-                //Log.d(TAG, "Binding to AccountManagerService returned true");
-            } else {
-                Log.d(TAG, "Binding to AccountManagerService returned false");
-            }
-        } catch (SecurityException e) {
-            Log.e(TAG, "can't bind to AccountManagerService, check permission in Manifest");
-        }
-    }
-
-
-    public void onStop() {
-        // Unbind from the service
-        if (mBound) {
-            context.unbindService(mConnection);
-            mBound = false;
-        }
-
-        this.context = null;
-        this.accountsReceivedCallback = null;
+    public interface AccountApproved {
+        void onAccessGranted(SingleAccount singleAccount);
+        void onError(Exception exception);
     }
 }

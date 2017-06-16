@@ -1,7 +1,7 @@
 package de.luhmer.owncloud.accountimporter.adapter;
 
+import android.accounts.Account;
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +11,21 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.luhmer.owncloud.accountimporter.R;
 import de.luhmer.owncloud.accountimporter.helper.CheckableLinearLayout;
-import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
 
 /**
  * Created by David on 29.05.2014.
  */
-public class AccountImporterAdapter extends ArrayAdapter<SingleAccount> implements AdapterView.OnItemClickListener {
+public class AccountImporterAdapter extends ArrayAdapter<Account> implements AdapterView.OnItemClickListener {
 
     private LayoutInflater inflater;
+    private List<Integer> selectedIndexes = new ArrayList<>();
 
-    public AccountImporterAdapter(Activity context, SingleAccount[] accounts, ListView listView) {
+    public AccountImporterAdapter(Activity context, Account[] accounts, ListView listView) {
         super(context, R.layout.simple_list_item_single_choice, accounts);
         listView.setOnItemClickListener(this);
         inflater = context.getLayoutInflater();
@@ -43,19 +46,21 @@ public class AccountImporterAdapter extends ArrayAdapter<SingleAccount> implemen
             view.setTag(holder);
         }
 
-        holder.text1.setText(getItem(position).username);
-        holder.text2.setText(getItem(position).url);
-        holder.cbChecked.setChecked(getItem(position).checked);
+        String username = getItem(position).name.split("@")[0];
+        String server   = getItem(position).name.split("@")[1];
+
+        holder.text1.setText(username);
+        holder.text2.setText(server);
+        holder.cbChecked.setChecked(selectedIndexes.contains(position));
 
 
         return view;
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int id, long l) {
-        for (int i = 0; i < getCount(); i++) {
-            getItem(i).checked = false;
-        }
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        selectedIndexes.clear();
+        selectedIndexes.add(position);
         ((CheckableLinearLayout)view).toggle();
         view.findViewById(R.id.text1);
         notifyDataSetChanged();
