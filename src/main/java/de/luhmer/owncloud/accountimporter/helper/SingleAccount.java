@@ -6,14 +6,16 @@ package de.luhmer.owncloud.accountimporter.helper;
 
 public class SingleAccount {
 
-    public SingleAccount(String username, String password, String url) {
+    public SingleAccount(String username, String password, String url, Boolean disableHostnameVerification) {
         this.username = username;
         this.password = password;
         this.url = url;
+        this.disableHostnameVerification = disableHostnameVerification;
     }
 
     public String username;
     public String password;
     public String url;
+    public Boolean disableHostnameVerification;
 
 }

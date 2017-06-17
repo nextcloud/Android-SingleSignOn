@@ -2,9 +2,13 @@ package de.luhmer.owncloud.accountimporter;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
+import java.io.IOException;
 
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
 import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
@@ -29,17 +33,11 @@ public class ImportAccountsDialogActivity extends AppCompatActivity implements I
         Log.d(TAG, "accountAccessGranted() called with: account = [" + account + "]");
 
 
-        AccountImporter.GetAuthToken(this, account, new AccountImporter.AccountApproved() {
-            @Override
-            public void onAccessGranted(SingleAccount singleAccount) {
-                Log.d(TAG, "username=" + singleAccount.username + " - password=" + singleAccount.password + " - server=" + singleAccount.url);
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                exception.printStackTrace();
-            }
-        });
+        try {
+            AccountImporter.GetCurrentAccount(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
