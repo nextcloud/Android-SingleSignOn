@@ -70,7 +70,9 @@ public class ImportAccountsDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int x) {
                         // Notify listener about registered account
-                        accountImportCallback.accountAccessGranted(getSelectedSingleAccount());
+                        Account account = getSelectedSingleAccount();
+                        //AccountImporter.SetCurrentAccount(getActivity(), account);
+                        accountImportCallback.accountAccessGranted(account);
                     }
                 })
                 .setNeutralButton("New account", null) // Click handler see onNewCreateAccountShowListener!
