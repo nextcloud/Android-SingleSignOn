@@ -101,10 +101,20 @@ public class ImportAccountsDialogFragment extends DialogFragment {
     };
 
 
+
+    AccountImporter accountImporter = new AccountImporter();
     @Override
     public void onStart() {
         super.onStart();
         AccountImporter.RequestAccounts(getActivity(), accountsReceivedCallback);
+
+        accountImporter.onStart(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        accountImporter.onStop();
     }
 
     private Account getSelectedSingleAccount() {
