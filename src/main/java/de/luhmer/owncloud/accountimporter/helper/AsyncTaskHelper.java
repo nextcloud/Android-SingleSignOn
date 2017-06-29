@@ -19,14 +19,14 @@ public class AsyncTaskHelper {
 
         T result = at.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
 
-        if(at.exception != null) {
+        if (at.exception != null) {
             throw at.exception;
         }
 
         return result;
     }
 
-    private static class GenericAsyncTaskWithCallable<T> extends AsyncTask<Void, Void, T> {
+    public static class GenericAsyncTaskWithCallable<T> extends AsyncTask<Void, Void, T> {
 
         private Callable<T> callable;
         private Exception exception;
