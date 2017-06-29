@@ -16,6 +16,8 @@ import android.widget.Checkable;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import de.luhmer.owncloud.accountimporter.adapter.AccountImporterAdapter;
@@ -100,21 +102,15 @@ public class ImportAccountsDialogFragment extends DialogFragment {
         }
     };
 
-
-
-    AccountImporter accountImporter = new AccountImporter();
     @Override
     public void onStart() {
         super.onStart();
         AccountImporter.RequestAccounts(getActivity(), accountsReceivedCallback);
-
-        accountImporter.onStart(getActivity());
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        accountImporter.onStop();
     }
 
     private Account getSelectedSingleAccount() {
