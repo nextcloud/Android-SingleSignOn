@@ -18,6 +18,8 @@ public class NextcloudRequest implements Serializable {
     public Map<String, String> parameter = new HashMap<>();
     public String requestBody;
     public String url;
+    public String token;
+    public String accountName;
 
     private NextcloudRequest() {
 
@@ -56,6 +58,16 @@ public class NextcloudRequest implements Serializable {
 
         public Builder setUrl(String url) {
             ncr.url = url;
+            return this;
+        }
+
+        public Builder setToken(String token) {
+            ncr.token = token;
+            return this;
+        }
+
+        public Builder setAccountName(String accountName) {
+            ncr.accountName = accountName;
             return this;
         }
     }
