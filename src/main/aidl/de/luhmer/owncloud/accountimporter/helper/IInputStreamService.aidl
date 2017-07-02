@@ -10,6 +10,9 @@
 
 	From _The Busy Coder's Guide to Advanced Android Development_
 		http://commonsware.com/AdvAndroid
+
+
+	More information here: https://github.com/abeluck/android-streams-ipc
 */
 
 package de.luhmer.owncloud.accountimporter.helper;
@@ -17,11 +20,6 @@ package de.luhmer.owncloud.accountimporter.helper;
 // Declare the interface.
 interface IInputStreamService {
 
-    // test 1
-    void sendInputStreams(in ParcelFileDescriptor input, in ParcelFileDescriptor output);
-
     ParcelFileDescriptor performNextcloudRequest(in ParcelFileDescriptor input);
 
-    //test 2
-    ParcelFileDescriptor getOutputStream();
 }
