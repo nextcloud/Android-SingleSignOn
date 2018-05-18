@@ -5,25 +5,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
 import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
-import android.preference.PreferenceManager;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -32,16 +20,8 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Reader;
-import java.io.Serializable;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import java.util.prefs.PreferenceChangeEvent;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -52,6 +32,11 @@ import io.reactivex.annotations.NonNull;
 
 public class NextcloudAPI {
 
+    public interface ApiConnectedListener {
+        void onConnected();
+        void onError(Exception ex);
+    }
+
     public NextcloudAPI(Account account, Gson gson) {
         this.account = account;
         this.gson = gson;
@@ -59,26 +44,33 @@ public class NextcloudAPI {
 
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
 
-    private Gson gson = null;
+    private Gson gson;
     private IInputStreamService mService = null;
     private boolean mBound = false; // Flag indicating whether we have called bind on the service
-    private Account account = null;
+    private Account account;
+    private ApiConnectedListener mCallback;
 
     private String getAccountName() {
         return account.name;
     }
 
-    public void start(Context context) {
+    public void start(Context context, ApiConnectedListener callback) {
+        this.mCallback = callback;
+
+        // Disconnect if connected
+        if(mBound) {
+            stop(context);
+        }
+
         try {
             Intent intentService = new Intent();
             intentService.setComponent(new ComponentName("com.nextcloud.client", "com.owncloud.android.services.AccountManagerService"));
-            if (context.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
-                //Log.d(TAG, "Binding to AccountManagerService returned true");
-            } else {
+            if (!context.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
                 Log.d(TAG, "Binding to AccountManagerService returned false");
             }
         } catch (SecurityException e) {
             Log.e(TAG, "can't bind to AccountManagerService, check permission in Manifest");
+            callback.onError(e);
         }
     }
 
@@ -92,7 +84,6 @@ public class NextcloudAPI {
     }
 
 
-
     /**
      * Class for interacting with the main interface of the service.
      */
@@ -100,6 +91,7 @@ public class NextcloudAPI {
         public void onServiceConnected(ComponentName className, IBinder service) {
             mService = IInputStreamService.Stub.asInterface(service);
             mBound = true;
+            mCallback.onConnected();
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -115,7 +107,9 @@ public class NextcloudAPI {
         return Observable.fromCallable(new Callable<T>() {
             @Override
             public T call() throws Exception {
-                return performRequest(type, request);
+                T result = performRequest(type, request);
+                Log.d(TAG, "Wrapping result object in Observable: " + result);
+                return result;
             }
         });
     }
@@ -127,9 +121,12 @@ public class NextcloudAPI {
         InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
 
         Reader targetReader = new InputStreamReader(os);
-        T result = gson.fromJson(targetReader, type);
-        if (result != null) {
-            Log.d(TAG, result.toString());
+        T result = null;
+        if (type != Void.class) {
+            result = gson.fromJson(targetReader, type);
+            if (result != null) {
+                Log.d(TAG, result.toString());
+            }
         }
         targetReader.close();
 
@@ -186,7 +183,7 @@ public class NextcloudAPI {
 
                     @Override
                     public void onThreadFinished(Thread thread) {
-                        Log.d(TAG, "Test #1: copy to service finished");
+                        Log.d(TAG, "copy to service finished");
                     }
                 });
 
