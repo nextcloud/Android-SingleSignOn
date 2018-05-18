@@ -77,30 +77,24 @@ public class ImportAccountsDialogFragment extends DialogFragment {
                         accountImportCallback.accountAccessGranted(account);
                     }
                 })
-                .setNeutralButton("New account", null) // Click handler see onNewCreateAccountShowListener!
+                .setNeutralButton("New account", onNewCreateAccountShowListener)
                 .setNegativeButton(android.R.string.no, null)
                 .create();
 
-        dialog.setOnShowListener(onNewCreateAccountShowListener);
+        //dialog.setOnShowListener(onNewCreateAccountShowListener);
 
         return dialog;
     }
 
-    private DialogInterface.OnShowListener onNewCreateAccountShowListener = new DialogInterface.OnShowListener() {
+    private DialogInterface.OnClickListener onNewCreateAccountShowListener = new DialogInterface.OnClickListener() {
         @Override
-        public void onShow(final DialogInterface dialog) {
-            Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEUTRAL);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    AccountImporter.AddNewAccount();
-                    /*
-                    if(accountImporter.addNewAccount()) {
-                        //Dismiss once everything is OK.
-                        dialog.dismiss();
-                    }*/
-                }
-            });
+        public void onClick(DialogInterface dialog, int which) {
+            AccountImporter.AddNewAccount();
+            /*
+            if(accountImporter.addNewAccount()) {
+                //Dismiss once everything is OK.
+                dialog.dismiss();
+            }*/
         }
     };
 
