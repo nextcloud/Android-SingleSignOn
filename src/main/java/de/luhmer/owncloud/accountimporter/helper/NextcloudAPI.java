@@ -114,11 +114,11 @@ public class NextcloudAPI {
         });
     }
 
-    public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws IOException, RemoteException {
+    public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws Exception {
         Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
 
-        final ParcelFileDescriptor output = performNetworkRequest(request);
-        InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
+        //final ParcelFileDescriptor output = performAidlNetworkRequest(request);
+        InputStream os = performNetworkRequest(request);
 
         Reader targetReader = new InputStreamReader(os);
         T result = null;
@@ -152,22 +152,45 @@ public class NextcloudAPI {
         }
         */
         os.close();
-        output.close(); // <-- this is required to halt the TransferThread
+        //output.close(); // <-- this is required to halt the TransferThread
 
         return result;
     }
 
 
-    private <T> T deserializeObjectAndCloseStream(InputStream is) throws IOException, ClassNotFoundException {
+    public static <T> T deserializeObject(InputStream is) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(is);
         T result = (T) ois.readObject();
-        is.close();
-        ois.close();
         return result;
     }
 
 
-    public ParcelFileDescriptor performNetworkRequest(NextcloudRequest request) throws IOException, RemoteException {
+    /**
+     * The InputStreams needs to be closed after reading from it
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
+        InputStream os = null;
+        Exception exception = null;
+        try {
+            ParcelFileDescriptor output = performAidlNetworkRequest(request);
+            os = new ParcelFileDescriptor.AutoCloseInputStream(output);
+            exception = deserializeObject(os);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if(exception != null) {
+            throw exception;
+        }
+        return os;
+    }
+
+    private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request) throws IOException, RemoteException {
         // Log.d(TAG, request.url);
         request.accountName = getAccountName();
 
@@ -180,10 +203,9 @@ public class NextcloudAPI {
 
         ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
                 new IThreadListener() {
-
                     @Override
                     public void onThreadFinished(Thread thread) {
-                        Log.d(TAG, "copy to service finished");
+                        Log.d(TAG, "copy data from service finished");
                     }
                 });
 
@@ -191,5 +213,21 @@ public class NextcloudAPI {
 
         return output;
     }
+
+
+
+
+
+
+
+
+    public static <T> T deserializeObjectAndCloseStream(InputStream is) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(is);
+        T result = (T) ois.readObject();
+        is.close();
+        ois.close();
+        return result;
+    }
+
 
 }
