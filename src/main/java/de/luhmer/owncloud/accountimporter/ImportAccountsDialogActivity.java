@@ -1,17 +1,11 @@
 package de.luhmer.owncloud.accountimporter;
 
 import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.accounts.AuthenticatorException;
-import android.accounts.OperationCanceledException;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import java.io.IOException;
-
 import de.luhmer.owncloud.accountimporter.helper.AccountImporter;
-import de.luhmer.owncloud.accountimporter.helper.SingleAccount;
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountImport;
 
 public class ImportAccountsDialogActivity extends AppCompatActivity implements IAccountImport {
