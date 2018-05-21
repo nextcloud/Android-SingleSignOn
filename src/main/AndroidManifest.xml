@@ -10,15 +10,6 @@
         android:name="android.permission.USE_CREDENTIALS"
         android:maxSdkVersion="22" />
 
-    <application android:label="@string/app_name">
-        <activity
-            android:name=".ImportAccountsDialogActivity"
-            android:theme="@style/Theme.AppCompat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+    <application android:label="@string/app_name"></application>
 
 </manifest>
