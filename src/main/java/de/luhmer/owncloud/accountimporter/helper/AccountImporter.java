@@ -133,7 +133,7 @@ public class AccountImporter {
     }
 
 
-    public static SingleSignOnAccount GetAuthTokenInSeperateThread(final Context context, final Account account) {
+    public static SingleSignOnAccount GetAuthTokenInSeparateThread(final Context context, final Account account) {
         SingleSignOnAccount ssoAccount = null;
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Callable<SingleSignOnAccount> callable = new Callable<SingleSignOnAccount>() {
