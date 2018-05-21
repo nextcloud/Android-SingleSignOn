@@ -5,54 +5,22 @@ import android.accounts.AccountManager;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.support.annotation.RequiresApi;
-import android.telecom.Call;
-import android.util.Base64;
-import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.Reader;
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.Exchanger;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import de.luhmer.owncloud.accountimporter.interfaces.IAccountsReceived;
-import io.reactivex.Observable;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -87,7 +55,7 @@ public class AccountImporter {
     }
 
     //TODO add multi account support
-    public static SingleAccount GetCurrentSingleAccount(Context context) throws AuthenticatorException, OperationCanceledException, IOException {
+    public static SingleSignOnAccount GetCurrentSingleAccount(Context context) throws AuthenticatorException, OperationCanceledException, IOException {
         return GetAuthToken(context, GetCurrentAccount(context));
     }
 
@@ -96,8 +64,6 @@ public class AccountImporter {
         SharedPreferences preferences = context.getSharedPreferences(PREF_FILE_NAME, MODE_PRIVATE);
         preferences.edit().putString(PREF_ACCOUNT_STRING, account.name).commit();
     }
-
-
 
 
     // Find all currently installed nextcloud accounts on the phone
@@ -127,10 +93,10 @@ public class AccountImporter {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-    public static SingleAccount BlockingGetAuthToken(final Context context, final Account account) throws Exception {
-        SingleAccount result = AsyncTaskHelper.ExecuteBlockingRequest(new Callable<SingleAccount>() {
+    public static SingleSignOnAccount BlockingGetAuthToken(final Context context, final Account account) throws Exception {
+        SingleSignOnAccount result = AsyncTaskHelper.ExecuteBlockingRequest(new Callable<SingleSignOnAccount>() {
             @Override
-            public SingleAccount call() throws Exception {
+            public SingleSignOnAccount call() throws Exception {
                 return AccountImporter.GetAuthToken(context, account);
             }
         });
@@ -138,7 +104,7 @@ public class AccountImporter {
     }
 
     // Get the AuthToken (Password) for a selected account
-    public static SingleAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, OperationCanceledException, IOException {
+    public static SingleSignOnAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, OperationCanceledException, IOException {
         final AccountManager accMgr = AccountManager.get(context);
         Bundle options = new Bundle();
         accMgr.invalidateAuthToken(account.type, AUTH_TOKEN);
@@ -163,8 +129,30 @@ public class AccountImporter {
         String server_url = future.getString("server_url");
         boolean dhnv = future.getBoolean("disable_hostname_verification");
 
-        return new SingleAccount(username, password, server_url, dhnv);
+        return new SingleSignOnAccount(account.name, username, password, server_url, dhnv);
     }
 
 
+    public static SingleSignOnAccount GetAuthTokenInSeperateThread(final Context context, final Account account) {
+        SingleSignOnAccount ssoAccount = null;
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Callable<SingleSignOnAccount> callable = new Callable<SingleSignOnAccount>() {
+            @Override
+            public SingleSignOnAccount call() throws AuthenticatorException, OperationCanceledException, IOException {
+                return AccountImporter.GetAuthToken(context, account);
+
+            }
+        };
+        Future<SingleSignOnAccount> future = executor.submit(callable);
+        try {
+            ssoAccount = future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        executor.shutdown();
+
+        return ssoAccount;
+    }
 }

@@ -1,6 +1,5 @@
 package de.luhmer.owncloud.accountimporter.helper;
 
-import android.accounts.Account;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -37,8 +36,8 @@ public class NextcloudAPI {
         void onError(Exception ex);
     }
 
-    public NextcloudAPI(Account account, Gson gson) {
-        this.account = account;
+    public NextcloudAPI(SingleSignOnAccount account, Gson gson) {
+        this.mAccount = account;
         this.gson = gson;
     }
 
@@ -47,11 +46,15 @@ public class NextcloudAPI {
     private Gson gson;
     private IInputStreamService mService = null;
     private boolean mBound = false; // Flag indicating whether we have called bind on the service
-    private Account account;
+    private SingleSignOnAccount mAccount;
     private ApiConnectedListener mCallback;
 
     private String getAccountName() {
-        return account.name;
+        return mAccount.name;
+    }
+
+    private String getAccountToken() {
+        return mAccount.password;
     }
 
     public void start(Context context, ApiConnectedListener callback) {
@@ -193,6 +196,8 @@ public class NextcloudAPI {
     private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request) throws IOException, RemoteException {
         // Log.d(TAG, request.url);
         request.accountName = getAccountName();
+        request.token = getAccountToken();
+
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(baos);
