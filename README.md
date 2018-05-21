@@ -31,18 +31,16 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     if (resultCode == RESULT_OK) {
         if (requestCode == CHOOSE_ACCOUNT) {
-            importedAccount = null;
-            String accountName = 
-                    data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-
-            Account account = 
-                    AccountImporter.GetAccountForName(getActivity(), accountName);
+            String accountName =  data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+            Account account = AccountImporter.GetAccountForName(getActivity(), accountName);
             if(account != null) {
-                accountAccessGranted(account);
+                AccountImporter.SetCurrentAccount(getActivity(), account);
             }
         }
     }
 }
+
+// Tip: Checkout the LoginDialogFragment.java from the nextcloud-news app (sso-branch) to see a fully working example
 ```
 
 3) How to get account information?
@@ -195,6 +193,8 @@ Note that the "Make network request" section in the diagram only shows the workf
 
 
 # TODOs
+- [ ] Remove attribute `disableHostnameVerification` from SingleSignOnAccount.java
+    - Do we need really to know in the client app if ssl hostname verification is disabled? I don't think so.
 - [ ] Multi-Account support in client app
 - [ ] Review security concerns
 - [ ] Handle cases when account permission is revoked etc..
