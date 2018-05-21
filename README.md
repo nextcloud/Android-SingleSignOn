@@ -1,45 +1,190 @@
-ownCloud-Account-Importer
+Nextcloud Single Sign On
 =========================
 
-Account Importer (Android Library Project)
+This library allows you to use the network stack provided by the nextcloud app. Therefore you don't need to ask for the users credentials anymore as well as you don't need to worry about self-signed ssl certificates, two factor authentication, etc.
 
 
 
 How to use it?
 --------------
 
-1) you'll need to extend **IAccountImport**
+1) Add this library as a submodule to your project (TODO release this lib on jitpack)
+2) Add the following permission to your `AndroidManifest.xml` 
 
-That means that you have to implement the following method:
+```xml
+<uses-permission android:name="com.owncloud.android.sso"/>
+```
+
+2) To choose an account, include the following code in your login dialog:
+
+```java
+final int CHOOSE_ACCOUNT = 12;
+
+private void showAccountChooserLogin() {
+    Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[] {"nextcloud"}, true, null, null, null, null);
+    startActivityForResult(intent, CHOOSE_ACCOUNT);
+}
+
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+    if (resultCode == RESULT_OK) {
+        if (requestCode == CHOOSE_ACCOUNT) {
+            String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+            AccountManager accountManager = AccountManager.get(getActivity());
+            for (Account account : accountManager.getAccountsByType("nextcloud")) {
+                if(account.name.equals(accountName)) {
+                    AccountImporter.SetCurrentAccount(getActivity(), account);
+                    break;
+                }
+            }
+        }
+    }
+}
+```
+
+3) How to get account information?
+
+```java
+Account account = AccountImporter.GetCurrentAccount(getActivity());
+SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(getActivity(), account);
+
+// ssoAccount.name // Name of the account used in the android account manager
+// ssoAccount.username
+// ssoAccount.password
+// ssoAccount.url 
+// ssoAccount.disableHostnameVerification (TODO remove)
+```
+
+4) How to make a network request?
+
+Well.. if you're already using Retrofit, it's plain simple. If you have an interface such as the following: 
+
+```java
+public interface API {
     
-    public void accountAccessGranted(OwnCloudAccount account);
+    @GET("user")
+    Observable<UserInfo> user();
+
+    @GET("status")
+    Observable<NextcloudStatus> status();
+
+    @GET("version")
+    Observable<NextcloudNewsVersion> version();
+
+    ...
+}
 
 
-As you can see in the following example, it's really easy to get the account data
+// Typical use of API using Retrofit
+public class ApiProvider {
+
+    private API mApi;
+
+    public ApiProvider() {
+        mApi = retrofit.create(API.class);
+    } 
+}
+```
+
+you can implement that interface and use the nextcloud network stack instead of the retrofit one!
+
+```java
+public class API_SSO implements API {
+
+    private static final String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
+    private NextcloudAPI nextcloudAPI;
+
+    public API_SSO(NextcloudAPI nextcloudAPI) {
+        this.nextcloudAPI = nextcloudAPI;
+    }
 
     @Override
-    public void accountAccessGranted(OwnCloudAccount account) {
-        mUsernameView.setText(account.getUsername());
-        mPasswordView.setText(account.getPassword());
-        mOc_root_path_View.setText(account.getUrl());
+    public Observable<UserInfo> user() {
+        final Type type = UserInfo.class;
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "user")
+                .build();
+        return nextcloudAPI.performRequestObservable(type, request);
     }
 
+    @Override
+    public Observable<NextcloudStatus> status() {
+        Type type = NextcloudStatus.class;
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "status")
+                .build();
+        return nextcloudAPI.performRequestObservable(type, request);
+    }
 
-And then you can call the dialog with the following code:
+    @Override
+    public Observable<NextcloudNewsVersion> version() {
+        Type type = NextcloudNewsVersion.class;
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "version")
+                .build();
+        return nextcloudAPI.performRequestObservable(type, request);
+    }
 
-    public static void show(FragmentActivity activity, IAccountImport accountImport)
+    ...
+}
 
 
-Here a small example:
 
-    view.findViewById(R.id.btn_importAccount).setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            ImportAccountsDialogFragment.show(getActivity(), LoginDialogFragment.this);
+// Typical use of new API using the nextcloud app network stack (Example)
+public class ApiProvider {
+
+    private API mApi;
+
+    public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
+        SingleSignOnAccount ssoAccount = 
+            AccountImporter.GetAuthTokenInSeparateThread(context, account);
+        NextcloudAPI nextcloudAPI = 
+            new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
+        nextcloudAPI.start(context, callback);
+        mApi = new API_SSO(nextcloudAPI)
+    } 
+}
+```
+
+
+
+5) Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
+
+# But... I don't use retrofit..
+
+Well.. no worries, the NextcloudAPI provides a method called `performNetworkRequest(NextcloudRequest request)` that allows you to handle the server response yourself.
+
+
+## Example: 
+```java
+private void downloadFile() {
+    NextcloudRequest nr = new NextcloudRequest.Builder()
+            .setMethod("GET")
+            .setUrl("/remote.php/webdav/sample.mp4")
+            .build();
+
+    try {
+        InputStream os = nextcloudAPI.performNetworkRequest(nr);
+        while(os.available() > 0) {
+            os.read();
+            // TODO do something useful with the data here..
+            // like writing it to a file..?
         }
-    });
-
-    //If no other accounts (from other apps) are available.. hide the button
-    if(AccountImporter.findAccounts(getActivity()).size() <= 0) {
-        view.findViewById(R.id.btn_importAccount).setVisibility(View.GONE);
+        os.close();
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+```
+
+
+
+
+# Flow Diagram
+
+![](NextcloudSingleSignOn.png)
