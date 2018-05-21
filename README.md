@@ -40,7 +40,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }
 
-// Tip: Checkout the LoginDialogFragment.java from the nextcloud-news app (sso-branch) to see a fully working example
+// Hint: Checkout the LoginDialogFragment.java from the nextcloud-news app (sso-branch) to see a fully working example
 ```
 
 3) How to get account information?
