@@ -33,16 +33,6 @@ public class AccountImporter {
     private static final String PREF_FILE_NAME = "PrefNextcloudAccount";
     private static final String PREF_ACCOUNT_STRING = "PREF_ACCOUNT_STRING";
 
-    public static boolean AddNewAccount() {
-        //TODO
-        return true;
-    }
-
-    public static void RequestAccounts(Context context, IAccountsReceived accountsReceivedCallback) {
-        List<Account> accounts = FindAccounts(context);
-        accountsReceivedCallback.accountsReceived(accounts);
-    }
-
     public static boolean AccountsToImportAvailable(Context context) {
         return FindAccounts(context).size() > 0;
     }
@@ -83,7 +73,7 @@ public class AccountImporter {
     private static final String AUTH_TOKEN = "NextcloudSSO";
 
 
-    private static Account GetAccountForName(Context context, String name) {
+    public static Account GetAccountForName(Context context, String name) {
         for (Account account : FindAccounts(context)) {
             if (account.name.equals(name)) {
                 return account;

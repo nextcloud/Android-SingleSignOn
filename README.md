@@ -31,13 +31,14 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     if (resultCode == RESULT_OK) {
         if (requestCode == CHOOSE_ACCOUNT) {
-            String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-            AccountManager accountManager = AccountManager.get(getActivity());
-            for (Account account : accountManager.getAccountsByType("nextcloud")) {
-                if(account.name.equals(accountName)) {
-                    AccountImporter.SetCurrentAccount(getActivity(), account);
-                    break;
-                }
+            importedAccount = null;
+            String accountName = 
+                    data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+
+            Account account = 
+                    AccountImporter.GetAccountForName(getActivity(), accountName);
+            if(account != null) {
+                accountAccessGranted(account);
             }
         }
     }
@@ -187,4 +188,15 @@ private void downloadFile() {
 
 # Flow Diagram
 
+Note that the "Make network request" section in the diagram only shows the workflow if you use the "retrofit" api. 
+
 ![](NextcloudSingleSignOn.png)
+
+
+
+# TODOs
+- [ ] Multi-Account support in client app
+- [ ] Review security concerns
+- [ ] Handle cases when account permission is revoked etc..
+- [ ] Think about other use-cases? 
+- [ ] Test on real devices (lower api level) - tested only on Android P
