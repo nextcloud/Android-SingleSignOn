@@ -46,8 +46,10 @@ public class AccountImporterAdapter extends ArrayAdapter<Account> implements Ada
             view.setTag(holder);
         }
 
-        String username = getItem(position).name.split("@")[0];
-        String server   = getItem(position).name.split("@")[1];
+        String accountName = getItem(position).name;
+        int splitLastAtChar = accountName.lastIndexOf("@");
+        String username = accountName.substring(0, splitLastAtChar);
+        String server   = accountName.substring(splitLastAtChar);
 
         holder.text1.setText(username);
         holder.text2.setText(server);
