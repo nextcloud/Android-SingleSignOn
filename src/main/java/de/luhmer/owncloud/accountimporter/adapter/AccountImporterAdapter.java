@@ -39,9 +39,9 @@ public class AccountImporterAdapter extends ArrayAdapter<Account> implements Ada
             holder = (ViewHolder) view.getTag();
         } else {
             view = inflater.inflate(R.layout.simple_list_item_single_choice, parent, false);
-            TextView text1 = (TextView) view.findViewById(R.id.text1);
-            TextView text2 = (TextView) view.findViewById(R.id.text2);
-            CheckBox cbChecked = (CheckBox) view.findViewById(R.id.checkbox);
+            TextView text1 = view.findViewById(R.id.text1);
+            TextView text2 = view.findViewById(R.id.text2);
+            CheckBox cbChecked = view.findViewById(R.id.checkbox);
             holder = new ViewHolder(text1, text2, cbChecked);
             view.setTag(holder);
         }
