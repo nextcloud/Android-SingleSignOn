@@ -17,9 +17,6 @@
 
 package de.luhmer.owncloud.accountimporter.helper;
 
-// Declare the interface.
 interface IInputStreamService {
-
     ParcelFileDescriptor performNextcloudRequest(in ParcelFileDescriptor input);
-
 }

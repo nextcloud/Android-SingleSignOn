@@ -8,5 +8,4 @@ import android.accounts.Account;
 public interface IAccountImport {
 
     void accountAccessGranted(Account account);
-
 }

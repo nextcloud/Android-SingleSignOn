@@ -5,7 +5,5 @@ package de.luhmer.owncloud.accountimporter.helper;
  */
 
 public interface IThreadListener {
-
     void onThreadFinished(final Thread thread);
-
 }
