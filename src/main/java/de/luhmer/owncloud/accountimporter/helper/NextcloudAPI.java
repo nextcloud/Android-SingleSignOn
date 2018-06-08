@@ -135,7 +135,6 @@ public class NextcloudAPI {
     public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws Exception {
         Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
 
-        //final ParcelFileDescriptor output = performAidlNetworkRequest(request);
         InputStream os = performNetworkRequest(request);
 
         Reader targetReader = new InputStreamReader(os);
@@ -148,29 +147,7 @@ public class NextcloudAPI {
         }
         targetReader.close();
 
-        /*
-        byte[] header = new byte[1];
-        os.read(header);
-
-        T result = null;
-        if(header[0] == 0) { // If not exception
-            Reader targetReader = new InputStreamReader(os);
-            result = gson.fromJson(targetReader, type);
-            if (result != null) {
-                Log.d(TAG, result.toString());
-            }
-            targetReader.close();
-        } else {
-            try {
-                Exception e  = deserializeObjectAndCloseStream(os);
-                throw new IOException(e.getMessage(), e.getCause());
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
-            }
-        }
-        */
         os.close();
-        //output.close(); // <-- this is required to halt the TransferThread
 
         return result;
     }
