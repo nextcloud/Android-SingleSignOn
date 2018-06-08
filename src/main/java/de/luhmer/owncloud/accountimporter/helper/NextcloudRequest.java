@@ -21,9 +21,7 @@ public class NextcloudRequest implements Serializable {
     public String token;
     public String accountName;
 
-    private NextcloudRequest() {
-
-    }
+    private NextcloudRequest() { }
 
     public static class Builder {
         private NextcloudRequest ncr;
@@ -71,7 +69,4 @@ public class NextcloudRequest implements Serializable {
             return this;
         }
     }
-
-
-
 }
