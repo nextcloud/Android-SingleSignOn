@@ -22,18 +22,17 @@ package de.luhmer.owncloud.accountimporter.helper;
 
 public class SingleSignOnAccount {
 
-    public SingleSignOnAccount(String name, String username, String password, String url, Boolean disableHostnameVerification) {
+    public SingleSignOnAccount(String name, String username, String token, String url, String packageName) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        this.token = token;
+        this.packageName = packageName;
         this.url = url;
-        this.disableHostnameVerification = disableHostnameVerification;
     }
 
     public String name; // Name of the account in android
     public String username;
-    public String password;
+    public String token;
+    public String packageName;
     public String url;
-    public Boolean disableHostnameVerification;
-
 }

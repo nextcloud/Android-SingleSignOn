@@ -38,17 +38,15 @@ android {
     }
 }
 
-
 dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
-    
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
 
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
-    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.4'
 
-    compile group: 'commons-io', name: 'commons-io', version: '2.0.1'
+    implementation 'commons-io:commons-io:2.6'
 }

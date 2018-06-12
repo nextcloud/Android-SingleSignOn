@@ -34,6 +34,7 @@ public class NextcloudRequest implements Serializable {
     public String requestBody;
     public String url;
     public String token;
+    public String packageName;
     public String accountName;
 
     private NextcloudRequest() { }

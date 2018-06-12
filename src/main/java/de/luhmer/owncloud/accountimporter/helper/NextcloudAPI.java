@@ -69,7 +69,11 @@ public class NextcloudAPI {
     }
 
     private String getAccountToken() {
-        return mAccount.password;
+        return mAccount.token;
+    }
+    
+    private String getPackageName() {
+        return mAccount.packageName;
     }
 
     public void start(Context context, ApiConnectedListener callback) {
@@ -189,6 +193,7 @@ public class NextcloudAPI {
         // Log.d(TAG, request.url);
         request.accountName = getAccountName();
         request.token = getAccountToken();
+        request.packageName = getPackageName();
 
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

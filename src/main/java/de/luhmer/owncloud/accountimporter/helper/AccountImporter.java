@@ -108,32 +108,32 @@ public class AccountImporter {
     }
 
     // Get the AuthToken (Password) for a selected account
-    public static SingleSignOnAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, OperationCanceledException, IOException {
+    public static SingleSignOnAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, 
+            OperationCanceledException, IOException {
         final AccountManager accMgr = AccountManager.get(context);
         Bundle options = new Bundle();
         accMgr.invalidateAuthToken(account.type, AUTH_TOKEN);
-        //accMgr.getAuthToken(account, AUTH_TOKEN, null, true, new AccountManagerCallback<Bundle>() {
-
 
         // Synchronously access auth token
         Bundle future;
         if (context instanceof Activity) {
-            future = accMgr.getAuthToken(account, AUTH_TOKEN, options, (Activity) context, null, null).getResult(); // Show activity
+            // Show activity
+            future = accMgr.getAuthToken(account, AUTH_TOKEN, options, (Activity) context, null, null).getResult(); 
         } else {
-            future = accMgr.getAuthToken(account, AUTH_TOKEN, options, true, null, null).getResult(); // Show notification instead
+            // Show notification instead
+            future = accMgr.getAuthToken(account, AUTH_TOKEN, options, true, null, null).getResult();
         }
 
         String auth_token = future.getString(AccountManager.KEY_AUTHTOKEN);
         String auth_account_type = future.getString(AccountManager.KEY_ACCOUNT_TYPE);
         accMgr.invalidateAuthToken(auth_account_type, auth_token);
 
-        //String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
         String username = future.getString("username");
-        String password = future.getString("password");
+        String token = future.getString("token");
         String server_url = future.getString("server_url");
-        boolean dhnv = future.getBoolean("disable_hostname_verification");
+        String packageName = context.getPackageName();
 
-        return new SingleSignOnAccount(account.name, username, password, server_url, dhnv);
+        return new SingleSignOnAccount(account.name, username, token, server_url, packageName);
     }
 
 
