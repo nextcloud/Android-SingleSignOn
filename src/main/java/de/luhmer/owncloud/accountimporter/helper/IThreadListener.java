@@ -1,6 +1,4 @@
-package de.luhmer.owncloud.accountimporter.interfaces;
-
-import android.accounts.Account;
+package de.luhmer.owncloud.accountimporter.helper;
 
 /**
  *  Nextcloud SingleSignOn
@@ -21,6 +19,6 @@ import android.accounts.Account;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface IAccountImport {
-    void accountAccessGranted(Account account);
+public interface IThreadListener {
+    void onThreadFinished(final Thread thread);
 }

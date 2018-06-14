@@ -1,9 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.luhmer.owncloud.accountimporter">
 
-    <application
-        android:label="@string/app_name">
+    <uses-permission android:name="com.owncloud.android.sso" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
-    </application>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission
+        android:name="android.permission.USE_CREDENTIALS"
+        android:maxSdkVersion="22" />
 
+    <application android:label="@string/app_name" />
 </manifest>
