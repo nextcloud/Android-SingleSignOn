@@ -39,8 +39,6 @@ public class SSOException extends Exception {
     private void loadExceptionMessage(Context context) {
         em = new ExceptionMessage();
 
-        Log.d("AAAAAA", "this.getClass(): " + this.getClass());
-
         if(this instanceof CurrentAccountNotFoundException) {
             em.title   = context.getString(R.string.current_account_not_found_exception_title);
             em.message = context.getString(R.string.current_account_not_found_exception_message);
