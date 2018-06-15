@@ -14,7 +14,7 @@ dependencies {
     implementation "com.github.nextcloud:android-SingleSignOn:sso-SNAPSHOT"
 }
 ```
-2) Add the following permission to your `AndroidManifest.xml` 
+2) Add the following permission to your `AndroidManifest.xml`
 
 ```xml
 <uses-permission android:name="com.owncloud.android.sso"/>
@@ -56,19 +56,19 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
 
 // ssoAccount.name // Name of the account used in the android account manager
 // ssoAccount.username
-// ssoAccount.token 
-// ssoAccount.url 
+// ssoAccount.token
+// ssoAccount.url
 ```
 
 4) How to make a network request?
 
-4.1.1) Retrofit: 
+4.1.1) Retrofit:
 
-If you have an interface such as the following: 
+If you have an interface such as the following:
 
 ```java
 public interface API {
-    
+
     @GET("user")
     Observable<UserInfo> user();
 
@@ -90,7 +90,7 @@ public class ApiProvider {
 
     public ApiProvider() {
         mApi = retrofit.create(API.class);
-    } 
+    }
 }
 ```
 
@@ -150,12 +150,12 @@ public class ApiProvider {
     private API mApi;
 
     public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
-        SingleSignOnAccount ssoAccount = 
+        SingleSignOnAccount ssoAccount =
             AccountImporter.GetAuthTokenInSeparateThread(context, account);
         NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
         nextcloudAPI.start(context, callback);
         mApi = new API_SSO(nextcloudAPI);
-    } 
+    }
 }
 ```
 Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
@@ -191,6 +191,6 @@ private void downloadFile() {
 
 # Flow Diagram
 
-Note that the "Make network request" section in the diagram only shows the workflow if you use the "retrofit" api. 
+Note that the "Make network request" section in the diagram only shows the workflow if you use the "retrofit" api.
 
 ![](doc/NextcloudSingleSignOn.png)

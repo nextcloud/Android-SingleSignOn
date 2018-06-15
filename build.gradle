@@ -20,6 +20,7 @@ group='com.github.nextcloud'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         //applicationId 'de.luhmer.owncloud.accountimporter'
         minSdkVersion 14
