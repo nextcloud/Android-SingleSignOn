@@ -22,17 +22,17 @@ package de.luhmer.owncloud.accountimporter.model;
 
 public class SingleSignOnAccount {
 
-    public SingleSignOnAccount(String name, String username, String password, String url, Boolean disableHostnameVerification) {
+    public SingleSignOnAccount(String name, String username, String token, String url, Boolean disableHostnameVerification) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        this.token = token;
         this.url = url;
         this.disableHostnameVerification = disableHostnameVerification;
     }
 
     public String name; // Name of the account in android
     public String username;
-    public String password;
+    public String token;
     public String url;
     public Boolean disableHostnameVerification;
 

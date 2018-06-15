@@ -139,11 +139,11 @@ public class AccountImporter {
 
         //String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
         String username = future.getString("username");
-        String password = future.getString("password");
+        String token = future.getString("token");
         String server_url = future.getString("server_url");
         boolean dhnv = future.getBoolean("disable_hostname_verification");
 
-        return new SingleSignOnAccount(account.name, username, password, server_url, dhnv);
+        return new SingleSignOnAccount(account.name, username, token, server_url, dhnv);
     }
 
 

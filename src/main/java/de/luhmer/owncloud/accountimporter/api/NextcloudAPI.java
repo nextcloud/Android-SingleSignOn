@@ -78,7 +78,7 @@ public class NextcloudAPI {
     }
 
     private String getAccountToken() {
-        return mAccount.password;
+        return mAccount.token;
     }
 
     public void start(Context context, ApiConnectedListener callback) {
