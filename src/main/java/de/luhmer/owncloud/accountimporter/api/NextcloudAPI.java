@@ -1,4 +1,4 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package de.luhmer.owncloud.accountimporter.api;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -20,8 +23,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.concurrent.Callable;
 
+import de.luhmer.owncloud.accountimporter.aidl.IInputStreamService;
+import de.luhmer.owncloud.accountimporter.aidl.IThreadListener;
+import de.luhmer.owncloud.accountimporter.aidl.ParcelFileDescriptorUtil;
+import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
+import de.luhmer.owncloud.accountimporter.exceptions.NextcloudFilesAppAccountNotFoundException;
+import de.luhmer.owncloud.accountimporter.exceptions.TokenMismatchException;
+import de.luhmer.owncloud.accountimporter.model.SingleSignOnAccount;
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 
@@ -122,12 +131,16 @@ public class NextcloudAPI {
 
 
     public <T> Observable<T> performRequestObservable(final Type type, final NextcloudRequest request) {
-        return Observable.fromCallable(new Callable<T>() {
+        return Observable.fromPublisher(new Publisher<T>() {
             @Override
-            public T call() throws Exception {
-                T result = performRequest(type, request);
-                Log.d(TAG, "Wrapping result object in Observable: " + result);
-                return result;
+            public void subscribe(Subscriber<? super T> s) {
+                try {
+                    s.onNext((T) performRequest(type, request));
+                    s.onComplete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    s.onError(e);
+                }
             }
         });
     }
@@ -136,8 +149,8 @@ public class NextcloudAPI {
         Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
 
         InputStream os = performNetworkRequest(request);
-
         Reader targetReader = new InputStreamReader(os);
+
         T result = null;
         if (type != Void.class) {
             result = gson.fromJson(targetReader, type);
@@ -173,23 +186,37 @@ public class NextcloudAPI {
             ParcelFileDescriptor output = performAidlNetworkRequest(request);
             os = new ParcelFileDescriptor.AutoCloseInputStream(output);
             exception = deserializeObject(os);
-        } catch (RemoteException e) {
-            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
+        // Handle Remote Exceptions
         if(exception != null) {
+            if(exception.getMessage() != null) {
+                switch (exception.getMessage()) {
+                    case "CE_1":
+                        throw new TokenMismatchException();
+                    case "CE_2":
+                        throw new NextcloudFilesAppAccountNotFoundException();
+                    default:
+                        throw exception;
+                }
+            }
             throw exception;
         }
         return os;
     }
 
+    /**
+     * DO NOT CALL THIS METHOD DIRECTLY - use "performNetworkRequest(...)" instead
+     * @param request
+     * @return
+     * @throws IOException
+     */
     private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request) throws IOException, RemoteException {
         // Log.d(TAG, request.url);
         request.accountName = getAccountName();
         request.token = getAccountToken();
-
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(baos);

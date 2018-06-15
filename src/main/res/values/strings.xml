@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">ownCloud Account Importer</string>
+    <string name="app_name">Nextcloud Single Sign On</string>
+
+    <string name="no_current_account_selected_exception_title">Warning</string>
+    <string name="no_current_account_selected_exception_message">No account selected yet</string>
+
+    <string name="current_account_not_found_exception_title">Warning</string>
+    <string name="current_account_not_found_exception_message">Selected account was not found. Something went wrong..</string>
+
+    <string name="token_mismatch_title">Error</string>
+    <string name="token_mismatch_message">Provided authentication token does not match</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Error</string>
+    <string name="nextcloud_files_app_not_installed_message">Nextcloud Files App is not installed</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Error</string>
+    <string name="nextcloud_files_app_account_not_found_message">Account not found in nextcloud files app</string>
+
 </resources>

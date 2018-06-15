@@ -1,4 +1,4 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package de.luhmer.owncloud.accountimporter.model;
 
 /**
  *  Nextcloud SingleSignOn
@@ -17,8 +17,23 @@ package de.luhmer.owncloud.accountimporter.helper;
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
  */
 
-public interface IThreadListener {
-    void onThreadFinished(final Thread thread);
+public class SingleSignOnAccount {
+
+    public SingleSignOnAccount(String name, String username, String password, String url, Boolean disableHostnameVerification) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.url = url;
+        this.disableHostnameVerification = disableHostnameVerification;
+    }
+
+    public String name; // Name of the account in android
+    public String username;
+    public String password;
+    public String url;
+    public Boolean disableHostnameVerification;
+
 }
