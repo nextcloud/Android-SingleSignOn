@@ -1,11 +1,13 @@
-Nextcloud Single Sign On
-=========================
+# Nextcloud Single Sign On
 
-This library allows you to use the network stack provided by the nextcloud app. Therefore you don't need to ask for the users credentials anymore as well as you don't need to worry about self-signed ssl certificates, two factor authentication, etc.
+This library allows you to use accounts as well as the network stack provided by the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client). Therefore you as a developer don't need to worry about asking the user for credentials as well as you don't need to worry about self-signed ssl certificates, two factor authentication, save credential storage etc.
+
+*Please note that the user needs to install the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client) in order to use those features.* While this might seem like a "no-go" for some developers, we still think that using this library is worth consideration as it makes the account handling much faster and safer.
 
 
-How to use it?
---------------
+>**IMPORTANT NOTE**: As this library is under heavy development right now you'll need to install the nextcloud files app manually on your device. Checkout the `sso` branch of the files app (`git clone -b sso https://github.com/nextcloud/android.git`) and install the app using Android Studio. We would love to get feedback!
+
+## How to use this library
 
 1) Add this library to your project
 
@@ -199,7 +201,7 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
 
 
 
-# Examples
+## Examples
 
 - [Nextcloud news app](https://github.com/nextcloud/news-android)
     - [API](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/reader/nextcloud/API_SSO.java)
@@ -209,7 +211,7 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
 
 
 
-# Flow Diagram
+## Flow Diagram
 
 Note that the "Make network request" section in the diagram only shows the workflow if you use the "retrofit" api.
 
