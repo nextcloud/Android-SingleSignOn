@@ -49,4 +49,6 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.4'
 
     implementation 'commons-io:commons-io:2.6'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
 }
