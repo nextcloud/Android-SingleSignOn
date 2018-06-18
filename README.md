@@ -198,7 +198,9 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
     }
     ```
 
+## Video
 
+![](https://user-images.githubusercontent.com/4489723/41563281-75cbc196-734f-11e8-8b22-7b906363e34a.gif)
 
 
 ## Examples
