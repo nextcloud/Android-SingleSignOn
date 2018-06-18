@@ -26,8 +26,8 @@ import java.lang.reflect.Type;
 
 import de.luhmer.owncloud.accountimporter.aidl.IInputStreamService;
 import de.luhmer.owncloud.accountimporter.aidl.IThreadListener;
-import de.luhmer.owncloud.accountimporter.aidl.ParcelFileDescriptorUtil;
 import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
+import de.luhmer.owncloud.accountimporter.aidl.ParcelFileDescriptorUtil;
 import de.luhmer.owncloud.accountimporter.exceptions.NextcloudFilesAppAccountNotFoundException;
 import de.luhmer.owncloud.accountimporter.exceptions.TokenMismatchException;
 import de.luhmer.owncloud.accountimporter.model.SingleSignOnAccount;

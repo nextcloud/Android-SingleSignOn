@@ -1,20 +1,12 @@
 package de.luhmer.owncloud.accountimporter.helper;
 
 import java.io.InputStream;
-import java.lang.reflect.Type;
 
 import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
 import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
-import de.luhmer.owncloud.accountimporter.helper.BufferedSourceSSO;
-import io.reactivex.Completable;
-import io.reactivex.functions.Action;
-import okhttp3.Request;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class SsoObervable {
+public class Okhttp3Helper {
 
     public static ResponseBody getResponseBodyFromRequest(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
         try {
@@ -25,8 +17,5 @@ public class SsoObervable {
         }
         return ResponseBody.create(null, "");
     }
-
-
-
 
 }

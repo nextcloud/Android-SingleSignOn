@@ -52,4 +52,5 @@ dependencies {
     implementation 'commons-io:commons-io:2.6'
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
 }
