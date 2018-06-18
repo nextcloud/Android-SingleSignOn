@@ -6,6 +6,10 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.app.NotificationCompat;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
+import android.widget.TextView;
 
 import com.nextcloud.android.sso.exceptions.SSOException;
 
@@ -31,14 +35,25 @@ import com.nextcloud.android.sso.exceptions.SSOException;
 public class UiExceptionManager {
 
     public static void ShowDialogForException(Context context, SSOException exception) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(exception.getTitle(context))
-                .setMessage(exception.getMessage(context))
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) { }
-                })
+        ShowDialogForException(context, exception, null);
+    }
+
+    public static void ShowDialogForException(Context context, SSOException exception, DialogInterface.OnClickListener callback) {
+        // Enable hyperlinks in message
+        final SpannableString message = new SpannableString(exception.getMessage(context));
+        Linkify.addLinks(message, Linkify.ALL);
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle(exception.getTitle(context))
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, callback)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+                .create();
+
+        dialog.show();
+
+        // Make the textview clickable. Must be called after show()
+        ((TextView)dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private static final int NOTIFICATION_ID = 0;
