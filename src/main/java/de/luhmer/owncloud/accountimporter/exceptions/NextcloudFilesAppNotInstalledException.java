@@ -1,4 +1,4 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package de.luhmer.owncloud.accountimporter.exceptions;
 
 /**
  *  Nextcloud SingleSignOn
@@ -19,6 +19,5 @@ package de.luhmer.owncloud.accountimporter.helper;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface IThreadListener {
-    void onThreadFinished(final Thread thread);
+public class NextcloudFilesAppNotInstalledException extends SSOException {
 }

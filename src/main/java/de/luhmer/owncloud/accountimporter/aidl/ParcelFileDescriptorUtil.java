@@ -1,4 +1,4 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package de.luhmer.owncloud.accountimporter.aidl;
 
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
@@ -6,6 +6,8 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import de.luhmer.owncloud.accountimporter.aidl.IThreadListener;
 
 /**
  *  Nextcloud SingleSignOn

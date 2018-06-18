@@ -1,4 +1,4 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package de.luhmer.owncloud.accountimporter.aidl;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -34,7 +34,6 @@ public class NextcloudRequest implements Serializable {
     public String requestBody;
     public String url;
     public String token;
-    public String packageName;
     public String accountName;
 
     private NextcloudRequest() { }

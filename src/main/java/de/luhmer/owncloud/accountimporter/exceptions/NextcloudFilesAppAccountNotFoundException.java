@@ -1,4 +1,4 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package de.luhmer.owncloud.accountimporter.exceptions;
 
 /**
  *  Nextcloud SingleSignOn
@@ -17,22 +17,7 @@ package de.luhmer.owncloud.accountimporter.helper;
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
  */
 
-public class SingleSignOnAccount {
-
-    public SingleSignOnAccount(String name, String username, String token, String url, String packageName) {
-        this.name = name;
-        this.username = username;
-        this.token = token;
-        this.packageName = packageName;
-        this.url = url;
-    }
-
-    public String name; // Name of the account in android
-    public String username;
-    public String token;
-    public String packageName;
-    public String url;
+public class NextcloudFilesAppAccountNotFoundException extends SSOException {
 }
