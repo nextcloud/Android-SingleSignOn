@@ -1,10 +1,10 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package com.nextcloud.android.sso.helper;
 
-import java.io.InputStream;
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.api.NextcloudAPI;
 
-import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
-import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
-import okhttp3.ResponseBody;
+import io.reactivex.Completable;
+import io.reactivex.functions.Action;
 
 /**
  *  Nextcloud SingleSignOn
@@ -25,16 +25,16 @@ import okhttp3.ResponseBody;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Okhttp3Helper {
+public class ReactivexHelper {
 
-    public static ResponseBody getResponseBodyFromRequest(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
-        try {
-            InputStream os = nextcloudAPI.performNetworkRequest(request);
-            return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ResponseBody.create(null, "");
+    public static Completable WrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
+        return Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                nextcloudAPI.performRequest(Void.class, request);
+            }
+        });
     }
 
 }
+

@@ -1,4 +1,4 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package com.nextcloud.android.sso.helper;
 
 import android.support.annotation.Nullable;
 
