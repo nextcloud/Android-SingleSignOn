@@ -26,7 +26,7 @@ import android.net.Uri;
 public class FilesAppNotInstalledHelper {
 
     public static void RequestInstallNextcloudFilesApp(Context context) {
-        // DAVdroid not installed
+        // Nextcloud app not installed
         Intent installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.nextcloud.client"));
 
         // launch market(s)
