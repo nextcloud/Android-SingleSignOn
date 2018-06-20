@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Nextcloud Single Sign On</string>
+
+    <string name="no_current_account_selected_exception_title">Warnung</string>
+    <string name="no_current_account_selected_exception_message">Kein Konto ausgewählt</string>
+
+    <string name="current_account_not_found_exception_title">Warnung</string>
+    <string name="current_account_not_found_exception_message">Ausgewähltes Konto wurde nicht gefunden. Etwas ist schief gelaufen…</string>
+
+    <string name="token_mismatch_title">Fehler</string>
+    <string name="token_mismatch_message">Angegebener Authentifizierungstoken stimmt nicht überein</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Fehler</string>
+    <string name="nextcloud_files_app_not_installed_message">Nextcloud App ist nicht installiert</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Fehler</string>
+    <string name="nextcloud_files_app_account_not_found_message">Account in Nextcloud App nicht gefunden</string>
+
+</resources>
