@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Nextcloud Single Sign On</string>
+
+    <string name="no_current_account_selected_exception_title">Uwaga</string>
+    <string name="no_current_account_selected_exception_message">Nie wybrano jeszcze konta</string>
+
+    <string name="current_account_not_found_exception_title">Uwaga</string>
+    <string name="current_account_not_found_exception_message">Wybrane konto nie zostało znalezione. Coś poszło nie tak..</string>
+
+    <string name="token_mismatch_title">Błąd</string>
+    <string name="token_mismatch_message">Podany token uwierzytelniania nie jest zgodny</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Błąd</string>
+    <string name="nextcloud_files_app_not_installed_message">Aplikacja Nextcloud Files nie jest zainstalowana</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Błąd</string>
+    <string name="nextcloud_files_app_account_not_found_message">Konto nie zostało znalezione w aplikacji Nextcloud Files</string>
+
+</resources>
