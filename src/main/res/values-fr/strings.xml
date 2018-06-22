@@ -1,0 +1,9 @@
+<resources>
+    <string name="no_current_account_selected_exception_title">Attention</string>
+    <string name="current_account_not_found_exception_title">Attention</string>
+    <string name="token_mismatch_title">Erreur</string>
+    <string name="nextcloud_files_app_not_installed_title">Erreur</string>
+    <string name="nextcloud_files_app_not_installed_message">L\'application Nexcloud Files n\'est pas installé.</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
+    </resources>
