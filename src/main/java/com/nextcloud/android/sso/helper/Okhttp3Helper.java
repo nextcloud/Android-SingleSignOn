@@ -1,6 +1,11 @@
-package com.nextcloud.android.sso.interfaces;
+package com.nextcloud.android.sso.helper;
 
-import android.accounts.Account;
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.api.NextcloudAPI;
+
+import java.io.InputStream;
+
+import okhttp3.ResponseBody;
 
 /**
  *  Nextcloud SingleSignOn
@@ -21,6 +26,16 @@ import android.accounts.Account;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface IAccountImport {
-    void accountAccessGranted(Account account);
+public class Okhttp3Helper {
+
+    public static ResponseBody getResponseBodyFromRequest(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
+        try {
+            InputStream os = nextcloudAPI.performNetworkRequest(request);
+            return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseBody.create(null, "");
+    }
+
 }

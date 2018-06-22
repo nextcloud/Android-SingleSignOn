@@ -1,9 +1,10 @@
-package de.luhmer.owncloud.accountimporter.helper;
+package com.nextcloud.android.sso.helper;
+
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.api.NextcloudAPI;
 
 import java.lang.reflect.Type;
 
-import de.luhmer.owncloud.accountimporter.aidl.NextcloudRequest;
-import de.luhmer.owncloud.accountimporter.api.NextcloudAPI;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -31,7 +32,8 @@ import retrofit2.Response;
 
 public class Retrofit2Helper {
 
-    public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI, final NextcloudRequest nextcloudRequest, final Type resType) {
+    public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI, final NextcloudRequest nextcloudRequest, 
+                                         final Type resType) {
         return new Call<T>() {
             @Override
             public Response<T> execute() {
