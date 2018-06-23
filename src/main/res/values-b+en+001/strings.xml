@@ -11,8 +11,6 @@
     <string name="token_mismatch_message">Provided authentication token does not match</string>
 
     <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message">Nextcloud Files App is not installed</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
     <string name="nextcloud_files_app_account_not_found_message">Account not found in nextcloud files app</string>
 

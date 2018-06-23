@@ -11,8 +11,6 @@
     <string name="token_mismatch_message">El token de autenticación proporcionado no coincide</string>
 
     <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message">La app Archivos de Nexccloud no está instalada</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
     <string name="nextcloud_files_app_account_not_found_message">No se ha encontrado la cuenta en la app de Archivos de Nextcloud</string>
 

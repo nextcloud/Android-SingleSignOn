@@ -11,8 +11,6 @@
     <string name="token_mismatch_message">A megadott azonosítási tóken nem egyezik.</string>
 
     <string name="nextcloud_files_app_not_installed_title">Hiba</string>
-    <string name="nextcloud_files_app_not_installed_message">Nextcloud Fájl Alkalmazás nincs telepítve.</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Hiba</string>
     <string name="nextcloud_files_app_account_not_found_message">A File Alkalmazásban nem található ilyen fiók.</string>
 
