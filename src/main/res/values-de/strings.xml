@@ -11,6 +11,8 @@
     <string name="token_mismatch_message">Angegebener Authentifizierungstoken stimmt nicht überein</string>
 
     <string name="nextcloud_files_app_not_installed_title">Fehler</string>
+    <string name="nextcloud_files_app_not_installed_message">Die Nextcloud-Files-App ist nicht installiert. Bitte installieren Sie: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Fehler</string>
     <string name="nextcloud_files_app_account_not_found_message">Account in Nextcloud App nicht gefunden</string>
 

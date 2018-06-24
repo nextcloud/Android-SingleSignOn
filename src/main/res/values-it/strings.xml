@@ -11,6 +11,8 @@
     <string name="token_mismatch_message">Il token di autenticazione fornito non corrisponde</string>
 
     <string name="nextcloud_files_app_not_installed_title">Errore</string>
+    <string name="nextcloud_files_app_not_installed_message">L\'applicazione Nextcloud File non è installata. Installala: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Errore</string>
     <string name="nextcloud_files_app_account_not_found_message">L\'account non è stato trovato nell\'applicazione File di Nextcloud</string>
 
