@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Технология единого входа Nextcloud</string>
+
+    <string name="no_current_account_selected_exception_title">Предупреждение</string>
+    <string name="current_account_not_found_exception_title">Предупреждение</string>
+    <string name="token_mismatch_title">Ошибка</string>
+    <string name="nextcloud_files_app_not_installed_title">Ошибка</string>
+    <string name="nextcloud_files_app_account_not_found_title">Ошибка</string>
+    </resources>
