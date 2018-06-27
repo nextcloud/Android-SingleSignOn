@@ -2,8 +2,18 @@
     <string name="app_name">Технология единого входа Nextcloud</string>
 
     <string name="no_current_account_selected_exception_title">Предупреждение</string>
+    <string name="no_current_account_selected_exception_message">Выбран аккаунт еще не выбран</string>
+
     <string name="current_account_not_found_exception_title">Предупреждение</string>
+    <string name="current_account_not_found_exception_message">Выбранный аккаунт не найден. Что-то пошло не так..</string>
+
     <string name="token_mismatch_title">Ошибка</string>
+    <string name="token_mismatch_message">Токен аутентификации не совпадает</string>
+
     <string name="nextcloud_files_app_not_installed_title">Ошибка</string>
+    <string name="nextcloud_files_app_not_installed_message">Приложение Nextcloud Files не установлено. Установите его: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Ошибка</string>
-    </resources>
+    <string name="nextcloud_files_app_account_not_found_message">Учетная запись не найдена в приложении Nextcloud Files</string>
+
+</resources>
