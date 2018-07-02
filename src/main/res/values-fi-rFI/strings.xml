@@ -9,6 +9,8 @@
 
     <string name="token_mismatch_title">Virhe</string>
     <string name="nextcloud_files_app_not_installed_title">Virhe</string>
+    <string name="nextcloud_files_app_not_installed_message">Nextcloud-tiedostosovellusta ei ole asennettu. Asenna se: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Virhe</string>
     <string name="nextcloud_files_app_account_not_found_message">Tiliä ei löytynyt Nextcloudin tiedostosovelluksesta</string>
 
