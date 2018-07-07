@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Nextcloud单点登陆</string>
+
+    <string name="no_current_account_selected_exception_title">警告</string>
+    <string name="no_current_account_selected_exception_message">没有选择任何账户</string>
+
+    <string name="current_account_not_found_exception_title">警告</string>
+    <string name="current_account_not_found_exception_message">找不到所选帐户。 出了些问题..</string>
+
+    <string name="token_mismatch_title">错误</string>
+    <string name="token_mismatch_message">提供的身份验证令牌不匹配</string>
+
+    <string name="nextcloud_files_app_not_installed_title">错误</string>
+    <string name="nextcloud_files_app_not_installed_message">Nextcloud 文件应用未安装。请安装：https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">错误</string>
+    <string name="nextcloud_files_app_account_not_found_message">在nextcloud文件应用中找不到帐户</string>
+
+</resources>
