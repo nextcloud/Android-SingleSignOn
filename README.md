@@ -13,7 +13,7 @@ This library allows you to use accounts as well as the network stack provided by
 
 ```gradle
 dependencies {
-    implementation "com.github.nextcloud:android-SingleSignOn:sso-SNAPSHOT"
+    implementation "com.github.nextcloud:android-SingleSignOn:master-SNAPSHOT"
 }
 ```
 2) Add the following permission to your `AndroidManifest.xml`
