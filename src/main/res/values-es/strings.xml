@@ -5,13 +5,13 @@
     <string name="no_current_account_selected_exception_message">Todavía no hay ninguna cuenta seleccionada</string>
 
     <string name="current_account_not_found_exception_title">Advertencia</string>
-    <string name="current_account_not_found_exception_message">No se encontró la cuenta seleccionada. Algo salió mal..</string>
+    <string name="current_account_not_found_exception_message">No se ha encontrado la cuenta seleccionada. Algo ha salido mal..</string>
 
     <string name="token_mismatch_title">Error</string>
     <string name="token_mismatch_message">El token de autenticación proporcionado no coincide</string>
 
     <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message">La app Archivos de Nextcloud no está instalada. Por favor instalalo: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
+    <string name="nextcloud_files_app_not_installed_message">La app Archivos de Nextcloud no está instalada. Por favor, instálala: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
     <string name="nextcloud_files_app_account_not_found_message">No se ha encontrado la cuenta en la app de Archivos de Nextcloud</string>
