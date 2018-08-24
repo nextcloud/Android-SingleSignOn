@@ -29,37 +29,17 @@ import java.lang.reflect.InvocationTargetException;
 
 public class SSOException extends Exception {
 
-    private ExceptionMessage em;
+    protected ExceptionMessage em;
 
     public SSOException() {
         super("Single Sign On Exception (use getMessage(context) for more information)");
     }
 
-    private void loadExceptionMessage(Context context) {
-        em = new ExceptionMessage();
-
-        if(this instanceof CurrentAccountNotFoundException) {
-            em.title   = context.getString(R.string.current_account_not_found_exception_title);
-            em.message = context.getString(R.string.current_account_not_found_exception_message);
-        } else if(this instanceof NoCurrentAccountSelectedException) {
-            em.title   = context.getString(R.string.no_current_account_selected_exception_title);
-            em.message = context.getString(R.string.no_current_account_selected_exception_message);
-        } else if(this instanceof TokenMismatchException) {
-            em.title   = context.getString(R.string.token_mismatch_title);
-            em.message = context.getString(R.string.token_mismatch_message);
-        } else if(this instanceof NextcloudFilesAppNotInstalledException) {
-            em.title   = context.getString(R.string.nextcloud_files_app_not_installed_title);
-            em.message = context.getString(R.string.nextcloud_files_app_not_installed_message);
-        } else if(this instanceof NextcloudFilesAppAccountNotFoundException) {
-            em.title   = context.getString(R.string.nextcloud_files_app_account_not_found_title);
-            em.message = context.getString(R.string.nextcloud_files_app_account_not_found_message);
-        } else if(this instanceof NextcloudFilesAppNotSupportedException) {
-            em.title   = context.getString(R.string.nextcloud_files_app_not_supported_title);
-            em.message = context.getString(R.string.nextcloud_files_app_not_supported_message);
-        } else {
-            em.title = "Unknown error";
-            em.message = "Unknown error..";
-        }
+    public void loadExceptionMessage(Context context) {
+        this.em = new ExceptionMessage(
+                "Unknown error",
+                "Unknown error.."
+        );
     }
 
     public String getTitle(Context context) {

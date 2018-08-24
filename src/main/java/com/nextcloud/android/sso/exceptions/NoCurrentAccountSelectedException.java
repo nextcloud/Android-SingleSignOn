@@ -1,5 +1,10 @@
 package com.nextcloud.android.sso.exceptions;
 
+import android.content.Context;
+
+import com.nextcloud.android.sso.R;
+import com.nextcloud.android.sso.model.ExceptionMessage;
+
 /**
  *  Nextcloud SingleSignOn
  *
@@ -21,4 +26,11 @@ package com.nextcloud.android.sso.exceptions;
 
 public class NoCurrentAccountSelectedException extends SSOException {
 
+    @Override
+    public void loadExceptionMessage(Context context) {
+        this.em = new ExceptionMessage(
+                context.getString(R.string.no_current_account_selected_exception_title),
+                context.getString(R.string.no_current_account_selected_exception_message)
+        );
+    }
 }

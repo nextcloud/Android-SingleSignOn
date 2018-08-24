@@ -1,5 +1,10 @@
 package com.nextcloud.android.sso.exceptions;
 
+import android.content.Context;
+
+import com.nextcloud.android.sso.R;
+import com.nextcloud.android.sso.model.ExceptionMessage;
+
 /**
  *  Nextcloud SingleSignOn
  *
@@ -21,4 +26,11 @@ package com.nextcloud.android.sso.exceptions;
 
 public class TokenMismatchException extends SSOException {
 
+    @Override
+    public void loadExceptionMessage(Context context) {
+        this.em = new ExceptionMessage(
+                context.getString(R.string.token_mismatch_title),
+                context.getString(R.string.token_mismatch_message)
+        );
+    }
 }

@@ -1,5 +1,10 @@
 package com.nextcloud.android.sso.exceptions;
 
+import android.content.Context;
+
+import com.nextcloud.android.sso.R;
+import com.nextcloud.android.sso.model.ExceptionMessage;
+
 /**
  *  Nextcloud SingleSignOn
  *
@@ -21,4 +26,11 @@ package com.nextcloud.android.sso.exceptions;
 
 public class CurrentAccountNotFoundException extends SSOException {
 
+    @Override
+    public void loadExceptionMessage(Context context) {
+        this.em = new ExceptionMessage(
+            em.title   = context.getString(R.string.current_account_not_found_exception_title),
+            em.message = context.getString(R.string.current_account_not_found_exception_message)
+        );
+    }
 }
