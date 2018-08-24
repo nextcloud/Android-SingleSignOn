@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.helper.AsyncTaskHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -117,7 +118,7 @@ public class AccountImporter {
     }
 
     // Get the AuthToken (Password) for a selected account
-    public static SingleSignOnAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, OperationCanceledException, IOException {
+    public static SingleSignOnAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, OperationCanceledException, IOException, NextcloudFilesAppNotSupportedException {
         final AccountManager accMgr = AccountManager.get(context);
         Bundle options = new Bundle();
         accMgr.invalidateAuthToken(account.type, AUTH_TOKEN);
@@ -126,10 +127,15 @@ public class AccountImporter {
 
         // Synchronously access auth token
         Bundle future;
-        if (context instanceof Activity) {
-            future = accMgr.getAuthToken(account, AUTH_TOKEN, options, (Activity) context, null, null).getResult(); // Show activity
-        } else {
-            future = accMgr.getAuthToken(account, AUTH_TOKEN, options, true, null, null).getResult(); // Show notification instead
+
+        try {
+            if (context instanceof Activity) {
+                future = accMgr.getAuthToken(account, AUTH_TOKEN, options, (Activity) context, null, null).getResult(); // Show activity
+            } else {
+                future = accMgr.getAuthToken(account, AUTH_TOKEN, options, true, null, null).getResult(); // Show notification instead
+            }
+        } catch (AuthenticatorException ex) {
+            throw new NextcloudFilesAppNotSupportedException();
         }
 
         String auth_token = future.getString(AccountManager.KEY_AUTHTOKEN);
@@ -151,7 +157,7 @@ public class AccountImporter {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Callable<SingleSignOnAccount> callable = new Callable<SingleSignOnAccount>() {
             @Override
-            public SingleSignOnAccount call() throws AuthenticatorException, OperationCanceledException, IOException {
+            public SingleSignOnAccount call() throws NextcloudFilesAppNotSupportedException, AuthenticatorException, OperationCanceledException, IOException {
                 return AccountImporter.GetAuthToken(context, account);
 
             }

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.exceptions.CurrentAccountNotFoundException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -53,7 +54,7 @@ public class SingleAccountHelper {
         return account;
     }
 
-    public static SingleSignOnAccount GetCurrentSingleAccount(Context context) throws AuthenticatorException, OperationCanceledException, IOException, NoCurrentAccountSelectedException, CurrentAccountNotFoundException {
+    public static SingleSignOnAccount GetCurrentSingleAccount(Context context) throws AuthenticatorException, OperationCanceledException, IOException, NoCurrentAccountSelectedException, CurrentAccountNotFoundException, NextcloudFilesAppNotSupportedException {
         return AccountImporter.GetAuthToken(context, GetCurrentAccount(context));
     }
 

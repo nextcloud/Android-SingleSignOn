@@ -53,6 +53,9 @@ public class SSOException extends Exception {
         } else if(this instanceof NextcloudFilesAppAccountNotFoundException) {
             em.title   = context.getString(R.string.nextcloud_files_app_account_not_found_title);
             em.message = context.getString(R.string.nextcloud_files_app_account_not_found_message);
+        } else if(this instanceof NextcloudFilesAppNotSupportedException) {
+            em.title   = context.getString(R.string.nextcloud_files_app_not_supported_title);
+            em.message = context.getString(R.string.nextcloud_files_app_not_supported_message);
         } else {
             em.title = "Unknown error";
             em.message = "Unknown error..";
