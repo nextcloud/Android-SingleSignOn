@@ -17,4 +17,4 @@ https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
     <string name="nextcloud_files_app_account_not_found_title">Hiba</string>
     <string name="nextcloud_files_app_account_not_found_message">A File Alkalmazásban nem található ilyen fiók.</string>
 
-</resources>
+    </resources>

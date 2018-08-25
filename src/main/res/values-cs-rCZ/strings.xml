@@ -12,4 +12,4 @@
     <string name="nextcloud_files_app_account_not_found_title">Chyba</string>
     <string name="nextcloud_files_app_account_not_found_message">Účet nebyl v aplikaci Soubory Nextcloud nalezen</string>
 
-</resources>
+    </resources>

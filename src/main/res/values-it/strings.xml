@@ -16,4 +16,4 @@
     <string name="nextcloud_files_app_account_not_found_title">Errore</string>
     <string name="nextcloud_files_app_account_not_found_message">L\'account non è stato trovato nell\'applicazione File di Nextcloud</string>
 
-</resources>
+    </resources>

@@ -14,4 +14,4 @@
     <string name="nextcloud_files_app_account_not_found_title">Virhe</string>
     <string name="nextcloud_files_app_account_not_found_message">Tiliä ei löytynyt Nextcloudin tiedostosovelluksesta</string>
 
-</resources>
+    </resources>
