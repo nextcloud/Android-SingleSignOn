@@ -8,8 +8,6 @@
     <string name="current_account_not_found_exception_message">選択したアカウントが見つかりません。何かが間違っています</string>
 
     <string name="token_mismatch_title">エラー</string>
-    <string name="token_mismatch_message">提供された認証トークンが一致しません</string>
-
     <string name="nextcloud_files_app_not_installed_title">エラー</string>
     <string name="nextcloud_files_app_not_installed_message">Nextcloud ファイルアプリがインストールされていません。インストールしてください： https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
 

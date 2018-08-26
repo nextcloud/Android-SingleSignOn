@@ -8,8 +8,6 @@
     <string name="current_account_not_found_exception_message">Valinn aðgangur fannst ekki. Eitthvað hefur farið úrskeiðis...</string>
 
     <string name="token_mismatch_title">Villa</string>
-    <string name="token_mismatch_message">Uppgefið auðkenningarteikn samsvarar ekki</string>
-
     <string name="nextcloud_files_app_not_installed_title">Villa</string>
     <string name="nextcloud_files_app_not_installed_message">Nextcloud Files forritið er ekki uppsett. Endilega settu það upp: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
 

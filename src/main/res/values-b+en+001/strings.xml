@@ -8,8 +8,6 @@
     <string name="current_account_not_found_exception_message">Selected account was not found. Something went wrong..</string>
 
     <string name="token_mismatch_title">Error</string>
-    <string name="token_mismatch_message">Provided authentication token does not match</string>
-
     <string name="nextcloud_files_app_not_installed_title">Error</string>
     <string name="nextcloud_files_app_not_installed_message">Nextcloud Files App is not installed. Please install it: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
 

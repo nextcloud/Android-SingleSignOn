@@ -6,8 +6,6 @@
     <string name="current_account_not_found_exception_message">Vybraný účet nebyl nalezen. Něco se pokazilo..</string>
 
     <string name="token_mismatch_title">Chyba</string>
-    <string name="token_mismatch_message">Poskytnutý ověřovací token neodpovídá</string>
-
     <string name="nextcloud_files_app_not_installed_title">Chyba</string>
     <string name="nextcloud_files_app_account_not_found_title">Chyba</string>
     <string name="nextcloud_files_app_account_not_found_message">Účet nebyl v aplikaci Soubory Nextcloud nalezen</string>
