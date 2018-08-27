@@ -16,6 +16,15 @@
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
     <string name="nextcloud_files_app_account_not_found_message">Account not found in nextcloud files app</string>
 
+    <string name="nextcloud_http_request_failed_title">Error</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP request failed with HTTP status-code: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_title" translatable="false">Error</string>
+    <string name="nextcloud_unsupported_method_message" translatable="false">The requested HTTP Method is not supported yet! Please contact the developers of the Android Single-On Library for Android</string>
+
+    <string name="nextcloud_invalid_request_url_title" translatable="false">Error</string>
+    <string name="nextcloud_invalid_request_url_message" translatable="false" formatted="true">The requested URL is invalid: %1$s</string>
+
     <string name="nextcloud_files_app_not_supported_title">Error</string>
     <string name="nextcloud_files_app_not_supported_message">Your nextcloud files app currently does not support the single sign on feature. Please update it: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
 
