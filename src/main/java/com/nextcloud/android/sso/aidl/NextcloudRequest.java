@@ -1,11 +1,4 @@
-package com.nextcloud.android.sso.aidl;
-
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
+/*
  *  Nextcloud SingleSignOn
  *
  *  @author David Luhmer
@@ -24,9 +17,16 @@ import java.util.Map;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.nextcloud.android.sso.aidl;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class NextcloudRequest implements Serializable {
 
-    static final long serialVersionUID = 215521212534236L; //assign a long value
+    private static final long serialVersionUID = 215521212534237L; //assign a long value
 
     public String method;
     public Map<String, List<String>> header = new HashMap<>();
@@ -34,6 +34,7 @@ public class NextcloudRequest implements Serializable {
     public String requestBody;
     public String url;
     public String token;
+    public String packageName;
     public String accountName;
 
     private NextcloudRequest() { }
@@ -59,7 +60,7 @@ public class NextcloudRequest implements Serializable {
             return this;
         }
 
-        public Builder setParameter(HashMap<String, String> parameter) {
+        public Builder setParameter(Map<String, String> parameter) {
             ncr.parameter = parameter;
             return this;
         }
@@ -79,9 +80,33 @@ public class NextcloudRequest implements Serializable {
             return this;
         }
 
+        public Builder setPackageName(String packageName) {
+            ncr.packageName = packageName;
+            return this;
+        }
+
         public Builder setAccountName(String accountName) {
             ncr.accountName = accountName;
             return this;
         }
+    }
+
+    public boolean validateToken(String token) {
+        // As discussed with Lukas R. at the Nextcloud Conf 2018, always compare whole strings
+        // and don't exit prematurely if the string does not match anymore to prevent timing-attacks
+        return isEqual(this.token.getBytes(), token.getBytes());
+    }
+
+    // Taken from http://codahale.com/a-lesson-in-timing-attacks/
+    private static boolean isEqual(byte[] a, byte[] b) {
+        if (a.length != b.length) {
+            return false;
+        }
+
+        int result = 0;
+        for (int i = 0; i < a.length; i++) {
+            result |= a[i] ^ b[i];
+        }
+        return result == 0;
     }
 }
