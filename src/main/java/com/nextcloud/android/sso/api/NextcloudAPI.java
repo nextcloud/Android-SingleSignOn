@@ -10,6 +10,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.IThreadListener;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
@@ -194,9 +195,9 @@ public class NextcloudAPI {
         if(exception != null) {
             if(exception.getMessage() != null) {
                 switch (exception.getMessage()) {
-                    case "CE_1":
+                    case Constants.EXCEPTION_INVALID_TOKEN:
                         throw new TokenMismatchException();
-                    case "CE_2":
+                    case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
                         throw new NextcloudFilesAppAccountNotFoundException();
                     default:
                         throw exception;

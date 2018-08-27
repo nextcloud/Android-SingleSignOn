@@ -143,10 +143,9 @@ public class AccountImporter {
         accMgr.invalidateAuthToken(auth_account_type, auth_token);
 
         //String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
-        String username = future.getString("username");
-        String token = future.getString("token");
-        String server_url = future.getString("server_url");
-        boolean dhnv = future.getBoolean("disable_hostname_verification");
+        String username = future.getString(Constants.SSO_USERNAME);
+        String token = future.getString(Constants.SSO_TOKEN);
+        String server_url = future.getString(Constants.SSO_SERVER_URL);
 
         return new SingleSignOnAccount(account.name, username, token, server_url, dhnv);
     }
