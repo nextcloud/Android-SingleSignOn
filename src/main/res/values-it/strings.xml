@@ -8,6 +8,8 @@
     <string name="current_account_not_found_exception_message">L\'account selezionato non è stato trovato. Qualcosa non ha funzionato.</string>
 
     <string name="token_mismatch_title">Errore</string>
+    <string name="token_mismatch_message">Il token di autenticazione fornito non corrisponde o il nome del pacchetto non è permesso per eseguire questa azione</string>
+
     <string name="nextcloud_files_app_not_installed_title">Errore</string>
     <string name="nextcloud_files_app_not_installed_message">L\'applicazione Nextcloud File non è installata. Installala: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
 
