@@ -147,7 +147,7 @@ public class AccountImporter {
         String token = future.getString(Constants.SSO_TOKEN);
         String server_url = future.getString(Constants.SSO_SERVER_URL);
 
-        return new SingleSignOnAccount(account.name, username, token, server_url, dhnv);
+        return new SingleSignOnAccount(account.name, username, token, server_url);
     }
 
 
