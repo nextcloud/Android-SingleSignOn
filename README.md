@@ -161,8 +161,7 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
             Account account = SingleAccountHelper.GetCurrentAccount(context);
             SingleSignOnAccount ssoAccount =
                 AccountImporter.GetAuthTokenInSeparateThread(context, account);
-            NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
-            nextcloudAPI.start(context, callback);
+            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
             mApi = new API_SSO(nextcloudAPI);
         }
     }
@@ -176,7 +175,7 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
     ```java
     // create nextcloudAPI instance
     SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
-    NextcloudAPI nextcloudAPI = new NextcloudAPI(ssoAccount, GsonConfig.GetGson());
+    NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
 
     private void downloadFile() {
         NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
