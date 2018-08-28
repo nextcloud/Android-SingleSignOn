@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import com.nextcloud.android.sso.exceptions.NextcloudInvalidRequestUrlException;
 import com.nextcloud.android.sso.exceptions.NextcloudUnsupportedMethodException;
 import com.nextcloud.android.sso.exceptions.TokenMismatchException;
+import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import org.reactivestreams.Publisher;
@@ -64,9 +66,13 @@ public class NextcloudAPI {
         void onError(Exception ex);
     }
 
-    public NextcloudAPI(SingleSignOnAccount account, Gson gson) {
+    public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, ApiConnectedListener callback) {
+        this.context = context; // memory leaks..??
         this.mAccount = account;
         this.gson = gson;
+        this.mCallback = callback;
+
+        connectApiWithBackoff();
     }
 
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
@@ -76,6 +82,7 @@ public class NextcloudAPI {
     private boolean mBound = false; // Flag indicating whether we have called bind on the service
     private SingleSignOnAccount mAccount;
     private ApiConnectedListener mCallback;
+    private Context context;
 
     private String getAccountName() {
         return mAccount.name;
@@ -85,9 +92,16 @@ public class NextcloudAPI {
         return mAccount.token;
     }
 
-    public void start(Context context, ApiConnectedListener callback) {
-        this.mCallback = callback;
+    private void connectApiWithBackoff() {
+        new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), new Runnable() {
+            @Override
+            public void run() {
+                connect();
+            }
+        }).start();
+    }
 
+    private void connect() {
         // Disconnect if connected
         if(mBound) {
             stop(context);
@@ -98,10 +112,11 @@ public class NextcloudAPI {
             intentService.setComponent(new ComponentName("com.nextcloud.client", "com.owncloud.android.services.AccountManagerService"));
             if (!context.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
                 Log.d(TAG, "Binding to AccountManagerService returned false");
+                throw new IllegalStateException("Binding to AccountManagerService returned false");
             }
         } catch (SecurityException e) {
             Log.e(TAG, "can't bind to AccountManagerService, check permission in Manifest");
-            callback.onError(e);
+            mCallback.onError(e);
         }
     }
 
@@ -133,6 +148,9 @@ public class NextcloudAPI {
             // unexpectedly disconnected -- that is, its process crashed.
             mService = null;
             mBound = false;
+
+
+            connectApiWithBackoff();
         }
     };
 
