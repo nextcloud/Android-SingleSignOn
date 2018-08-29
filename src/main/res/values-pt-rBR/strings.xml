@@ -16,6 +16,9 @@
     <string name="nextcloud_files_app_account_not_found_title">Erro</string>
     <string name="nextcloud_files_app_account_not_found_message">Conta não encontrada no aplicativo Nextcloud Files</string>
 
+    <string name="nextcloud_http_request_failed_title">Erro</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">A requisição HTTP falhou com status-code HTTP : %1$d</string>
+
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
     <string name="nextcloud_files_app_not_supported_message">Atualmente, seu aplicativo de arquivos nextcloud não suporta o recurso de login único. Por favor, atualize-o: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
 
