@@ -173,26 +173,50 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
     `NextcloudAPI` provides a method called `performNetworkRequest(NextcloudRequest request)` that allows you to handle the server response yourself.
 
     ```java
-    // create nextcloudAPI instance
-    SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
-    NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
+    public class MyActivity extends AppCompatActivity {
+        NextcloudAPI mNextcloudAPI;
 
-    private void downloadFile() {
-        NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
-                .setMethod("GET")
-                .setUrl("/remote.php/webdav/sample.mp4")
-                .build();
+        @Override
+        protected void onStart() {
+            Account account = SingleAccountHelper.GetCurrentAccount(context);
+            SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
+            mNextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(),  new NextcloudAPI.ApiConnectedListener() {
+                @Override
+                public void onConnected() {
+                    downloadFile();
+                }
 
-        try {
-            InputStream inputStream = nextcloudAPI.performNetworkRequest(nextcloudRequest);
-            while(inputStream.available() > 0) {
-                inputStream.read();
-                // TODO do something useful with the data here..
-                // like writing it to a file..?
+                @Override
+                public void onError(Exception ex) {
+                    // TODO handle error here..
+                }
+            });
+        }
+
+        @Override
+        protected void onStop() {
+            // Close Service Connection to Nextcloud Files App and
+            // disconnect API from Context (prevent Memory Leak)
+            mNextcloudAPI.stop();
+        }
+
+        private void downloadFile() {
+            NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
+                    .setMethod("GET")
+                    .setUrl("/remote.php/webdav/sample.mp4")
+                    .build();
+
+            try {
+                InputStream inputStream = mNextcloudAPI.performNetworkRequest(nextcloudRequest);
+                while(inputStream.available() > 0) {
+                    inputStream.read();
+                    // TODO do something useful with the data here..
+                    // like writing it to a file..?
+                }
+                inputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            inputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     ```
