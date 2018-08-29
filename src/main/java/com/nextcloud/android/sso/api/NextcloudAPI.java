@@ -67,7 +67,7 @@ public class NextcloudAPI {
     }
 
     public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, ApiConnectedListener callback) {
-        this.context = context; // memory leaks..??
+        this.mContext = context;
         this.mAccount = account;
         this.gson = gson;
         this.mCallback = callback;
@@ -80,9 +80,11 @@ public class NextcloudAPI {
     private Gson gson;
     private IInputStreamService mService = null;
     private boolean mBound = false; // Flag indicating whether we have called bind on the service
+    private boolean mDestroyed = false; // Flag indicating if API is destroyed
     private SingleSignOnAccount mAccount;
     private ApiConnectedListener mCallback;
-    private Context context;
+    private Context mContext;
+
 
     private String getAccountName() {
         return mAccount.name;
@@ -102,15 +104,19 @@ public class NextcloudAPI {
     }
 
     private void connect() {
+        if(mDestroyed) {
+            throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
+        }
+
         // Disconnect if connected
         if(mBound) {
-            stop(context);
+            stop();
         }
 
         try {
             Intent intentService = new Intent();
             intentService.setComponent(new ComponentName("com.nextcloud.client", "com.owncloud.android.services.AccountManagerService"));
-            if (!context.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
+            if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
                 Log.d(TAG, "Binding to AccountManagerService returned false");
                 throw new IllegalStateException("Binding to AccountManagerService returned false");
             }
@@ -121,11 +127,21 @@ public class NextcloudAPI {
     }
 
 
-    public void stop(Context context) {
+    public void stop() {
+        gson = null;
+        mDestroyed = true;
+        mAccount = null;
+        mCallback = null;
+
         // Unbind from the service
         if (mBound) {
-            context.unbindService(mConnection);
+            if(mContext != null) {
+                mContext.unbindService(mConnection);
+            } else {
+                Log.e(TAG, "Context was null, cannot unbind nextcloud single sign-on service connection!");
+            }
             mBound = false;
+            mContext = null;
         }
     }
 
@@ -149,8 +165,9 @@ public class NextcloudAPI {
             mService = null;
             mBound = false;
 
-
-            connectApiWithBackoff();
+            if(!mDestroyed) {
+                connectApiWithBackoff();
+            }
         }
     };
 
