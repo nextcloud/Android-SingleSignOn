@@ -174,7 +174,8 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
 
     ```java
     public class MyActivity extends AppCompatActivity {
-        NextcloudAPI mNextcloudAPI;
+    
+        private NextcloudAPI mNextcloudAPI;
 
         @Override
         protected void onStart() {
