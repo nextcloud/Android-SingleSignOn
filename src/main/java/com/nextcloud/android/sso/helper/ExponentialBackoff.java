@@ -26,6 +26,7 @@ import java.security.InvalidParameterException;
 
 /** The implementation of exponential backoff with jitter applied. */
 public class ExponentialBackoff {
+
     private int mRetryCounter;
     private long mStartDelayMs;
     private long mMaximumDelayMs;
@@ -67,7 +68,7 @@ public class ExponentialBackoff {
         this(initialDelayMs, maximumDelayMs, multiplier, maxRetries, new Handler(looper), runnable);
     }
 
-    public ExponentialBackoff(
+    private ExponentialBackoff(
             long initialDelayMs,
             long maximumDelayMs,
             int multiplier,
@@ -101,7 +102,7 @@ public class ExponentialBackoff {
     }
 
     /** Should call when the retry action has failed and we want to retry after a longer delay. */
-    public void notifyFailed() {
+    private void notifyFailed() {
         if(mRetryCounter > mMaxRetries) {
             stop();
         } else {
@@ -118,7 +119,7 @@ public class ExponentialBackoff {
 
         private final Runnable runnable;
 
-        public WrapperRunnable(Runnable runnable) {
+        WrapperRunnable(Runnable runnable) {
             this.runnable = runnable;
         }
 
