@@ -30,7 +30,9 @@ public class NextcloudFilesAppNotSupportedException extends SSOException {
     public void loadExceptionMessage(Context context) {
         this.em = new ExceptionMessage(
                 context.getString(R.string.nextcloud_files_app_not_supported_title),
-                context.getString(R.string.nextcloud_files_app_not_supported_message)
+                context.getString(
+                        R.string.nextcloud_files_app_not_supported_message,
+                        "https://play.google.com/store/apps/details?id=com.nextcloud.client")
         );
     }
 }

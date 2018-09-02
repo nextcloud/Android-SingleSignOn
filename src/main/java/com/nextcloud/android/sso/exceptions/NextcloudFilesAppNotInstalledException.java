@@ -30,7 +30,9 @@ public class NextcloudFilesAppNotInstalledException extends SSOException {
     public void loadExceptionMessage(Context context) {
         this.em = new ExceptionMessage(
                 context.getString(R.string.nextcloud_files_app_not_installed_title),
-                context.getString(R.string.nextcloud_files_app_not_installed_message)
+                context.getString(
+                        R.string.nextcloud_files_app_not_installed_message,
+                        "https://play.google.com/store/apps/details?id=com.nextcloud.client")
         );
     }
 }

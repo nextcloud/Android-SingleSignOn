@@ -12,6 +12,8 @@ import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 public class VersionCheckHelper {
 
+    private static final String TAG = VersionCheckHelper.class.getCanonicalName();
+
     public static boolean VerifyMinVersion(Activity activity, int minVersion) {
         try {
             int verCode = GetNextcloudFilesVersionCode(activity);
@@ -21,7 +23,8 @@ public class VersionCheckHelper {
                 return false;
             }
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Log.e(TAG, "PackageManager.NameNotFoundException: " + e.getLocalizedMessage());
+            //e.printStackTrace();
             UiExceptionManager.ShowDialogForException(activity, new NextcloudFilesAppNotInstalledException());
             return false;
         }
@@ -30,11 +33,9 @@ public class VersionCheckHelper {
     }
 
     public static int GetNextcloudFilesVersionCode(Activity activity) throws PackageManager.NameNotFoundException {
-        PackageInfo pinfo;
-        pinfo = activity.getPackageManager().getPackageInfo("com.nextcloud.client", 0);
+        PackageInfo pinfo = activity.getPackageManager().getPackageInfo("com.nextcloud.client", 0);
         int verCode = pinfo.versionCode;
         Log.e("VersionCheckHelper", "Version Code: " + verCode);
-
         return verCode;
     }
 }
