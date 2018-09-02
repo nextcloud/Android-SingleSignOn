@@ -264,8 +264,8 @@ public class NextcloudAPI {
      */
     private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request) throws IOException, RemoteException {
         // Log.d(TAG, request.url);
-        request.accountName = getAccountName();
-        request.token = getAccountToken();
+        request.setAccountName(getAccountName());
+        request.setToken(getAccountToken());
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(baos);
