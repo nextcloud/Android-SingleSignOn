@@ -1,4 +1,6 @@
 <resources>
+    <string name="app_name">Nextcloud sjednocené přihlašování</string>
+
     <string name="no_current_account_selected_exception_title">Varování</string>
     <string name="no_current_account_selected_exception_message">Zatím nebyl vybrán žádný účet</string>
 
@@ -6,8 +8,12 @@
     <string name="current_account_not_found_exception_message">Vybraný účet nebyl nalezen. Něco se pokazilo..</string>
 
     <string name="token_mismatch_title">Chyba</string>
+    <string name="token_mismatch_message">Poskytnutý ověřovací token se neshoduje nebo tomuto balíčku není umožněno provést tuto akci</string>
+
     <string name="nextcloud_files_app_not_installed_title">Chyba</string>
     <string name="nextcloud_files_app_account_not_found_title">Chyba</string>
     <string name="nextcloud_files_app_account_not_found_message">Účet nebyl v aplikaci Soubory Nextcloud nalezen</string>
 
+    <string name="nextcloud_http_request_failed_title">Chyba</string>
+    <string name="nextcloud_files_app_not_supported_title">Chyba</string>
     </resources>
