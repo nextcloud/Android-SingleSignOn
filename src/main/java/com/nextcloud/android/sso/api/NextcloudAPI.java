@@ -289,11 +289,6 @@ public class NextcloudAPI {
 
 
 
-
-
-
-
-
     public static <T> T deserializeObjectAndCloseStream(InputStream is) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(is);
         T result = (T) ois.readObject();

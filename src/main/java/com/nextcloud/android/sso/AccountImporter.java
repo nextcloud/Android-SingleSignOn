@@ -7,10 +7,13 @@ import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
@@ -62,6 +65,10 @@ public class AccountImporter {
 
     public static void PickNewAccount(android.support.v4.app.Fragment fragment) throws NextcloudFilesAppNotInstalledException {
         if(AppInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
+
+            // Clear all tokens first to prevent some caching issues..
+            ClearAllAuthTokens(fragment.getContext());
+
             Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
                     true, null, null, null, null);
             fragment.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
@@ -117,8 +124,28 @@ public class AccountImporter {
         return result;
     }
 
+    public static void ClearAllAuthTokens(Context context) {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        for(String key : mPrefs.getAll().keySet()) {
+            if(key.startsWith(PREF_ACCOUNT_STRING)) {
+                mPrefs.edit().remove(key).apply();
+            }
+        }
+    }
+
     // Get the AuthToken (Password) for a selected account
     public static SingleSignOnAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, OperationCanceledException, IOException, NextcloudFilesAppNotSupportedException {
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String prefKey = PREF_ACCOUNT_STRING + account.name;
+        if(mPrefs.contains(prefKey)) {
+            try {
+                return SingleSignOnAccount.fromString(mPrefs.getString(prefKey, null));
+            } catch (ClassNotFoundException e) {
+                Log.e(TAG, "This should never happen!");
+                e.printStackTrace();
+            }
+        }
+
         final AccountManager accMgr = AccountManager.get(context);
         Bundle options = new Bundle();
         accMgr.invalidateAuthToken(account.type, AUTH_TOKEN);
@@ -147,7 +174,9 @@ public class AccountImporter {
         String token = future.getString(Constants.SSO_TOKEN);
         String server_url = future.getString(Constants.SSO_SERVER_URL);
 
-        return new SingleSignOnAccount(account.name, username, token, server_url);
+        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(account.name, username, token, server_url);
+        mPrefs.edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).apply();
+        return ssoAccount;
     }
 
 
