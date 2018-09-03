@@ -7,8 +7,6 @@
 
     <string name="token_mismatch_title">Erro</string>
     <string name="nextcloud_files_app_not_installed_title">Erro</string>
-    <string name="nextcloud_files_app_not_installed_message">A aplicação Nextcloud Files não está instalado. Por favor, instale-a: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Erro</string>
     <string name="nextcloud_files_app_account_not_found_message">Conta não encontrada na aplicação de ficheiros nextcloud</string>
 

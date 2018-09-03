@@ -11,13 +11,9 @@
     <string name="token_mismatch_message">Le jeton d\\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erreur</string>
-    <string name="nextcloud_files_app_not_installed_message">L\'application Nextcloud Files n\'est pas installée. Veuillez l\'installer : https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
     <string name="nextcloud_files_app_account_not_found_message">Compte non trouvé dans l\'application Nextcloud Files.</string>
 
     <string name="nextcloud_http_request_failed_title">Erreur</string>
     <string name="nextcloud_files_app_not_supported_title">Erreur</string>
-    <string name="nextcloud_files_app_not_supported_message">Votre application de fichiers nextcloud ne supporte actuellement pas la fonction d\'authentification unique. Veuillez la mettre à jour : https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
-</resources>
+    </resources>

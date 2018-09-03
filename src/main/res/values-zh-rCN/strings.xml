@@ -9,8 +9,6 @@
 
     <string name="token_mismatch_title">错误</string>
     <string name="nextcloud_files_app_not_installed_title">错误</string>
-    <string name="nextcloud_files_app_not_installed_message">Nextcloud 文件应用未安装。请安装：https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">错误</string>
     <string name="nextcloud_files_app_account_not_found_message">在nextcloud文件应用中找不到帐户</string>
 

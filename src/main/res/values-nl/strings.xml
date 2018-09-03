@@ -9,8 +9,6 @@
 
     <string name="token_mismatch_title">Fout</string>
     <string name="nextcloud_files_app_not_installed_title">Fout</string>
-    <string name="nextcloud_files_app_not_installed_message">Nextcloud Files App is niet geïnstalleerd. Installeer het aub: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Fout</string>
     <string name="nextcloud_files_app_account_not_found_message">Account niet gevonden in nextcloud files app</string>
 
