@@ -11,8 +11,6 @@
     <string name="token_mismatch_message">Il token di autenticazione fornito non corrisponde o il nome del pacchetto non è permesso per eseguire questa azione</string>
 
     <string name="nextcloud_files_app_not_installed_title">Errore</string>
-    <string name="nextcloud_files_app_not_installed_message">L\'applicazione Nextcloud File non è installata. Installala: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Errore</string>
     <string name="nextcloud_files_app_account_not_found_message">L\'account non è stato trovato nell\'applicazione File di Nextcloud</string>
 
@@ -20,6 +18,4 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Richiesta HTTP non riuscita con codice di stato HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Errore</string>
-    <string name="nextcloud_files_app_not_supported_message">L\'applicazione dei tuoi file di Nextcloud attualmente non supporta la funzionalità di single sign on. Aggiornala: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
-</resources>
+    </resources>

@@ -11,8 +11,6 @@
     <string name="token_mismatch_message">El token de autenticación proporcionado no coincide o no se permite para realizar esta acción el nombre del paquete</string>
 
     <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message">La app Archivos de Nextcloud no está instalada. Por favor, instálala: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
     <string name="nextcloud_files_app_account_not_found_message">No se ha encontrado la cuenta en la app de Archivos de Nextcloud</string>
 
@@ -20,6 +18,4 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">La petición HTTP ha fallado con un código de estado %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="nextcloud_files_app_not_supported_message">Tu app de Archivos de Nextcloud no soporta actualmente la característica de single sign on. Por favor, actualízala: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
-</resources>
+    </resources>

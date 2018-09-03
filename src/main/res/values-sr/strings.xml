@@ -9,8 +9,6 @@
 
     <string name="token_mismatch_title">Грешка</string>
     <string name="nextcloud_files_app_not_installed_title">Грешка</string>
-    <string name="nextcloud_files_app_not_installed_message">Некстклауд апликација за фајлове није инсталирана. Инсталирајте је са https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Грешка</string>
     <string name="nextcloud_files_app_account_not_found_message">Налог није нађен у некстклауд апликацији фајлова</string>
 

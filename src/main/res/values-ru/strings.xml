@@ -9,8 +9,6 @@
 
     <string name="token_mismatch_title">Ошибка</string>
     <string name="nextcloud_files_app_not_installed_title">Ошибка</string>
-    <string name="nextcloud_files_app_not_installed_message">Приложение Nextcloud Files не установлено. Установите его: https://play.google.com/store/apps/details?id=com.nextcloud.client</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Ошибка</string>
     <string name="nextcloud_files_app_account_not_found_message">Учетная запись не найдена в приложении Nextcloud Files</string>
 
