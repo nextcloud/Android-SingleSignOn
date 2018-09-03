@@ -34,11 +34,11 @@ import com.nextcloud.android.sso.exceptions.SSOException;
 
 public class UiExceptionManager {
 
-    public static void ShowDialogForException(Context context, SSOException exception) {
-        ShowDialogForException(context, exception, null);
+    public static void showDialogForException(Context context, SSOException exception) {
+        showDialogForException(context, exception, null);
     }
 
-    public static void ShowDialogForException(Context context, SSOException exception, DialogInterface.OnClickListener callback) {
+    public static void showDialogForException(Context context, SSOException exception, DialogInterface.OnClickListener callback) {
         // Enable hyperlinks in message
         final SpannableString message = new SpannableString(exception.getMessage(context));
         Linkify.addLinks(message, Linkify.ALL);
@@ -59,7 +59,7 @@ public class UiExceptionManager {
     private static final int NOTIFICATION_ID = 0;
     private static final String CHANNEL_ID = "0";
 
-    public static void ShowNotificationForException(Context context, SSOException exception) {
+    public static void showNotificationForException(Context context, SSOException exception) {
         String title = exception.getTitle(context);
         String message = exception.getMessage(context);
         String tickerMessage = message;

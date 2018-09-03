@@ -21,12 +21,12 @@ package com.nextcloud.android.sso.model;
 
 public class ExceptionMessage {
 
+    public String title;
+    public String message;
+
     public ExceptionMessage(String title, String message) {
         this.title = title;
         this.message = message;
     }
-
-    public String title;
-    public String message;
 
 }

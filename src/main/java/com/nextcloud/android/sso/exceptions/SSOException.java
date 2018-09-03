@@ -2,8 +2,8 @@ package com.nextcloud.android.sso.exceptions;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
-import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.model.ExceptionMessage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,6 +29,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class SSOException extends Exception {
 
+    private static final String TAG = SSOException.class.getCanonicalName();
     protected ExceptionMessage em;
 
     public SSOException() {
@@ -78,14 +79,8 @@ public class SSOException extends Exception {
         try {
             return (Application) Class.forName("android.app.ActivityThread")
                     .getMethod("currentApplication").invoke(null, (Object[]) null);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
         }
         return null;
     }

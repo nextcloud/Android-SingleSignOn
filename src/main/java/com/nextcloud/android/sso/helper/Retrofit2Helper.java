@@ -30,7 +30,9 @@ import retrofit2.Response;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Retrofit2Helper {
+public final class Retrofit2Helper {
+
+    private Retrofit2Helper() { }
 
     public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI, final NextcloudRequest nextcloudRequest, 
                                          final Type resType) {

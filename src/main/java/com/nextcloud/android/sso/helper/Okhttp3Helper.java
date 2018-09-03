@@ -26,7 +26,9 @@ import okhttp3.ResponseBody;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Okhttp3Helper {
+public final class Okhttp3Helper {
+
+    private Okhttp3Helper() { }
 
     public static ResponseBody getResponseBodyFromRequest(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
         try {

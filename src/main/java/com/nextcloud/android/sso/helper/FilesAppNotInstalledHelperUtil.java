@@ -23,9 +23,11 @@ import android.net.Uri;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class FilesAppNotInstalledHelper {
+public final class FilesAppNotInstalledHelperUtil {
 
-    public static void RequestInstallNextcloudFilesApp(Context context) {
+    private FilesAppNotInstalledHelperUtil() { }
+
+    public static void requestInstallNextcloudFilesApp(Context context) {
         // Nextcloud app not installed
         Intent installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.nextcloud.client"));
 

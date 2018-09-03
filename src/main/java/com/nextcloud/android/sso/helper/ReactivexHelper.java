@@ -25,7 +25,9 @@ import io.reactivex.functions.Action;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ReactivexHelper {
+public final class ReactivexHelper {
+
+    private ReactivexHelper() { }
 
     public static Completable WrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
         return Completable.fromAction(new Action() {
