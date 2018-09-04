@@ -11,6 +11,8 @@
     <string name="token_mismatch_message">Belirtilen kimlik doğrulama kodu eşleşmiyor ya da paket adının bu işlemi yapmasına izin verilmiyor</string>
 
     <string name="nextcloud_files_app_not_installed_title">Hata</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Dosyalar uygulaması kurulmamış. Lütfen uygulamayı kurun: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Hata</string>
     <string name="nextcloud_files_app_account_not_found_message">Hesap Nextcloud dosyalar uygulamasında bulunamadı</string>
 
@@ -18,4 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP isteği şu HTTP durum koduyla karşılanamadı: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Hata</string>
-    </resources>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Nextcloud dosyalar uygulamanız şu anda tek oturum açma özelliğini desteklemiyor. Lütfen şu adresten güncelleyin: %1$s</string>
+
+</resources>
