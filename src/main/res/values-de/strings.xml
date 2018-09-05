@@ -11,6 +11,8 @@
     <string name="token_mismatch_message">Der Authentifizierungs-Token stimmt nicht überein oder dem Paketnamen fehlt die Berechtigung für diese Aktion</string>
 
     <string name="nextcloud_files_app_not_installed_title">Fehler</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Die Nextcloud-Files-App ist nicht installiert. Bitte installieren Sie: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Fehler</string>
     <string name="nextcloud_files_app_account_not_found_message">Konto in der Nextcloud App nicht gefunden</string>
 
@@ -18,4 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-Anfrage ist fehlgeschlagen mit HTTP-Statuscode: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Fehler</string>
-    </resources>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Deine Nextcloud-Files-App unterstützt aktuell nicht die Funktion Single-Sign-On. Bitte aktualisieren: %1$s</string>
+
+</resources>

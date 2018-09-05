@@ -11,6 +11,8 @@
     <string name="token_mismatch_message">Le jeton d\\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erreur</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'application Nexcloud Files n\'est pas installé. Veuillez l\'installer : %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
     <string name="nextcloud_files_app_account_not_found_message">Compte non trouvé dans l\'application Nextcloud Files.</string>
 
