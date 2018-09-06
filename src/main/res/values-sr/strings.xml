@@ -8,8 +8,18 @@
     <string name="current_account_not_found_exception_message">Одабрани налог није нађен. Нешто је пошло наопако..</string>
 
     <string name="token_mismatch_title">Грешка</string>
+    <string name="token_mismatch_message">Токен за проверу идентитета се не поклапа или имену овог пакета није дозвољено да изврши ову радњу</string>
+
     <string name="nextcloud_files_app_not_installed_title">Грешка</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Некстклауд апликација за фајлове није инсталирана. Инсталирајте је са: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Грешка</string>
     <string name="nextcloud_files_app_account_not_found_message">Налог није нађен у некстклауд апликацији фајлова</string>
 
-    </resources>
+    <string name="nextcloud_http_request_failed_title">Error</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP захтев није успео са статусом грешке: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Error</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваша Некстклауд апликација за Фајлове тренутно не подржава могућност једнократног пријављивања. Ажурирајте је: %1$s</string>
+
+</resources>
