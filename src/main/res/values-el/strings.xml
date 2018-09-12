@@ -1,0 +1,15 @@
+<resources>
+    <string name="no_current_account_selected_exception_title">Προειδοποίηση</string>
+    <string name="no_current_account_selected_exception_message">Δεν επιλέχθηκε λογαριασμός ακόμα</string>
+
+    <string name="current_account_not_found_exception_title">Προειδοποίηση</string>
+    <string name="current_account_not_found_exception_message">Δεν βρέθηκε ο επιλεγμένος λογαριασμός. Κάτι πήγε στραβά.</string>
+
+    <string name="token_mismatch_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_not_installed_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_account_not_found_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_account_not_found_message">Δεν βρέθηκε ο λογαριασμός στην εφαρμογή αρχείων του Nextcloud</string>
+
+    <string name="nextcloud_http_request_failed_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_not_supported_title">Σφάλμα</string>
+    </resources>
