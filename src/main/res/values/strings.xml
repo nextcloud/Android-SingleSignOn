@@ -16,6 +16,9 @@
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
     <string name="nextcloud_files_app_account_not_found_message">Account not found in nextcloud files app</string>
 
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">You have to accept the requested permissions to use the single sign-on feature.</string>
+
     <string name="nextcloud_http_request_failed_title">Error</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP request failed with HTTP status-code: %1$d</string>
 

@@ -11,16 +11,10 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.IThreadListener;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil;
-import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
-import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
-import com.nextcloud.android.sso.exceptions.NextcloudInvalidRequestUrlException;
-import com.nextcloud.android.sso.exceptions.NextcloudUnsupportedMethodException;
-import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -39,6 +33,8 @@ import java.lang.reflect.Type;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
+
+import static com.nextcloud.android.sso.exceptions.SSOException.ParseAndThrowNextcloudCustomException;
 
 /**
  *  Nextcloud SingleSignOn
@@ -235,26 +231,13 @@ public class NextcloudAPI {
         // Handle Remote Exceptions
         if(exception != null) {
             if(exception.getMessage() != null) {
-                switch (exception.getMessage()) {
-                    case Constants.EXCEPTION_INVALID_TOKEN:
-                        throw new TokenMismatchException();
-                    case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
-                        throw new NextcloudFilesAppAccountNotFoundException();
-                    case Constants.EXCEPTION_UNSUPPORTED_METHOD:
-                        throw new NextcloudUnsupportedMethodException();
-                    case Constants.EXCEPTION_INVALID_REQUEST_URL:
-                        throw new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
-                    case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
-                        int statusCode = Integer.parseInt(exception.getCause().getMessage());
-                        throw new NextcloudHttpRequestFailedException(statusCode);
-                    default:
-                        throw exception;
-                }
+                ParseAndThrowNextcloudCustomException(exception);
             }
             throw exception;
         }
         return os;
     }
+
 
     /**
      * DO NOT CALL THIS METHOD DIRECTLY - use "performNetworkRequest(...)" instead

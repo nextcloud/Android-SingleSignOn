@@ -4,9 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.model.ExceptionMessage;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  *  Nextcloud SingleSignOn
@@ -83,5 +82,26 @@ public class SSOException extends Exception {
             Log.e(TAG, e.getMessage());
         }
         return null;
+    }
+
+
+    public static void ParseAndThrowNextcloudCustomException(Exception exception) throws Exception {
+        switch (exception.getMessage()) {
+            case Constants.EXCEPTION_INVALID_TOKEN:
+                throw new TokenMismatchException();
+            case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
+                throw new NextcloudFilesAppAccountNotFoundException();
+            case Constants.EXCEPTION_UNSUPPORTED_METHOD:
+                throw new NextcloudUnsupportedMethodException();
+            case Constants.EXCEPTION_INVALID_REQUEST_URL:
+                throw new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
+            case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
+                int statusCode = Integer.parseInt(exception.getCause().getMessage());
+                throw new NextcloudHttpRequestFailedException(statusCode);
+            case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED:
+                throw new NextcloudFilesAppAccountPermissionNotGrantedException();
+            default:
+                throw exception;
+        }
     }
 }
