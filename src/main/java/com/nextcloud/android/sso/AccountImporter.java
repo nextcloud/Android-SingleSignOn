@@ -54,15 +54,15 @@ public class AccountImporter {
     public static final int REQUEST_AUTH_TOKEN__SSO = 4243;
 
     public static boolean AccountsToImportAvailable(Context context) {
-        return FindAccounts(context).size() > 0;
+        return findAccounts(context).size() > 0;
     }
 
 
-    public static void PickNewAccount(android.support.v4.app.Fragment fragment) throws NextcloudFilesAppNotInstalledException {
-        if(AppInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
+    public static void pickNewAccount(android.support.v4.app.Fragment fragment) throws NextcloudFilesAppNotInstalledException {
+        if(appInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
 
             // Clear all tokens first to prevent some caching issues..
-            ClearAllAuthTokens(fragment.getContext());
+            clearAllAuthTokens(fragment.getContext());
 
             Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
                     true, null, null, null, null);
@@ -72,7 +72,7 @@ public class AccountImporter {
         }
     }
 
-    private static boolean AppInstalledOrNot(Context context, String uri) {
+    private static boolean appInstalledOrNot(Context context, String uri) {
         PackageManager pm = context.getPackageManager();
         try {
             pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
@@ -84,7 +84,7 @@ public class AccountImporter {
     }
 
     // Find all currently installed nextcloud accounts on the phone
-    public static List<Account> FindAccounts(final Context context) {
+    public static List<Account> findAccounts(final Context context) {
         final AccountManager accMgr = AccountManager.get(context);
         final Account[] accounts = accMgr.getAccounts();
 
@@ -98,8 +98,8 @@ public class AccountImporter {
     }
 
 
-    public static Account GetAccountForName(Context context, String name) {
-        for (Account account : FindAccounts(context)) {
+    public static Account getAccountForName(Context context, String name) {
+        for (Account account : findAccounts(context)) {
             if (account.name.equals(name)) {
                 return account;
             }
@@ -107,9 +107,9 @@ public class AccountImporter {
         return null;
     }
 
-    public static void RequestAuthToken(android.support.v4.app.Fragment fragment, Intent intent) throws NextcloudFilesAppNotSupportedException {
+    public static void requestAuthToken(android.support.v4.app.Fragment fragment, Intent intent) throws NextcloudFilesAppNotSupportedException {
         String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-        Account account = AccountImporter.GetAccountForName(fragment.getContext(), accountName);
+        Account account = AccountImporter.getAccountForName(fragment.getContext(), accountName);
 
         Intent authIntent = new Intent();
         authIntent.setComponent(new ComponentName("com.nextcloud.client", "com.owncloud.android.ui.activity.SsoGrantPermissionActivity"));
@@ -121,13 +121,13 @@ public class AccountImporter {
         }
     }
 
-    public static void HandleFailedAuthRequest(Intent data) throws Exception {
+    public static void handleFailedAuthRequest(Intent data) throws Exception {
         String exception = data.getStringExtra(NEXTCLOUD_SSO_EXCEPTION);
         SSOException.ParseAndThrowNextcloudCustomException(new Exception(exception));
     }
 
-    public static void ClearAllAuthTokens(Context context) {
-        SharedPreferences mPrefs = GetSharedPreferences(context);
+    public static void clearAllAuthTokens(Context context) {
+        SharedPreferences mPrefs = getSharedPreferences(context);
         for(String key : mPrefs.getAll().keySet()) {
             if(key.startsWith(PREF_ACCOUNT_STRING)) {
                 mPrefs.edit().remove(key).apply();
@@ -135,9 +135,9 @@ public class AccountImporter {
         }
     }
 
-    public static SingleSignOnAccount GetSingleSignOnAccount(Context context, final String accountName) throws NextcloudFilesAppAccountNotFoundException {
-        SharedPreferences mPrefs = GetSharedPreferences(context);
-        String prefKey = GetPrefKeyForAccount(accountName);
+    public static SingleSignOnAccount getSingleSignOnAccount(Context context, final String accountName) throws NextcloudFilesAppAccountNotFoundException {
+        SharedPreferences mPrefs = getSharedPreferences(context);
+        String prefKey = getPrefKeyForAccount(accountName);
         if(mPrefs.contains(prefKey)) {
             try {
                 return SingleSignOnAccount.fromString(mPrefs.getString(prefKey, null));
@@ -151,7 +151,7 @@ public class AccountImporter {
         throw new NextcloudFilesAppAccountNotFoundException();
     }
 
-    public static SingleSignOnAccount ExtractSingleSignOnAccountFromResponse(Intent intent, Context context) {
+    public static SingleSignOnAccount extractSingleSignOnAccountFromResponse(Intent intent, Context context) {
         Bundle future = intent.getBundleExtra(NEXTCLOUD_SSO);
 
         //String auth_token = future.getString(AccountManager.KEY_AUTHTOKEN);
@@ -162,8 +162,8 @@ public class AccountImporter {
         String token = future.getString(Constants.SSO_TOKEN);
         String server_url = future.getString(Constants.SSO_SERVER_URL);
 
-        SharedPreferences mPrefs = GetSharedPreferences(context);
-        String prefKey = GetPrefKeyForAccount(accountName);
+        SharedPreferences mPrefs = getSharedPreferences(context);
+        String prefKey = getPrefKeyForAccount(accountName);
         SingleSignOnAccount ssoAccount = new SingleSignOnAccount(accountName, username, token, server_url);
         try {
             mPrefs.edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).apply();
@@ -173,11 +173,11 @@ public class AccountImporter {
         return ssoAccount;
     }
 
-    public static SharedPreferences GetSharedPreferences(Context context) {
+    public static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(SSO_SHARED_PREFERENCE, Context.MODE_PRIVATE);
     }
 
-    protected static String GetPrefKeyForAccount(String accountName) {
+    protected static String getPrefKeyForAccount(String accountName) {
         return PREF_ACCOUNT_STRING + accountName;
     }
 }

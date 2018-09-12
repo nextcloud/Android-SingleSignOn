@@ -30,12 +30,12 @@ import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 public final class SingleAccountHelper {
 
-    private SingleAccountHelper() { }
-
     private static final String PREF_SINGLE_ACCOUNT_STRING = "PREF_ACCOUNT_STRING";
 
+    private SingleAccountHelper() { }
+
     private static String getCurrentAccountName(Context context) throws NoCurrentAccountSelectedException {
-        SharedPreferences mPrefs = AccountImporter.GetSharedPreferences(context);
+        SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         String accountName = mPrefs.getString(PREF_SINGLE_ACCOUNT_STRING, null);
         if(accountName == null) {
             throw new NoCurrentAccountSelectedException();
@@ -44,11 +44,11 @@ public final class SingleAccountHelper {
     }
 
     public static SingleSignOnAccount getCurrentSingleSignOnAccount(Context context) throws NextcloudFilesAppAccountNotFoundException, NoCurrentAccountSelectedException, CurrentAccountNotFoundException {
-        return AccountImporter.GetSingleSignOnAccount(context, getCurrentAccountName(context));
+        return AccountImporter.getSingleSignOnAccount(context, getCurrentAccountName(context));
     }
 
     public static void setCurrentAccount(Context context, String accountName) {
-        SharedPreferences mPrefs = AccountImporter.GetSharedPreferences(context);
+        SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         mPrefs.edit().putString(PREF_SINGLE_ACCOUNT_STRING, accountName).commit();
     }
 
