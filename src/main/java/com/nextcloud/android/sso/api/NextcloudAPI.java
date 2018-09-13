@@ -34,7 +34,7 @@ import java.lang.reflect.Type;
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 
-import static com.nextcloud.android.sso.exceptions.SSOException.ParseAndThrowNextcloudCustomException;
+import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
 
 /**
  *  Nextcloud SingleSignOn
@@ -231,7 +231,7 @@ public class NextcloudAPI {
         // Handle Remote Exceptions
         if(exception != null) {
             if(exception.getMessage() != null) {
-                ParseAndThrowNextcloudCustomException(exception);
+                parseNextcloudCustomException(exception);
             }
             throw exception;
         }

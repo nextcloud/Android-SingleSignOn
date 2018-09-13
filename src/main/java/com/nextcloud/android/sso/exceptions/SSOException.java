@@ -85,23 +85,23 @@ public class SSOException extends Exception {
     }
 
 
-    public static void ParseAndThrowNextcloudCustomException(Exception exception) throws Exception {
+    public static SSOException parseNextcloudCustomException(Exception exception) {
         switch (exception.getMessage()) {
             case Constants.EXCEPTION_INVALID_TOKEN:
-                throw new TokenMismatchException();
+                return new TokenMismatchException();
             case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
-                throw new NextcloudFilesAppAccountNotFoundException();
+                return new NextcloudFilesAppAccountNotFoundException();
             case Constants.EXCEPTION_UNSUPPORTED_METHOD:
-                throw new NextcloudUnsupportedMethodException();
+                return new NextcloudUnsupportedMethodException();
             case Constants.EXCEPTION_INVALID_REQUEST_URL:
-                throw new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
+                return new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
             case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
                 int statusCode = Integer.parseInt(exception.getCause().getMessage());
-                throw new NextcloudHttpRequestFailedException(statusCode);
+                return new NextcloudHttpRequestFailedException(statusCode);
             case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED:
-                throw new NextcloudFilesAppAccountPermissionNotGrantedException();
+                return new NextcloudFilesAppAccountPermissionNotGrantedException();
             default:
-                throw exception;
+                return new UnknownErrorException(exception.getMessage());
         }
     }
 }

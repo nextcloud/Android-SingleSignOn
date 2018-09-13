@@ -64,7 +64,7 @@ public class AccountImporter {
     }
 
 
-    public static void pickNewAccount(android.support.v4.app.Fragment fragment) throws NextcloudFilesAppNotInstalledException {
+    public static void pickNewAccount(Fragment fragment) throws NextcloudFilesAppNotInstalledException {
         if(appInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
 
             // Clear all tokens first to prevent some caching issues..
@@ -195,6 +195,8 @@ public class AccountImporter {
                     SingleSignOnAccount singleSignOnAccount = extractSingleSignOnAccountFromResponse(data, context);
                     callback.accountAccessGranted(singleSignOnAccount);
                     break;
+                default:
+                    break;
             }
         } else if (resultCode == RESULT_CANCELED) {
             switch (requestCode) {
@@ -212,14 +214,16 @@ public class AccountImporter {
                         Log.e(TAG, e.getMessage());
                     }
                     break;
+                default:
+                    break;
             }
         }
     }
 
 
-    public static void handleFailedAuthRequest(Intent data) throws Exception {
+    public static void handleFailedAuthRequest(Intent data) throws SSOException {
         String exception = data.getStringExtra(NEXTCLOUD_SSO_EXCEPTION);
-        SSOException.ParseAndThrowNextcloudCustomException(new Exception(exception));
+        throw SSOException.parseNextcloudCustomException(new Exception(exception));
     }
 
     public static void requestAuthToken(Fragment fragment, Intent intent) throws NextcloudFilesAppNotSupportedException {
