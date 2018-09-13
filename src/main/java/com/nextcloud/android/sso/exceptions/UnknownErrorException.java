@@ -17,6 +17,8 @@ public class UnknownErrorException extends SSOException {
 
     @Override
     public void loadExceptionMessage(Context context) {
-
+        if(this.em == null) {
+            super.loadExceptionMessage(context);
+        }
     }
 }
