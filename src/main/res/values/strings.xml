@@ -31,4 +31,6 @@
     <string name="nextcloud_files_app_not_supported_title">Error</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Your nextcloud files app currently does not support the single sign on feature. Please update it: %1$s</string>
 
+    <string name="select_account_unknown_error_toast">Something went wrong.. please try again</string>
+
 </resources>
