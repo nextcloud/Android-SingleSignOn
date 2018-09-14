@@ -216,8 +216,8 @@ public class NextcloudAPI {
     /**
      * The InputStreams needs to be closed after reading from it
      *
-     * @param request
-     * @return
+     * @param request {@link NextcloudRequest} request to be executed on server via Files app
+     * @return InputStream answer from server as InputStream
      * @throws Exception or SSOException
      */
     public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
@@ -232,8 +232,8 @@ public class NextcloudAPI {
         }
 
         // Handle Remote Exceptions
-        if(exception != null) {
-            if(exception.getMessage() != null) {
+        if (exception != null) {
+            if (exception.getMessage() != null) {
                 exception = parseNextcloudCustomException(exception);
             }
             throw exception;
@@ -243,7 +243,7 @@ public class NextcloudAPI {
 
 
     /**
-     * DO NOT CALL THIS METHOD DIRECTLY - use "performNetworkRequest(...)" instead
+     * DO NOT CALL THIS METHOD DIRECTLY - use @link(performNetworkRequest) instead
      *
      * @param request
      * @return
