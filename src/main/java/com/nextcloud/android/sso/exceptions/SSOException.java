@@ -1,13 +1,4 @@
-package com.nextcloud.android.sso.exceptions;
-
-import android.app.Application;
-import android.content.Context;
-import android.util.Log;
-
-import com.nextcloud.android.sso.Constants;
-import com.nextcloud.android.sso.model.ExceptionMessage;
-
-/**
+/*
  *  Nextcloud SingleSignOn
  *
  *  @author David Luhmer
@@ -26,6 +17,15 @@ import com.nextcloud.android.sso.model.ExceptionMessage;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.nextcloud.android.sso.exceptions;
+
+import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+
+import com.nextcloud.android.sso.Constants;
+import com.nextcloud.android.sso.model.ExceptionMessage;
+
 public class SSOException extends Exception {
 
     private static final String TAG = SSOException.class.getCanonicalName();
@@ -43,14 +43,14 @@ public class SSOException extends Exception {
     }
 
     public String getTitle(Context context) {
-        if(em == null) {
+        if (em == null) {
             loadExceptionMessage(context);
         }
         return em.title;
     }
 
     public String getMessage(Context context) {
-        if(em == null) {
+        if (em == null) {
             loadExceptionMessage(context);
         }
         return em.message;
@@ -59,13 +59,13 @@ public class SSOException extends Exception {
     @Override
     public String getMessage() {
         // If already loaded.. return it
-        if(em != null) {
+        if (em != null) {
             return em.message;
         }
 
         // Otherwise try to get the application via reflection
         Application app = getApplication();
-        if(app != null) {
+        if (app != null) {
             loadExceptionMessage(app);
             return em.message;
         }
