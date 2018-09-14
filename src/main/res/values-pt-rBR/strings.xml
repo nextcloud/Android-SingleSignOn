@@ -11,6 +11,8 @@
     <string name="token_mismatch_message">O token de autenticação fornecido não corresponde ou o nome do pacote não tem permissão para executar esta ação</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erro</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">O aplicativo Nextcloud Files não está instalado. Por favor, instale-o: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Erro</string>
     <string name="nextcloud_files_app_account_not_found_message">Conta não encontrada no aplicativo Nextcloud Files</string>
 
@@ -18,4 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">A requisição HTTP falhou com status-code HTTP : %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
-    </resources>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Seu aplicativo de arquivos nextcloud atualmente não suporta o recurso de login único. Por favor atualize-o: %1$s</string>
+
+</resources>

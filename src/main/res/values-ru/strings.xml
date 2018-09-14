@@ -12,4 +12,7 @@
     <string name="nextcloud_files_app_account_not_found_title">Ошибка</string>
     <string name="nextcloud_files_app_account_not_found_message">Учетная запись не найдена в приложении Nextcloud Files</string>
 
+    <string name="nextcloud_http_request_failed_message" formatted="true">Ошибка выполнения запроса HTTP. Код состояния: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Ошибка</string>
     </resources>

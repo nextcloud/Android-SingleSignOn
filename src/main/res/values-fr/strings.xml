@@ -1,19 +1,25 @@
 <resources>
     <string name="app_name">Nextcloud Single Sign On</string>
 
-    <string name="no_current_account_selected_exception_title">Attention</string>
+    <string name="no_current_account_selected_exception_title">Avertissement</string>
     <string name="no_current_account_selected_exception_message">Aucun compte sélectionné pour le moment</string>
 
-    <string name="current_account_not_found_exception_title">Attention</string>
+    <string name="current_account_not_found_exception_title">Avertissement</string>
     <string name="current_account_not_found_exception_message">Le compte sélectionné n\'a pas été trouvé. Quelque chose s\'est mal passé..</string>
 
     <string name="token_mismatch_title">Erreur</string>
     <string name="token_mismatch_message">Le jeton d\\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erreur</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'application Nexcloud Files n\'est pas installé. Veuillez l\'installer : %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
     <string name="nextcloud_files_app_account_not_found_message">Compte non trouvé dans l\'application Nextcloud Files.</string>
 
     <string name="nextcloud_http_request_failed_title">Erreur</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Requête HTTP échouée avec le code statut HTTP :%1$d</string>
+
     <string name="nextcloud_files_app_not_supported_title">Erreur</string>
-    </resources>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Votre application de fichiers nextcloud ne prend actuellement pas en charge la connexion unique. Veuillez s\'il vous plaît la mettre à jour :%1$s</string>
+
+</resources>

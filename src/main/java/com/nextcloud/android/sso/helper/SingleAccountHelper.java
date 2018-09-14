@@ -1,18 +1,7 @@
-package com.nextcloud.android.sso.helper;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import com.nextcloud.android.sso.AccountImporter;
-import com.nextcloud.android.sso.exceptions.CurrentAccountNotFoundException;
-import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
-import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
-import com.nextcloud.android.sso.model.SingleSignOnAccount;
-
-/**
- *  Nextcloud SingleSignOn
+/*
+ * Nextcloud SingleSignOn
  *
- *  @author David Luhmer
+ * @author David Luhmer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,22 +17,34 @@ import com.nextcloud.android.sso.model.SingleSignOnAccount;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.nextcloud.android.sso.helper;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.nextcloud.android.sso.AccountImporter;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
+import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
+import com.nextcloud.android.sso.model.SingleSignOnAccount;
+
 public final class SingleAccountHelper {
 
     private static final String PREF_SINGLE_ACCOUNT_STRING = "PREF_ACCOUNT_STRING";
 
-    private SingleAccountHelper() { }
+    private SingleAccountHelper() {
+    }
 
     private static String getCurrentAccountName(Context context) throws NoCurrentAccountSelectedException {
         SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         String accountName = mPrefs.getString(PREF_SINGLE_ACCOUNT_STRING, null);
-        if(accountName == null) {
+        if (accountName == null) {
             throw new NoCurrentAccountSelectedException();
         }
         return accountName;
     }
 
-    public static SingleSignOnAccount getCurrentSingleSignOnAccount(Context context) throws NextcloudFilesAppAccountNotFoundException, NoCurrentAccountSelectedException, CurrentAccountNotFoundException {
+    public static SingleSignOnAccount getCurrentSingleSignOnAccount(Context context)
+            throws NextcloudFilesAppAccountNotFoundException, NoCurrentAccountSelectedException {
         return AccountImporter.getSingleSignOnAccount(context, getCurrentAccountName(context));
     }
 
@@ -51,5 +52,4 @@ public final class SingleAccountHelper {
         SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         mPrefs.edit().putString(PREF_SINGLE_ACCOUNT_STRING, accountName).commit();
     }
-
 }
