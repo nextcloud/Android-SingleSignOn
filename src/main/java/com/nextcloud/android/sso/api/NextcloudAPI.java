@@ -215,7 +215,7 @@ public class NextcloudAPI {
      * The InputStreams needs to be closed after reading from it
      * @param request
      * @return
-     * @throws IOException
+     * @throws Exception or SSOException
      */
     public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
         InputStream os = null;
@@ -231,7 +231,7 @@ public class NextcloudAPI {
         // Handle Remote Exceptions
         if(exception != null) {
             if(exception.getMessage() != null) {
-                parseNextcloudCustomException(exception);
+                exception = parseNextcloudCustomException(exception);
             }
             throw exception;
         }
