@@ -1,14 +1,4 @@
-package com.nextcloud.android.sso.exceptions;
-
-import android.app.Application;
-import android.content.Context;
-import android.util.Log;
-
-import com.nextcloud.android.sso.model.ExceptionMessage;
-
-import java.lang.reflect.InvocationTargetException;
-
-/**
+/*
  *  Nextcloud SingleSignOn
  *
  *  @author David Luhmer
@@ -27,6 +17,15 @@ import java.lang.reflect.InvocationTargetException;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.nextcloud.android.sso.exceptions;
+
+import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+
+import com.nextcloud.android.sso.Constants;
+import com.nextcloud.android.sso.model.ExceptionMessage;
+
 public class SSOException extends Exception {
 
     private static final String TAG = SSOException.class.getCanonicalName();
@@ -44,14 +43,14 @@ public class SSOException extends Exception {
     }
 
     public String getTitle(Context context) {
-        if(em == null) {
+        if (em == null) {
             loadExceptionMessage(context);
         }
         return em.title;
     }
 
     public String getMessage(Context context) {
-        if(em == null) {
+        if (em == null) {
             loadExceptionMessage(context);
         }
         return em.message;
@@ -60,13 +59,13 @@ public class SSOException extends Exception {
     @Override
     public String getMessage() {
         // If already loaded.. return it
-        if(em != null) {
+        if (em != null) {
             return em.message;
         }
 
         // Otherwise try to get the application via reflection
         Application app = getApplication();
-        if(app != null) {
+        if (app != null) {
             loadExceptionMessage(app);
             return em.message;
         }
@@ -83,5 +82,26 @@ public class SSOException extends Exception {
             Log.e(TAG, e.getMessage());
         }
         return null;
+    }
+
+
+    public static SSOException parseNextcloudCustomException(Exception exception) {
+        switch (exception.getMessage()) {
+            case Constants.EXCEPTION_INVALID_TOKEN:
+                return new TokenMismatchException();
+            case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
+                return new NextcloudFilesAppAccountNotFoundException();
+            case Constants.EXCEPTION_UNSUPPORTED_METHOD:
+                return new NextcloudUnsupportedMethodException();
+            case Constants.EXCEPTION_INVALID_REQUEST_URL:
+                return new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
+            case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
+                int statusCode = Integer.parseInt(exception.getCause().getMessage());
+                return new NextcloudHttpRequestFailedException(statusCode);
+            case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED:
+                return new NextcloudFilesAppAccountPermissionNotGrantedException();
+            default:
+                return new UnknownErrorException(exception.getMessage());
+        }
     }
 }

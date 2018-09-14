@@ -1,38 +1,7 @@
-package com.nextcloud.android.sso;
-
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.accounts.AuthenticatorException;
-import android.accounts.OperationCanceledException;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.RequiresApi;
-import android.util.Log;
-
-import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
-import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
-import com.nextcloud.android.sso.helper.AsyncTaskHelper;
-import com.nextcloud.android.sso.model.SingleSignOnAccount;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-/**
- *  Nextcloud SingleSignOn
+/*
+ * Nextcloud SingleSignOn
  *
- *  @author David Luhmer
+ * @author David Luhmer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,26 +17,58 @@ import java.util.concurrent.Future;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.nextcloud.android.sso;
+
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
+import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.model.SingleSignOnAccount;
+import com.nextcloud.android.sso.ui.UiExceptionManager;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+import static com.nextcloud.android.sso.Constants.NEXTCLOUD_FILES_ACCOUNT;
+import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO;
+import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO_EXCEPTION;
+import static com.nextcloud.android.sso.Constants.SSO_SHARED_PREFERENCE;
+
 public class AccountImporter {
 
     private static final String TAG = AccountImporter.class.getCanonicalName();
-    private static final String PREF_FILE_NAME = "PrefNextcloudAccount";
     private static final String PREF_ACCOUNT_STRING = "PREF_ACCOUNT_STRING";
 
-    private static final String AUTH_TOKEN = "NextcloudSSO";
-
     public static final int CHOOSE_ACCOUNT_SSO = 4242;
+    public static final int REQUEST_AUTH_TOKEN_SSO = 4243;
 
     public static boolean AccountsToImportAvailable(Context context) {
-        return FindAccounts(context).size() > 0;
+        return findAccounts(context).size() > 0;
     }
 
 
-    public static void PickNewAccount(android.support.v4.app.Fragment fragment) throws NextcloudFilesAppNotInstalledException {
-        if(AppInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
+    public static void pickNewAccount(Fragment fragment) throws NextcloudFilesAppNotInstalledException {
+        if (appInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
 
             // Clear all tokens first to prevent some caching issues..
-            ClearAllAuthTokens(fragment.getContext());
+            clearAllAuthTokens(fragment.getContext());
 
             Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
                     true, null, null, null, null);
@@ -77,23 +78,24 @@ public class AccountImporter {
         }
     }
 
-    private static boolean AppInstalledOrNot(Context context, String uri) {
+    private static boolean appInstalledOrNot(Context context, String uri) {
         PackageManager pm = context.getPackageManager();
         try {
             pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
+            Log.v(TAG, e.getMessage());
         }
         return false;
     }
 
     // Find all currently installed nextcloud accounts on the phone
-    private static List<Account> FindAccounts(Context context) {
+    public static List<Account> findAccounts(final Context context) {
         final AccountManager accMgr = AccountManager.get(context);
         final Account[] accounts = accMgr.getAccounts();
 
         List<Account> accountsAvailable = new ArrayList<>();
-        for (Account account : accounts) {
+        for (final Account account : accounts) {
             if (account.type.equals("nextcloud")) {
                 accountsAvailable.add(account);
             }
@@ -102,10 +104,8 @@ public class AccountImporter {
     }
 
 
-
-
-    public static Account GetAccountForName(Context context, String name) {
-        for (Account account : FindAccounts(context)) {
+    public static Account getAccountForName(Context context, String name) {
+        for (Account account : findAccounts(context)) {
             if (account.name.equals(name)) {
                 return account;
             }
@@ -113,93 +113,152 @@ public class AccountImporter {
         return null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-    public static SingleSignOnAccount BlockingGetAuthToken(final Context context, final Account account) throws Exception {
-        SingleSignOnAccount result = AsyncTaskHelper.ExecuteBlockingRequest(new Callable<SingleSignOnAccount>() {
-            @Override
-            public SingleSignOnAccount call() throws Exception {
-                return AccountImporter.GetAuthToken(context, account);
-            }
-        });
-        return result;
-    }
-
-    public static void ClearAllAuthTokens(Context context) {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        for(String key : mPrefs.getAll().keySet()) {
-            if(key.startsWith(PREF_ACCOUNT_STRING)) {
+    public static void clearAllAuthTokens(Context context) {
+        SharedPreferences mPrefs = getSharedPreferences(context);
+        for (String key : mPrefs.getAll().keySet()) {
+            if (key.startsWith(PREF_ACCOUNT_STRING)) {
                 mPrefs.edit().remove(key).apply();
             }
         }
     }
 
-    // Get the AuthToken (Password) for a selected account
-    public static SingleSignOnAccount GetAuthToken(Context context, Account account) throws AuthenticatorException, OperationCanceledException, IOException, NextcloudFilesAppNotSupportedException {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String prefKey = PREF_ACCOUNT_STRING + account.name;
-        if(mPrefs.contains(prefKey)) {
+    public static SingleSignOnAccount getSingleSignOnAccount(Context context, final String accountName)
+            throws NextcloudFilesAppAccountNotFoundException {
+        SharedPreferences mPrefs = getSharedPreferences(context);
+        String prefKey = getPrefKeyForAccount(accountName);
+
+        if (mPrefs.contains(prefKey)) {
             try {
                 return SingleSignOnAccount.fromString(mPrefs.getString(prefKey, null));
             } catch (ClassNotFoundException e) {
                 Log.e(TAG, "This should never happen!");
                 e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+        throw new NextcloudFilesAppAccountNotFoundException();
+    }
 
-        final AccountManager accMgr = AccountManager.get(context);
-        Bundle options = new Bundle();
-        accMgr.invalidateAuthToken(account.type, AUTH_TOKEN);
-        //accMgr.getAuthToken(account, AUTH_TOKEN, null, true, new AccountManagerCallback<Bundle>() {
+    public static SingleSignOnAccount extractSingleSignOnAccountFromResponse(Intent intent, Context context) {
+        Bundle future = intent.getBundleExtra(NEXTCLOUD_SSO);
 
-
-        // Synchronously access auth token
-        Bundle future;
-
-        try {
-            if (context instanceof Activity) {
-                future = accMgr.getAuthToken(account, AUTH_TOKEN, options, (Activity) context, null, null).getResult(); // Show activity
-            } else {
-                future = accMgr.getAuthToken(account, AUTH_TOKEN, options, true, null, null).getResult(); // Show notification instead
-            }
-        } catch (AuthenticatorException ex) {
-            throw new NextcloudFilesAppNotSupportedException();
-        }
-
-        String auth_token = future.getString(AccountManager.KEY_AUTHTOKEN);
-        String auth_account_type = future.getString(AccountManager.KEY_ACCOUNT_TYPE);
-        accMgr.invalidateAuthToken(auth_account_type, auth_token);
-
-        //String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
+        String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
         String username = future.getString(Constants.SSO_USERNAME);
         String token = future.getString(Constants.SSO_TOKEN);
         String server_url = future.getString(Constants.SSO_SERVER_URL);
 
-        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(account.name, username, token, server_url);
-        mPrefs.edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).apply();
+        SharedPreferences mPrefs = getSharedPreferences(context);
+        String prefKey = getPrefKeyForAccount(accountName);
+        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(accountName, username, token, server_url);
+        try {
+            mPrefs.edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).apply();
+        } catch (IOException e) {
+            Log.e(TAG, "SSO failed", e);
+        }
         return ssoAccount;
     }
 
 
-    public static SingleSignOnAccount GetAuthTokenInSeparateThread(final Context context, final Account account) {
-        SingleSignOnAccount ssoAccount = null;
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Callable<SingleSignOnAccount> callable = new Callable<SingleSignOnAccount>() {
-            @Override
-            public SingleSignOnAccount call() throws NextcloudFilesAppNotSupportedException, AuthenticatorException, OperationCanceledException, IOException {
-                return AccountImporter.GetAuthToken(context, account);
+    public interface IAccountAccessGranted {
+        void accountAccessGranted(SingleSignOnAccount singleSignOnAccount);
+    }
 
+    public static void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity,
+                                        IAccountAccessGranted callback) {
+        onActivityResult(requestCode, resultCode, data, activity, null, callback);
+    }
+
+    public static void onActivityResult(int requestCode, int resultCode, Intent data, Fragment fragment,
+                                        IAccountAccessGranted callback) {
+        onActivityResult(requestCode, resultCode, data, null, fragment, callback);
+    }
+
+    private static void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity,
+                                         Fragment fragment, IAccountAccessGranted callback) {
+        Context context = (activity != null) ? activity : fragment.getContext();
+
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case CHOOSE_ACCOUNT_SSO:
+                    try {
+                        if (activity != null) {
+                            requestAuthToken(activity, data);
+                        } else {
+                            requestAuthToken(fragment, data);
+                        }
+                    } catch (NextcloudFilesAppNotSupportedException e) {
+                        UiExceptionManager.showDialogForException(context, e);
+                    }
+                    break;
+                case REQUEST_AUTH_TOKEN_SSO:
+                    SingleSignOnAccount singleSignOnAccount = extractSingleSignOnAccountFromResponse(data, context);
+                    callback.accountAccessGranted(singleSignOnAccount);
+                    break;
+                default:
+                    break;
             }
-        };
-        Future<SingleSignOnAccount> future = executor.submit(callable);
-        try {
-            ssoAccount = future.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        } else if (resultCode == RESULT_CANCELED) {
+            switch (requestCode) {
+                case CHOOSE_ACCOUNT_SSO:
+                    Toast.makeText(context, R.string.select_account_unknown_error_toast, Toast.LENGTH_LONG).show();
+                    break;
+                case REQUEST_AUTH_TOKEN_SSO:
+                    try {
+                        handleFailedAuthRequest(data);
+                    } catch (SSOException e) {
+                        UiExceptionManager.showDialogForException(context, e);
+                    } catch (Exception e) {
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                        //e.printStackTrace();
+                        Log.e(TAG, e.getMessage());
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
-        executor.shutdown();
+    }
 
-        return ssoAccount;
+    public static void handleFailedAuthRequest(Intent data) throws SSOException {
+        String exception = data.getStringExtra(NEXTCLOUD_SSO_EXCEPTION);
+        throw SSOException.parseNextcloudCustomException(new Exception(exception));
+    }
+
+    public static void requestAuthToken(Fragment fragment, Intent intent) throws NextcloudFilesAppNotSupportedException {
+        Intent authIntent = buildRequestAuthTokenIntent(fragment.getContext(), intent);
+        try {
+            fragment.startActivityForResult(authIntent, REQUEST_AUTH_TOKEN_SSO);
+        } catch (ActivityNotFoundException e) {
+            throw new NextcloudFilesAppNotSupportedException();
+        }
+    }
+
+    public static void requestAuthToken(Activity activity, Intent intent) throws NextcloudFilesAppNotSupportedException {
+        Intent authIntent = buildRequestAuthTokenIntent(activity, intent);
+        try {
+            activity.startActivityForResult(authIntent, REQUEST_AUTH_TOKEN_SSO);
+        } catch (ActivityNotFoundException e) {
+            throw new NextcloudFilesAppNotSupportedException();
+        }
+    }
+
+    private static Intent buildRequestAuthTokenIntent(Context context, Intent intent) {
+        String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+        Account account = AccountImporter.getAccountForName(context, accountName);
+        Intent authIntent = new Intent();
+        authIntent.setComponent(new ComponentName("com.nextcloud.client",
+                "com.owncloud.android.ui.activity.SsoGrantPermissionActivity"));
+        authIntent.putExtra(NEXTCLOUD_FILES_ACCOUNT, account);
+        return authIntent;
+    }
+
+
+    public static SharedPreferences getSharedPreferences(Context context) {
+        return context.getSharedPreferences(SSO_SHARED_PREFERENCE, Context.MODE_PRIVATE);
+    }
+
+    protected static String getPrefKeyForAccount(String accountName) {
+        return PREF_ACCOUNT_STRING + accountName;
     }
 }

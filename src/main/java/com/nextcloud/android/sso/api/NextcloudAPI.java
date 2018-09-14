@@ -1,3 +1,22 @@
+/*
+ * Nextcloud SingleSignOn
+ *
+ * @author David Luhmer
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.nextcloud.android.sso.api;
 
 import android.content.ComponentName;
@@ -11,16 +30,10 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.IThreadListener;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil;
-import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
-import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
-import com.nextcloud.android.sso.exceptions.NextcloudInvalidRequestUrlException;
-import com.nextcloud.android.sso.exceptions.NextcloudUnsupportedMethodException;
-import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -40,29 +53,13 @@ import java.lang.reflect.Type;
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 
-/**
- *  Nextcloud SingleSignOn
- *
- *  @author David Luhmer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
 
 public class NextcloudAPI {
 
     public interface ApiConnectedListener {
         void onConnected();
+
         void onError(Exception ex);
     }
 
@@ -104,18 +101,19 @@ public class NextcloudAPI {
     }
 
     private void connect() {
-        if(mDestroyed) {
+        if (mDestroyed) {
             throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
         }
 
         // Disconnect if connected
-        if(mBound) {
+        if (mBound) {
             stop();
         }
 
         try {
             Intent intentService = new Intent();
-            intentService.setComponent(new ComponentName("com.nextcloud.client", "com.owncloud.android.services.AccountManagerService"));
+            intentService.setComponent(new ComponentName("com.nextcloud.client",
+                    "com.owncloud.android.services.AccountManagerService"));
             if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
                 Log.d(TAG, "Binding to AccountManagerService returned false");
                 throw new IllegalStateException("Binding to AccountManagerService returned false");
@@ -135,7 +133,7 @@ public class NextcloudAPI {
 
         // Unbind from the service
         if (mBound) {
-            if(mContext != null) {
+            if (mContext != null) {
                 mContext.unbindService(mConnection);
             } else {
                 Log.e(TAG, "Context was null, cannot unbind nextcloud single sign-on service connection!");
@@ -165,7 +163,7 @@ public class NextcloudAPI {
             mService = null;
             mBound = false;
 
-            if(!mDestroyed) {
+            if (!mDestroyed) {
                 connectApiWithBackoff();
             }
         }
@@ -217,6 +215,7 @@ public class NextcloudAPI {
 
     /**
      * The InputStreams needs to be closed after reading from it
+     *
      * @param request
      * @return
      * @throws IOException
@@ -233,36 +232,25 @@ public class NextcloudAPI {
         }
 
         // Handle Remote Exceptions
-        if(exception != null) {
-            if(exception.getMessage() != null) {
-                switch (exception.getMessage()) {
-                    case Constants.EXCEPTION_INVALID_TOKEN:
-                        throw new TokenMismatchException();
-                    case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
-                        throw new NextcloudFilesAppAccountNotFoundException();
-                    case Constants.EXCEPTION_UNSUPPORTED_METHOD:
-                        throw new NextcloudUnsupportedMethodException();
-                    case Constants.EXCEPTION_INVALID_REQUEST_URL:
-                        throw new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
-                    case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
-                        int statusCode = Integer.parseInt(exception.getCause().getMessage());
-                        throw new NextcloudHttpRequestFailedException(statusCode);
-                    default:
-                        throw exception;
-                }
+        if (exception != null) {
+            if (exception.getMessage() != null) {
+                parseNextcloudCustomException(exception);
             }
             throw exception;
         }
         return os;
     }
 
+
     /**
      * DO NOT CALL THIS METHOD DIRECTLY - use "performNetworkRequest(...)" instead
+     *
      * @param request
      * @return
      * @throws IOException
      */
-    private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request) throws IOException, RemoteException {
+    private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request)
+            throws IOException, RemoteException {
         // Log.d(TAG, request.url);
         request.setAccountName(getAccountName());
         request.setToken(getAccountToken());
@@ -288,7 +276,6 @@ public class NextcloudAPI {
     }
 
 
-
     public static <T> T deserializeObjectAndCloseStream(InputStream is) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(is);
         T result = (T) ois.readObject();
@@ -296,6 +283,4 @@ public class NextcloudAPI {
         ois.close();
         return result;
     }
-
-
 }
