@@ -22,4 +22,4 @@
     <string name="nextcloud_files_app_not_supported_title">Fehler</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Deine Nextcloud-Files-App unterstützt aktuell nicht die Funktion Single-Sign-On. Bitte aktualisieren: %1$s</string>
 
-</resources>
+    </resources>

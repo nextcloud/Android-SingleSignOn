@@ -22,4 +22,4 @@
     <string name="nextcloud_files_app_not_supported_title">Error</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваша Некстклауд апликација за Фајлове тренутно не подржава могућност једнократног пријављивања. Ажурирајте је: %1$s</string>
 
-</resources>
+    </resources>

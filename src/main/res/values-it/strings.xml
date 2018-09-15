@@ -22,4 +22,4 @@
     <string name="nextcloud_files_app_not_supported_title">Errore</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">La tua applicazione File di Nextcloud attualmente non supporta la funzionalità di single sign on. Aggiornala: %1$s</string>
 
-</resources>
+    </resources>

@@ -22,4 +22,4 @@
     <string name="nextcloud_files_app_not_supported_title">Hata</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Nextcloud dosyalar uygulamanız şu anda tek oturum açma özelliğini desteklemiyor. Lütfen şu adresten güncelleyin: %1$s</string>
 
-</resources>
+    </resources>
