@@ -16,10 +16,15 @@
     <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
     <string name="nextcloud_files_app_account_not_found_message">Compte non trouvé dans l\'application Nextcloud Files.</string>
 
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Erreur</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Vous devez accepter les demandes d\'autorisations pour utiliser l\'authentification unique.</string>
+
     <string name="nextcloud_http_request_failed_title">Erreur</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Requête HTTP échouée avec le code statut HTTP :%1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erreur</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Votre application de fichiers nextcloud ne prend actuellement pas en charge la connexion unique. Veuillez s\'il vous plaît la mettre à jour :%1$s</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Votre application de fichiers nextcloud ne prend pas en charge l\'authentification unique. Veuillez la mettre à jour :%1$s</string>
 
-    </resources>
+    <string name="select_account_unknown_error_toast">Quelque chose n\'a pas fonctionné... veuillez réessayer</string>
+
+</resources>

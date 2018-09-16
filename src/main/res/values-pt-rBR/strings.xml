@@ -16,10 +16,15 @@
     <string name="nextcloud_files_app_account_not_found_title">Erro</string>
     <string name="nextcloud_files_app_account_not_found_message">Conta não encontrada no aplicativo Nextcloud Files</string>
 
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Erro</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Você precisa aceitar as permissões solicitadas para usar o recurso de conexão única.</string>
+
     <string name="nextcloud_http_request_failed_title">Erro</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">A requisição HTTP falhou com status-code HTTP : %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Seu aplicativo de arquivos nextcloud atualmente não suporta o recurso de login único. Por favor atualize-o: %1$s</string>
 
-    </resources>
+    <string name="select_account_unknown_error_toast">Algo deu errado. Tente outra vez</string>
+
+</resources>
