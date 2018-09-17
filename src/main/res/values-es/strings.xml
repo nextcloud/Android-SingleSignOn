@@ -11,11 +11,20 @@
     <string name="token_mismatch_message">El token de autenticación proporcionado no coincide o no se permite para realizar esta acción el nombre del paquete</string>
 
     <string name="nextcloud_files_app_not_installed_title">Error</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">La app Archivos de Nexccloud no está instalada. Por favor, instálala: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
     <string name="nextcloud_files_app_account_not_found_message">No se ha encontrado la cuenta en la app de Archivos de Nextcloud</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Tienes que aceptar los permisos solicitados para usar la característica single-sign-on.</string>
 
     <string name="nextcloud_http_request_failed_title">Error</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">La petición HTTP ha fallado con un código de estado %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
-    </resources>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Tu app de Archivos de Nextcloud no soporta actualmente la característica de single sign on. Por favor, actualízala: %1$s</string>
+
+    <string name="select_account_unknown_error_toast">Algo ha salido mal. Por favor, vuelve a intentarlo</string>
+
+</resources>

@@ -11,9 +11,18 @@
     <string name="token_mismatch_message">Poskytnutý ověřovací token se neshoduje nebo tomuto balíčku není umožněno provést tuto akci</string>
 
     <string name="nextcloud_files_app_not_installed_title">Chyba</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud aplikace Soubory není nainstalovaná. Nainstalujte ji: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Chyba</string>
     <string name="nextcloud_files_app_account_not_found_message">Účet nebyl v aplikaci Soubory Nextcloud nalezen</string>
 
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Chyba</string>
     <string name="nextcloud_http_request_failed_title">Chyba</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP požadavek se nezdařil se stavovým kódem: %1$d</string>
+
     <string name="nextcloud_files_app_not_supported_title">Chyba</string>
-    </resources>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Vámi používaná verze aplikace Nextcloud Soubory nepodporuje sdružené přihlašování. Aktualizujte ji: %1$s</string>
+
+    <string name="select_account_unknown_error_toast">Něco se pokazilo… zkuste to znovu</string>
+
+</resources>
