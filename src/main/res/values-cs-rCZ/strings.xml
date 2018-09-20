@@ -17,6 +17,8 @@
     <string name="nextcloud_files_app_account_not_found_message">Účet nebyl v aplikaci Soubory Nextcloud nalezen</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Chyba</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Musíte přijmout požadovaná oprávnění k použití funkce jednotného přihlášení.</string>
+
     <string name="nextcloud_http_request_failed_title">Chyba</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP požadavek se nezdařil se stavovým kódem: %1$d</string>
 
