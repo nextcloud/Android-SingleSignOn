@@ -8,8 +8,23 @@
     <string name="current_account_not_found_exception_message">Wybrane konto nie zostało znalezione. Coś poszło nie tak..</string>
 
     <string name="token_mismatch_title">Błąd</string>
+    <string name="token_mismatch_message">Podany token autentykacji się nie zgadza, lub nazwa pakietu nie jest uprawniona do wykonania tej akcji</string>
+
     <string name="nextcloud_files_app_not_installed_title">Błąd</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikacja Nextcloud nie jest zainstalowana. Proszę ją zainstalować: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Błąd</string>
     <string name="nextcloud_files_app_account_not_found_message">Konto nie zostało znalezione w aplikacji Nextcloud Files</string>
 
-    </resources>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Błąd</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Musisz nadać uprawnienia aby użyć funkcji single sign-on.</string>
+
+    <string name="nextcloud_http_request_failed_title">Błąd</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Zapytanie HTTP nie powiodło się z kodem: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Błąd</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Twoja aplikacja plików Nextcloud nie obsługuje single sign on. Proszę zaktualizować: %1$s.</string>
+
+    <string name="select_account_unknown_error_toast">Coś poszło nie tak... Spróbuj ponownie.</string>
+
+</resources>
