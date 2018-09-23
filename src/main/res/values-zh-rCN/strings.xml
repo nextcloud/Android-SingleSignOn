@@ -8,8 +8,23 @@
     <string name="current_account_not_found_exception_message">找不到所选帐户。 出了些问题..</string>
 
     <string name="token_mismatch_title">错误</string>
+    <string name="token_mismatch_message">提供验证口令不匹配，或者不允许此文件执行此操作</string>
+
     <string name="nextcloud_files_app_not_installed_title">错误</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">未安装Nextcloud Files软件。 请安装：%1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">错误</string>
     <string name="nextcloud_files_app_account_not_found_message">在nextcloud文件应用中找不到帐户</string>
 
-    </resources>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">错误</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">您必须接受所使用条款才能使用单点登录功能。</string>
+
+    <string name="nextcloud_http_request_failed_title">错误</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP请求失败，HTTP错误代码：%1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">错误</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">你的nextcloud文件应用程序目前不支持单点登录功能。 请更新：%1$s</string>
+
+    <string name="select_account_unknown_error_toast">发生了一个错误请重新尝试</string>
+
+</resources>
