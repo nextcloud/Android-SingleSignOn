@@ -12,4 +12,11 @@
     <string name="nextcloud_files_app_account_not_found_title">Hiba</string>
     <string name="nextcloud_files_app_account_not_found_message">A File Alkalmazásban nem található ilyen fiók.</string>
 
-    </resources>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Hiba</string>
+    <string name="nextcloud_http_request_failed_title">Hiba</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">A HTTP kérés sikertelen, a kapott HTTP státusz-kód: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Hiba</string>
+    <string name="select_account_unknown_error_toast">Valami balul sült el.. kérjük próbálja újra</string>
+
+</resources>
