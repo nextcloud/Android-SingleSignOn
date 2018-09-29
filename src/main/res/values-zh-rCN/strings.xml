@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Nextcloud单点登陆</string>
 
     <string name="no_current_account_selected_exception_title">警告</string>
     <string name="no_current_account_selected_exception_message">没有选择任何账户</string>

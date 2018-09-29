@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Autenticación única de Nextcloud</string>
 
     <string name="no_current_account_selected_exception_title">Advertencia</string>
     <string name="no_current_account_selected_exception_message">Todavía no hay ninguna cuenta seleccionada</string>

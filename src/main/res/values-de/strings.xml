@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Nextcloud Single Sign On</string>
 
     <string name="no_current_account_selected_exception_title">Warnung</string>
     <string name="no_current_account_selected_exception_message">Kein Konto ausgewählt</string>

@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Nextcloud-kertakirjautuminen</string>
 
     <string name="no_current_account_selected_exception_title">Varoitus</string>
     <string name="no_current_account_selected_exception_message">Tiliä ei ole vielä valittu</string>

@@ -1,4 +1,5 @@
 <resources>
+
     <string name="no_current_account_selected_exception_title">Opozorilo</string>
     <string name="no_current_account_selected_exception_message">Ni izbranega računa</string>
 

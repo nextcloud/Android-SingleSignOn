@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Технология единого входа Nextcloud</string>
 
     <string name="no_current_account_selected_exception_title">Предупреждение</string>
     <string name="no_current_account_selected_exception_message">Выбран аккаунт еще не выбран</string>

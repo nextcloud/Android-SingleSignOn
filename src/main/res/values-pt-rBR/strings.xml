@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Nextcloud Single Sign Ligado</string>
 
     <string name="no_current_account_selected_exception_title">Aviso</string>
     <string name="no_current_account_selected_exception_message">Nenhuma conta selecionada ainda</string>

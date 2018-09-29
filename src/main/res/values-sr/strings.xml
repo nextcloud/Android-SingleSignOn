@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Некстклауд једнократно пријављивање</string>
 
     <string name="no_current_account_selected_exception_title">Упозорење</string>
     <string name="no_current_account_selected_exception_message">Још није одабран ниједан налог</string>

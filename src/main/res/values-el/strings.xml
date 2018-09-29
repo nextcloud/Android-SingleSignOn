@@ -1,4 +1,5 @@
 <resources>
+
     <string name="no_current_account_selected_exception_title">Προειδοποίηση</string>
     <string name="no_current_account_selected_exception_message">Δεν επιλέχθηκε λογαριασμός ακόμα</string>
 
