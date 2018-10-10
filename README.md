@@ -5,9 +5,6 @@ This library allows you to use accounts as well as the network stack provided by
 
 *Please note that the user needs to install the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client) in order to use those features.* While this might seem like a "no-go" for some developers, we still think that using this library is worth consideration as it makes the account handling much faster and safer.
 
-
->**IMPORTANT NOTE**: As this library is under heavy development right now you'll need to install the nextcloud files app manually on your device. Checkout the `sso` branch of the files app (`git clone -b sso https://github.com/nextcloud/android.git`) and install the app using Android Studio. We would love to get feedback!
-
 ## How to use this library
 
 1) Add this library to your project
