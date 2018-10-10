@@ -13,17 +13,17 @@ This library allows you to use accounts as well as the network stack provided by
 1) Add this library to your project
 
 ```gradle
+repositories {
+    ...
+    maven { url "https://jitpack.io" }
+
+}
+
 dependencies {
-    implementation "com.github.nextcloud:android-SingleSignOn:master-SNAPSHOT"
+    implementation "com.github.nextcloud:android-SingleSignOn:0.1.2"
 }
 ```
-2) Add the following permission to your `AndroidManifest.xml`
-
-```xml
-<uses-permission android:name="com.nextcloud.android.sso"/>
-```
-
-3) To choose an account, include the following code in your login dialog:
+2) To choose an account, include the following code in your login dialog:
 
 ```java
 private void openAccountChooser() {
