@@ -27,9 +27,11 @@ import com.nextcloud.android.sso.model.ExceptionMessage;
 public class NextcloudHttpRequestFailedException extends SSOException {
 
     private int statusCode;
+    private Throwable cause;
 
-    public NextcloudHttpRequestFailedException(int statusCode) {
+    public NextcloudHttpRequestFailedException(int statusCode, Throwable cause) {
         this.statusCode = statusCode;
+        this.cause = cause;
     }
 
     @Override
@@ -42,5 +44,10 @@ public class NextcloudHttpRequestFailedException extends SSOException {
 
     public int getStatusCode() {
         return statusCode;
+    }
+
+    @Override
+    public synchronized Throwable getCause() {
+        return cause;
     }
 }

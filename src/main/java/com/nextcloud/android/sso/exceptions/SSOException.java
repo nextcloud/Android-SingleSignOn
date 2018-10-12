@@ -97,7 +97,8 @@ public class SSOException extends Exception {
                 return new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
             case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
                 int statusCode = Integer.parseInt(exception.getCause().getMessage());
-                return new NextcloudHttpRequestFailedException(statusCode);
+                Throwable cause = exception.getCause().getCause();
+                return new NextcloudHttpRequestFailedException(statusCode, cause);
             case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED:
                 return new NextcloudFilesAppAccountPermissionNotGrantedException();
             default:

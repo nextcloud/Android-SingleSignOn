@@ -178,7 +178,6 @@ public class NextcloudAPI {
                     s.onNext((T) performRequest(type, request));
                     s.onComplete();
                 } catch (Exception e) {
-                    e.printStackTrace();
                     s.onError(e);
                 }
             }
