@@ -25,7 +25,7 @@ dependencies {
 ```java
 private void openAccountChooser() {
     try {
-        AccountImporter.PickNewAccount(LoginDialogFragment.this);
+        AccountImporter.PickNewAccount(currentFragment);
     } catch (NextcloudFilesAppNotInstalledException e) {
         UiExceptionManager.ShowDialogForException(getActivity(), e);
     }
@@ -35,19 +35,12 @@ private void openAccountChooser() {
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
-    if (resultCode == RESULT_OK) {
-        if (requestCode == CHOOSE_ACCOUNT_SSO) {
-            String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-            Account account = AccountImporter.GetAccountForName(getActivity(), accountName);
-            if(account != null) {
-                SingleAccountHelper.SetCurrentAccount(getActivity(), account);
-            }
+    AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogFragment.this, new AccountImporter.IAccountAccessGranted() {
+        @Override
+        public void accountAccessGranted(SingleSignOnAccount account) {
+            // TODO init api here..  
         }
-    } else if (resultCode == RESULT_CANCELED) {
-        if (requestCode == CHOOSE_ACCOUNT_SSO) {
-            // Something went wrong..
-        }
-    }
+    });
 }
 
 // Complete example: https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogFragment.java
@@ -56,8 +49,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 3) How to get account information?
 
 ```java
-Account account = AccountImporter.GetCurrentAccount(getActivity());
-SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(getActivity(), account);
+SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
 
 // ssoAccount.name // Name of the account used in the android account manager
 // ssoAccount.username
@@ -156,14 +148,13 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
         private API mApi;
 
         public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
-            Account account = SingleAccountHelper.GetCurrentAccount(context);
-            SingleSignOnAccount ssoAccount =
-                AccountImporter.GetAuthTokenInSeparateThread(context, account);
-            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
-            mApi = new API_SSO(nextcloudAPI);
-        }
+           SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+           NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
+           mApi = new API_SSO(nextcloudAPI);
+       }
     }
     ```
+    
     Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
 
     4.2) **Without Retrofit**
@@ -177,8 +168,7 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
 
         @Override
         protected void onStart() {
-            Account account = SingleAccountHelper.GetCurrentAccount(context);
-            SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(context, account);
+            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             mNextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(),  new NextcloudAPI.ApiConnectedListener() {
                 @Override
                 public void onConnected() {
@@ -219,6 +209,19 @@ SingleSignOnAccount ssoAccount = AccountImporter.GetAuthTokenInSeparateThread(ge
         }
     }
     ```
+
+## Additional Info:
+
+In case that you require some sso features that were introduced in a specific nextcloud files app version, you can run a simple version check using the following helper method:
+
+```java
+int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
+
+if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
+   // Version requirement is satisfied! 
+}
+``` 
+
 
 ## Video
 
