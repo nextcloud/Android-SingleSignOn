@@ -8,6 +8,8 @@
 
     <string name="token_mismatch_title">Virhe</string>
     <string name="nextcloud_files_app_not_installed_title">Virhe</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloudin tiedostosovellusta ei ole asennettu. Asenna se: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Virhe</string>
     <string name="nextcloud_files_app_account_not_found_message">Tiliä ei löytynyt Nextcloudin tiedostosovelluksesta</string>
 
