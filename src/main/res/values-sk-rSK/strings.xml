@@ -1,0 +1,27 @@
+<resources>
+
+    <string name="no_current_account_selected_exception_title">Varovanie</string>
+    <string name="no_current_account_selected_exception_message">Žiadny účet nebol vybratý</string>
+
+    <string name="current_account_not_found_exception_title">Varovanie</string>
+    <string name="current_account_not_found_exception_message">Vybratý účet nebol nájdený.  Niečo nie je v poriadku..</string>
+
+    <string name="token_mismatch_title">Chyba</string>
+    <string name="nextcloud_files_app_not_installed_title">Chyba</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikácia Nextcloud Files nie je nainštalovaná.  Prosím nainštalujte ju: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Chyba</string>
+    <string name="nextcloud_files_app_account_not_found_message">Účet nebol nájdený v aplikácii Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Chyba</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Musíte prijať požadované právomoci aby ste mohli používať single sign-on.</string>
+
+    <string name="nextcloud_http_request_failed_title">Chyba</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Chyba pri HTTP požiadavke, HTTP status kód: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Chyba</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Vaša Nextcloud aplikácia v súčasnosti nepodporuje single sign on.  Prosím aktualizujte ju: %1$s</string>
+
+    <string name="select_account_unknown_error_toast">Niečo sa nepodarilo.. prosím skúste znova</string>
+
+</resources>
