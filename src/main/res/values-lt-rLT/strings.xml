@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="no_current_account_selected_exception_title">Įspėjimas</string>
+    <string name="no_current_account_selected_exception_message">Kol kas nepasirinkta jokia paskyra</string>
+
+    <string name="current_account_not_found_exception_title">Įspėjimas</string>
+    <string name="current_account_not_found_exception_message">Pasirinkta paskyra nerasta. Kažkas nutiko...</string>
+
+    <string name="token_mismatch_title">Klaida</string>
+    <string name="nextcloud_files_app_not_installed_title">Klaida</string>
+    <string name="nextcloud_files_app_account_not_found_title">Klaida</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Klaida</string>
+    <string name="nextcloud_http_request_failed_title">Klaida</string>
+    <string name="nextcloud_files_app_not_supported_title">Klaida</string>
+    <string name="select_account_unknown_error_toast">Kažkas nutiko... Bandykite dar kartą</string>
+
+</resources>
