@@ -7,6 +7,8 @@
     <string name="current_account_not_found_exception_message">Vybratý účet nebol nájdený.  Niečo nie je v poriadku..</string>
 
     <string name="token_mismatch_title">Chyba</string>
+    <string name="token_mismatch_message">Poskytnutý overovací token sa nezhoduje alebo nie je tomuto balíčku umožnené túto akciu uskutočniť</string>
+
     <string name="nextcloud_files_app_not_installed_title">Chyba</string>
     <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikácia Nextcloud Files nie je nainštalovaná.  Prosím nainštalujte ju: %1$s</string>
 
