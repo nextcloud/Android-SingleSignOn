@@ -10,7 +10,7 @@
     <string name="token_mismatch_message">提供された認証トークンが一致しないか、パッケージ名がこの操作を実行できません</string>
 
     <string name="nextcloud_files_app_not_installed_title">エラー</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">NextcloudファイルAppがインストールされていません。 インストールしてください：%1$s</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloudファイルアプリがインストールされていません。 インストールしてください：%1$s</string>
 
     <string name="nextcloud_files_app_account_not_found_title">エラー</string>
     <string name="nextcloud_files_app_account_not_found_message">Nextcloud ファイルアプリでアカウントが見つかりません</string>
