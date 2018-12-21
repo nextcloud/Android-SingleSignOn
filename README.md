@@ -61,9 +61,7 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
 
     4.1) **Using Retrofit**
 
-    4.1.1) Before using this library (using retrofit)
-
-    If you have an interface like this:
+    4.1.1) Before using this single sign on library, your interface for your retrofit API might look like this:
 
     ```java
     public interface API {
@@ -81,7 +79,7 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
     }
     ```
 
-    You might be using a wrapper around your retrofit api to handle the instantiation etc. The code might look like this:
+    You might instantiate your `API` by using something like the following code: 
     ```java
     public class ApiProvider {
 
