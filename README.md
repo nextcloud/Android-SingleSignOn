@@ -59,9 +59,11 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
 
 4) How to make a network request?
 
-    4.1.1) **Using Retrofit** (see below for instructions without retrofit)
+    4.1) **Using Retrofit**
 
-    If you have an interface such as the following:
+    4.1.1) Before using this library (using retrofit)
+
+    If you have an interface like this:
 
     ```java
     public interface API {
@@ -79,7 +81,7 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
     }
     ```
 
-    Typical use of API using Retrofit
+    You might be using a wrapper around your retrofit api to handle the instantiation etc. The code might look like this:
     ```java
     public class ApiProvider {
 
@@ -91,9 +93,9 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
     }
     ```
 
-    4.1.2) Use Nextcloud network stack:
+    4.1.2) Use Nextcloud Single Sign On:
 
-    You can implement that interface and use the nextcloud network stack instead of the retrofit one.
+    In order to use the nextcloud network stack, you'll need to implement the interface `API` shown above and use the nextcloud network stack instead of the retrofit one.
 
     ```java
     public class API_SSO implements API {
@@ -222,6 +224,9 @@ if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION
 }
 ``` 
 
+## Nextcloud Conference 2018 Talk
+
+[![Nextcloud Single Sign On for Android David Luhmer](https://img.youtube.com/vi/gnLOwmrJLUw/0.jpg)](https://www.youtube.com/watch?v=gnLOwmrJLUw)
 
 ## Video
 
