@@ -1,28 +1,29 @@
 <resources>
 
     <string name="no_current_account_selected_exception_title">Aviso</string>
-    <string name="no_current_account_selected_exception_message">Non se seleccionou aínda ningunha conta</string>
+    <string name="no_current_account_selected_exception_message">Non hai contas seleccionadas</string>
 
     <string name="current_account_not_found_exception_title">Aviso</string>
-    <string name="current_account_not_found_exception_message">Non se atopou a conta seleccionada. Algo foi mal.</string>
+    <string name="current_account_not_found_exception_message">Non se atopou a conta seleccionada. Algo foi mal...</string>
 
     <string name="token_mismatch_title">Erro</string>
-    <string name="token_mismatch_message">Ou ben o token de autenticación fornecido non casa ou ben o nome do paquete non ten permiso para realizar esta acción.</string>
+    <string name="token_mismatch_message">A marca de autenticación fornecida non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erro</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">A aplicación Nextcloud Files non está instalada. Instálea: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">A aplicación Files do Nextcloud non está instalada. Instálea: %1$s</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Erro</string>
-    <string name="nextcloud_files_app_account_not_found_message">Non se atopou a conta na aplicación de ficheiros nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_message">Non se atopou a conta na aplicación de ficheiros do Nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Erro</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Ten que aceptar os permisos solicitados para utilizar a funcionalidade de inicio de sesión nun paso.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Ten que aceptar os permisos solicitados para usar a característica de auténticación única (single-sign-on).
+</string>
 
     <string name="nextcloud_http_request_failed_title">Erro</string>
-    <string name="nextcloud_http_request_failed_message" formatted="true">A solicitude HTTP fallou co código de estado HTTP: %1$d</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na petición HTTP cun código de estado: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">A aplicación de ficheiros de nextcloud non permite aínda a característica de iniciar sesión nun paso.  Actulícea: %1$s</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">A súa aplicación de ficheiros do Nextcloud actualmente non admite a característica de autenticación única. Actualícea: %1$s</string>
 
     <string name="select_account_unknown_error_toast">Algo foi mal... ténteo de novo</string>
 
