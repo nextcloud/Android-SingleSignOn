@@ -38,9 +38,26 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogFragment.this, new AccountImporter.IAccountAccessGranted() {
         @Override
         public void accountAccessGranted(SingleSignOnAccount account) {
-            // TODO init api here..  
+            // As this library supports multiple accounts we created some helper methods if you only want to use one.
+            // The following line stores the selected account as the "default" account which can be queried by using 
+            // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
+            SingleAccountHelper.setCurrentAccount(getActivity(), account.name);
+            
+            // Get the "default" account
+            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonBuilder().create(), callback);
+
+            // TODO ... (see code in section 3 and below)
         }
     });
+}
+
+NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
+    @Override
+    public void onConnected() { }
+
+    @Override
+    public void onError(Exception ex) { }
 }
 
 // Complete example: https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogFragment.java
@@ -49,7 +66,11 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 3) How to get account information?
 
 ```java
+// If you stored the "default" account using setCurrentAccount(...) you can get the account by using the following line:
 SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+
+// Otherwise (for multi-account support): (you'll have to keep track of the account names yourself. Note: this has to be the name of SingleSignOnAccount.name)
+AccountImporter.getSingleSignOnAccount(context, accountName);
 
 // ssoAccount.name // Name of the account used in the android account manager
 // ssoAccount.username
@@ -118,7 +139,7 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
         @Override
         public Call<List<Feed>> createFeed(Map<String, Object> feedMap) {
             Type feedListType = new TypeToken<List<Feed>>() {}.getType();
-            String body = GsonConfig.GetGson().toJson(feedMap);
+            String body = GsonBuilder().create().toJson(feedMap);
             NextcloudRequest request = new NextcloudRequest.Builder()
                     .setMethod("POST")
                     .setUrl(mApiEndpoint + "feeds")
@@ -139,6 +160,8 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
         …
     }
     ```
+    
+    Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
 
     4.1.3) Use of new API using the nextcloud app network stack
 
@@ -149,7 +172,7 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
 
         public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-           NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(), callback);
+           NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonBuilder().create(), callback);
            mApi = new API_SSO(nextcloudAPI);
        }
     }
@@ -169,7 +192,7 @@ SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccou
         @Override
         protected void onStart() {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-            mNextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonConfig.GetGson(),  new NextcloudAPI.ApiConnectedListener() {
+            mNextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonBuilder().create(),  new NextcloudAPI.ApiConnectedListener() {
                 @Override
                 public void onConnected() {
                     downloadFile();
