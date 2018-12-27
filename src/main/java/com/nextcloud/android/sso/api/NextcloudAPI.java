@@ -49,6 +49,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -76,7 +77,7 @@ public class NextcloudAPI {
 
     private Gson gson;
     private IInputStreamService mService = null;
-    private boolean mBound = false; // Flag indicating whether we have called bind on the service
+    private AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
     private boolean mDestroyed = false; // Flag indicating if API is destroyed
     private SingleSignOnAccount mAccount;
     private ApiConnectedListener mCallback;
@@ -106,7 +107,7 @@ public class NextcloudAPI {
         }
 
         // Disconnect if connected
-        if (mBound) {
+        if (mBound.get()) {
             stop();
         }
 
@@ -132,13 +133,13 @@ public class NextcloudAPI {
         mCallback = null;
 
         // Unbind from the service
-        if (mBound) {
+        if (mBound.get()) {
             if (mContext != null) {
                 mContext.unbindService(mConnection);
             } else {
                 Log.e(TAG, "Context was null, cannot unbind nextcloud single sign-on service connection!");
             }
-            mBound = false;
+            mBound.set(false);
             mContext = null;
         }
     }
@@ -152,7 +153,15 @@ public class NextcloudAPI {
             Log.i(TAG, "Nextcloud Single sign-on: onServiceConnected");
 
             mService = IInputStreamService.Stub.asInterface(service);
-            mBound = true;
+            mBound.set(true);
+            try {
+                Thread.sleep(15000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            synchronized (mBound) {
+                mBound.notifyAll();
+            }
             mCallback.onConnected();
         }
 
@@ -161,7 +170,7 @@ public class NextcloudAPI {
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
             mService = null;
-            mBound = false;
+            mBound.set(false);
 
             if (!mDestroyed) {
                 connectApiWithBackoff();
@@ -169,6 +178,16 @@ public class NextcloudAPI {
         }
     };
 
+    private void waitForApi() throws InterruptedException{
+        Log.v(TAG, "[waitForApi] - called from Thread: [" + Thread.currentThread().getName() +  "]");
+        synchronized (mBound) {
+            // If service is not bound yet.. wait
+            if(!mBound.get()) {
+                Log.v(TAG, "[waitForApi] - api not ready yet.. waiting");
+                mBound.wait(10000); // wait up to 10 seconds
+            }
+        }
+    }
 
     public <T> Observable<T> performRequestObservable(final Type type, final NextcloudRequest request) {
         return Observable.fromPublisher(new Publisher<T>() {
@@ -249,7 +268,9 @@ public class NextcloudAPI {
      * @throws IOException
      */
     private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request)
-            throws IOException, RemoteException {
+            throws IOException, RemoteException, InterruptedException {
+        waitForApi();
+
         // Log.d(TAG, request.url);
         request.setAccountName(getAccountName());
         request.setToken(getAccountToken());
