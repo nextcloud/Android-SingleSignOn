@@ -59,9 +59,20 @@ import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCu
 
 public class NextcloudAPI {
 
+    private static final String TAG = NextcloudAPI.class.getCanonicalName();
+
+    private Gson gson;
+    private IInputStreamService mService = null;
+    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
+    private boolean mDestroyed = false; // Flag indicating if API is destroyed
+    private SingleSignOnAccount mAccount;
+    private ApiConnectedListener mCallback;
+    private Context mContext;
+
+
+
     public interface ApiConnectedListener {
         void onConnected();
-
         void onError(Exception ex);
     }
 
@@ -73,17 +84,6 @@ public class NextcloudAPI {
 
         connectApiWithBackoff();
     }
-
-    private static final String TAG = NextcloudAPI.class.getCanonicalName();
-
-    private Gson gson;
-    private IInputStreamService mService = null;
-    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
-    private boolean mDestroyed = false; // Flag indicating if API is destroyed
-    private SingleSignOnAccount mAccount;
-    private ApiConnectedListener mCallback;
-    private Context mContext;
-
 
     private String getAccountName() {
         return mAccount.name;
