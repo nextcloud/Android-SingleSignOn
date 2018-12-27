@@ -34,6 +34,7 @@ import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.IThreadListener;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil;
+import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -77,7 +78,7 @@ public class NextcloudAPI {
 
     private Gson gson;
     private IInputStreamService mService = null;
-    private AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
+    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
     private boolean mDestroyed = false; // Flag indicating if API is destroyed
     private SingleSignOnAccount mAccount;
     private ApiConnectedListener mCallback;
@@ -154,11 +155,6 @@ public class NextcloudAPI {
 
             mService = IInputStreamService.Stub.asInterface(service);
             mBound.set(true);
-            try {
-                Thread.sleep(15000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             synchronized (mBound) {
                 mBound.notifyAll();
             }
@@ -178,13 +174,21 @@ public class NextcloudAPI {
         }
     };
 
-    private void waitForApi() throws InterruptedException{
-        Log.v(TAG, "[waitForApi] - called from Thread: [" + Thread.currentThread().getName() +  "]");
+    private void waitForApi() throws NextcloudApiNotRespondingException {
         synchronized (mBound) {
             // If service is not bound yet.. wait
             if(!mBound.get()) {
-                Log.v(TAG, "[waitForApi] - api not ready yet.. waiting");
-                mBound.wait(10000); // wait up to 10 seconds
+                Log.v(TAG, "[waitForApi] - api not ready yet.. waiting [" + Thread.currentThread().getName() +  "]");
+                try {
+                    mBound.wait(10000); // wait up to 10 seconds
+
+                    // If api is still not bound after 10 seconds.. throw an exception
+                    if(!mBound.get()) {
+                        throw new NextcloudApiNotRespondingException();
+                    }
+                } catch (InterruptedException ex) {
+                    Log.e(TAG, "WaitForAPI failed", ex);
+                }
             }
         }
     }
@@ -268,7 +272,7 @@ public class NextcloudAPI {
      * @throws IOException
      */
     private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request)
-            throws IOException, RemoteException, InterruptedException {
+            throws IOException, RemoteException, NextcloudApiNotRespondingException {
         waitForApi();
 
         // Log.d(TAG, request.url);
