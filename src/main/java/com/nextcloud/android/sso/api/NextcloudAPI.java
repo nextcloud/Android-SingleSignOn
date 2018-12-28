@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.NetworkOnMainThreadException;
 import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
@@ -273,6 +274,13 @@ public class NextcloudAPI {
      */
     private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request)
             throws IOException, RemoteException, NextcloudApiNotRespondingException {
+
+        // Check if we are on the main thread
+        if(Looper.myLooper() == Looper.getMainLooper()) {
+            throw new NetworkOnMainThreadException();
+        }
+
+        // Wait for api to be initialized
         waitForApi();
 
         // Log.d(TAG, request.url);
