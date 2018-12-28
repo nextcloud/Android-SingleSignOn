@@ -45,19 +45,23 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             
             // Get the "default" account
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonBuilder().create(), callback);
+            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
 
             // TODO ... (see code in section 3 and below)
         }
     });
-}
+    
+    NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
+        @Override
+        public void onConnected() { 
+            // ignore this one..
+        }
 
-NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
-    @Override
-    public void onConnected() { }
-
-    @Override
-    public void onError(Exception ex) { }
+        @Override
+        public void onError(Exception ex) { 
+            // TODO handle errors
+        }
+    }
 }
 
 // Complete example: https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogFragment.java
@@ -79,6 +83,13 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
 ```
 
 4) How to make a network request?
+
+    You'll notice that there is an callback parameter in the constructor of the `NextcloudAPI`.
+    ```java
+    public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, ApiConnectedListener callback) {
+    ```
+    
+    You can use this callback to subscribe to errors that might occur during the initialization of the API. You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object. For a minimal example to get started (without retrofit) take a look at section 4.2. The callback method `onConnected` will be called once the connection to the files app is established. You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established.
 
     4.1) **Using Retrofit**
 
@@ -139,7 +150,7 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
         @Override
         public Call<List<Feed>> createFeed(Map<String, Object> feedMap) {
             Type feedListType = new TypeToken<List<Feed>>() {}.getType();
-            String body = GsonBuilder().create().toJson(feedMap);
+            String body = new GsonBuilder().create().toJson(feedMap);
             NextcloudRequest request = new NextcloudRequest.Builder()
                     .setMethod("POST")
                     .setUrl(mApiEndpoint + "feeds")
@@ -161,7 +172,7 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
     }
     ```
     
-    Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
+    Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
 
     4.1.3) Use of new API using the nextcloud app network stack
 
@@ -172,7 +183,7 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
 
         public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-           NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonBuilder().create(), callback);
+           NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
            mApi = new API_SSO(nextcloudAPI);
        }
     }
@@ -191,26 +202,44 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
 
         @Override
         protected void onStart() {
-            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-            mNextcloudAPI = new NextcloudAPI(context, ssoAccount, GsonBuilder().create(),  new NextcloudAPI.ApiConnectedListener() {
-                @Override
-                public void onConnected() {
-                    downloadFile();
-                }
+            super.onStart();
+            try {
+                SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(this);
+                mNextcloudAPI = new NextcloudAPI(this, ssoAccount, new GsonBuilder().create(), apiCallback);
 
-                @Override
-                public void onError(Exception ex) {
-                    // TODO handle error here..
-                }
-            });
+                // Start download of file in background thread (otherwise you'll get a NetworkOnMainThreadException)
+                new Thread() {
+                    @Override
+                    public void run() {
+                        downloadFile();
+                    }
+                }.start();
+            } catch (NextcloudFilesAppAccountNotFoundException e) {
+                // TODO handle errors
+            } catch (NoCurrentAccountSelectedException e) {
+                // TODO handle errors
+            }
         }
 
         @Override
         protected void onStop() {
+            super.onStop();
             // Close Service Connection to Nextcloud Files App and
             // disconnect API from Context (prevent Memory Leak)
             mNextcloudAPI.stop();
         }
+        
+        private NextcloudAPI.ApiConnectedListener apiCallback = new NextcloudAPI.ApiConnectedListener() {
+            @Override
+            public void onConnected() {
+                // ignore this one..
+            }
+
+            @Override
+            public void onError(Exception ex) {
+                // TODO handle error in your app
+            }
+        };
 
         private void downloadFile() {
             NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
@@ -227,7 +256,7 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
                 }
                 inputStream.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                // TODO handle errors
             }
         }
     }
