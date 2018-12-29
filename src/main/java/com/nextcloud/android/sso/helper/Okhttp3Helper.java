@@ -1,5 +1,7 @@
 package com.nextcloud.android.sso.helper;
 
+import android.util.Log;
+
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 
@@ -28,6 +30,8 @@ import okhttp3.ResponseBody;
 
 public final class Okhttp3Helper {
 
+    private static String TAG = Okhttp3Helper.class.getCanonicalName();
+
     private Okhttp3Helper() { }
 
     public static ResponseBody getResponseBodyFromRequest(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
@@ -35,6 +39,7 @@ public final class Okhttp3Helper {
             InputStream os = nextcloudAPI.performNetworkRequest(request);
             return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
         } catch (Exception e) {
+            Log.e(TAG, "[getResponseBodyFromRequest] encountered a problem", e);
             e.printStackTrace();
         }
         return ResponseBody.create(null, "");
