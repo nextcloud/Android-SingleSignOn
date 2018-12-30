@@ -50,6 +50,9 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Reader;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 import java.lang.reflect.Type;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -57,6 +60,8 @@ import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 
 import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 public class NextcloudAPI {
 
@@ -70,7 +75,12 @@ public class NextcloudAPI {
     private ApiConnectedListener mCallback;
     private Context mContext;
 
+    @Documented
+    @Target(METHOD)
+    @Retention(RUNTIME)
+    public @interface FollowRedirects{
 
+    }
 
     public interface ApiConnectedListener {
         void onConnected();
@@ -83,7 +93,14 @@ public class NextcloudAPI {
         this.gson = gson;
         this.mCallback = callback;
 
-        connectApiWithBackoff();
+        new Thread()
+        {
+            public void run() {
+                Log.d(TAG, "run() called " + Thread.currentThread().getName());
+                connectApiWithBackoff();
+            }
+        }.start();
+        //connectApiWithBackoff();
     }
 
     private String getAccountName() {
@@ -104,6 +121,7 @@ public class NextcloudAPI {
     }
 
     private void connect() {
+        Log.v(TAG, "Nextcloud Single sign-on connect() called [" + Thread.currentThread().getName() + "]");
         if (mDestroyed) {
             throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
         }
@@ -152,7 +170,7 @@ public class NextcloudAPI {
      */
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
-            Log.i(TAG, "Nextcloud Single sign-on: onServiceConnected");
+            Log.v(TAG, "Nextcloud Single sign-on: onServiceConnected [" + Thread.currentThread().getName() + "]");
 
             mService = IInputStreamService.Stub.asInterface(service);
             mBound.set(true);
@@ -342,5 +360,9 @@ public class NextcloudAPI {
         is.close();
         ois.close();
         return result;
+    }
+
+    protected Gson getGson() {
+        return gson;
     }
 }

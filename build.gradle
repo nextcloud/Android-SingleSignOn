@@ -52,4 +52,9 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+
+    // Required for local unit tests (JUnit 4 framework)
+    testImplementation 'junit:junit:4.12'
+    // required if you want to use Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:2.23.4'
 }

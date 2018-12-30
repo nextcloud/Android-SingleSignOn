@@ -19,6 +19,8 @@
 
 package com.nextcloud.android.sso.aidl;
 
+import android.support.annotation.VisibleForTesting;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +42,7 @@ public class NextcloudRequest implements Serializable {
 
     private NextcloudRequest() { }
 
-    public static class Builder {
+    public static class Builder implements Cloneable {
         private NextcloudRequest ncr;
 
         public Builder() {
@@ -95,6 +97,10 @@ public class NextcloudRequest implements Serializable {
             ncr.followRedirects = followRedirects;
             return this;
         }
+
+        public Object clone() throws CloneNotSupportedException{
+            return super.clone();
+        }
     }
 
     public String getMethod() {
@@ -143,5 +149,53 @@ public class NextcloudRequest implements Serializable {
 
     public boolean isFollowRedirects() {
         return this.followRedirects;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NextcloudRequest)) {
+            return false;
+        }
+
+
+        NextcloudRequest rq = (NextcloudRequest)obj;
+        boolean equal;
+        equal  = checkEqual("accountName", this.accountName, rq.accountName);
+        equal &= checkEqual("header", this.header, rq.header);
+        equal &= checkEqual("method", this.method, rq.method);
+        equal &= checkEqual("packageName", this.packageName, rq.packageName);
+        equal &= checkEqual("parameter", this.parameter, rq.parameter);
+        equal &= checkEqual("requestBody", this.requestBody, rq.requestBody);
+        equal &= checkEqual("token", this.token, rq.token);
+        equal &= checkEqual("url", this.url, rq.url);
+        equal &= checkEqual("followRedirects", this.followRedirects, rq.followRedirects);
+
+        return equal;
+
+        //return super.equals(obj);
+    }
+
+    private boolean checkEqual(String name, Object o1, Object o2) {
+        if(o1 == null && o2 == null) {
+            return true;
+        }
+
+        if(o1 != null) {
+            boolean eq = o1.equals(o2);
+            if(!eq) {
+                System.err.println("[" + name + " ] Expected: " + o1 + " Was: " + o2);
+            }
+            return eq;
+        } else {
+            // o1 == null and o2 != null
+            System.err.println("[" + name + " ] Expected: " + o1 + " Was: " + o2);
+        }
+
+        return false;
     }
 }
