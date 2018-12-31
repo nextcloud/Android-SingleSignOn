@@ -114,21 +114,21 @@ public class NextcloudRetrofitServiceMethod<T> {
             Annotation annotation = parameterAnnotationsArray[i][0];
 
             if(annotation instanceof Query) {
-                parameters.put(((Query)annotation).value(), args[i].toString());
+                parameters.put(((Query)annotation).value(), String.valueOf(args[i]));
             } else if(annotation instanceof Body) {
                 rBuilder.setRequestBody(nextcloudAPI.getGson().toJson(args[i]));
             } else if(annotation instanceof Path) {
                 String varName = "{" + ((Path)annotation).value() + "}";
                 String url = rBuilder.build().getUrl();
-                rBuilder.setUrl(url.replace(varName, args[i].toString()));
+                rBuilder.setUrl(url.replace(varName, String.valueOf(args[i])));
             } else if(annotation instanceof Header) {
                 Map<String, List<String>> headers = rBuilder.build().getHeader();
                 List<String> arg = new ArrayList<>();
-                arg.add(args[i].toString());
+                arg.add(String.valueOf(args[i]));
                 headers.put(((Header)annotation).value(), arg);
                 rBuilder.setHeader(headers);
             } else {
-                throw new UnsupportedOperationException("don't know this type yet.. [" + annotation.toString() + "]");
+                throw new UnsupportedOperationException("don't know this type yet.. [" + String.valueOf(annotation) + "]");
             }
         }
 
@@ -183,7 +183,7 @@ public class NextcloudRetrofitServiceMethod<T> {
         } else if(annotation instanceof NextcloudAPI.FollowRedirects) {
             followRedirects = true;
         } else {
-            throw new UnsupportedOperationException(annotation.toString());
+            throw new UnsupportedOperationException(String.valueOf(annotation));
         }
 
         /*
