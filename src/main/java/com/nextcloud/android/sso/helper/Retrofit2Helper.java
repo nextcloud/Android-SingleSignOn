@@ -1,12 +1,16 @@
 package com.nextcloud.android.sso.helper;
 
+import android.support.annotation.NonNull;
+
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 
 import java.lang.reflect.Type;
 
+import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
+import okio.BufferedSource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,7 +53,7 @@ public final class Retrofit2Helper {
 
             @Override
             public void enqueue(Callback<T> callback) {
-                callback.onResponse(null, execute());
+                callback.onResponse(this, execute());
             }
 
             @Override
@@ -92,16 +96,16 @@ public final class Retrofit2Helper {
                 if(success) {
                     return Response.success(null);
                 } else {
-                    return Response.error(520, null);
+                    return Response.error(520, emptyResponseBody);
                 }
             }
 
             @Override
-            public void enqueue(Callback callback) {
+            public void enqueue(@NonNull Callback callback) {
                 if(success) {
-                    callback.onResponse(null, Response.success(null));
+                    callback.onResponse(this, Response.success(null));
                 } else {
-                    callback.onResponse(null, Response.error(520, null));
+                    callback.onResponse(this, Response.error(520, emptyResponseBody));
                 }
             }
 
@@ -130,5 +134,22 @@ public final class Retrofit2Helper {
         };
 
     }
+
+    private static ResponseBody emptyResponseBody = new ResponseBody() {
+        @Override
+        public MediaType contentType() {
+            return null;
+        }
+
+        @Override
+        public long contentLength() {
+            return 0;
+        }
+
+        @Override
+        public BufferedSource source() {
+            return null;
+        }
+    };
 
 }
