@@ -24,6 +24,7 @@
     <string name="nextcloud_files_app_not_supported_title">Chyba</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Vámi používaná verze aplikace Nextcloud Soubory nepodporuje sdružené přihlašování. Aktualizujte ji: %1$s</string>
 
+
     <string name="select_account_unknown_error_toast">Něco se pokazilo… zkuste to znovu</string>
 
 </resources>

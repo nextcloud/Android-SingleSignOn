@@ -24,6 +24,7 @@
     <string name="nextcloud_files_app_not_supported_title">Feil</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ditt Nextcloud filer tillegg støtter ikke single sign-on. Vennligst oppdater det: %1$s</string>
 
+
     <string name="select_account_unknown_error_toast">Noe gikk feil, ver vennlig å forsøk på ny</string>
 
 </resources>
