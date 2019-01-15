@@ -323,8 +323,11 @@ public class NextcloudAPI {
                             }
                         });
 
-
-        ParcelFileDescriptor output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
+        ParcelFileDescriptor output;
+        if(requestBodyParcelFileDescriptor != null)
+            output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
+        else
+            output = mService.performNextcloudRequest(input);
 
         return output;
     }
