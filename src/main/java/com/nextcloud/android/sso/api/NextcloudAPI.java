@@ -314,20 +314,22 @@ public class NextcloudAPI {
                 });
 
         ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
-        if(requestBodyInputStream != null)	
+        if(requestBodyInputStream != null) {
             requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
-                new IThreadListener() {
-                            @Override
-                            public void onThreadFinished(Thread thread) {
-                                Log.d(TAG, "copy data from service finished");
-                            }
-                        });
+                    new IThreadListener() {
+                        @Override
+                        public void onThreadFinished(Thread thread) {
+                            Log.d(TAG, "copy data from service finished");
+                        }
+                    });
+        }
 
         ParcelFileDescriptor output;
-        if(requestBodyParcelFileDescriptor != null)
+        if(requestBodyParcelFileDescriptor != null) {
             output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
-        else
+        } else {
             output = mService.performNextcloudRequest(input);
+        }
 
         return output;
     }
