@@ -256,13 +256,14 @@ public class NextcloudAPI {
      */
     public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
         InputStream os = null;
-        Exception exception = null;
+        Exception exception;
         try {
             ParcelFileDescriptor output = performAidlNetworkRequest(request, requestBodyInputStream);
             os = new ParcelFileDescriptor.AutoCloseInputStream(output);
             exception = deserializeObject(os);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            exception = e;
         }
 
         // Handle Remote Exceptions
