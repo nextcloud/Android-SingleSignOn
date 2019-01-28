@@ -42,7 +42,10 @@ public class NextcloudRequest implements Serializable {
 
     private NextcloudRequest() { }
 
-    public static class Builder implements Cloneable {
+    public static class Builder implements Serializable {
+
+        private static final long serialVersionUID = 2121321432424242L; //assign a long value
+
         private NextcloudRequest ncr;
 
         public Builder() {
@@ -96,10 +99,6 @@ public class NextcloudRequest implements Serializable {
         public Builder setFollowRedirects(boolean followRedirects) {
             ncr.followRedirects = followRedirects;
             return this;
-        }
-
-        public Object clone() throws CloneNotSupportedException{
-            return super.clone();
         }
     }
 
