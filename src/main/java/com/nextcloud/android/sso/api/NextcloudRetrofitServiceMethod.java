@@ -3,12 +3,17 @@ package com.nextcloud.android.sso.api;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.gson.GsonBuilder;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
 import com.nextcloud.android.sso.helper.Retrofit2Helper;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -30,14 +35,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.HEAD;
-import retrofit2.http.HTTP;
 import retrofit2.http.Header;
-import retrofit2.http.Multipart;
-import retrofit2.http.OPTIONS;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -104,7 +103,9 @@ public class NextcloudRetrofitServiceMethod<T> {
     public T invoke(NextcloudAPI nextcloudAPI, Object[] args) throws Exception {
         Map<String, String> parameters = new HashMap<>();
 
-        NextcloudRequest.Builder rBuilder = (NextcloudRequest.Builder) requestBuilder.clone();
+        //NextcloudRequest.Builder rBuilder = (NextcloudRequest.Builder) requestBuilder.clone();
+        NextcloudRequest.Builder rBuilder = cloneSerializable(requestBuilder);
+
 
         if(parameterAnnotationsArray.length != args.length) {
             throw new InvalidParameterException("Expected: " + parameterAnnotationsArray.length + " params - were: " + args.length);
@@ -124,8 +125,10 @@ public class NextcloudRetrofitServiceMethod<T> {
             } else if(annotation instanceof Header) {
                 Map<String, List<String>> headers = rBuilder.build().getHeader();
                 List<String> arg = new ArrayList<>();
-                arg.add(String.valueOf(args[i]));
-                headers.put(((Header)annotation).value(), arg);
+                if(args[i] != null) {
+                    arg.add(String.valueOf(args[i]));
+                    headers.put(((Header) annotation).value(), arg);
+                }
                 rBuilder.setHeader(headers);
             } else {
                 throw new UnsupportedOperationException("don't know this type yet.. [" + String.valueOf(annotation) + "]");
@@ -299,5 +302,27 @@ public class NextcloudRetrofitServiceMethod<T> {
 
     static RuntimeException parameterError(Method method, int p, String message, Object... args) {
         return methodError(method, message + " (parameter #" + (p + 1) + ")", args);
+    }
+
+
+
+
+    private static <T extends Serializable> T cloneSerializable(T o) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream( baos );
+        oos.writeObject(o);
+        oos.close();
+
+        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()) );
+        T res  = null;
+        try {
+            res = (T) ois.readObject();
+        } catch (ClassNotFoundException e) {
+            // Can't happen as we just clone an object..
+            e.printStackTrace();
+        }
+        ois.close();
+
+        return res;
     }
 }
