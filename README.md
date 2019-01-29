@@ -265,6 +265,25 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
     }
     ```
 
+
+5) WebDAV
+
+The following WebDAV Methods are supported: `PROPFIND` / `MKCOL`
+
+The following examples shows how to use the `PROPFIND` method. With a depth of 0.
+
+```java
+List<String>depth = new ArrayList<>();
+depth.add("0");
+header.put("Depth", depth);
+
+NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
+        .setMethod("PROPFIND")
+        .setHeader(header)
+        .setUrl("/remote.php/webdav/"+remotePath)
+        .build();
+```
+
 ## Additional Info:
 
 In case that you require some sso features that were introduced in a specific nextcloud files app version, you can run a simple version check using the following helper method:
