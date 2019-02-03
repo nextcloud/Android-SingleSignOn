@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="no_current_account_selected_exception_title">Advarsel</string>
+    <string name="current_account_not_found_exception_title">Advarsel</string>
+    <string name="token_mismatch_title">Fejl</string>
+    <string name="nextcloud_files_app_not_installed_title">Fejl</string>
+    <string name="nextcloud_files_app_account_not_found_title">Fejl</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Fejl</string>
+    <string name="nextcloud_http_request_failed_title">Fejl</string>
+    <string name="nextcloud_files_app_not_supported_title">Fejl</string>
+    <string name="nextcloud_files_api_not_responsing_title">Fejl</string>
+    <string name="select_account_unknown_error_toast">Der skete en fejl. Prøv igen.</string>
+
+</resources>
