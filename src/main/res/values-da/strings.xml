@@ -1,7 +1,11 @@
 <resources>
 
     <string name="no_current_account_selected_exception_title">Advarsel</string>
+    <string name="no_current_account_selected_exception_message">Der er ikke valgt en konto</string>
+
     <string name="current_account_not_found_exception_title">Advarsel</string>
+    <string name="current_account_not_found_exception_message">Den valgte konto blev ikke fundet. Noget gik galt…</string>
+
     <string name="token_mismatch_title">Fejl</string>
     <string name="nextcloud_files_app_not_installed_title">Fejl</string>
     <string name="nextcloud_files_app_account_not_found_title">Fejl</string>
