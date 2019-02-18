@@ -110,7 +110,7 @@ public class AccountImporter {
                 return account;
             }
         }
-        return null;
+        return new Account(name,"nextcloud");
     }
 
     public static void clearAllAuthTokens(Context context) {
