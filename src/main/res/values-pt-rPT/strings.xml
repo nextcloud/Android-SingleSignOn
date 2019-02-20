@@ -1,0 +1,33 @@
+<resources>
+
+    <string name="no_current_account_selected_exception_title">Aviso</string>
+    <string name="no_current_account_selected_exception_message">Ainda nenhuma conta selecionada</string>
+
+    <string name="current_account_not_found_exception_title">Aviso</string>
+    <string name="current_account_not_found_exception_message">A conta selecionada não foi encontrada. Ocorreu algo de errado.</string>
+
+    <string name="token_mismatch_title">Erro</string>
+    <string name="token_mismatch_message">O token de autenticação não corresponde ao  esperado ou o nome da package não permite a realização desta acção</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Erro</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">A aplicação de ficheiros Nextcloud não se encontra instalada. Por favor, instale-a: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Erro</string>
+    <string name="nextcloud_files_app_account_not_found_message">Conta não encontrada na aplicação de ficheiros nextcloud</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Erro</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Tem de aceitar as permissões requeridas de forma a poder usar a funcionalidade de início de sessão único.</string>
+
+    <string name="nextcloud_http_request_failed_title">Erro</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">o pedido HTTP falhou com código de estado HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Erro</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Atualmente, a sua aplicação de ficheiros nextcloud não suporta a funcionalidade de início de sessão único. Por favor, atualize-a: %1$s</string>
+
+
+    <string name="nextcloud_files_api_not_responsing_title">Erro</string>
+    <string name="nextcloud_files_api_not_responsing_message">A api da aplicação de ficheiros Nextcloud não está a responder. Por favor, reporte este problema.</string>
+
+    <string name="select_account_unknown_error_toast">Algo correu mal...por favor, tente outra vez</string>
+
+</resources>

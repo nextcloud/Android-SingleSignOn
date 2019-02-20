@@ -253,8 +253,7 @@ public class NextcloudAPI {
         return result;
     }
 
-
-    /**
+     /**
      * The InputStreams needs to be closed after reading from it
      *
      * @param request {@link NextcloudRequest} request to be executed on server via Files app
@@ -262,14 +261,27 @@ public class NextcloudAPI {
      * @throws Exception or SSOException
      */
     public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
+        return performNetworkRequest(request, null);
+    }
+
+    /**
+     * The InputStreams needs to be closed after reading from it
+     *
+     * @param request {@link NextcloudRequest} request to be executed on server via Files app
+     * @param requestBodyInputStream inputstream to be sent to the server
+     * @return InputStream answer from server as InputStream
+     * @throws Exception or SSOException
+     */
+    public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
         InputStream os = null;
-        Exception exception = null;
+        Exception exception;
         try {
-            ParcelFileDescriptor output = performAidlNetworkRequest(request);
+            ParcelFileDescriptor output = performAidlNetworkRequest(request, requestBodyInputStream);
             os = new ParcelFileDescriptor.AutoCloseInputStream(output);
             exception = deserializeObject(os);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            exception = e;
         }
 
         // Handle Remote Exceptions
@@ -290,7 +302,7 @@ public class NextcloudAPI {
      * @return
      * @throws IOException
      */
-    private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request)
+    private ParcelFileDescriptor performAidlNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream)
             throws IOException, RemoteException, NextcloudApiNotRespondingException {
 
         // Check if we are on the main thread
@@ -320,7 +332,23 @@ public class NextcloudAPI {
                     }
                 });
 
-        ParcelFileDescriptor output = mService.performNextcloudRequest(input);
+        ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
+        if(requestBodyInputStream != null) {
+            requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
+                    new IThreadListener() {
+                        @Override
+                        public void onThreadFinished(Thread thread) {
+                            Log.d(TAG, "copy data from service finished");
+                        }
+                    });
+        }
+
+        ParcelFileDescriptor output;
+        if(requestBodyParcelFileDescriptor != null) {
+            output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
+        } else {
+            output = mService.performNextcloudRequest(input);
+        }
 
         return output;
     }

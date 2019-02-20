@@ -1,0 +1,33 @@
+<resources>
+
+    <string name="no_current_account_selected_exception_title">Warning</string>
+    <string name="no_current_account_selected_exception_message">No account selected yet</string>
+
+    <string name="current_account_not_found_exception_title">Warning</string>
+    <string name="current_account_not_found_exception_message">Selected account was not found. Something went wrong..</string>
+
+    <string name="token_mismatch_title">Error</string>
+    <string name="token_mismatch_message">Provided authentication token does not match or package name is not permitted to perform this action</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Error</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files App is not installed. Please install it: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Error</string>
+    <string name="nextcloud_files_app_account_not_found_message">Account not found in nextcloud files app</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">You have to accept the requested permissions to use the single sign-on feature.</string>
+
+    <string name="nextcloud_http_request_failed_title">Error</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP request failed with HTTP status-code: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Error</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Your nextcloud files app currently does not support the single sign on feature. Please update it: %1$s</string>
+
+
+    <string name="nextcloud_files_api_not_responsing_title">Error</string>
+    <string name="nextcloud_files_api_not_responsing_message">Nextcloud files app api is not responding. Please report this issue.</string>
+
+    <string name="select_account_unknown_error_toast">Something went wrong.. please try again</string>
+
+</resources>

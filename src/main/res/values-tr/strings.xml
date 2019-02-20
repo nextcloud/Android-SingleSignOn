@@ -24,6 +24,10 @@
     <string name="nextcloud_files_app_not_supported_title">Hata</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Nextcloud dosyalar uygulamanız şu anda tek oturum açma özelliğini desteklemiyor. Lütfen şu adresten güncelleyin: %1$s</string>
 
+
+    <string name="nextcloud_files_api_not_responsing_title">Hata</string>
+    <string name="nextcloud_files_api_not_responsing_message">Nextcloud Dosyalar uygulaması API arayüzü yanıt vermiyor. Lütfen bu sorunu bildirin.</string>
+
     <string name="select_account_unknown_error_toast">Bir şeyler ters gitti... Lütfen yeniden deneyin</string>
 
 </resources>

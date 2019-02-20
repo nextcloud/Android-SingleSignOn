@@ -1,0 +1,33 @@
+<resources>
+
+    <string name="no_current_account_selected_exception_title">Advarsel</string>
+    <string name="no_current_account_selected_exception_message">Der er ikke valgt en konto</string>
+
+    <string name="current_account_not_found_exception_title">Advarsel</string>
+    <string name="current_account_not_found_exception_message">Den valgte konto blev ikke fundet. Noget gik galt…</string>
+
+    <string name="token_mismatch_title">Fejl</string>
+    <string name="token_mismatch_message">Den afleverede godkendelsestoken stemmer ikke overens eller pakkenavnet er ikke tilladt for denne handling</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Fejl</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files App er ikke installeret. Venligst installer it: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Fejl</string>
+    <string name="nextcloud_files_app_account_not_found_message">Konto ikke fundet i nextcloud files appen</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Fejl</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Du skal accepterer de anmodede tilladelser for at bruge enkel sign-on funktion.</string>
+
+    <string name="nextcloud_http_request_failed_title">Fejl</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP anmodning fejlede med HTTP status-kode: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Fejl</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Din nextcloud files app under for tiden ikke enkel sign-on funktion. Opdater den venligst: %1$s</string>
+
+
+    <string name="nextcloud_files_api_not_responsing_title">Fejl</string>
+    <string name="nextcloud_files_api_not_responsing_message">Nextcloud files app api svarer ikke. Rapporter gerne dette problem.</string>
+
+    <string name="select_account_unknown_error_toast">Der skete en fejl. Prøv igen.</string>
+
+</resources>
