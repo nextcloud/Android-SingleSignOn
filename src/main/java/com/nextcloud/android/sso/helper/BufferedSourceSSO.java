@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 import okio.Buffer;
@@ -262,7 +263,17 @@ public class BufferedSourceSSO implements BufferedSource {
     }
 
     @Override
+    public boolean isOpen() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
     public void close() throws IOException {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
+    public int read(ByteBuffer dst) throws IOException {
         throw new UnsupportedOperationException("Not implemented");
     }
 }
