@@ -140,7 +140,7 @@ public class NextcloudRetrofitServiceMethod<T> {
                 .build();
 
 
-        if(this.returnType instanceof ParameterizedType){
+        if(this.returnType instanceof ParameterizedType) {
             ParameterizedType type = (ParameterizedType) returnType;
             Type ownerType = type.getRawType();
             if(ownerType == Observable.class) {
@@ -157,6 +157,8 @@ public class NextcloudRetrofitServiceMethod<T> {
                 Type typeArgument = type.getActualTypeArguments()[0];
                 return (T) Retrofit2Helper.WrapInCall(nextcloudAPI, request, typeArgument);
             }
+        } else if(this.returnType == Observable.class) {
+            return (T) nextcloudAPI.performRequestObservable(Object.class, request);
         }
 
         return nextcloudAPI.performRequest(this.returnType, request);
