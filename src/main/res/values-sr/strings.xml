@@ -1,10 +1,10 @@
 <resources>
 
     <string name="no_current_account_selected_exception_title">Упозорење</string>
-    <string name="no_current_account_selected_exception_message">Још није одабран ниједан налог</string>
+    <string name="no_current_account_selected_exception_message">Још није одабран налог</string>
 
     <string name="current_account_not_found_exception_title">Упозорење</string>
-    <string name="current_account_not_found_exception_message">Одабрани налог није нађен. Нешто је пошло наопако..</string>
+    <string name="current_account_not_found_exception_message">Одабрани налог није нађен. Нешто је пошло наопако.</string>
 
     <string name="token_mismatch_title">Грешка</string>
     <string name="token_mismatch_message">Токен за проверу идентитета се не поклапа или имену овог пакета није дозвољено да изврши ову радњу</string>
@@ -13,21 +13,21 @@
     <string name="nextcloud_files_app_not_installed_message" formatted="true">Некстклауд апликација за фајлове није инсталирана. Инсталирајте је са: %1$s</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Грешка</string>
-    <string name="nextcloud_files_app_account_not_found_message">Налог није нађен у некстклауд апликацији фајлова</string>
+    <string name="nextcloud_files_app_account_not_found_message">Налог није нађен у Некстклауд апликацији фајлова</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Грешка</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Морате да прихватите захтеване дозволе да бисте могли да користите могућност једнократне пријаве.</string>
 
     <string name="nextcloud_http_request_failed_title">Error</string>
-    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP захтев није успео са статусом грешке: %1$d</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">ХТТП захтев није успео са статусом грешке: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваша Некстклауд апликација за Фајлове тренутно не подржава могућност једнократног пријављивања. Ажурирајте је: %1$s</string>
 
 
     <string name="nextcloud_files_api_not_responsing_title">Грешка</string>
-    <string name="nextcloud_files_api_not_responsing_message">API Некстклауд апликације за фајлове се не одазива. Пријавите ову грешку.</string>
+    <string name="nextcloud_files_api_not_responsing_message">АПИ Некстклауд апликације за фајлове се не одазива. Пријавите ову грешку.</string>
 
-    <string name="select_account_unknown_error_toast">Нешто је пошло наопако.. покушајте поново</string>
+    <string name="select_account_unknown_error_toast">Нешто је пошло наопако... покушајте поново</string>
 
 </resources>
