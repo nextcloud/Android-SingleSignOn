@@ -46,31 +46,24 @@ import retrofit2.http.Streaming;
 public class NextcloudRetrofitServiceMethod<T> {
 
     private static String TAG = NextcloudRetrofitServiceMethod.class.getCanonicalName();
-    final Annotation[] methodAnnotations;
-    final Annotation[][] parameterAnnotationsArray;
-    final Type[] parameterTypes;
+    private final Annotation[] methodAnnotations;
+    private final Annotation[][] parameterAnnotationsArray;
+    private final Type[] parameterTypes;
 
 
     // Upper and lower characters, digits, underscores, and hyphens, starting with a character.
     private static final String PARAM = "[a-zA-Z][a-zA-Z0-9_-]*";
     private static final Pattern PARAM_URL_REGEX = Pattern.compile("\\{(" + PARAM + ")\\}");
-    private static final Pattern PARAM_NAME_REGEX = Pattern.compile(PARAM);
+    //private static final Pattern PARAM_NAME_REGEX = Pattern.compile(PARAM);
 
     private Method method;
     private String httpMethod;
     private @Nullable String relativeUrl;
     private @Nullable Headers headers;
-    private @Nullable MediaType contentType;
-    private boolean hasBody;
-    private boolean isFormEncoded;
-    private boolean isMultipart;
     private Type returnType;
     private boolean followRedirects = false;
 
     private final NextcloudRequest.Builder requestBuilder;
-
-    private final String mApiEndpoint;
-    private Set<String> relativeUrlParamNames;
 
 
     public NextcloudRetrofitServiceMethod(String apiEndpoint, Method method) {
@@ -79,7 +72,6 @@ public class NextcloudRetrofitServiceMethod<T> {
         this.methodAnnotations = method.getAnnotations();
         this.parameterTypes = method.getGenericParameterTypes();
         this.parameterAnnotationsArray = method.getParameterAnnotations();
-        this.mApiEndpoint = apiEndpoint;
 
         for (Annotation annotation : methodAnnotations) {
             parseMethodAnnotation(annotation);
@@ -93,7 +85,7 @@ public class NextcloudRetrofitServiceMethod<T> {
                 .setMethod(httpMethod)
                 .setHeader(headers.toMultimap())
                 .setFollowRedirects(followRedirects)
-                .setUrl(new File(this.mApiEndpoint,relativeUrl).toString());
+                .setUrl(new File(apiEndpoint, relativeUrl).toString());
 
 
         Log.d(TAG, "NextcloudRetrofitServiceMethod() called with: apiEndpoint = [" + apiEndpoint + "], method = [" + method + "]");
@@ -221,7 +213,7 @@ public class NextcloudRetrofitServiceMethod<T> {
                     this.httpMethod, httpMethod);
         }
         this.httpMethod = httpMethod;
-        this.hasBody = hasBody;
+        boolean hasBody1 = hasBody;
 
         if (value.isEmpty()) {
             return;
@@ -240,7 +232,7 @@ public class NextcloudRetrofitServiceMethod<T> {
         }
 
         this.relativeUrl = value;
-        this.relativeUrlParamNames = parsePathParameters(value);
+        //Set<String> relativeUrlParamNames = parsePathParameters(value);
     }
 
     private Headers parseHeaders(String[] headers) {
@@ -255,7 +247,9 @@ public class NextcloudRetrofitServiceMethod<T> {
             String headerValue = header.substring(colon + 1).trim();
             if ("Content-Type".equalsIgnoreCase(headerName)) {
                 try {
-                    contentType = MediaType.parse(headerValue);
+                    MediaType.parse(headerValue);
+                    //MediaType contentType = MediaType.parse(headerValue);
+                    //Log.v(TAG, contentType.toString());
                 } catch (IllegalArgumentException e) {
                     throw methodError(method, e, "Malformed content type: %s", headerValue);
                 }
@@ -270,7 +264,8 @@ public class NextcloudRetrofitServiceMethod<T> {
      * Gets the set of unique path parameters used in the given URI. If a parameter is used twice
      * in the URI, it will only show up once in the set.
      */
-    static Set<String> parsePathParameters(String path) {
+    /*
+    private static Set<String> parsePathParameters(String path) {
         Matcher m = PARAM_URL_REGEX.matcher(path);
         Set<String> patterns = new LinkedHashSet<>();
         while (m.find()) {
@@ -278,16 +273,17 @@ public class NextcloudRetrofitServiceMethod<T> {
         }
         return patterns;
     }
+    */
 
 
 
 
 
-    static RuntimeException methodError(Method method, String message, Object... args) {
+    private  static RuntimeException methodError(Method method, String message, Object... args) {
         return methodError(method, null, message, args);
     }
 
-    static RuntimeException methodError(Method method, @Nullable Throwable cause, String message,
+    private  static RuntimeException methodError(Method method, @Nullable Throwable cause, String message,
                                         Object... args) {
         message = String.format(message, args);
         return new IllegalArgumentException(message
@@ -297,15 +293,16 @@ public class NextcloudRetrofitServiceMethod<T> {
                 + method.getName(), cause);
     }
 
-    static RuntimeException parameterError(Method method,
+    /*
+    private static RuntimeException parameterError(Method method,
                                            Throwable cause, int p, String message, Object... args) {
         return methodError(method, cause, message + " (parameter #" + (p + 1) + ")", args);
     }
 
-    static RuntimeException parameterError(Method method, int p, String message, Object... args) {
+    private static RuntimeException parameterError(Method method, int p, String message, Object... args) {
         return methodError(method, message + " (parameter #" + (p + 1) + ")", args);
     }
-
+    */
 
 
 

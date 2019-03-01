@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,11 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Completable;
-import retrofit2.Call;
 import retrofit2.NextcloudRetrofitApiBuilder;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
 
+import static junit.framework.TestCase.fail;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -47,7 +46,7 @@ public class TestRetrofitAPI {
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Before
-    public void setup() {
+    public void setUp() {
         when(nextcloudApiMock.getGson()).thenReturn(new GsonBuilder().create());
         mApi = new NextcloudRetrofitApiBuilder(nextcloudApiMock, mApiEndpoint).create(API.class);
     }
@@ -77,13 +76,17 @@ public class TestRetrofitAPI {
 
 
     @Test
-    public void postFolders() throws Exception {
+    public void postFolders() {
         // @POST("folders")
         // Call<List<String>> postFolder(@Body Map<String, Object> folderMap);
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("name", "test");
-        mApi.postFolder(map).execute();
+        try {
+            mApi.postFolder(map).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
 
         String expectedBody = "{\"name\":\"test\"}";
         NextcloudRequest request = new NextcloudRequest.Builder()
@@ -93,11 +96,15 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<List<String>>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void putFeed() throws Exception {
+    public void putFeed() {
         // @PUT("feeds/{feedId}/rename")
         // Completable putFeed(@Path("feedId") long feedId, @Body Map<String, String> paramMap);
 
@@ -114,12 +121,16 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<Completable>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
 
     @Test
-    public void deleteFeed() throws Exception {
+    public void deleteFeed() {
         // @DELETE("feeds/{feedId}")
         // Completable deleteFeed(@Path("feedId") long feedId);
 
@@ -130,12 +141,16 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<Completable>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
 
     @Test
-    public void getItems() throws Exception {
+    public void getItems() {
         //@GET("items")
         //    Call<List<String>> getItems(
         //    @Query("batchSize") long batchSize,
@@ -146,7 +161,11 @@ public class TestRetrofitAPI {
         //    @Query("oldestFirst") boolean oldestFirst
         //);
 
-        mApi.getItems(100, 100, 1, 1, true, true).execute();
+        try {
+            mApi.getItems(100, 100, 1, 1, true, true).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
         HashMap<String, String> params = new HashMap<>();
         params.put("batchSize", "100");
         params.put("offset", "100");
@@ -162,14 +181,18 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<List<String>>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
 
 
 
     @Test
-    public void getStreamingUpdatedItems() throws Exception {
+    public void getStreamingUpdatedItems() {
         //@GET("items/updated")
         //@Streaming
         //Observable<ResponseBody> getStreamingUpdatedItems(
@@ -191,16 +214,24 @@ public class TestRetrofitAPI {
                 .setParameter(expectedParams)
                 .build();
 
-        verify(nextcloudApiMock).performNetworkRequest(eq(request));
+        try {
+            verify(nextcloudApiMock).performNetworkRequest(eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
 
     @Test
-    public void putMarkItemsRead() throws Exception {
+    public void putMarkItemsRead() {
         //@PUT("items/read/multiple")
         //Call<Void> putMarkItemsRead(@Body String items);
 
-        mApi.putMarkItemsRead("[2, 3]").execute();
+        try {
+            mApi.putMarkItemsRead("[2, 3]").execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
 
         String expectedBody = "\"[2, 3]\"";
         NextcloudRequest request = new NextcloudRequest.Builder()
@@ -210,12 +241,16 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<Void>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testPatch() throws Exception {
+    public void testPatch() throws IOException {
         //@PATCH("test")
         //Call<Void> invalidPATCH();
 
@@ -234,7 +269,7 @@ public class TestRetrofitAPI {
     }
 
     @Test
-    public void testStaticHeaders() throws Exception {
+    public void testStaticHeaders() {
         //@Headers({
         //    "X-Foo: Bar",
         //    "X-Ping: Pong"
@@ -242,7 +277,11 @@ public class TestRetrofitAPI {
         //@GET("test")
         //Call<Void> getWithHeader();
 
-        mApi.getWithHeader().execute();
+        try {
+            mApi.getWithHeader().execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
 
         Map<String, List<String>> expectedHeader = new HashMap<>();
         List<String> foo = new ArrayList<>();
@@ -259,15 +298,23 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<Void>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void testDynamicHeaders() throws Exception {
+    public void testDynamicHeaders() {
         //@GET("/test")
         //Call<Void> getDynamicHeader(@Header("Content-Range") String contentRange);
 
-        mApi.getDynamicHeader("1").execute();
+        try {
+            mApi.getDynamicHeader("1").execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
 
 
         Map<String, List<String>> expectedHeader = new HashMap<>();
@@ -282,17 +329,25 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<Void>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
 
     @Test
-    public void testFollowRedirects() throws Exception {
+    public void testFollowRedirects() {
         //@NextcloudAPI.FollowRedirects
         //@GET("/test")
         //Call<Void> getFollowRedirects();
 
-        mApi.getFollowRedirects().execute();
+        try {
+            mApi.getFollowRedirects().execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")
@@ -301,6 +356,10 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<Void>() {}.getType();
-        verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 }

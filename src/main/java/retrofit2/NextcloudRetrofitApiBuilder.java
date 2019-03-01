@@ -36,7 +36,7 @@ public class NextcloudRetrofitApiBuilder {
                 });
     }
 
-    NextcloudRetrofitServiceMethod<?> loadServiceMethod(Method method) {
+    private NextcloudRetrofitServiceMethod<?> loadServiceMethod(Method method) {
         NextcloudRetrofitServiceMethod<?> result = serviceMethodCache.get(method);
         if (result != null) return result;
 
