@@ -19,8 +19,6 @@
 
 package com.nextcloud.android.sso.aidl;
 
-import android.support.annotation.VisibleForTesting;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
