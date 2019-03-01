@@ -40,7 +40,6 @@ public final class Okhttp3Helper {
             return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
         } catch (Exception e) {
             Log.e(TAG, "[getResponseBodyFromRequest] encountered a problem", e);
-            e.printStackTrace();
         }
         return ResponseBody.create(null, "");
     }

@@ -89,7 +89,7 @@ public final class Retrofit2Helper {
      * @param success if true, a Response.success will be returned, otherwise Response.error(520)
      * @return
      */
-    public static Call<Void> WrapVoidCall(final boolean success) {
+    public static Call<Void> wrapVoidCall(final boolean success) {
         return new Call<Void>() {
             @Override
             public Response<Void> execute() {
@@ -115,7 +115,9 @@ public final class Retrofit2Helper {
             }
 
             @Override
-            public void cancel() { }
+            public void cancel() {
+                throw new UnsupportedOperationException("Not implemented");
+            }
 
             @Override
             public boolean isCanceled() {
@@ -124,7 +126,7 @@ public final class Retrofit2Helper {
 
             @Override
             public Call<Void> clone() {
-                return null;
+                throw new UnsupportedOperationException("Not implemented");
             }
 
             @Override

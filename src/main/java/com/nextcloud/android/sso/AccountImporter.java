@@ -59,7 +59,7 @@ public class AccountImporter {
     public static final int CHOOSE_ACCOUNT_SSO = 4242;
     public static final int REQUEST_AUTH_TOKEN_SSO = 4243;
 
-    public static boolean AccountsToImportAvailable(Context context) {
+    public static boolean accountsToImportAvailable(Context context) {
         return findAccounts(context).size() > 0;
     }
 
@@ -96,7 +96,7 @@ public class AccountImporter {
 
         List<Account> accountsAvailable = new ArrayList<>();
         for (final Account account : accounts) {
-            if (account.type.equals("nextcloud")) {
+            if ("nextcloud".equals(account.type)) {
                 accountsAvailable.add(account);
             }
         }
@@ -131,10 +131,9 @@ public class AccountImporter {
             try {
                 return SingleSignOnAccount.fromString(mPrefs.getString(prefKey, null));
             } catch (ClassNotFoundException e) {
-                Log.e(TAG, "This should never happen!");
-                e.printStackTrace();
+                Log.e(TAG, "[getSingleSignOnAccount] ClassNotFound", e);
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, "[getSingleSignOnAccount]", e);
             }
         }
         throw new NextcloudFilesAppAccountNotFoundException();

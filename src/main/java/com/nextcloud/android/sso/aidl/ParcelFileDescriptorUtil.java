@@ -28,6 +28,8 @@ import java.io.OutputStream;
 
 public class ParcelFileDescriptorUtil {
 
+    private ParcelFileDescriptorUtil() { }
+
     public static ParcelFileDescriptor pipeFrom(InputStream inputStream, IThreadListener listener)
             throws IOException {
         ParcelFileDescriptor[] pipe = ParcelFileDescriptor.createPipe();
@@ -80,18 +82,17 @@ public class ParcelFileDescriptorUtil {
                 }
                 mOut.flush(); // just to be safe
             } catch (IOException e) {
-                Log.e("TransferThread", "writing failed");
-                e.printStackTrace();
+                Log.e("TransferThread", "writing failed", e);
             } finally {
                 try {
                     mIn.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("TransferThread", "closing 'in' failed", e);
                 }
                 try {
                     mOut.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("TransferThread", "closing 'out' failed", e);
                 }
             }
             if (mListener != null)

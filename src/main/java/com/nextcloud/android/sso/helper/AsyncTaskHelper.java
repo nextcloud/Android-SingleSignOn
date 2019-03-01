@@ -27,14 +27,16 @@ import java.util.concurrent.Callable;
 
 public class AsyncTaskHelper {
 
+    private AsyncTaskHelper() { }
+
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public static <T> T ExecuteBlockingRequest(Callable<T> callable) throws Exception {
         GenericAsyncTaskWithCallable<T> at = new GenericAsyncTaskWithCallable<>(callable);
 
         T result = at.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
 
-        if (at.exception != null) {
-            throw at.exception;
+        if (at.getException() != null) {
+            throw at.getException();
         }
 
         return result;
@@ -57,6 +59,10 @@ public class AsyncTaskHelper {
                 exception = e;
                 return null;
             }
+        }
+
+        private Exception getException() {
+            return exception;
         }
     }
 

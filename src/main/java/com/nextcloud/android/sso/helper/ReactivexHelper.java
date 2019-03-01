@@ -29,7 +29,7 @@ public final class ReactivexHelper {
 
     private ReactivexHelper() { }
 
-    public static Completable WrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
+    public static Completable wrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
         return Completable.fromAction(new Action() {
             @Override
             public void run() throws Exception {

@@ -13,6 +13,8 @@ public class VersionCheckHelper {
 
     private static final String TAG = VersionCheckHelper.class.getCanonicalName();
 
+    private VersionCheckHelper() { }
+
     public static boolean verifyMinVersion(Activity activity, int minVersion) {
         try {
             int verCode = getNextcloudFilesVersionCode(activity);
