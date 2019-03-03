@@ -32,7 +32,12 @@ import com.nextcloud.android.sso.exceptions.SSOException;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class UiExceptionManager {
+public final class UiExceptionManager {
+
+    private static final int NOTIFICATION_ID = 0;
+    private static final String CHANNEL_ID = "0";
+
+    private UiExceptionManager() { }
 
     public static void showDialogForException(Context context, SSOException exception) {
         showDialogForException(context, exception, null);
@@ -55,9 +60,6 @@ public class UiExceptionManager {
         // Make the textview clickable. Must be called after show()
         ((TextView)dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
-
-    private static final int NOTIFICATION_ID = 0;
-    private static final String CHANNEL_ID = "0";
 
     public static void showNotificationForException(Context context, SSOException exception) {
         String title = exception.getTitle(context);

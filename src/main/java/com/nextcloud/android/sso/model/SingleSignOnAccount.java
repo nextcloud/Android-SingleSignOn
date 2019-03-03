@@ -33,18 +33,17 @@ public class SingleSignOnAccount implements Serializable {
 
     private static final long serialVersionUID = 21523240203234240L; //assign a long value
 
+    public String name; // Name of the account in android
+    public String username;
+    public String token;
+    public String url;
+
     public SingleSignOnAccount(String name, String username, String token, String url) {
         this.name = name;
         this.username = username;
         this.token = token;
         this.url = url;
     }
-
-    public String name; // Name of the account in android
-    public String username;
-    public String token;
-    public String url;
-
 
     /** Read the object from Base64 string. */
     public static SingleSignOnAccount fromString(String s) throws IOException, ClassNotFoundException {

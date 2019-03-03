@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.nextcloud.android.sso.aidl.IThreadListener;
-
 /**
  *  Nextcloud SingleSignOn
  *
@@ -29,6 +27,8 @@ import com.nextcloud.android.sso.aidl.IThreadListener;
  */
 
 public class ParcelFileDescriptorUtil {
+
+    private ParcelFileDescriptorUtil() { }
 
     public static ParcelFileDescriptor pipeFrom(InputStream inputStream, IThreadListener listener)
             throws IOException {
@@ -82,18 +82,17 @@ public class ParcelFileDescriptorUtil {
                 }
                 mOut.flush(); // just to be safe
             } catch (IOException e) {
-                Log.e("TransferThread", "writing failed");
-                e.printStackTrace();
+                Log.e("TransferThread", "writing failed", e);
             } finally {
                 try {
                     mIn.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("TransferThread", "closing 'in' failed", e);
                 }
                 try {
                     mOut.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("TransferThread", "closing 'out' failed", e);
                 }
             }
             if (mListener != null)
