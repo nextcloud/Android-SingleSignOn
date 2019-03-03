@@ -101,6 +101,8 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
     ```java
     public interface API {
 
+        String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
+
         @GET("user")
         Observable<UserInfo> user();
 
@@ -114,7 +116,7 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
     }
     ```
 
-    You might instantiate your `API` by using something like the following code: 
+    You might instantiate your retrofit `API` by using something like this: 
     ```java
     public class ApiProvider {
 
@@ -126,58 +128,7 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
     }
     ```
 
-    4.1.2) Use Nextcloud Single Sign On:
-
-    In order to use the nextcloud network stack, you'll need to implement the interface `API` shown above and use the nextcloud network stack instead of the retrofit one.
-
-    ```java
-    public class API_SSO implements API {
-
-        private static final String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
-        private NextcloudAPI nextcloudAPI;
-
-        public API_SSO(NextcloudAPI nextcloudAPI) {
-            this.nextcloudAPI = nextcloudAPI;
-        }
-
-        @Override
-        public Observable<UserInfo> user() {
-            final Type type = UserInfo.class;
-            NextcloudRequest request = new NextcloudRequest.Builder()
-                    .setMethod("GET")
-                    .setUrl(mApiEndpoint + "user")
-                    .build();
-            return nextcloudAPI.performRequestObservable(type, request);
-        }
-
-        @Override
-        public Call<List<Feed>> createFeed(Map<String, Object> feedMap) {
-            Type feedListType = new TypeToken<List<Feed>>() {}.getType();
-            String body = new GsonBuilder().create().toJson(feedMap);
-            NextcloudRequest request = new NextcloudRequest.Builder()
-                    .setMethod("POST")
-                    .setUrl(mApiEndpoint + "feeds")
-                    .setRequestBody(body)
-                    .build();
-            return Retrofit2Helper.WrapInCall(nextcloudAPI, request, feedListType);
-        }
-
-        @Override
-        public Completable deleteFeed(long feedId) {
-            final NextcloudRequest request = new NextcloudRequest.Builder()
-                    .setMethod("DELETE")
-                    .setUrl(mApiEndpoint + "feeds/" + feedId)
-                    .build();
-            return ReactivexHelper.WrapInCompletable(nextcloudAPI, request);
-        }
-
-        …
-    }
-    ```
-    
-    Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
-
-    4.1.3) Use of new API using the nextcloud app network stack
+    4.1.2) Use of new API using the nextcloud app network stack
 
     ```java
     public class ApiProvider {
@@ -187,12 +138,15 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
         public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
-           mApi = new API_SSO(nextcloudAPI);
+           mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
+
        }
     }
     ```
     
     Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
+
+    Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
 
     4.2) **Without Retrofit**
 
