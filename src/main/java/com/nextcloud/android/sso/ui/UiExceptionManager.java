@@ -32,7 +32,7 @@ import com.nextcloud.android.sso.exceptions.SSOException;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class UiExceptionManager {
+public final class UiExceptionManager {
 
     private static final int NOTIFICATION_ID = 0;
     private static final String CHANNEL_ID = "0";

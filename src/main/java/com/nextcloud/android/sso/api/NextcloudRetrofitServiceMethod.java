@@ -44,9 +44,7 @@ import retrofit2.http.Streaming;
 public class NextcloudRetrofitServiceMethod<T> {
 
     private static String TAG = NextcloudRetrofitServiceMethod.class.getCanonicalName();
-    private final Annotation[] methodAnnotations;
     private final Annotation[][] parameterAnnotationsArray;
-    private final Type[] parameterTypes;
 
 
     // Upper and lower characters, digits, underscores, and hyphens, starting with a character.
@@ -67,8 +65,8 @@ public class NextcloudRetrofitServiceMethod<T> {
     public NextcloudRetrofitServiceMethod(String apiEndpoint, Method method) {
         this.method = method;
         this.returnType = method.getGenericReturnType();
-        this.methodAnnotations = method.getAnnotations();
-        this.parameterTypes = method.getGenericParameterTypes();
+        Annotation[] methodAnnotations = method.getAnnotations();
+        //Type[] parameterTypes = method.getGenericParameterTypes();
         this.parameterAnnotationsArray = method.getParameterAnnotations();
 
         for (Annotation annotation : methodAnnotations) {
@@ -91,15 +89,15 @@ public class NextcloudRetrofitServiceMethod<T> {
     }
 
     public T invoke(NextcloudAPI nextcloudAPI, Object[] args) throws Exception {
-        Map<String, String> parameters = new HashMap<>();
+        if(parameterAnnotationsArray.length != args.length) {
+            throw new InvalidParameterException("Expected: " + parameterAnnotationsArray.length + " params - were: " + args.length);
+        }
 
         //NextcloudRequest.Builder rBuilder = (NextcloudRequest.Builder) requestBuilder.clone();
         NextcloudRequest.Builder rBuilder = cloneSerializable(requestBuilder);
 
 
-        if(parameterAnnotationsArray.length != args.length) {
-            throw new InvalidParameterException("Expected: " + parameterAnnotationsArray.length + " params - were: " + args.length);
-        }
+        Map<String, String> parameters = new HashMap<>();
 
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
@@ -211,7 +209,6 @@ public class NextcloudRetrofitServiceMethod<T> {
                     this.httpMethod, httpMethod);
         }
         this.httpMethod = httpMethod;
-        boolean hasBody1 = hasBody;
 
         if (value.isEmpty()) {
             return;
@@ -277,14 +274,14 @@ public class NextcloudRetrofitServiceMethod<T> {
 
 
 
-    private  static RuntimeException methodError(Method method, String message, Object... args) {
+    private static RuntimeException methodError(Method method, String message, Object... args) {
         return methodError(method, null, message, args);
     }
 
-    private  static RuntimeException methodError(Method method, @Nullable Throwable cause, String message,
+    private static RuntimeException methodError(Method method, @Nullable Throwable cause, String message,
                                         Object... args) {
-        message = String.format(message, args);
-        return new IllegalArgumentException(message
+        String formattedMessage = String.format(message, args);
+        return new IllegalArgumentException(formattedMessage
                 + "\n    for method "
                 + method.getDeclaringClass().getSimpleName()
                 + "."
@@ -316,7 +313,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             res = (T) ois.readObject();
         } catch (ClassNotFoundException e) {
             // Can't happen as we just clone an object..
-            e.printStackTrace();
+            Log.e(TAG, "ClassNotFoundException", e);
         }
         ois.close();
 

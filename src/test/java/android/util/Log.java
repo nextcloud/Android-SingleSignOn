@@ -1,7 +1,7 @@
 package android.util;
 
 // https://stackoverflow.com/questions/36787449/how-to-mock-method-e-in-log
-public class Log {
+public final class Log {
 
     private Log() { }
 

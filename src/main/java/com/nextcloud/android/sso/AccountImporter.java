@@ -130,9 +130,7 @@ public class AccountImporter {
         if (mPrefs.contains(prefKey)) {
             try {
                 return SingleSignOnAccount.fromString(mPrefs.getString(prefKey, null));
-            } catch (ClassNotFoundException e) {
-                Log.e(TAG, "[getSingleSignOnAccount] ClassNotFound", e);
-            } catch (IOException e) {
+            } catch (ClassNotFoundException | IOException e) {
                 Log.e(TAG, "[getSingleSignOnAccount]", e);
             }
         }
