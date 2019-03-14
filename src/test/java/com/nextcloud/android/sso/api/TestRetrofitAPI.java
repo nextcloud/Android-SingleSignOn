@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Completable;
+import okhttp3.ResponseBody;
 import retrofit2.NextcloudRetrofitApiBuilder;
 
 import static junit.framework.TestCase.fail;
@@ -362,4 +363,56 @@ public class TestRetrofitAPI {
             fail(e.getMessage());
         }
     }
+
+
+    @Test
+    public void testFormUrlEncodedFieldMap() {
+        Map<String, String> map = new HashMap<>();
+        try {
+            map.put("key", "value");
+            mApi.postFormUrlEncodedFieldMap(map).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("POST")
+                .setUrl(mApiEndpoint + "test")
+                .setParameter(map)
+                .build();
+
+        Type type = new TypeToken<ResponseBody>() {}.getType();
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFormUrlEncodedField() {
+        String name = "myname";
+        try {
+            mApi.postFormUrlEncodedField(name).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("name", name);
+
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("POST")
+                .setUrl(mApiEndpoint + "test")
+                .setParameter(map)
+                .build();
+
+        Type type = new TypeToken<ResponseBody>() {}.getType();
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
 }

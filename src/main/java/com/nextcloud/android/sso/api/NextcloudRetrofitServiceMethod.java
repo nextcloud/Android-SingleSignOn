@@ -33,6 +33,9 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -58,6 +61,7 @@ public class NextcloudRetrofitServiceMethod<T> {
     private @Nullable Headers headers;
     private Type returnType;
     private boolean followRedirects = false;
+    private boolean formUrlEncoded = false;
 
     private final NextcloudRequest.Builder requestBuilder;
 
@@ -118,6 +122,18 @@ public class NextcloudRetrofitServiceMethod<T> {
                     headers.put(((Header) annotation).value(), arg);
                 }
                 rBuilder.setHeader(headers);
+            } else if(annotation instanceof FieldMap) {
+                if(args[i] != null) {
+                    Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
+                    for (String key : fieldMap.keySet()) {
+                        parameters.put(key, fieldMap.get(key).toString());
+                    }
+                }
+            } else if(annotation instanceof Field) {
+                if(args[i] != null) {
+                    String field = args[i].toString();
+                    parameters.put(((Field)annotation).value(), field);
+                }
             } else {
                 throw new UnsupportedOperationException("don't know this type yet.. [" + String.valueOf(annotation) + "]");
             }
@@ -173,6 +189,8 @@ public class NextcloudRetrofitServiceMethod<T> {
                 throw methodError(method, "@Headers annotation is empty.");
             }
             headers = parseHeaders(headersToParse);
+        } else if(annotation instanceof FormUrlEncoded) {
+            formUrlEncoded = true;
         } else if(annotation instanceof NextcloudAPI.FollowRedirects) {
             followRedirects = true;
         } else {
