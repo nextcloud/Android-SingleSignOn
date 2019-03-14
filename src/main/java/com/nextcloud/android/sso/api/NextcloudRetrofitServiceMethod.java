@@ -61,7 +61,7 @@ public class NextcloudRetrofitServiceMethod<T> {
     private @Nullable Headers headers;
     private Type returnType;
     private boolean followRedirects = false;
-    private boolean formUrlEncoded = false;
+    //private boolean formUrlEncoded = false;
 
     private final NextcloudRequest.Builder requestBuilder;
 
@@ -190,7 +190,8 @@ public class NextcloudRetrofitServiceMethod<T> {
             }
             headers = parseHeaders(headersToParse);
         } else if(annotation instanceof FormUrlEncoded) {
-            formUrlEncoded = true;
+            //formUrlEncoded = true;
+            Log.v(TAG, "FormUrlEncoded request");
         } else if(annotation instanceof NextcloudAPI.FollowRedirects) {
             followRedirects = true;
         } else {
