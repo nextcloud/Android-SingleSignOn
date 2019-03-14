@@ -68,7 +68,7 @@ public class AccountImporter {
         if (appInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
 
             // Clear all tokens first to prevent some caching issues..
-            clearAllAuthTokens(fragment.getContext());
+            //clearAllAuthTokens(fragment.getContext());
 
             Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
                     true, null, null, null, null);
