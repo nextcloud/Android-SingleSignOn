@@ -185,12 +185,12 @@ public class NextcloudRequest implements Serializable {
         if(o1 != null) {
             boolean eq = o1.equals(o2);
             if(!eq) {
-                System.err.println("[" + name + " ] Expected: " + o1 + " Was: " + o2);
+                System.err.println("[" + name + "] Expected: " + o1 + " Was: " + o2);
             }
             return eq;
         } else {
             // o1 == null and o2 != null
-            System.err.println("[" + name + " ] Expected: " + o1 + " Was: " + o2);
+            System.err.println("[" + name + "] Expected: " + o1 + " Was: " + o2);
         }
 
         return false;
