@@ -34,6 +34,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNotGrantedException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
@@ -184,7 +185,7 @@ public class AccountImporter {
                         } else {
                             requestAuthToken(fragment, data);
                         }
-                    } catch (NextcloudFilesAppNotSupportedException e) {
+                    } catch (NextcloudFilesAppNotSupportedException | NextcloudFilesAppAccountPermissionNotGrantedException e) {
                         UiExceptionManager.showDialogForException(context, e);
                     }
                     break;
@@ -222,7 +223,19 @@ public class AccountImporter {
         throw SSOException.parseNextcloudCustomException(new Exception(exception));
     }
 
-    public static void requestAuthToken(Fragment fragment, Intent intent) throws NextcloudFilesAppNotSupportedException {
+    public static void authenticateSingleSignAccount(Fragment fragment, SingleSignOnAccount account) throws NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
+        Intent intent = new Intent();
+        intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, account.name);
+        requestAuthToken(fragment, intent);
+    }
+
+    public static void authenticateSingleSignAccount(Activity activity, SingleSignOnAccount account) throws NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
+        Intent intent = new Intent();
+        intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, account.name);
+        requestAuthToken(activity, intent);
+    }
+
+    public static void requestAuthToken(Fragment fragment, Intent intent) throws NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
         Intent authIntent = buildRequestAuthTokenIntent(fragment.getContext(), intent);
         try {
             fragment.startActivityForResult(authIntent, REQUEST_AUTH_TOKEN_SSO);
@@ -231,7 +244,7 @@ public class AccountImporter {
         }
     }
 
-    public static void requestAuthToken(Activity activity, Intent intent) throws NextcloudFilesAppNotSupportedException {
+    public static void requestAuthToken(Activity activity, Intent intent) throws NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
         Intent authIntent = buildRequestAuthTokenIntent(activity, intent);
         try {
             activity.startActivityForResult(authIntent, REQUEST_AUTH_TOKEN_SSO);
@@ -240,9 +253,12 @@ public class AccountImporter {
         }
     }
 
-    private static Intent buildRequestAuthTokenIntent(Context context, Intent intent) {
+    private static Intent buildRequestAuthTokenIntent(Context context, Intent intent) throws NextcloudFilesAppAccountPermissionNotGrantedException {
         String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
         Account account = AccountImporter.getAccountForName(context, accountName);
+        if(account == null) {
+            throw new NextcloudFilesAppAccountPermissionNotGrantedException();
+        }
         Intent authIntent = new Intent();
         authIntent.setComponent(new ComponentName("com.nextcloud.client",
                 "com.owncloud.android.ui.activity.SsoGrantPermissionActivity"));

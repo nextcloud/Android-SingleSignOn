@@ -19,11 +19,15 @@
 
 package com.nextcloud.android.sso.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNotGrantedException;
+import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -51,5 +55,13 @@ public final class SingleAccountHelper {
     public static void setCurrentAccount(Context context, String accountName) {
         SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         mPrefs.edit().putString(PREF_CURRENT_ACCOUNT_STRING, accountName).commit();
+    }
+
+    public static void reauthenticateCurrentAccount(Fragment fragment) throws NoCurrentAccountSelectedException, NextcloudFilesAppAccountNotFoundException, NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
+        AccountImporter.authenticateSingleSignAccount(fragment, getCurrentSingleSignOnAccount(fragment.getContext()));
+    }
+
+    public static void reauthenticateCurrentAccount(Activity activity) throws NoCurrentAccountSelectedException, NextcloudFilesAppAccountNotFoundException, NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
+        AccountImporter.authenticateSingleSignAccount(activity, getCurrentSingleSignOnAccount(activity));
     }
 }
