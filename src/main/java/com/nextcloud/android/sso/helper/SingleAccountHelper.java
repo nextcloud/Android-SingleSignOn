@@ -64,4 +64,17 @@ public final class SingleAccountHelper {
     public static void reauthenticateCurrentAccount(Activity activity) throws NoCurrentAccountSelectedException, NextcloudFilesAppAccountNotFoundException, NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
         AccountImporter.authenticateSingleSignAccount(activity, getCurrentSingleSignOnAccount(activity));
     }
+    
+    public static void registerSharedPreferenceChangeListener(Context context, 
+                                                                SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        AccountImporter.getSharedPreferences(context)
+                .registerOnSharedPreferenceChangeListener(listener);
+    }
+    
+    public static void unregisterSharedPreferenceChangeListener(Context context,
+                                                                SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        AccountImporter.getSharedPreferences(context)
+                .unregisterOnSharedPreferenceChangeListener(listener);
+        
+    }
 }
