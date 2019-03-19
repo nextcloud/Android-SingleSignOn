@@ -52,4 +52,17 @@ public final class SingleAccountHelper {
         SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         mPrefs.edit().putString(PREF_SINGLE_ACCOUNT_STRING, accountName).commit();
     }
+    
+    public static void registerSharedPreferenceChangeListener(Context context, 
+                                                                SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        AccountImporter.getSharedPreferences(context)
+                .registerOnSharedPreferenceChangeListener(listener);
+    }
+    
+    public static void unregisterSharedPreferenceChangeListener(Context context,
+                                                                SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        AccountImporter.getSharedPreferences(context)
+                .unregisterOnSharedPreferenceChangeListener(listener);
+        
+    }
 }
