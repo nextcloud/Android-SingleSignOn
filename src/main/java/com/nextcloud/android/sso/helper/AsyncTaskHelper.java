@@ -2,7 +2,7 @@ package com.nextcloud.android.sso.helper;
 
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import java.util.concurrent.Callable;
 

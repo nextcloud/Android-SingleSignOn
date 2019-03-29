@@ -22,7 +22,6 @@ package com.nextcloud.android.sso.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
@@ -30,6 +29,8 @@ import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNo
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
+
+import androidx.fragment.app.Fragment;
 
 public final class SingleAccountHelper {
 

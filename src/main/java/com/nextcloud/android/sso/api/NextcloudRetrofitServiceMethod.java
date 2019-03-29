@@ -1,6 +1,6 @@
 package com.nextcloud.android.sso.api;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;

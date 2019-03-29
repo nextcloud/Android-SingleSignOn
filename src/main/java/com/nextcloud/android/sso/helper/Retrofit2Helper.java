@@ -1,6 +1,6 @@
 package com.nextcloud.android.sso.helper;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -41,6 +41,11 @@ public final class Retrofit2Helper {
     public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI, final NextcloudRequest nextcloudRequest, 
                                          final Type resType) {
         return new Call<T>() {
+
+            /**
+             * Execute synchronous
+             * @return
+             */
             @Override
             public Response<T> execute() {
                 try {
@@ -51,9 +56,20 @@ public final class Retrofit2Helper {
                 }
             }
 
+            /**
+             * Execute asynchronous
+             * @param callback
+             */
             @Override
-            public void enqueue(Callback<T> callback) {
-                callback.onResponse(this, execute());
+            public void enqueue(final Callback<T> callback) {
+                final Call<T> call = this;
+                final Thread thr = new Thread() {
+                    @Override
+                    public void run() {
+                        callback.onResponse(call, execute());
+                    }
+                };
+                thr.start();
             }
 
             @Override

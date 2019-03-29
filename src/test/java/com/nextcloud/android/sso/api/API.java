@@ -76,8 +76,6 @@ public interface API {
     @PATCH("test")
     Call<Void> invalidPATCH();
 
-
-
     @Headers({
         "X-Foo: Bar",
         "X-Ping: Pong"

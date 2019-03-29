@@ -20,10 +20,16 @@ import java.util.Map;
 
 import io.reactivex.Completable;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.NextcloudRetrofitApiBuilder;
+import retrofit2.Response;
 
 import static junit.framework.TestCase.fail;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -413,6 +419,37 @@ public class TestRetrofitAPI {
         } catch (Exception e) {
             fail(e.getMessage());
         }
+    }
+
+
+    @Test
+    public void testExecute() {
+        try {
+            mApi.getFollowRedirects().execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testEnqueue() {
+
+        Callback callback = mock(Callback.class);
+
+        mApi.getFollowRedirects().enqueue(callback);
+
+        // Before thread was started, this shouldn't have been called yet
+        verify(callback, never()).onResponse(any(Call.class), any(Response.class));
+
+        // Wait for callback to be done (thread will be started..)
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Verify that Callback#onResponse was called using Mockito.
+        verify(callback).onResponse(any(Call.class), any(Response.class));
     }
 
 }
