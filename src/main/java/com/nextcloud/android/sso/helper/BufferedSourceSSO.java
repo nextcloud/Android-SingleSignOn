@@ -47,11 +47,6 @@ public class BufferedSourceSSO implements BufferedSource {
     }
 
     @Override
-    public Buffer getBuffer() {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
     public boolean exhausted() throws IOException {
         throw new UnsupportedOperationException("Not implemented");
     }
@@ -249,11 +244,6 @@ public class BufferedSourceSSO implements BufferedSource {
 
     @Override
     public boolean rangeEquals(long offset, ByteString bytes, int bytesOffset, int byteCount) throws IOException {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
-    public BufferedSource peek() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
