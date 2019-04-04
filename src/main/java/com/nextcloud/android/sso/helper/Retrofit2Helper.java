@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
+import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 
 import java.lang.reflect.Type;
 
@@ -51,6 +52,8 @@ public final class Retrofit2Helper {
                 try {
                     T body = nextcloudAPI.performRequest(resType, nextcloudRequest);
                     return Response.success(body);
+                } catch (NextcloudHttpRequestFailedException e) {
+                    return Response.error(e.getStatusCode(), ResponseBody.create(null, e.getCause().getMessage()));
                 } catch (Exception e) {
                     return Response.error(520, ResponseBody.create(null, e.toString()));
                 }
