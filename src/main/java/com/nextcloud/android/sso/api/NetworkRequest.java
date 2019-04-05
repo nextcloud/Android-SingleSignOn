@@ -15,9 +15,9 @@ public abstract class NetworkRequest {
     private static final String TAG = NetworkRequest.class.getCanonicalName();
 
     private SingleSignOnAccount mAccount;
-    Context mContext;
-    NextcloudAPI.ApiConnectedListener mCallback;
-    boolean mDestroyed = false; // Flag indicating if API is destroyed
+    protected Context mContext;
+    protected NextcloudAPI.ApiConnectedListener mCallback;
+    protected boolean mDestroyed = false; // Flag indicating if API is destroyed
 
 
     protected NetworkRequest(Context context, SingleSignOnAccount account, NextcloudAPI.ApiConnectedListener callback) {
@@ -27,7 +27,7 @@ public abstract class NetworkRequest {
     }
 
 
-    void connect() {
+    protected void connect() {
         Log.v(TAG, "Nextcloud Single sign-on connect() called [" + Thread.currentThread().getName() + "]");
         if (mDestroyed) {
             throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
@@ -36,27 +36,27 @@ public abstract class NetworkRequest {
 
     protected abstract InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
 
-    void connectApiWithBackoff() {
+    protected void connectApiWithBackoff() {
         new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), new Runnable() {
             @Override
             public void run() {
-                connect();
+            connect();
             }
         }).start();
     }
 
-    void stop() {
+    protected void stop() {
         mCallback = null;
         mAccount = null;
         mDestroyed = true;
     }
 
 
-    String getAccountName() {
+    protected String getAccountName() {
         return mAccount.name;
     }
 
-    String getAccountToken() {
+    protected String getAccountToken() {
         return mAccount.token;
     }
 

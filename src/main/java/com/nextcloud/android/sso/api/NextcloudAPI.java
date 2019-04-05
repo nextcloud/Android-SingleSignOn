@@ -69,7 +69,13 @@ public class NextcloudAPI {
     public NextcloudAPI(Gson gson, NetworkRequest networkRequest) {
         this.gson = gson;
         this.networkRequest = networkRequest;
-        this.networkRequest.connect();
+
+        new Thread() {
+            @Override
+            public void run() {
+                NextcloudAPI.this.networkRequest.connectApiWithBackoff();
+            }
+        }.start();
     }
 
     public void stop() {

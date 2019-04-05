@@ -34,7 +34,7 @@ public class AidlNetworkRequest extends NetworkRequest {
     private IInputStreamService mService = null;
     private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
 
-    public AidlNetworkRequest(Context context, SingleSignOnAccount account, NextcloudAPI.ApiConnectedListener callback) {
+    AidlNetworkRequest(Context context, SingleSignOnAccount account, NextcloudAPI.ApiConnectedListener callback) {
         super(context, account, callback);
     }
 
@@ -212,7 +212,7 @@ public class AidlNetworkRequest extends NetworkRequest {
     }
 
 
-    public static <T> T deserializeObject(InputStream is) throws IOException, ClassNotFoundException {
+    private static <T> T deserializeObject(InputStream is) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(is);
         T result = (T) ois.readObject();
         return result;
