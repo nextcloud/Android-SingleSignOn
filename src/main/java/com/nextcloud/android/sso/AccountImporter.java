@@ -61,6 +61,8 @@ public class AccountImporter {
     public static final int CHOOSE_ACCOUNT_SSO = 4242;
     public static final int REQUEST_AUTH_TOKEN_SSO = 4243;
 
+    private static SharedPreferences SHARED_PREFERENCES;
+
     public static boolean accountsToImportAvailable(Context context) {
         return findAccounts(context).size() > 0;
     }
@@ -269,10 +271,23 @@ public class AccountImporter {
 
 
     public static SharedPreferences getSharedPreferences(Context context) {
-        return context.getSharedPreferences(SSO_SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        if(SHARED_PREFERENCES != null) {
+            return SHARED_PREFERENCES;
+        } else {
+            return context.getSharedPreferences(SSO_SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        }
     }
 
     protected static String getPrefKeyForAccount(String accountName) {
         return PREF_ACCOUNT_STRING + accountName;
+    }
+
+
+    /**
+     * Allows developers to set the shared preferences that the account information should be stored in.
+     * This is helpful when writing unit tests
+     */
+    public static void setSharedPreferences(SharedPreferences sharedPreferences) {
+        AccountImporter.SHARED_PREFERENCES = sharedPreferences;
     }
 }
