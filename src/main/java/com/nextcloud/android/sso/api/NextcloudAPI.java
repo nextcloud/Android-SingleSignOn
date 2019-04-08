@@ -32,15 +32,11 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
-import com.nextcloud.android.sso.aidl.IThreadListener;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil;
 import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
-
-import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -112,12 +108,7 @@ public class NextcloudAPI {
     }
 
     private void connectApiWithBackoff() {
-        new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), new Runnable() {
-            @Override
-            public void run() {
-                connect();
-            }
-        }).start();
+        new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), this::connect).start();
     }
 
     private void connect() {
@@ -213,15 +204,12 @@ public class NextcloudAPI {
     }
 
     public <T> Observable<T> performRequestObservable(final Type type, final NextcloudRequest request) {
-        return Observable.fromPublisher(new Publisher<T>() {
-            @Override
-            public void subscribe(Subscriber<? super T> s) {
+        return Observable.fromPublisher( s-> {
                 try {
                     s.onNext((T) performRequest(type, request));
                     s.onComplete();
                 } catch (Exception e) {
                     s.onError(e);
-                }
             }
         });
     }
@@ -229,19 +217,16 @@ public class NextcloudAPI {
     public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws Exception {
         Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
 
-        InputStream os = performNetworkRequest(request);
-        Reader targetReader = new InputStreamReader(os);
-
         T result = null;
-        if (type != Void.class) {
-            result = gson.fromJson(targetReader, type);
-            if (result != null) {
-                Log.d(TAG, result.toString());
+        try (InputStream os = performNetworkRequest(request);
+             Reader targetReader = new InputStreamReader(os)) {
+            if (type != Void.class) {
+                result = gson.fromJson(targetReader, type);
+                if (result != null) {
+                    Log.d(TAG, result.toString());
+                }
             }
         }
-        targetReader.close();
-
-        os.close();
 
         return result;
     }
@@ -317,49 +302,36 @@ public class NextcloudAPI {
         request.setAccountName(getAccountName());
         request.setToken(getAccountToken());
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(baos);
-        oos.writeObject(request);
-        oos.close();
-        baos.close();
-        InputStream is = new ByteArrayInputStream(baos.toByteArray());
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+             ObjectOutputStream oos = new ObjectOutputStream(baos)
+        ) {
+            oos.writeObject(request);
+            try (InputStream is = new ByteArrayInputStream(baos.toByteArray());
+                 ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
+                         thread -> Log.d(TAG, "copy data from service finished"))) {
+                ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
+                if (requestBodyInputStream != null) {
+                    requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(
+                            requestBodyInputStream,
+                            thread -> Log.d(TAG, "copy data from service finished"));
+                }
 
-        ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
-                new IThreadListener() {
-                    @Override
-                    public void onThreadFinished(Thread thread) {
-                        Log.d(TAG, "copy data from service finished");
-                    }
-                });
-
-        ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
-        if(requestBodyInputStream != null) {
-            requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
-                    new IThreadListener() {
-                        @Override
-                        public void onThreadFinished(Thread thread) {
-                            Log.d(TAG, "copy data from service finished");
-                        }
-                    });
+                ParcelFileDescriptor output;
+                if(requestBodyParcelFileDescriptor != null) {
+                    output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
+                } else {
+                    output = mService.performNextcloudRequest(input);
+                }
+                return output;
+            }
         }
-
-        ParcelFileDescriptor output;
-        if(requestBodyParcelFileDescriptor != null) {
-            output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
-        } else {
-            output = mService.performNextcloudRequest(input);
-        }
-
-        return output;
     }
 
 
     public static <T> T deserializeObjectAndCloseStream(InputStream is) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(is);
-        T result = (T) ois.readObject();
-        is.close();
-        ois.close();
-        return result;
+        try (ObjectInputStream ois = new ObjectInputStream(is)) {
+            return (T) ois.readObject();
+        }
     }
 
     protected Gson getGson() {

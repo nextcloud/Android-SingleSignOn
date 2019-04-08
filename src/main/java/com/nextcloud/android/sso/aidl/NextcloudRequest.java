@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.core.util.ObjectsCompat;
+
 public class NextcloudRequest implements Serializable {
 
     private static final long serialVersionUID = 215521212534240L; //assign a long value
@@ -162,37 +164,17 @@ public class NextcloudRequest implements Serializable {
 
         NextcloudRequest rq = (NextcloudRequest)obj;
         boolean equal;
-        equal  = checkEqual("accountName", this.accountName, rq.accountName);
-        equal &= checkEqual("header", this.header, rq.header);
-        equal &= checkEqual("method", this.method, rq.method);
-        equal &= checkEqual("packageName", this.packageName, rq.packageName);
-        equal &= checkEqual("parameter", this.parameter, rq.parameter);
-        equal &= checkEqual("requestBody", this.requestBody, rq.requestBody);
-        equal &= checkEqual("token", this.token, rq.token);
-        equal &= checkEqual("url", this.url, rq.url);
-        equal &= checkEqual("followRedirects", this.followRedirects, rq.followRedirects);
+        equal  = ObjectsCompat.equals(this.accountName, rq.accountName);
+        equal &= ObjectsCompat.equals(this.header, rq.header);
+        equal &= ObjectsCompat.equals(this.method, rq.method);
+        equal &= ObjectsCompat.equals(this.packageName, rq.packageName);
+        equal &= ObjectsCompat.equals(this.parameter, rq.parameter);
+        equal &= ObjectsCompat.equals(this.requestBody, rq.requestBody);
+        equal &= ObjectsCompat.equals(this.token, rq.token);
+        equal &= ObjectsCompat.equals(this.url, rq.url);
+        equal &= ObjectsCompat.equals(this.followRedirects, rq.followRedirects);
 
         return equal;
-
-        //return super.equals(obj);
     }
 
-    private boolean checkEqual(String name, Object o1, Object o2) {
-        if(o1 == null && o2 == null) {
-            return true;
-        }
-
-        if(o1 != null) {
-            boolean eq = o1.equals(o2);
-            if(!eq) {
-                System.err.println("[" + name + "] Expected: " + o1 + " Was: " + o2);
-            }
-            return eq;
-        } else {
-            // o1 == null and o2 != null
-            System.err.println("[" + name + "] Expected: " + o1 + " Was: " + o2);
-        }
-
-        return false;
-    }
 }
