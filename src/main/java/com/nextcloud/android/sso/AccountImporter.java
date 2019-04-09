@@ -67,13 +67,18 @@ public class AccountImporter {
         return findAccounts(context).size() > 0;
     }
 
+    public static void pickNewAccount(Activity activity) throws NextcloudFilesAppNotInstalledException {
+        if (appInstalledOrNot(activity, "com.nextcloud.client")) {
+            Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
+                    true, null, null, null, null);
+            activity.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
+        } else {
+            throw new NextcloudFilesAppNotInstalledException();
+        }
+    }
 
     public static void pickNewAccount(Fragment fragment) throws NextcloudFilesAppNotInstalledException {
         if (appInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
-
-            // Clear all tokens first to prevent some caching issues..
-            //clearAllAuthTokens(fragment.getContext());
-
             Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
                     true, null, null, null, null);
             fragment.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
