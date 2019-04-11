@@ -1,10 +1,11 @@
 package com.nextcloud.android.sso.ui;
 
-import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
