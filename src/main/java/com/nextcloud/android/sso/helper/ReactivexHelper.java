@@ -4,7 +4,6 @@ import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 
 import io.reactivex.Completable;
-import io.reactivex.functions.Action;
 
 /**
  *  Nextcloud SingleSignOn
@@ -30,12 +29,7 @@ public final class ReactivexHelper {
     private ReactivexHelper() { }
 
     public static Completable wrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
-        return Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                nextcloudAPI.performRequest(Void.class, request);
-            }
-        });
+        return Completable.fromAction(() -> nextcloudAPI.performRequest(Void.class, request));
     }
 
 }

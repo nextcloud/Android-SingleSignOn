@@ -26,9 +26,6 @@ import com.google.gson.Gson;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
-import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -84,15 +81,12 @@ public class NextcloudAPI {
     }
 
     public <T> Observable<T> performRequestObservable(final Type type, final NextcloudRequest request) {
-        return Observable.fromPublisher(new Publisher<T>() {
-            @Override
-            public void subscribe(Subscriber<? super T> s) {
-                try {
-                    s.onNext((T) performRequest(type, request));
-                    s.onComplete();
-                } catch (Exception e) {
-                    s.onError(e);
-                }
+        return Observable.fromPublisher( s-> {
+            try {
+                s.onNext(performRequest(type, request));
+                s.onComplete();
+            } catch (Exception e) {
+                s.onError(e);
             }
         });
     }
@@ -100,20 +94,16 @@ public class NextcloudAPI {
     public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws Exception {
         Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
 
-        InputStream os = performNetworkRequest(request);
-        Reader targetReader = new InputStreamReader(os);
-
         T result = null;
-        if (type != Void.class) {
-            result = gson.fromJson(targetReader, type);
-            if (result != null) {
-                Log.d(TAG, result.toString());
+        try (InputStream os = performNetworkRequest(request);
+             Reader targetReader = new InputStreamReader(os)) {
+            if (type != Void.class) {
+                result = gson.fromJson(targetReader, type);
+                if (result != null) {
+                    Log.d(TAG, result.toString());
+                }
             }
         }
-        targetReader.close();
-
-        os.close();
-
         return result;
     }
 
@@ -129,13 +119,12 @@ public class NextcloudAPI {
         return networkRequest.performNetworkRequest(request, null);
     }
 
+
     /*
     public static <T> T deserializeObjectAndCloseStream(InputStream is) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(is);
-        T result = (T) ois.readObject();
-        is.close();
-        ois.close();
-        return result;
+        try (ObjectInputStream ois = new ObjectInputStream(is)) {
+            return (T) ois.readObject();
+        }
     }
     */
 
