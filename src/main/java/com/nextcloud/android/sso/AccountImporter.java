@@ -150,13 +150,13 @@ public class AccountImporter {
         Bundle future = intent.getBundleExtra(NEXTCLOUD_SSO);
 
         String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
-        String username = future.getString(Constants.SSO_USERNAME);
+        String userId = future.getString(Constants.SSO_USER_ID);
         String token = future.getString(Constants.SSO_TOKEN);
-        String server_url = future.getString(Constants.SSO_SERVER_URL);
+        String serverUrl = future.getString(Constants.SSO_SERVER_URL);
 
         SharedPreferences mPrefs = getSharedPreferences(context);
         String prefKey = getPrefKeyForAccount(accountName);
-        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(accountName, username, token, server_url);
+        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(accountName, userId, token, serverUrl);
         try {
             mPrefs.edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).apply();
         } catch (IOException e) {
