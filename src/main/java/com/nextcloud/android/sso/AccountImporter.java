@@ -151,6 +151,10 @@ public class AccountImporter {
 
         String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
         String userId = future.getString(Constants.SSO_USER_ID);
+        if (userId == null) {
+            // backwards compatibility
+            userId = future.getString("username");
+        }
         String token = future.getString(Constants.SSO_TOKEN);
         String serverUrl = future.getString(Constants.SSO_SERVER_URL);
 
