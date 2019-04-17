@@ -7,7 +7,11 @@
     <string name="current_account_not_found_exception_message">A kiválasztott fiók nem található. Valami hiba történt..</string>
 
     <string name="token_mismatch_title">Hiba</string>
+    <string name="token_mismatch_message">A megadott azonosítási token nem egyezik meg vagy a csomag név nem engedélyezett ebben a környezeteben</string>
+
     <string name="nextcloud_files_app_not_installed_title">Hiba</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">A Nextcloud fájlok alkalmazás nincs telepítve. Kérlek telepítsd azt: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Hiba</string>
     <string name="nextcloud_files_app_account_not_found_message">A File Alkalmazásban nem található ilyen fiók.</string>
 
