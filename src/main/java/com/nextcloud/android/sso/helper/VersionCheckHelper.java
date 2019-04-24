@@ -24,7 +24,7 @@ public final class VersionCheckHelper {
                 return false;
             }
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "PackageManager.NameNotFoundException", e);
+            Log.e(TAG, "PackageManager.NameNotFoundException (app with package-name not found): " + e.getMessage());
             UiExceptionManager.showDialogForException(activity, new NextcloudFilesAppNotInstalledException());
             return false;
         }
