@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Completable;
 import okhttp3.ResponseBody;
@@ -25,11 +27,13 @@ import retrofit2.Callback;
 import retrofit2.NextcloudRetrofitApiBuilder;
 import retrofit2.Response;
 
+import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -432,24 +436,22 @@ public class TestRetrofitAPI {
     }
 
     @Test
-    public void testEnqueue() {
+    public void testEnqueue() throws InterruptedException {
 
         Callback callback = mock(Callback.class);
 
+        Thread testThread = Thread.currentThread();
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        doAnswer(invocation -> {
+            assertNotEquals(testThread, Thread.currentThread());
+            countDownLatch.countDown();
+            return null;
+        }).when(callback).onResponse(any(Call.class), any(Response.class));
         mApi.getFollowRedirects().enqueue(callback);
 
-        // Before thread was started, this shouldn't have been called yet
-        verify(callback, never()).onResponse(any(Call.class), any(Response.class));
-
-        // Wait for callback to be done (thread will be started..)
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // Verify that Callback#onResponse was called using Mockito.
-        verify(callback).onResponse(any(Call.class), any(Response.class));
+        // Wait for callback to be done
+        boolean successful = countDownLatch.await(1, TimeUnit.SECONDS);
+        assertTrue(successful);
     }
 
 }
