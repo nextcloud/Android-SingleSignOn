@@ -20,7 +20,6 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Completable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -122,7 +121,7 @@ public class TestRetrofitAPI {
         HashMap<String, String> map = new HashMap<>();
         map.put("url", "http://www.cyanogenmod.org/wp-content/themes/cyanogenmod/images/favicon.ico");
         map.put("folderId", "81");
-        mApi.putFeed(1, map);
+        mApi.putFeed(1, map).subscribe();
 
         String expectedBody = "{\"url\":\"http://www.cyanogenmod.org/wp-content/themes/cyanogenmod/images/favicon.ico\",\"folderId\":\"81\"}";
         NextcloudRequest request = new NextcloudRequest.Builder()
@@ -131,7 +130,7 @@ public class TestRetrofitAPI {
                 .setRequestBody(expectedBody)
                 .build();
 
-        Type type = new TypeToken<Completable>() {}.getType();
+        Type type = new TypeToken<Void>(){}.getType();
         try {
             verify(nextcloudApiMock).performRequest(eq(type), eq(request));
         } catch (Exception e) {
@@ -145,13 +144,13 @@ public class TestRetrofitAPI {
         // @DELETE("feeds/{feedId}")
         // Completable deleteFeed(@Path("feedId") long feedId);
 
-        mApi.deleteFeed(1);
+        mApi.deleteFeed(1).subscribe();
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("DELETE")
                 .setUrl(mApiEndpoint + "feeds/1")
                 .build();
 
-        Type type = new TypeToken<Completable>() {}.getType();
+        Type type = new TypeToken<Void>() {}.getType();
         try {
             verify(nextcloudApiMock).performRequest(eq(type), eq(request));
         } catch (Exception e) {

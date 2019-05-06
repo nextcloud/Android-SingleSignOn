@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
+import com.nextcloud.android.sso.helper.ReactivexHelper;
 import com.nextcloud.android.sso.helper.Retrofit2Helper;
 
 import java.io.ByteArrayInputStream;
@@ -26,6 +27,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
 import okhttp3.MediaType;
@@ -163,6 +165,8 @@ public class NextcloudRetrofitServiceMethod<T> {
             }
         } else if(this.returnType == Observable.class) {
             return (T) nextcloudAPI.performRequestObservable(Object.class, request);
+        } else if (this.returnType == Completable.class) {
+            return (T) ReactivexHelper.wrapInCompletable(nextcloudAPI, request);
         }
 
         return nextcloudAPI.performRequest(this.returnType, request);
