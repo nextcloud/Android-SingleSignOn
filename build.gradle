@@ -53,17 +53,17 @@ android {
 dependencies {
     implementation "androidx.appcompat:appcompat:1.0.2"
     implementation 'androidx.annotation:annotation:1.0.2'
-    implementation 'androidx.core:core:1.0.1'
+    implementation 'androidx.core:core:1.0.2'
     implementation 'androidx.fragment:fragment:1.0.0'
 
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.4'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
 
     implementation 'commons-io:commons-io:2.6'
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
 
     // Required for local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
