@@ -3,6 +3,9 @@
     <string name="no_current_account_selected_exception_title">Warning</string>
     <string name="no_current_account_selected_exception_message">No account selected yet</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Error</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">In order to use the Nextcloud Single-Sign-On on this device, you need to grant permission to access your accounts</string>
+
     <string name="current_account_not_found_exception_title">Warning</string>
     <string name="current_account_not_found_exception_message">Selected account was not found. Something went wrong..</string>
 
