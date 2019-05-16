@@ -34,6 +34,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNotGrantedException;
@@ -45,11 +49,8 @@ import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import io.reactivex.annotations.NonNull;
 
@@ -71,28 +72,33 @@ public class AccountImporter {
 
     private static SharedPreferences SHARED_PREFERENCES;
 
+    private static final List<String> APPS = Arrays.asList(Constants.PACKAGE_NAME_PROD, Constants.PACKAGE_NAME_DEV);
+    private static final String[] ACCOUNT_TYPES = {Constants.ACCOUNT_TYPE_PROD, Constants.ACCOUNT_TYPE_DEV};
+
     public static boolean accountsToImportAvailable(Context context) {
         return findAccounts(context).size() > 0;
     }
 
-    public static void pickNewAccount(Activity activity) throws NextcloudFilesAppNotInstalledException, AndroidGetAccountsPermissionNotGranted {
+    public static void pickNewAccount(Activity activity) throws NextcloudFilesAppNotInstalledException,
+            AndroidGetAccountsPermissionNotGranted {
         checkAndroidAccountPermissions(activity);
-
-        if (appInstalledOrNot(activity, "com.nextcloud.client")) {
-            Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
-                    true, null, null, null, null);
+        
+        if (appInstalledOrNot(activity)) {
+            Intent intent = AccountManager.newChooseAccountIntent(null, null, ACCOUNT_TYPES,
+                                                                  true, null, null, null, null);
             activity.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
         } else {
             throw new NextcloudFilesAppNotInstalledException();
         }
     }
 
-    public static void pickNewAccount(Fragment fragment) throws NextcloudFilesAppNotInstalledException, AndroidGetAccountsPermissionNotGranted {
+    public static void pickNewAccount(Fragment fragment) throws NextcloudFilesAppNotInstalledException,
+            AndroidGetAccountsPermissionNotGranted {
         checkAndroidAccountPermissions(fragment.getContext());
-
-        if (appInstalledOrNot(fragment.getContext(), "com.nextcloud.client")) {
-            Intent intent = AccountManager.newChooseAccountIntent(null, null, new String[]{"nextcloud"},
-                    true, null, null, null, null);
+        
+        if (appInstalledOrNot(fragment.getContext())) {
+            Intent intent = AccountManager.newChooseAccountIntent(null, null, ACCOUNT_TYPES,
+                                                                  true, null, null, null, null);
             fragment.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
         } else {
             throw new NextcloudFilesAppNotInstalledException();
@@ -100,13 +106,15 @@ public class AccountImporter {
     }
 
     public static void requestAndroidAccountPermissionsAndPickAccount(Activity activity) {
-        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.GET_ACCOUNTS}, REQUEST_GET_ACCOUNTS_PERMISSION);
+        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.GET_ACCOUNTS},
+                                          REQUEST_GET_ACCOUNTS_PERMISSION);
     }
 
     private static void checkAndroidAccountPermissions(Context context) throws AndroidGetAccountsPermissionNotGranted {
         // https://developer.android.com/reference/android/accounts/AccountManager#getAccountsByType(java.lang.String)
-        // Caller targeting API level below Build.VERSION_CODES.O that have not been granted the Manifest.permission.GET_ACCOUNTS permission,
-        // will only see those accounts managed by AbstractAccountAuthenticators whose signature matches the client.
+        // Caller targeting API level below Build.VERSION_CODES.O that have not been granted the 
+        // Manifest.permission.GET_ACCOUNTS permission, will only see those accounts managed by 
+        // AbstractAccountAuthenticators whose signature matches the client.
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             // Do something for lollipop and above versions
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
@@ -118,15 +126,19 @@ public class AccountImporter {
         }
     }
 
-    private static boolean appInstalledOrNot(Context context, String uri) {
+    private static boolean appInstalledOrNot(Context context) {
+        boolean returnValue = false;
         PackageManager pm = context.getPackageManager();
-        try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            return true;
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.v(TAG, e.getMessage());
+        for (String app : APPS) {
+            try {
+                pm.getPackageInfo(app, PackageManager.GET_ACTIVITIES);
+                returnValue = true;
+                break;
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.v(TAG, e.getMessage());
+            }
         }
-        return false;
+        return returnValue;
     }
 
     // Find all currently installed nextcloud accounts on the phone
@@ -136,8 +148,10 @@ public class AccountImporter {
 
         List<Account> accountsAvailable = new ArrayList<>();
         for (final Account account : accounts) {
-            if ("nextcloud".equals(account.type)) {
-                accountsAvailable.add(account);
+            for (String accountType : ACCOUNT_TYPES) {
+                if (accountType.equals(account.type)) {
+                    accountsAvailable.add(account);
+                }
             }
         }
         return accountsAvailable;
@@ -188,10 +202,11 @@ public class AccountImporter {
         }
         String token = future.getString(Constants.SSO_TOKEN);
         String serverUrl = future.getString(Constants.SSO_SERVER_URL);
+        String type = future.getString("accountType");
 
         SharedPreferences mPrefs = getSharedPreferences(context);
         String prefKey = getPrefKeyForAccount(accountName);
-        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(accountName, userId, token, serverUrl);
+        SingleSignOnAccount ssoAccount = new SingleSignOnAccount(accountName, userId, token, serverUrl, type);
         try {
             mPrefs.edit().putString(prefKey, SingleSignOnAccount.toString(ssoAccount)).apply();
         } catch (IOException e) {
@@ -351,9 +366,17 @@ public class AccountImporter {
         if(account == null) {
             throw new NextcloudFilesAppAccountPermissionNotGrantedException();
         }
+
+        String componentName;
+        if (account.type.equalsIgnoreCase(Constants.ACCOUNT_TYPE_DEV)) {
+            componentName = Constants.PACKAGE_NAME_DEV;
+        } else {
+            componentName = Constants.PACKAGE_NAME_PROD;
+        }
+        
         Intent authIntent = new Intent();
-        authIntent.setComponent(new ComponentName("com.nextcloud.client",
-                "com.owncloud.android.ui.activity.SsoGrantPermissionActivity"));
+        authIntent.setComponent(new ComponentName(componentName,
+                                                  "com.owncloud.android.ui.activity.SsoGrantPermissionActivity"));
         authIntent.putExtra(NEXTCLOUD_FILES_ACCOUNT, account);
         return authIntent;
     }

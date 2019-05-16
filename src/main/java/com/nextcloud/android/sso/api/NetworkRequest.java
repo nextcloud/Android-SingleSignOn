@@ -27,7 +27,7 @@ public abstract class NetworkRequest {
     }
 
 
-    protected void connect() {
+    protected void connect(String type) {
         Log.v(TAG, "Nextcloud Single sign-on connect() called [" + Thread.currentThread().getName() + "]");
         if (mDestroyed) {
             throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
@@ -37,11 +37,8 @@ public abstract class NetworkRequest {
     protected abstract InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
 
     protected void connectApiWithBackoff() {
-        new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), new Runnable() {
-            @Override
-            public void run() {
-            connect();
-            }
+        new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), () -> {
+            connect(mAccount.type);
         }).start();
     }
 
