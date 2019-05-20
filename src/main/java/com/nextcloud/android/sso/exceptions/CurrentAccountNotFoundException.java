@@ -29,8 +29,8 @@ public class CurrentAccountNotFoundException extends SSOException {
     @Override
     public void loadExceptionMessage(Context context) {
         this.em = new ExceptionMessage(
-            em.title   = context.getString(R.string.current_account_not_found_exception_title),
-            em.message = context.getString(R.string.current_account_not_found_exception_message)
+            context.getString(R.string.current_account_not_found_exception_title),
+            context.getString(R.string.current_account_not_found_exception_message)
         );
     }
 }

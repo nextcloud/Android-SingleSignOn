@@ -67,6 +67,13 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }
 
+@Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+    AccountImporter.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+}
+
 // Complete example: https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogFragment.java
 ```
 
@@ -250,7 +257,7 @@ if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION
 }
 ``` 
 
-## Nextcloud Conference 2018 Talk
+## Nextcloud Conference 2018 Talk (5min)
 
 [![Nextcloud Single Sign On for Android David Luhmer](https://img.youtube.com/vi/gnLOwmrJLUw/0.jpg)](https://www.youtube.com/watch?v=gnLOwmrJLUw)
 
