@@ -20,11 +20,13 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.NextcloudRetrofitApiBuilder;
 import retrofit2.Response;
+import retrofit2.http.GET;
 
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
@@ -413,6 +415,33 @@ public class TestRetrofitAPI {
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("POST")
                 .setUrl(mApiEndpoint + "test")
+                .setParameter(map)
+                .build();
+
+        Type type = new TypeToken<ResponseBody>() {}.getType();
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void testQueryParamInUrl() {
+        try {
+            mApi.getCapabilities(1).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("format", "json");
+        map.put("test", "1");
+
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "cloud/capabilities")
                 .setParameter(map)
                 .build();
 
