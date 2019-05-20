@@ -20,13 +20,11 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.NextcloudRetrofitApiBuilder;
 import retrofit2.Response;
-import retrofit2.http.GET;
 
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
