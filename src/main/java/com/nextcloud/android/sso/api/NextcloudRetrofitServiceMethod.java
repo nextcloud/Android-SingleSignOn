@@ -279,11 +279,16 @@ public class NextcloudRetrofitServiceMethod<T> {
      * in the URI, it will only show up once in the set.
      */
     private Map<String, String> parsePathParameters() {
-        Map<String, String> query_pairs = new LinkedHashMap<>();
+        Map<String, String> queryPairs = new LinkedHashMap<>();
+
+        if(this.relativeUrl == null) {
+            return queryPairs;
+        }
+
         int idxQuery = this.relativeUrl.indexOf("?");
         if (idxQuery != -1 && idxQuery < this.relativeUrl.length() - 1) {
             // Ensure the query string does not have any named parameters.
-            String query = this.relativeUrl.substring(idxQuery+1);
+            String query = this.relativeUrl.substring(idxQuery + 1);
 
             // Check for named parameters
             Matcher queryParamMatcher = PARAM_URL_REGEX.matcher(query);
@@ -296,13 +301,13 @@ public class NextcloudRetrofitServiceMethod<T> {
             String[] pairs = query.split("&");
             for (String pair : pairs) {
                 int idx = pair.indexOf("=");
-                query_pairs.put(pair.substring(0, idx), pair.substring(idx + 1));
+                queryPairs.put(pair.substring(0, idx), pair.substring(idx + 1));
             }
 
             // Remove query params from url
             this.relativeUrl = this.relativeUrl.substring(0, idxQuery);
         }
-        return query_pairs;
+        return queryPairs;
     }
 
 
