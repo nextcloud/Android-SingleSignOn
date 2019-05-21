@@ -1,7 +1,8 @@
 package com.nextcloud.android.sso.api;
 
-import androidx.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
@@ -22,6 +23,7 @@ import java.lang.reflect.Type;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -63,6 +65,7 @@ public class NextcloudRetrofitServiceMethod<T> {
     private @Nullable Headers headers;
     private Type returnType;
     private boolean followRedirects = false;
+    private Map<String, String> queryParameters;
     //private boolean formUrlEncoded = false;
 
     private final NextcloudRequest.Builder requestBuilder;
@@ -78,6 +81,8 @@ public class NextcloudRetrofitServiceMethod<T> {
         for (Annotation annotation : methodAnnotations) {
             parseMethodAnnotation(annotation);
         }
+
+        this.queryParameters = parsePathParameters();
 
         if(headers == null) {
             headers = new Headers.Builder().build();
@@ -105,6 +110,10 @@ public class NextcloudRetrofitServiceMethod<T> {
 
         Map<String, String> parameters = new HashMap<>();
 
+        // Copy all static query params into parameters array
+        parameters.putAll(this.queryParameters);
+
+        // Build/parse dynamic parameters
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
 
@@ -237,20 +246,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             return;
         }
 
-        // Get the relative URL path and existing query string, if present.
-        int question = value.indexOf('?');
-        if (question != -1 && question < value.length() - 1) {
-            // Ensure the query string does not have any named parameters.
-            String queryParams = value.substring(question + 1);
-            Matcher queryParamMatcher = PARAM_URL_REGEX.matcher(queryParams);
-            if (queryParamMatcher.find()) {
-                throw methodError(method, "URL query string \"%s\" must not have replace block. "
-                        + "For dynamic query parameters use @Query.", queryParams);
-            }
-        }
-
         this.relativeUrl = value;
-        //Set<String> relativeUrlParamNames = parsePathParameters(value);
     }
 
     private Headers parseHeaders(String[] headers) {
@@ -282,16 +278,37 @@ public class NextcloudRetrofitServiceMethod<T> {
      * Gets the set of unique path parameters used in the given URI. If a parameter is used twice
      * in the URI, it will only show up once in the set.
      */
-    /*
-    private static Set<String> parsePathParameters(String path) {
-        Matcher m = PARAM_URL_REGEX.matcher(path);
-        Set<String> patterns = new LinkedHashSet<>();
-        while (m.find()) {
-            patterns.add(m.group(1));
+    private Map<String, String> parsePathParameters() {
+        Map<String, String> queryPairs = new LinkedHashMap<>();
+
+        if(this.relativeUrl == null) {
+            return queryPairs;
         }
-        return patterns;
+
+        int idxQuery = this.relativeUrl.indexOf("?");
+        if (idxQuery != -1 && idxQuery < this.relativeUrl.length() - 1) {
+            // Ensure the query string does not have any named parameters.
+            String query = this.relativeUrl.substring(idxQuery + 1);
+
+            // Check for named parameters
+            Matcher queryParamMatcher = PARAM_URL_REGEX.matcher(query);
+            if (queryParamMatcher.find()) {
+                throw methodError(method, "URL query string \"%s\" must not have replace block. "
+                        + "For dynamic query parameters use @Query.", query);
+            }
+
+            // If none found.. parse the static query parameters
+            String[] pairs = query.split("&");
+            for (String pair : pairs) {
+                int idx = pair.indexOf("=");
+                queryPairs.put(pair.substring(0, idx), pair.substring(idx + 1));
+            }
+
+            // Remove query params from url
+            this.relativeUrl = this.relativeUrl.substring(0, idxQuery);
+        }
+        return queryPairs;
     }
-    */
 
 
 

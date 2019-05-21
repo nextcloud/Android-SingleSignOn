@@ -426,6 +426,33 @@ public class TestRetrofitAPI {
 
 
     @Test
+    public void testQueryParamInUrl() {
+        try {
+            mApi.getCapabilities(1).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("format", "json");
+        map.put("test", "1");
+
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "cloud/capabilities")
+                .setParameter(map)
+                .build();
+
+        Type type = new TypeToken<ResponseBody>() {}.getType();
+        try {
+            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+
+    @Test
     public void testExecute() {
         try {
             mApi.getFollowRedirects().execute();

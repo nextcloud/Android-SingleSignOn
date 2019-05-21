@@ -100,4 +100,7 @@ public interface API {
     @POST("/test")
     Call<ResponseBody> postFormUrlEncodedField(@Field("name") String name);
 
+    @GET("cloud/capabilities?format=json")
+    Call<ResponseBody> getCapabilities(@Query("test") long test);
+
 }
