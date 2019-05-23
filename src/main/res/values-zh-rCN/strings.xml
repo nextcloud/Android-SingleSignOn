@@ -3,6 +3,9 @@
     <string name="no_current_account_selected_exception_title">警告</string>
     <string name="no_current_account_selected_exception_message">没有选择任何账户</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">错误</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">为在此设备上使用Nextcloud单点登录，您需要给此应用授权访问您的账号</string>
+
     <string name="current_account_not_found_exception_title">警告</string>
     <string name="current_account_not_found_exception_message">找不到所选帐户。出了些问题...</string>
 
