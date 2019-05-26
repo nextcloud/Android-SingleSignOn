@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">Avís</string>
     <string name="no_current_account_selected_exception_message">Encara no heu seleccionat cap compte.</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Error</string>
     <string name="current_account_not_found_exception_title">Avís</string>
     <string name="current_account_not_found_exception_message">No s\'ha trobat el compte seleccionat. Alguna cosa ha fallat.</string>
 
