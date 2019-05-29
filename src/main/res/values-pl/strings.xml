@@ -3,6 +3,9 @@
     <string name="no_current_account_selected_exception_title">Uwaga</string>
     <string name="no_current_account_selected_exception_message">Nie wybrano jeszcze konta</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Błąd</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Aby korzystać z Single-Sign-On Nextcloud na tym urządzeniu, musisz udzielić zezwolenia na dostęp do swoich kont</string>
+
     <string name="current_account_not_found_exception_title">Uwaga</string>
     <string name="current_account_not_found_exception_message">Wybrane konto nie zostało znalezione. Coś poszło nie tak..</string>
 
