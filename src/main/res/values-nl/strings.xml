@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">Waarschuwing</string>
     <string name="no_current_account_selected_exception_message">Geen account geselecteerd</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Fout</string>
     <string name="current_account_not_found_exception_title">Waarschuwing</string>
     <string name="current_account_not_found_exception_message">Geselecteerde account niet gevonden. Er is iets misgegaan.</string>
 
