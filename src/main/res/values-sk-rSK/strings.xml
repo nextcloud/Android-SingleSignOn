@@ -3,6 +3,9 @@
     <string name="no_current_account_selected_exception_title">Varovanie</string>
     <string name="no_current_account_selected_exception_message">Žiadny účet nebol vybratý</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Chyba</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Ak chcete na tomto zariadení používať Nextcloud Single-Sign-On, je potrebné prideliť oprávnenie pre prístup k vašim účtom</string>
+
     <string name="current_account_not_found_exception_title">Varovanie</string>
     <string name="current_account_not_found_exception_message">Vybratý účet nebol nájdený.  Niečo nie je v poriadku..</string>
 
