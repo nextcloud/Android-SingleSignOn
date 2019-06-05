@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">Varování</string>
     <string name="no_current_account_selected_exception_message">Zatím nebyl vybrán žádný účet</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Chyba</string>
     <string name="current_account_not_found_exception_title">Varování</string>
     <string name="current_account_not_found_exception_message">Vybraný účet nebyl nalezen. Něco se pokazilo.</string>
 
