@@ -144,7 +144,7 @@ public class AccountImporter {
     // Find all currently installed nextcloud accounts on the phone
     public static List<Account> findAccounts(final Context context) {
         final AccountManager accMgr = AccountManager.get(context);
-        final Account[] accounts = accMgr.getAccountsByType("nextcloud");
+        final Account[] accounts = accMgr.getAccounts();
 
         List<Account> accountsAvailable = new ArrayList<>();
         for (final Account account : accounts) {
