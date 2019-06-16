@@ -76,12 +76,11 @@ public class AidlNetworkRequest extends NetworkRequest {
             stop();
         }
 
-        String componentName;
-        if (type != null && type.equalsIgnoreCase(Constants.ACCOUNT_TYPE_DEV)) {
+        String componentName = Constants.PACKAGE_NAME_PROD;
+        if (type.equals(Constants.ACCOUNT_TYPE_DEV)) {
             componentName = Constants.PACKAGE_NAME_DEV;
-        } else {
-            componentName = Constants.PACKAGE_NAME_PROD;
         }
+
         try {
             Intent intentService = new Intent();
             intentService.setComponent(new ComponentName(componentName,
