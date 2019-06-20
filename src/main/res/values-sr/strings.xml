@@ -4,6 +4,8 @@
     <string name="no_current_account_selected_exception_message">Још није одабран налог</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Грешка</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Да бисте користили Некстклауд једнократну пријаву на овом уређају, морате дати дозволе за приступање налозима</string>
+
     <string name="current_account_not_found_exception_title">Упозорење</string>
     <string name="current_account_not_found_exception_message">Одабрани налог није нађен. Нешто је пошло наопако.</string>
 
