@@ -3,6 +3,9 @@
     <string name="no_current_account_selected_exception_title">Figyelmeztetés</string>
     <string name="no_current_account_selected_exception_message">Nincs még fiók kiválasztva.</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Hiba</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">A Nextcloud egyszeri bejelentkezésének használatához engedélyt kell adnia, hogy hozzáférjen a fiókjaihoz</string>
+
     <string name="current_account_not_found_exception_title">Figyelmeztetés</string>
     <string name="current_account_not_found_exception_message">A kiválasztott fiók nem található. Valami balul sült el…</string>
 
