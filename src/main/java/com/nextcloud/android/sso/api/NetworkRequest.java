@@ -28,7 +28,7 @@ public abstract class NetworkRequest {
 
 
     protected void connect(String type) {
-        Log.v(TAG, "Nextcloud Single sign-on connect() called [" + Thread.currentThread().getName() + "]");
+        Log.v(TAG, "Nextcloud Single sign-on connect() called [" + Thread.currentThread().getName() + "] Account-Type: [" + type + "]");
         if (mDestroyed) {
             throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
         }
