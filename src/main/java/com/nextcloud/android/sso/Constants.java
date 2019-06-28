@@ -38,4 +38,11 @@ public class Constants {
     public static final String EXCEPTION_INVALID_REQUEST_URL = "CE_4";
     public static final String EXCEPTION_HTTP_REQUEST_FAILED = "CE_5";
     public static final String EXCEPTION_ACCOUNT_ACCESS_DECLINED = "CE_6";
+
+    // package related constans
+    public static final String PACKAGE_NAME_PROD = "com.nextcloud.client";
+    public static final String PACKAGE_NAME_DEV = "com.nextcloud.android.beta";
+    public static final String ACCOUNT_TYPE_PROD = "nextcloud";
+    public static final String ACCOUNT_TYPE_DEV = "nextcloud.beta";
+    
 }

@@ -11,6 +11,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.IThreadListener;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
@@ -67,18 +68,23 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
     };
 
-    public void connect() {
-        super.connect();
+    public void connect(String type) {
+        super.connect(type);
 
         // Disconnect if connected
         if (mBound.get()) {
             stop();
         }
 
+        String componentName = Constants.PACKAGE_NAME_PROD;
+        if (type.equals(Constants.ACCOUNT_TYPE_DEV)) {
+            componentName = Constants.PACKAGE_NAME_DEV;
+        }
+
         try {
             Intent intentService = new Intent();
-            intentService.setComponent(new ComponentName("com.nextcloud.client",
-                    "com.owncloud.android.services.AccountManagerService"));
+            intentService.setComponent(new ComponentName(componentName,
+                                                         "com.owncloud.android.services.AccountManagerService"));
             if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
                 Log.d(TAG, "Binding to AccountManagerService returned false");
                 throw new IllegalStateException("Binding to AccountManagerService returned false");

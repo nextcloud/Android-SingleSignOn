@@ -37,12 +37,14 @@ public class SingleSignOnAccount implements Serializable {
     public String userId;
     public String token;
     public String url;
+    public String type;
 
-    public SingleSignOnAccount(String name, String userId, String token, String url) {
+    public SingleSignOnAccount(String name, String userId, String token, String url, String type) {
         this.name = name;
         this.userId = userId;
         this.token = token;
         this.url = url;
+        this.type = type;
     }
 
     /** Read the object from Base64 string. */
