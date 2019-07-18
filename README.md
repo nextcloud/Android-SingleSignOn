@@ -58,6 +58,9 @@ private void openAccountChooser() {
 From an Activity
 
 ```java
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
             AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
 
                     NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
@@ -100,6 +103,7 @@ From an Activity
                         // TODO ... (see code in section 4 and below)
                     }
                 });
+}
 ```
 
 From a Fragment
@@ -138,7 +142,10 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
         }
     });
 }
+```
+From both an Activity and Fragment
 
+```java
 @Override
 public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
