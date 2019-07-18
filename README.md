@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
 	implementation 'com.google.code.gson:gson:2.8.5'
-    implementation "com.github.nextcloud:Android-SingleSignOn:0.4.0"
+	implementation "com.github.nextcloud:Android-SingleSignOn:0.4.0"
 }
 ```
 2) To choose an account, include the following code in your login dialog:
@@ -29,6 +29,7 @@ dependencies {
 From an Activity
 
 ```java
+private void openAccountChooser() {
         try {
             AccountImporter.pickNewAccount(this);
         } 
@@ -37,6 +38,7 @@ From an Activity
         } catch (AndroidGetAccountsPermissionNotGranted e) {
             UiExceptionManager.showDialogForException(this, e);
         }
+}
 ```
 From a Fragment
 
