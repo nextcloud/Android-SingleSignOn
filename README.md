@@ -20,25 +20,113 @@ repositories {
 }
 
 dependencies {
-    implementation "com.github.nextcloud:Android-SingleSignOn:0.3.0"
+	implementation 'com.google.code.gson:gson:2.8.5'
+	implementation "com.github.nextcloud:Android-SingleSignOn:0.4.0"
 }
 ```
 2) To choose an account, include the following code in your login dialog:
 
+From an Activity
+
 ```java
 private void openAccountChooser() {
-    try {
-        AccountImporter.PickNewAccount(currentFragment);
-    } catch (NextcloudFilesAppNotInstalledException e) {
-        UiExceptionManager.ShowDialogForException(getActivity(), e);
-    }
+        try {
+            AccountImporter.pickNewAccount(this);
+        } 
+        catch (NextcloudFilesAppNotInstalledException e) {
+            UiExceptionManager.showDialogForException(this, e);
+        } catch (AndroidGetAccountsPermissionNotGranted e) {
+            UiExceptionManager.showDialogForException(this, e);
+        }
 }
+```
+From a Fragment
 
+```java
+private void openAccountChooser() {
+        try {
+            AccountImporter.pickNewAccount(currentFragment);
+        } catch (NextcloudFilesAppNotInstalledException e) {
+            UiExceptionManager.showDialogForException(this, e);
+        } catch (AndroidGetAccountsPermissionNotGranted e) {
+            UiExceptionManager.showDialogForException(this, e);
+        }
+}
+```
+3) To handle the result of the Account Chooser, include the following:
+
+From an Activity
+
+```java
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+            AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
+
+                    NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
+                        @Override
+                        public void onConnected() {
+                            // ignore this one..
+                        }
+
+                        @Override
+                        public void onError(Exception ex) {
+                            // TODO handle errors
+                        }
+                    };
+
+                    @Override
+                    public void accountAccessGranted(SingleSignOnAccount account) {
+
+                        Context l_context = getApplicationContext();
+
+                        // As this library supports multiple accounts we created some helper methods if you only want to use one.
+                        // The following line stores the selected account as the "default" account which can be queried by using
+                        // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
+                        SingleAccountHelper.setCurrentAccount(l_context, account.name);
+
+                        // Get the "default" account
+                        SingleSignOnAccount ssoAccount = null;
+                        try
+                        {
+                            ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(l_context);
+                        } catch (NextcloudFilesAppAccountNotFoundException e)
+                        {
+                            UiExceptionManager.showDialogForException(l_context, e);
+                        } catch (NoCurrentAccountSelectedException e)
+                        {
+                            UiExceptionManager.showDialogForException(l_context, e);
+                        }
+                        
+                        NextcloudAPI nextcloudAPI = new NextcloudAPI(l_context, ssoAccount, new GsonBuilder().create(), callback);
+
+                        // TODO ... (see code in section 4 and below)
+                    }
+                });
+}
+```
+
+From a Fragment
+
+```java
 @Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
     AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogFragment.this, new AccountImporter.IAccountAccessGranted() {
+    
+        NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
+        @Override
+        public void onConnected() { 
+            // ignore this one..
+        }
+
+        @Override
+        public void onError(Exception ex) { 
+            // TODO handle errors
+        }
+    };
+    
         @Override
         public void accountAccessGranted(SingleSignOnAccount account) {
             // As this library supports multiple accounts we created some helper methods if you only want to use one.
@@ -50,23 +138,14 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
 
-            // TODO ... (see code in section 3 and below)
+            // TODO ... (see code in section 4 and below)
         }
     });
-    
-    NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
-        @Override
-        public void onConnected() { 
-            // ignore this one..
-        }
-
-        @Override
-        public void onError(Exception ex) { 
-            // TODO handle errors
-        }
-    }
 }
+```
+From both an Activity and Fragment
 
+```java
 @Override
 public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -77,7 +156,7 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 // Complete example: https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogFragment.java
 ```
 
-3) How to get account information?
+4) How to get account information?
 
 ```java
 // If you stored the "default" account using setCurrentAccount(...) you can get the account by using the following line:
@@ -92,20 +171,22 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
 // ssoAccount.url
 ```
 
-4) How to make a network request?
+5) How to make a network request?
 
-    You'll notice that there is an callback parameter in the constructor of the `NextcloudAPI`.
-    ```java
+   You'll notice that there is an callback parameter in the constructor of the `NextcloudAPI`.
+
+```java
     public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, ApiConnectedListener callback) {
-    ```
+```
+
     
-    You can use this callback to subscribe to errors that might occur during the initialization of the API. You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object. For a minimal example to get started (without retrofit) take a look at section 4.2. The callback method `onConnected` will be called once the connection to the files app is established. You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established.
+   You can use this callback to subscribe to errors that might occur during the initialization of the API. You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object. For a minimal example to get started (without retrofit) take a look at section 4.2. The callback method `onConnected` will be called once the connection to the files app is established. You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established.
 
-    4.1) **Using Retrofit**
+   5.1) **Using Retrofit**
 
-    4.1.1) Before using this single sign on library, your interface for your retrofit API might look like this:
+   5.1.1) Before using this single sign on library, your interface for your retrofit API might look like this:
 
-    ```java
+```java
     public interface API {
 
         String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
@@ -121,10 +202,11 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
 
         …
     }
-    ```
+```
 
-    You might instantiate your retrofit `API` by using something like this: 
-    ```java
+   You might instantiate your retrofit `API` by using something like this: 
+   
+```java
     public class ApiProvider {
 
         private API mApi;
@@ -133,11 +215,11 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
             mApi = retrofit.create(API.class);
         }
     }
-    ```
+```
 
-    4.1.2) Use of new API using the nextcloud app network stack
+   5.1.2) Use of new API using the nextcloud app network stack
 
-    ```java
+```java
     public class ApiProvider {
 
         private API mApi;
@@ -149,17 +231,17 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
 
        }
     }
-    ```
+```
     
-    Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
+   Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
 
-    Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
+   Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
 
-    4.2) **Without Retrofit**
+   5.2) **Without Retrofit**
 
-    `NextcloudAPI` provides a method called `performNetworkRequest(NextcloudRequest request)` that allows you to handle the server response yourself.
+   `NextcloudAPI` provides a method called `performNetworkRequest(NextcloudRequest request)` that allows you to handle the server response yourself.
 
-    ```java
+```java
     public class MyActivity extends AppCompatActivity {
     
         private NextcloudAPI mNextcloudAPI;
@@ -224,10 +306,10 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
             }
         }
     }
-    ```
+```
 
 
-5) WebDAV
+6) WebDAV
 
 The following WebDAV Methods are supported: `PROPFIND` / `MKCOL`
 
