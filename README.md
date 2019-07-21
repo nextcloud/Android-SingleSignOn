@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-	implementation "com.github.nextcloud:Android-SingleSignOn:0.4.0"
+	implementation "com.github.nextcloud:Android-SingleSignOn:0.4.1"
 }
 ```
 2) To choose an account, include the following code in your login dialog:
