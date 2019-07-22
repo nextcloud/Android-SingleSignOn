@@ -1,12 +1,13 @@
 package com.nextcloud.android.sso.helper;
 
-import androidx.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
+import androidx.annotation.Nullable;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.ByteString;
@@ -274,6 +275,20 @@ public class BufferedSourceSSO implements BufferedSource {
 
     @Override
     public int read(ByteBuffer dst) throws IOException {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NotNull
+    @Override
+    public Buffer getBuffer()
+    {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NotNull
+    @Override
+    public BufferedSource peek()
+    {
         throw new UnsupportedOperationException("Not implemented");
     }
 }
