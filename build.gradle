@@ -64,7 +64,7 @@ dependencies {
     implementation 'commons-io:commons-io:2.6'
 
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.3' // 3.13+ requires Lollipop, but our minSdkVersion is 14
 
     // Required for local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
