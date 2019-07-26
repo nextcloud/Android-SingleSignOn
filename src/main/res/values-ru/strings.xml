@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">Предупреждение</string>
     <string name="no_current_account_selected_exception_message">Выбран аккаунт еще не выбран</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Ошибка</string>
     <string name="current_account_not_found_exception_title">Предупреждение</string>
     <string name="current_account_not_found_exception_message">Выбранный аккаунт не найден. Что-то пошло не так..</string>
 
