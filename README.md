@@ -289,7 +289,7 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
         private void downloadFile() {
             NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
                     .setMethod("GET")
-                    .setUrl("/remote.php/webdav/sample.mp4")
+                    .setUrl(Uri.encode("/remote.php/webdav/sample movie.mp4","/"))
                     .build();
 
             try {
@@ -322,7 +322,7 @@ header.put("Depth", depth);
 NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
         .setMethod("PROPFIND")
         .setHeader(header)
-        .setUrl("/remote.php/webdav/"+remotePath)
+        .setUrl(Uri.encode("/remote.php/webdav/"+remotePath,"/"))
         .build();
 ```
 
