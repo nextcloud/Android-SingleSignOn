@@ -2,6 +2,7 @@ package com.nextcloud.android.sso.api;
 
 import java.util.List;
 import java.util.Map;
+
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
@@ -27,25 +28,20 @@ import retrofit2.http.Streaming;
 
 
 public interface API {
-
     @GET("version")
     Observable<String> getRequest();
 
     @GET("folders")
     Observable<List<String>> getFolders();
 
-
     @POST("folders")
     Call<List<String>> postFolder(@Body Map<String, Object> folderMap);
-
 
     @PUT("feeds/{feedId}/rename")
     Completable putFeed(@Path("feedId") long feedId, @Body Map<String, String> paramMap);
 
-
     @DELETE("feeds/{feedId}")
     Completable deleteFeed(@Path("feedId") long feedId);
-
 
     /** ITEMS **/
     @GET("items")
@@ -66,12 +62,8 @@ public interface API {
             @Query("id") long id
     );
 
-
     @PUT("items/read/multiple")
     Call<Void> putMarkItemsRead(@Body String items);
-
-
-
 
     @PATCH("test")
     Call<Void> invalidPATCH();
@@ -83,10 +75,8 @@ public interface API {
     @GET("test")
     Call<Void> getWithHeader();
 
-
     @GET("/test")
     Call<Void> getDynamicHeader(@Header("Content-Range") String contentRange);
-
 
     @NextcloudAPI.FollowRedirects
     @GET("/test")
@@ -102,5 +92,4 @@ public interface API {
 
     @GET("cloud/capabilities?format=json")
     Call<ResponseBody> getCapabilities(@Query("test") long test);
-
 }

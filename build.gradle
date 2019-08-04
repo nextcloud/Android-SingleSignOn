@@ -1,11 +1,26 @@
+import com.github.spotbugs.SpotBugsTask
+
 buildscript {
+    ext {
+        kotlin_version = '1.3.41'
+    }
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.6'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC9.2"
     }
 }
 
@@ -16,7 +31,18 @@ repositories {
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.nextcloud'
+apply plugin: "com.github.spotbugs"
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+group = 'com.github.nextcloud'
+
+spotbugs {
+    toolVersion = '3.1.12'
+}
+
+configurations {
+    ktlint
+}
 
 android {
     compileSdkVersion 28
@@ -38,36 +64,93 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    lintOptions{
+    lintOptions {
         // translations are imported from transifex, so no need to check here
         disable 'MissingTranslation'
         disable 'ExtraTranslation'
         disable 'MissingQuantity'
         disable 'InconsistentArrays'
         disable 'TypographyEllipsis'
+        disable 'GradleDependency'
+        disable 'VectorPath'
+        disable 'IconMissingDensityFolder'
+        disable 'IconDensities'
+        abortOnError false
+        htmlReport true
+        htmlOutput file("$project.buildDir/reports/lint/lint.html")
     }
     productFlavors {
     }
+
+    tasks.register("spotbugsDebug", SpotBugsTask) {
+        ignoreFailures = false
+        effort = "max"
+        reportLevel = "medium"
+        classes = fileTree("$project.buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes/")
+        excludeFilter = file("${project.rootDir}/spotbugs-filter.xml")
+        pluginClasspath = project.configurations.spotbugsPlugins
+        source = fileTree('src/main/java')
+        classpath = files()
+        include '**/*.java'
+        exclude '**/gen/**'
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
+            html {
+                destination = file("$project.buildDir/reports/spotbugs/spotbugs.html")
+            }
+        }
+    }
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "--reporter=plain", "--reporter=plain,output=${buildDir}/ktlint.txt,src/**/*.kt"
+}
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
+
+detekt {
+    reports {
+        xml {
+            enabled = false
+        }
+    }
+    config = files("detekt.yml")
+    input = files("src/")
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.5'
+
     implementation "androidx.appcompat:appcompat:1.0.2"
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.core:core:1.0.2'
     implementation 'androidx.fragment:fragment:1.0.0'
 
-    implementation 'com.google.code.gson:gson:2.8.5'
+    api 'com.google.code.gson:gson:2.8.5'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
 
     implementation 'commons-io:commons-io:2.6'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.okhttp3:okhttp:3.12.3' // 3.13+ requires Lollipop, but our minSdkVersion is 14
+
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.9.0'
+    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.4.6'
+
+    ktlint "com.pinterest:ktlint:0.34.2"
 
     // Required for local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
     // required if you want to use Mockito for unit tests
-    testImplementation 'org.mockito:mockito-core:2.27.0'
+    testImplementation 'org.mockito:mockito-core:3.0.0'
 }
