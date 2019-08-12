@@ -4,7 +4,7 @@
     <string name="no_current_account_selected_exception_message">Encara no heu seleccionat cap compte.</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Error</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Per a poder usar el sistema d\'Autenticació Única a Nextcloud en aquest dispositiu heu de donar permís per accedir als vostres comptes</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Per a poder usar el sistema d\'Autenticació Única a Nextcloud en aquest dispositiu, heu de donar permís per accedir als vostres comptes</string>
 
     <string name="current_account_not_found_exception_title">Avís</string>
     <string name="current_account_not_found_exception_message">No s\'ha trobat el compte seleccionat. Alguna cosa ha fallat.</string>
@@ -31,6 +31,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Error</string>
     <string name="nextcloud_files_api_not_responsing_message">L\'API de l\'aplicació de fitxers Nextcloud no està responent. Si us plau, informeu d\'aquest problema.</string>
 
-    <string name="select_account_unknown_error_toast">Alguna cosa ha fallat. Torneu-ho a intentar.</string>
+    <string name="select_account_unknown_error_toast">Alguna cosa ha fallat.. si us plau, torneu-ho a provar</string>
 
 </resources>
