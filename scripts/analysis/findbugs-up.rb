@@ -47,6 +47,7 @@ require 'xmlsimple'
 
 # run FindBugs
 puts "running FindBugs..."
+system './gradlew assembleDebug'
 system './gradlew spotbugsDebug'
 
 # find FindBugs report file
