@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">Opozorilo</string>
     <string name="no_current_account_selected_exception_message">Ni izbranega računa</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Napaka</string>
     <string name="current_account_not_found_exception_title">Opozorilo</string>
     <string name="current_account_not_found_exception_message">Prišlo je do napake. Izbranega računa ni mogoče najti.</string>
 
