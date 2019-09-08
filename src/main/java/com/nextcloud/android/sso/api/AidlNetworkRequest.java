@@ -52,7 +52,11 @@ public class AidlNetworkRequest extends NetworkRequest {
             synchronized (mBound) {
                 mBound.notifyAll();
             }
-            mCallback.onConnected();
+
+            if (null != mCallback)
+            {
+                mCallback.onConnected();
+            }
         }
 
         public void onServiceDisconnected(ComponentName className) {
