@@ -95,7 +95,10 @@ public class AidlNetworkRequest extends NetworkRequest {
             }
         } catch (SecurityException e) {
             Log.e(TAG, "can't bind to AccountManagerService, check permission in Manifest");
-            mCallback.onError(e);
+            if (null != mCallback)
+            {
+                mCallback.onError(e);
+            }
         }
     }
 
