@@ -130,7 +130,7 @@ detekt {
 
 dependencies {
 
-    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.appcompat:appcompat:1.0.2"
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.core:core:1.1.0'
     implementation 'androidx.fragment:fragment:1.1.0'
