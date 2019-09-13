@@ -59,7 +59,7 @@ public class NextcloudAPI {
     }
 
 
-    public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, ApiConnectedListener callback) {
+    public NextcloudAPI(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull Gson gson, @NonNull ApiConnectedListener callback) {
         this(gson, new AidlNetworkRequest(context, account, callback));
     }
 
