@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -79,13 +80,41 @@ public class AccountImporter {
         return findAccounts(context).size() > 0;
     }
 
-    public static void pickNewAccount(Activity activity) throws NextcloudFilesAppNotInstalledException,
+    public static void pickNewAccount(Activity activity)
+            throws NextcloudFilesAppNotInstalledException,
+            AndroidGetAccountsPermissionNotGranted {
+        pickNewAccount(activity, null);
+    }
+    
+
+    public static void pickNewAccount(Activity activity, 
+                                      @Nullable ArrayList<Account> existingAccounts) 
+            throws NextcloudFilesAppNotInstalledException,
             AndroidGetAccountsPermissionNotGranted {
         checkAndroidAccountPermissions(activity);
         
         if (appInstalledOrNot(activity)) {
-            Intent intent = AccountManager.newChooseAccountIntent(null, null, ACCOUNT_TYPES,
-                                                                  true, null, null, null, null);
+            ArrayList<Account> allowableAccounts = null;
+            
+            if (existingAccounts != null) {
+                allowableAccounts = new ArrayList<>();
+                List<Account> availableAccounts = findAccounts(activity);
+
+                for (Account account : availableAccounts) {
+                    if (!existingAccounts.contains(account)) {
+                        allowableAccounts.add(account);
+                    }
+                }
+            }
+            
+            Intent intent = AccountManager.newChooseAccountIntent(null, 
+                                                                  allowableAccounts, 
+                                                                  ACCOUNT_TYPES,
+                                                                  true, 
+                                                                  null, 
+                                                                  null, 
+                                                                  null, 
+                                                                  null);
             activity.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
         } else {
             throw new NextcloudFilesAppNotInstalledException();
