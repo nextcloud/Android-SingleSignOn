@@ -11,6 +11,8 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.IThreadListener;
@@ -35,7 +37,7 @@ public class AidlNetworkRequest extends NetworkRequest {
     private IInputStreamService mService = null;
     private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
 
-    AidlNetworkRequest(Context context, SingleSignOnAccount account, NextcloudAPI.ApiConnectedListener callback) {
+    AidlNetworkRequest(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull NextcloudAPI.ApiConnectedListener callback) {
         super(context, account, callback);
     }
 
@@ -69,12 +71,11 @@ public class AidlNetworkRequest extends NetworkRequest {
     };
 
     public void connect(String type) {
-        super.connect(type);
-
-        // Disconnect if connected
-        if (mBound.get()) {
-            stop();
+        if (mDestroyed) {
+            throw new IllegalStateException("API already stopped");
         }
+
+        super.connect(type);
 
         String componentName = Constants.PACKAGE_NAME_PROD;
         if (type.equals(Constants.ACCOUNT_TYPE_DEV)) {

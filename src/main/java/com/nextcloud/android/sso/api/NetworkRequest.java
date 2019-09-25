@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Looper;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
@@ -20,7 +22,7 @@ public abstract class NetworkRequest {
     protected boolean mDestroyed = false; // Flag indicating if API is destroyed
 
 
-    protected NetworkRequest(Context context, SingleSignOnAccount account, NextcloudAPI.ApiConnectedListener callback) {
+    protected NetworkRequest(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull NextcloudAPI.ApiConnectedListener callback) {
         this.mContext = context;
         this.mAccount = account;
         this.mCallback = callback;
