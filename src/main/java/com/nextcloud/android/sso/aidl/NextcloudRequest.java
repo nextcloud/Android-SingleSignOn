@@ -19,13 +19,16 @@
 
 package com.nextcloud.android.sso.aidl;
 
+import androidx.core.util.ObjectsCompat;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.core.util.ObjectsCompat;
+import lombok.ToString;
 
+@ToString
 public class NextcloudRequest implements Serializable {
 
     private static final long serialVersionUID = 215521212534240L; //assign a long value
