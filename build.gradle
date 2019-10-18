@@ -147,7 +147,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.okhttp3:okhttp:3.12.6' // 3.13+ requires Lollipop, but our minSdkVersion is 14
 
-    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.9.0'
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.10.0'
     spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.4.6'
 
     ktlint "com.pinterest:ktlint:0.35.0"
