@@ -4,13 +4,13 @@ import android.content.Context;
 import android.os.Looper;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.InputStream;
+
+import androidx.annotation.NonNull;
 
 public abstract class NetworkRequest {
 
@@ -37,6 +37,8 @@ public abstract class NetworkRequest {
     }
 
     protected abstract InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
+
+    protected abstract Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
 
     protected void connectApiWithBackoff() {
         new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), () -> {

@@ -115,8 +115,37 @@ public class NextcloudAPI {
      * @return InputStream answer from server as InputStream
      * @throws Exception or SSOException
      */
-    public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
+     public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
         return networkRequest.performNetworkRequest(request, null);
+    }
+
+    public Response performRequestV2(final @NonNull Type type, NextcloudRequest request) throws Exception {
+        Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
+
+        Response result = null;
+        Response response = performNetworkRequestV2(request);
+        Reader targetReader = new InputStreamReader(response.getBody());
+
+        if (type != Void.class) {
+            result = gson.fromJson(targetReader, type);
+            if (result != null) {
+                Log.d(TAG, result.toString());
+            }
+
+        }
+        return result;
+    }
+
+
+    /**
+     * The InputStreams needs to be closed after reading from it
+     *
+     * @param request {@link NextcloudRequest} request to be executed on server via Files app
+     * @return InputStream answer from server as InputStream
+     * @throws Exception or SSOException
+     */
+    public Response performNetworkRequestV2(NextcloudRequest request) throws Exception {
+        return networkRequest.performNetworkRequestV2(request, null);
     }
 
 
