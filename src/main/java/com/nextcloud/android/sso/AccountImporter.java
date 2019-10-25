@@ -34,10 +34,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
+import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNotGrantedException;
@@ -52,6 +49,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import io.reactivex.annotations.NonNull;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -221,17 +221,18 @@ public class AccountImporter {
     }
 
     public static void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity,
-                                        IAccountAccessGranted callback) {
+                                        IAccountAccessGranted callback) throws AccountImportCancelledException {
         onActivityResult(requestCode, resultCode, data, activity, null, callback);
     }
 
     public static void onActivityResult(int requestCode, int resultCode, Intent data, Fragment fragment,
-                                        IAccountAccessGranted callback) {
+                                        IAccountAccessGranted callback) throws AccountImportCancelledException {
         onActivityResult(requestCode, resultCode, data, null, fragment, callback);
     }
 
     private static void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity,
-                                         Fragment fragment, IAccountAccessGranted callback) {
+                                         Fragment fragment, IAccountAccessGranted callback) 
+    throws AccountImportCancelledException {
         Context context = (activity != null) ? activity : fragment.getContext();
 
         if (resultCode == RESULT_OK) {
@@ -268,8 +269,8 @@ public class AccountImporter {
         } else if (resultCode == RESULT_CANCELED) {
             switch (requestCode) {
                 case CHOOSE_ACCOUNT_SSO:
-                    Toast.makeText(context, R.string.select_account_unknown_error_toast, Toast.LENGTH_LONG).show();
-                    break;
+                    // nothing to do here
+                    throw new AccountImportCancelledException();
                 case REQUEST_AUTH_TOKEN_SSO:
                     try {
                         handleFailedAuthRequest(data);
