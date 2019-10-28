@@ -44,4 +44,13 @@ public final class Okhttp3Helper {
         return ResponseBody.create(null, "");
     }
 
+    public static ResponseBody getResponseBodyFromRequestV2(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
+        try {
+            InputStream os = nextcloudAPI.performNetworkRequestV2(request).getBody();
+            return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
+        } catch (Exception e) {
+            Log.e(TAG, "[getResponseBodyFromRequest] encountered a problem", e);
+        }
+        return ResponseBody.create(null, "");
+    }
 }
