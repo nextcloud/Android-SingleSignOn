@@ -3,7 +3,6 @@ package retrofit2;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.api.NextcloudRetrofitServiceMethod;
 
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
@@ -28,12 +27,7 @@ public class NextcloudRetrofitApiBuilder {
         return (T) Proxy.newProxyInstance(
                 service.getClassLoader(),
                 new Class<?>[]{service},
-                new InvocationHandler() {
-                    @Override
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        return loadServiceMethod(method).invoke(mNextcloudAPI, args != null ? args : new Object[0]);
-                    }
-                });
+                (proxy, method, args) -> loadServiceMethod(method).invoke(mNextcloudAPI, args != null ? args : new Object[0]));
     }
 
     private NextcloudRetrofitServiceMethod<?> loadServiceMethod(Method method) {
@@ -49,7 +43,4 @@ public class NextcloudRetrofitApiBuilder {
         }
         return result;
     }
-
-
-
 }

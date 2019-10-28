@@ -2,8 +2,6 @@ package com.nextcloud.android.sso.api;
 
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
 import com.nextcloud.android.sso.helper.ReactivexHelper;
@@ -29,6 +27,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
@@ -57,7 +56,6 @@ public class NextcloudRetrofitServiceMethod<T> {
     // Upper and lower characters, digits, underscores, and hyphens, starting with a character.
     private static final String PARAM = "[a-zA-Z][a-zA-Z0-9_-]*";
     private static final Pattern PARAM_URL_REGEX = Pattern.compile("\\{(" + PARAM + ")\\}");
-    //private static final Pattern PARAM_NAME_REGEX = Pattern.compile(PARAM);
 
     private Method method;
     private String httpMethod;
@@ -66,7 +64,6 @@ public class NextcloudRetrofitServiceMethod<T> {
     private Type returnType;
     private boolean followRedirects = false;
     private Map<String, String> queryParameters;
-    //private boolean formUrlEncoded = false;
 
     private final NextcloudRequest.Builder requestBuilder;
 
@@ -75,7 +72,6 @@ public class NextcloudRetrofitServiceMethod<T> {
         this.method = method;
         this.returnType = method.getGenericReturnType();
         Annotation[] methodAnnotations = method.getAnnotations();
-        //Type[] parameterTypes = method.getGenericParameterTypes();
         this.parameterAnnotationsArray = method.getParameterAnnotations();
 
         for (Annotation annotation : methodAnnotations) {
@@ -104,7 +100,6 @@ public class NextcloudRetrofitServiceMethod<T> {
             throw new InvalidParameterException("Expected: " + parameterAnnotationsArray.length + " params - were: " + args.length);
         }
 
-        //NextcloudRequest.Builder rBuilder = (NextcloudRequest.Builder) requestBuilder.clone();
         NextcloudRequest.Builder rBuilder = cloneSerializable(requestBuilder);
 
 
@@ -146,7 +141,7 @@ public class NextcloudRetrofitServiceMethod<T> {
                     parameters.put(((Field)annotation).value(), field);
                 }
             } else {
-                throw new UnsupportedOperationException("don't know this type yet.. [" + String.valueOf(annotation) + "]");
+                throw new UnsupportedOperationException("don't know this type yet.. [" + annotation + "]");
             }
         }
 
@@ -181,10 +176,6 @@ public class NextcloudRetrofitServiceMethod<T> {
         return nextcloudAPI.performRequest(this.returnType, request);
     }
 
-    
-    
-
-
     private void parseMethodAnnotation(Annotation annotation) {
         if (annotation instanceof DELETE) {
             parseHttpMethodAndPath("DELETE", ((DELETE) annotation).value(), false);
@@ -210,29 +201,6 @@ public class NextcloudRetrofitServiceMethod<T> {
         } else {
             throw new UnsupportedOperationException(String.valueOf(annotation));
         }
-
-        /*
-        else if (annotation instanceof HEAD) {
-            parseHttpMethodAndPath("HEAD", ((HEAD) annotation).value(), false);
-        } else if (annotation instanceof PATCH) {
-            parseHttpMethodAndPath("PATCH", ((PATCH) annotation).value(), true);
-        } else if (annotation instanceof OPTIONS) {
-            parseHttpMethodAndPath("OPTIONS", ((OPTIONS) annotation).value(), false);
-        } else if (annotation instanceof HTTP) {
-            HTTP http = (HTTP) annotation;
-            parseHttpMethodAndPath(http.method(), http.path(), http.hasBody());
-        } else if (annotation instanceof Multipart) {
-            if (isFormEncoded) {
-                throw methodError(method, "Only one encoding annotation is allowed.");
-            }
-            isMultipart = true;
-        } else if (annotation instanceof FormUrlEncoded) {
-            if (isMultipart) {
-                throw methodError(method, "Only one encoding annotation is allowed.");
-            }
-            isFormEncoded = true;
-        }
-        */
     }
 
     private void parseHttpMethodAndPath(String httpMethod, String value, boolean hasBody) {
@@ -262,8 +230,6 @@ public class NextcloudRetrofitServiceMethod<T> {
             if ("Content-Type".equalsIgnoreCase(headerName)) {
                 try {
                     MediaType.parse(headerValue);
-                    //MediaType contentType = MediaType.parse(headerValue);
-                    //Log.v(TAG, contentType.toString());
                 } catch (IllegalArgumentException e) {
                     throw methodError(method, e, "Malformed content type: %s", headerValue);
                 }
@@ -310,10 +276,6 @@ public class NextcloudRetrofitServiceMethod<T> {
         return queryPairs;
     }
 
-
-
-
-
     private static RuntimeException methodError(Method method, String message, Object... args) {
         return methodError(method, null, message, args);
     }
@@ -327,19 +289,6 @@ public class NextcloudRetrofitServiceMethod<T> {
                 + "."
                 + method.getName(), cause);
     }
-
-    /*
-    private static RuntimeException parameterError(Method method,
-                                           Throwable cause, int p, String message, Object... args) {
-        return methodError(method, cause, message + " (parameter #" + (p + 1) + ")", args);
-    }
-
-    private static RuntimeException parameterError(Method method, int p, String message, Object... args) {
-        return methodError(method, message + " (parameter #" + (p + 1) + ")", args);
-    }
-    */
-
-
 
     private static <T extends Serializable> T cloneSerializable(T o) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
