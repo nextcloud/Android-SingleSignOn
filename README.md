@@ -29,7 +29,7 @@ compileOptions {
     }
 ```
 
-We use som features from Java 8, so your project needs also to be compiled with (at least) this version.
+We use some features from Java 8, so your project needs also to be compiled with (at least) this version.
 
 2) To choose an account, include the following code in your login dialog:
 
