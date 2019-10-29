@@ -32,5 +32,4 @@
     <string name="nextcloud_files_api_not_responsing_message">Api приложения Nextcloud files не отвечает. Пожалуйста, сообщите об этой проблеме.</string>
 
     <string name="select_account_unknown_error_toast">Что-то пошло не так... Пожалуйста попробуйте еще раз</string>
-
-</resources>
+    </resources>

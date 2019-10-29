@@ -30,5 +30,4 @@
     <string name="nextcloud_files_api_not_responsing_message">Nextcloudin tiedostosovelluksen API ei vastaa. Ilmoita tapauksesta.</string>
 
     <string name="select_account_unknown_error_toast">Jokin meni pieleen... Yritä uudelleen.</string>
-
-</resources>
+    </resources>

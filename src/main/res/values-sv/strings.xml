@@ -29,5 +29,4 @@
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud filer-app api svarar inte. Var god rapportera detta problem.</string>
 
     <string name="select_account_unknown_error_toast">Något gick fel. Var god försök igen</string>
-
-</resources>
+    </resources>

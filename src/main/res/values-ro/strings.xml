@@ -32,5 +32,4 @@
     <string name="nextcloud_files_api_not_responsing_message">API-ul aplicației Nextcloud files nu răspunde. Te rog să raportezi această problemă.</string>
 
     <string name="select_account_unknown_error_toast">Ceva n-a mers bine.. te rog să încerci iar</string>
-
-</resources>
+    </resources>

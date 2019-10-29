@@ -32,5 +32,4 @@
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud文件应用api无响应。请反馈这个问题。</string>
 
     <string name="select_account_unknown_error_toast">发生了错误...请重新尝试</string>
-
-</resources>
+    </resources>

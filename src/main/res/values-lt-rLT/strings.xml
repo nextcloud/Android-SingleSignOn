@@ -17,5 +17,4 @@
     <string name="nextcloud_files_app_not_supported_title">Klaida</string>
     <string name="nextcloud_files_api_not_responsing_title">Klaida</string>
     <string name="select_account_unknown_error_toast">Kažkas nutiko... Bandykite dar kartą</string>
-
-</resources>
+    </resources>

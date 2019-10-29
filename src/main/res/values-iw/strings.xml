@@ -29,5 +29,4 @@
     <string name="nextcloud_files_api_not_responsing_message">ה־API של יישומון הקבצים של Nextcloud. נא לדווח על התקלה הזאת.</string>
 
     <string name="select_account_unknown_error_toast">משהו השתבש. נא לנסות שוב</string>
-
-</resources>
+    </resources>

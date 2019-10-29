@@ -29,5 +29,4 @@
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud Files App이 응답하지 않습니다. 이 오류를 보고해주세요.</string>
 
     <string name="select_account_unknown_error_toast">설정을 확인하시고 다시 시도해 주세요</string>
-
-</resources>
+    </resources>
