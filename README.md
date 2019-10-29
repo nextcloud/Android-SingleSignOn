@@ -22,7 +22,15 @@ repositories {
 dependencies {
 	implementation "com.github.nextcloud:Android-SingleSignOn:0.4.1"
 }
+
+compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 ```
+
+We use some features from Java 8, so your project needs also to be compiled with (at least) this version.
+
 2) To choose an account, include the following code in your login dialog:
 
 From an Activity
