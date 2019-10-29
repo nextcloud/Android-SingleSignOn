@@ -148,15 +148,6 @@ public class NextcloudAPI {
         return networkRequest.performNetworkRequestV2(request, null);
     }
 
-
-    /*
-    public static <T> T deserializeObjectAndCloseStream(InputStream is) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(is)) {
-            return (T) ois.readObject();
-        }
-    }
-    */
-
     protected Gson getGson() {
         return gson;
     }

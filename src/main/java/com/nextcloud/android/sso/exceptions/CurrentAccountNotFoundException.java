@@ -1,11 +1,4 @@
-package com.nextcloud.android.sso.exceptions;
-
-import android.content.Context;
-
-import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
-
-/**
+/*
  *  Nextcloud SingleSignOn
  *
  *  @author David Luhmer
@@ -23,6 +16,13 @@ import com.nextcloud.android.sso.model.ExceptionMessage;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package com.nextcloud.android.sso.exceptions;
+
+import android.content.Context;
+
+import com.nextcloud.android.sso.R;
+import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class CurrentAccountNotFoundException extends SSOException {
 
