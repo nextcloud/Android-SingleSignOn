@@ -32,4 +32,7 @@
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud files app api svarer ikke. Rapporter gerne dette problem.</string>
 
     <string name="select_account_unknown_error_toast">Der skete en fejl. Prøv igen.</string>
-    </resources>
+    <string name="sso_canceled">SSO-import annulleret</string>
+    <string name="sso_canceled_message">SSO-import blev annulleret af bruger</string>
+
+</resources>
