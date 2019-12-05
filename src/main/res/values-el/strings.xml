@@ -3,15 +3,24 @@
     <string name="no_current_account_selected_exception_title">Προειδοποίηση</string>
     <string name="no_current_account_selected_exception_message">Δεν επιλέχθηκε λογαριασμός ακόμα</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Σφάλμα</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Για την χρήση του Nextcloud Single-Sign-On χρειάζεται να επιτρέψετε την πρόσβαση στους λογαριασμούς σας</string>
+
     <string name="current_account_not_found_exception_title">Προειδοποίηση</string>
     <string name="current_account_not_found_exception_message">Δεν βρέθηκε ο επιλεγμένος λογαριασμός. Κάτι πήγε στραβά.</string>
 
     <string name="token_mismatch_title">Σφάλμα</string>
+    <string name="token_mismatch_message">Το αναγνωριστικό πιστοποίησης που παρείχατε δεν είναι δωστό ή το όνομα πακέτου δεν επιτρέπετε για αυτή την ενέργεια</string>
+
     <string name="nextcloud_files_app_not_installed_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Το Nextcloud Files App δεν είναι εγκατεστημένο. Παρακαλώ εγκαταστήστε το: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Σφάλμα</string>
     <string name="nextcloud_files_app_account_not_found_message">Δεν βρέθηκε ο λογαριασμός στην εφαρμογή αρχείων του Nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Πρέπει να χορηγήσετε τα απαραίτητα δικαιώματα για χρήση της απλής εισόδου χρήστη.</string>
+
     <string name="nextcloud_http_request_failed_title">Σφάλμα</string>
     <string name="nextcloud_files_app_not_supported_title">Σφάλμα</string>
     <string name="nextcloud_files_api_not_responsing_title">Σφάλμα</string>
