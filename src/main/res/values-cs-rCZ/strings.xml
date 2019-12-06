@@ -7,7 +7,7 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Pro používání Nextcloud sjednoceného přihlašování (sso) na tomto zařízení je třeba udělit oprávnění pro přístup k vašim účtům</string>
 
     <string name="current_account_not_found_exception_title">Varování</string>
-    <string name="current_account_not_found_exception_message">Vybraný účet nebyl nalezen. Něco se pokazilo.</string>
+    <string name="current_account_not_found_exception_message">Vybraný účet nebyl nalezen. Něco se pokazilo…</string>
 
     <string name="token_mismatch_title">Chyba</string>
     <string name="token_mismatch_message">Poskytnutý ověřovací token se neshoduje nebo tomuto balíčku není umožněno provést tuto akci</string>
