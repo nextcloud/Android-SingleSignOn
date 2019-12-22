@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">אזהרה</string>
     <string name="no_current_account_selected_exception_message">לא נבחרו חשבונות עדיין</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">שגיאה</string>
     <string name="current_account_not_found_exception_title">אזהרה</string>
     <string name="current_account_not_found_exception_message">החשבון הנבחר לא נמצא. מהו השתבש.</string>
 

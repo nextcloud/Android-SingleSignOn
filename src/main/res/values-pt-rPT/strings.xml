@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">Aviso</string>
     <string name="no_current_account_selected_exception_message">Ainda nenhuma conta selecionada</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Erro</string>
     <string name="current_account_not_found_exception_title">Aviso</string>
     <string name="current_account_not_found_exception_message">A conta selecionada não foi encontrada. Ocorreu algo de errado.</string>
 

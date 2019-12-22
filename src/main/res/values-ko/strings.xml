@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">경고</string>
     <string name="no_current_account_selected_exception_message">계정을 선택하지 않았습니다</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">오류</string>
     <string name="current_account_not_found_exception_title">경고</string>
     <string name="current_account_not_found_exception_message">선택한 계정을 찾지 못했습니다. 설정을 확인해 주세요..</string>
 

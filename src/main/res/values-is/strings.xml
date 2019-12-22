@@ -3,6 +3,7 @@
     <string name="no_current_account_selected_exception_title">Aðvörun</string>
     <string name="no_current_account_selected_exception_message">Enginn notandaaðgangur ennþá uppgefinn</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Villa</string>
     <string name="current_account_not_found_exception_title">Aðvörun</string>
     <string name="current_account_not_found_exception_message">Valinn aðgangur fannst ekki. Eitthvað hefur farið úrskeiðis...</string>
 
