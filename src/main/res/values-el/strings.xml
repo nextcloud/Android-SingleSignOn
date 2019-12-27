@@ -22,7 +22,17 @@
     <string name="nextcloud_files_app_account_permission_not_granted_message">Πρέπει να χορηγήσετε τα απαραίτητα δικαιώματα για χρήση της απλής εισόδου χρήστη.</string>
 
     <string name="nextcloud_http_request_failed_title">Σφάλμα</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Απέτυχε το αίτημα HTTP με κατάσταση-κώδικα HTTP: %1$d</string>
+
     <string name="nextcloud_files_app_not_supported_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Η εφαρμογή αρχείων σας nextcloud δεν υποστηρίζει την δυνατότητα απλής υπογραφής. Παρακαλώ ενημερώστε την: %1$s</string>
+
+
     <string name="nextcloud_files_api_not_responsing_title">Σφάλμα</string>
+    <string name="nextcloud_files_api_not_responsing_message">Η εφαρμογή αρχείων Nextcloud δεν ανταποκρίνεται. Παρακαλώ αναφέρετε το πρόβλημα.</string>
+
     <string name="select_account_unknown_error_toast">Κάτι πήγε στραβά... παρακαλώ προσπαθήστε ξανά</string>
-    </resources>
+    <string name="sso_canceled">Ακυρώθηκε η εισαγωγή SSO</string>
+    <string name="sso_canceled_message">Η εισαγωγή SSO ακυρώθηκε από τον χρήστη</string>
+
+</resources>
