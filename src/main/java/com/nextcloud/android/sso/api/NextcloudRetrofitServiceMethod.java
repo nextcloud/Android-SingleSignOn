@@ -32,7 +32,10 @@ import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -48,6 +51,7 @@ import retrofit2.http.OPTIONS;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
@@ -71,6 +75,8 @@ public class NextcloudRetrofitServiceMethod<T> {
     private Map<String, String> queryParameters;
 
     private final NextcloudRequest.Builder requestBuilder;
+    private boolean isMultipart = false;
+    private boolean isFormEncoded = false;
 
 
     public NextcloudRetrofitServiceMethod(String apiEndpoint, Method method) {
@@ -112,7 +118,10 @@ public class NextcloudRetrofitServiceMethod<T> {
 
         // Copy all static query params into parameters array
         parameters.putAll(this.queryParameters);
-
+        MultipartBody.Builder multipartBuilder = null;
+        if (isMultipart) {
+            multipartBuilder = new MultipartBody.Builder();
+        }
         // Build/parse dynamic parameters
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
@@ -145,9 +154,18 @@ public class NextcloudRetrofitServiceMethod<T> {
                     String field = args[i].toString();
                     parameters.put(((Field)annotation).value(), field);
                 }
+            } else if(annotation instanceof Part) {
+                if (args[i] instanceof MultipartBody.Part){
+                    multipartBuilder.addPart((MultipartBody.Part) args[i]);
+                } else {
+                    throw new IllegalArgumentException("Only MultipartBody.Part type is supported as a @Part");
+                }
             } else {
                 throw new UnsupportedOperationException("don't know this type yet.. [" + annotation + "]");
             }
+        }
+        if (isMultipart) {
+            rBuilder.setRequestBody(bodyToString(multipartBuilder.build()));
         }
 
         NextcloudRequest request = rBuilder
@@ -179,6 +197,18 @@ public class NextcloudRetrofitServiceMethod<T> {
         }
 
         return nextcloudAPI.performRequest(this.returnType, request);
+    }
+
+    private static String bodyToString(final RequestBody request){
+        try {
+            final RequestBody copy = request;
+            final Buffer buffer = new Buffer();
+            copy.writeTo(buffer);
+            return buffer.readUtf8();
+        }
+        catch (final IOException e) {
+            return "did not work";
+        }
     }
 
     private void parseMethodAnnotation(Annotation annotation) {
