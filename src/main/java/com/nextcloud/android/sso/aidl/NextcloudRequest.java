@@ -45,6 +45,18 @@ public class NextcloudRequest implements Serializable {
 
     private NextcloudRequest() { }
 
+    public NextcloudRequest(NextcloudRequest ncr) {
+        this.method = ncr.method;
+        this.requestBody = ncr.requestBody;
+        this.url = ncr.url;
+        this.token = ncr.token;
+        this.packageName = ncr.packageName;
+        this.accountName = ncr.accountName;
+        this.followRedirects = ncr.followRedirects;
+        header = new HashMap<>(ncr.header);
+        parameter = new HashMap<>(ncr.parameter);
+    }
+
     public static class Builder implements Serializable {
 
         private static final long serialVersionUID = 2121321432424242L; //assign a long value
@@ -53,6 +65,10 @@ public class NextcloudRequest implements Serializable {
 
         public Builder() {
             ncr = new NextcloudRequest();
+        }
+
+        public Builder(Builder cloneSource) {
+            ncr = new NextcloudRequest(cloneSource.ncr);
         }
 
         public NextcloudRequest build() {

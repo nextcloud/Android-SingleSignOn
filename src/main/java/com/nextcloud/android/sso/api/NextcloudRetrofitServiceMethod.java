@@ -40,7 +40,12 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
+import retrofit2.http.OPTIONS;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -100,7 +105,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             throw new InvalidParameterException("Expected: " + parameterAnnotationsArray.length + " params - were: " + args.length);
         }
 
-        NextcloudRequest.Builder rBuilder = cloneSerializable(requestBuilder);
+        NextcloudRequest.Builder rBuilder = new NextcloudRequest.Builder(requestBuilder);
 
 
         Map<String, String> parameters = new HashMap<>();
@@ -111,7 +116,7 @@ public class NextcloudRetrofitServiceMethod<T> {
         // Build/parse dynamic parameters
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
-
+            //TODO: add Part annotation
             if(annotation instanceof Query) {
                 parameters.put(((Query)annotation).value(), String.valueOf(args[i]));
             } else if(annotation instanceof Body) {
@@ -185,6 +190,21 @@ public class NextcloudRetrofitServiceMethod<T> {
             parseHttpMethodAndPath("POST", ((POST) annotation).value(), true);
         } else if (annotation instanceof PUT) {
             parseHttpMethodAndPath("PUT", ((PUT) annotation).value(), true);
+        } else if (annotation instanceof HEAD) {
+            parseHttpMethodAndPath("HEAD", ((HEAD) annotation).value(), false);
+        } else if (annotation instanceof HTTP) {
+            HTTP http = (HTTP) annotation;
+            parseHttpMethodAndPath(http.method(), http.path(), http.hasBody());
+        } else if (annotation instanceof Multipart) {
+            if (isFormEncoded) {
+                throw methodError(method, "Only one encoding annotation is allowed.");
+            }
+            isMultipart = true;
+        } else if (annotation instanceof FormUrlEncoded) {
+            if (isMultipart) {
+                throw methodError(method, "Only one encoding annotation is allowed.");
+            }
+            isFormEncoded = true;
         } else if (annotation instanceof Streaming) {
             Log.v(TAG, "streaming interface");
         } else if (annotation instanceof retrofit2.http.Headers) {
@@ -288,24 +308,5 @@ public class NextcloudRetrofitServiceMethod<T> {
                 + method.getDeclaringClass().getSimpleName()
                 + "."
                 + method.getName(), cause);
-    }
-
-    private static <T extends Serializable> T cloneSerializable(T o) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
-        oos.writeObject(o);
-        oos.close();
-
-        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()) );
-        T res  = null;
-        try {
-            res = (T) ois.readObject();
-        } catch (ClassNotFoundException e) {
-            // Can't happen as we just clone an object..
-            Log.e(TAG, "ClassNotFoundException", e);
-        }
-        ois.close();
-
-        return res;
     }
 }
