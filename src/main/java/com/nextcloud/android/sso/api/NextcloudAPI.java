@@ -116,7 +116,7 @@ public class NextcloudAPI {
      * @throws Exception or SSOException
      */
      public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
-        return networkRequest.performNetworkRequest(request, null);
+        return networkRequest.performNetworkRequest(request, request.getBodyAsStream());
     }
 
     public Response performRequestV2(final @NonNull Type type, NextcloudRequest request) throws Exception {

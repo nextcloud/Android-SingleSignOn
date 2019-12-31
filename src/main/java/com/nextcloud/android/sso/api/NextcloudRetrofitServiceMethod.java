@@ -11,8 +11,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -165,7 +167,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             }
         }
         if (isMultipart) {
-            rBuilder.setRequestBody(bodyToString(multipartBuilder.build()));
+            rBuilder.setRequestBodyAsStream(bodyToStream(multipartBuilder.build()));
         }
 
         NextcloudRequest request = rBuilder
@@ -199,15 +201,15 @@ public class NextcloudRetrofitServiceMethod<T> {
         return nextcloudAPI.performRequest(this.returnType, request);
     }
 
-    private static String bodyToString(final RequestBody request){
+    private static InputStream bodyToStream(final RequestBody request){
         try {
             final RequestBody copy = request;
             final Buffer buffer = new Buffer();
             copy.writeTo(buffer);
-            return buffer.readUtf8();
+            return buffer.inputStream();
         }
         catch (final IOException e) {
-            return "did not work";
+            throw new RuntimeException("failed to build request-body");
         }
     }
 

@@ -21,6 +21,8 @@ package com.nextcloud.android.sso.aidl;
 
 import androidx.core.util.ObjectsCompat;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +43,7 @@ public class NextcloudRequest implements Serializable {
     private String token;
     private String packageName;
     private String accountName;
+    private InputStream bodyAsStream = null;
     private boolean followRedirects;
 
     private NextcloudRequest() { }
@@ -55,6 +58,8 @@ public class NextcloudRequest implements Serializable {
         this.followRedirects = ncr.followRedirects;
         header = new HashMap<>(ncr.header);
         parameter = new HashMap<>(ncr.parameter);
+        bodyAsStream = ncr.bodyAsStream;
+
     }
 
     public static class Builder implements Serializable {
@@ -94,6 +99,10 @@ public class NextcloudRequest implements Serializable {
             ncr.requestBody = requestBody;
             return this;
         }
+        public Builder setRequestBodyAsStream(InputStream requestBody) {
+            ncr.bodyAsStream = requestBody;
+            return this;
+        }
 
         public Builder setUrl(String url) {
             ncr.url = url;
@@ -109,6 +118,8 @@ public class NextcloudRequest implements Serializable {
             ncr.accountName = accountName;
             return this;
         }
+
+
 
         /**
          * Default value: true
@@ -169,6 +180,13 @@ public class NextcloudRequest implements Serializable {
         return this.followRedirects;
     }
 
+    public InputStream getBodyAsStream() {
+        return bodyAsStream;
+    }
+
+    public void setBodyAsStream(InputStream bodyAsStream) {
+        this.bodyAsStream = bodyAsStream;
+    }
 
     @Override
     public boolean equals(Object obj) {
