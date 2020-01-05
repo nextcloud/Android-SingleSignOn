@@ -153,7 +153,7 @@ dependencies {
     ktlint "com.pinterest:ktlint:0.36.0"
 
     // Required for local unit tests (JUnit 4 framework)
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     // required if you want to use Mockito for unit tests
     testImplementation 'org.mockito:mockito-core:3.2.4'
 }
