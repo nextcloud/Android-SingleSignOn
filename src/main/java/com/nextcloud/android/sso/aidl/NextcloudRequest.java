@@ -22,7 +22,6 @@ package com.nextcloud.android.sso.aidl;
 import androidx.core.util.ObjectsCompat;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;

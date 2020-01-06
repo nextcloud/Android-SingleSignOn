@@ -120,7 +120,7 @@ public class NextcloudAPI {
     }
 
     public Response performRequestV2(final @NonNull Type type, NextcloudRequest request) throws Exception {
-        Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
+        Log.d(TAG, "performRequestV2() called with: type = [" + type + "], request = [" + request + "]");
 
         Response result = null;
         Response response = performNetworkRequestV2(request);
