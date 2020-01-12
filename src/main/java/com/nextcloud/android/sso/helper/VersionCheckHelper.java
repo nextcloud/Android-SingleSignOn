@@ -32,8 +32,8 @@ public final class VersionCheckHelper {
         return true;
     }
 
-    public static int getNextcloudFilesVersionCode(Activity activity) throws PackageManager.NameNotFoundException {
-        PackageInfo pInfo = activity.getPackageManager().getPackageInfo("com.nextcloud.client", 0);
+    public static int getNextcloudFilesVersionCode(Context context) throws PackageManager.NameNotFoundException {
+        PackageInfo pInfo = context.getPackageManager().getPackageInfo("com.nextcloud.client", 0);
         int verCode = pInfo.versionCode;
         Log.e("VersionCheckHelper", "Version Code: " + verCode);
         return verCode;
