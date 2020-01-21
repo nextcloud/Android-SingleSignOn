@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
@@ -41,8 +42,11 @@ public abstract class NetworkRequest {
     protected abstract Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
 
     protected void connectApiWithBackoff() {
-        new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), () -> {
+        new ExponentialBackoff(1000, 5000, 2, 5, Looper.getMainLooper(), () -> {
             connect(mAccount.type);
+        }, () -> {
+            Log.e(TAG, "Unable to recover API");
+            stop();
         }).start();
     }
 
