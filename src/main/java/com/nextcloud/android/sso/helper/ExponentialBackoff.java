@@ -34,6 +34,7 @@ public class ExponentialBackoff {
     private int mMaxRetries;
     private int mMultiplier;
     private final Runnable mRunnable;
+    private final Runnable mFailedCallback;
     private final Handler mHandler;
 
     /**
@@ -64,8 +65,9 @@ public class ExponentialBackoff {
             int multiplier,
             int maxRetries,
             @NonNull Looper looper,
-            @NonNull Runnable runnable) {
-        this(initialDelayMs, maximumDelayMs, multiplier, maxRetries, new Handler(looper), runnable);
+            @NonNull Runnable runnable,
+            @NonNull Runnable onErrorRunnable) {
+        this(initialDelayMs, maximumDelayMs, multiplier, maxRetries, new Handler(looper), runnable, onErrorRunnable);
     }
 
     private ExponentialBackoff(
@@ -74,7 +76,8 @@ public class ExponentialBackoff {
             int multiplier,
             int maxRetries,
             @NonNull Handler handler,
-            @NonNull Runnable runnable) {
+            @NonNull Runnable runnable,
+            @NonNull Runnable onErrorRunnable) {
         mRetryCounter = 0;
         mStartDelayMs = initialDelayMs;
         mMaximumDelayMs = maximumDelayMs;
@@ -82,6 +85,7 @@ public class ExponentialBackoff {
         mMaxRetries = maxRetries;
         mHandler = handler;
         mRunnable = new WrapperRunnable(runnable);
+        mFailedCallback = onErrorRunnable;
 
         if(initialDelayMs <= 0) {
             throw new InvalidParameterException("initialDelayMs should not be less or equal to 0");
@@ -99,12 +103,14 @@ public class ExponentialBackoff {
     public void stop() {
         mRetryCounter = 0;
         mHandlerAdapter.removeCallbacks(mRunnable);
+
     }
 
     /** Should call when the retry action has failed and we want to retry after a longer delay. */
     private void notifyFailed() {
         if(mRetryCounter > mMaxRetries) {
             stop();
+            mFailedCallback.run();
         } else {
             mRetryCounter++;
             long temp = Math.min(

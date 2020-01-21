@@ -51,7 +51,7 @@ public class AidlNetworkRequest extends NetworkRequest {
      */
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
-            Log.v(TAG, "Nextcloud Single sign-on: onServiceConnected [" + Thread.currentThread().getName() + "]");
+            Log.v(TAG, "onServiceConnected [" + Thread.currentThread().getName() + "]");
 
             mService = IInputStreamService.Stub.asInterface(service);
             mBound.set(true);
@@ -62,13 +62,14 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
 
         public void onServiceDisconnected(ComponentName className) {
-            Log.e(TAG, "Nextcloud Single sign-on: ServiceDisconnected");
+            Log.e(TAG, "ServiceDisconnected [" +className.toString() + "]");
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
             mService = null;
             mBound.set(false);
 
             if (!mDestroyed) {
+                Log.d(TAG, "Reconnecting lost service connection");
                 connectApiWithBackoff();
             }
         }
@@ -115,6 +116,15 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
     }
 
+    public void reconnect() {
+        if (mContext != null) {
+            mContext.unbindService(mConnection);
+        } else {
+            Log.e(TAG, "Context was null, cannot unbind nextcloud single sign-on service connection!");
+        }
+        // the callback "onServiceDisconnected" will trigger a reconnect automatically. No need to do anything here..
+    }
+
     private void waitForApi() throws NextcloudApiNotRespondingException {
         synchronized (mBound) {
             // If service is not bound yet.. wait
@@ -123,8 +133,18 @@ public class AidlNetworkRequest extends NetworkRequest {
                 try {
                     mBound.wait(10000); // wait up to 10 seconds
 
-                    // If api is still not bound after 10 seconds.. throw an exception
+                    // If api is still not bound after 10 seconds.. try reconnecting
                     if(!mBound.get()) {
+                        /*
+                        // try one reconnect
+                        reconnect();
+
+                        mBound.wait(10000); // wait up to 10 seconds
+                        // If api is still not bound after 10 seconds.. throw an exception
+                        if(!mBound.get()) {
+                            throw new NextcloudApiNotRespondingException();
+                        }
+                        */
                         throw new NextcloudApiNotRespondingException();
                     }
                 } catch (InterruptedException ex) {
@@ -143,8 +163,6 @@ public class AidlNetworkRequest extends NetworkRequest {
      * @throws Exception or SSOException
      */
     public Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
-
-
         ParcelFileDescriptor output = performAidlNetworkRequestV2(request, requestBodyInputStream);
         InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
         ExceptionResponse response = deserializeObjectV2(os);
@@ -202,6 +220,10 @@ public class AidlNetworkRequest extends NetworkRequest {
         // Check if we are on the main thread
         if(Looper.myLooper() == Looper.getMainLooper()) {
             throw new NetworkOnMainThreadException();
+        }
+
+        if(mDestroyed) {
+            throw new IllegalStateException("Nextcloud API already destroyed. Please report this issue.");
         }
 
         // Wait for api to be initialized
