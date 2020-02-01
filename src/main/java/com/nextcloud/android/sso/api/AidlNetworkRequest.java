@@ -11,6 +11,8 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.nextcloud.android.sso.Constants;
@@ -30,8 +32,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import androidx.annotation.NonNull;
 
 import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
 
@@ -219,22 +219,12 @@ public class AidlNetworkRequest extends NetworkRequest {
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
 
         ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
-                new IThreadListener() {
-                    @Override
-                    public void onThreadFinished(Thread thread) {
-                        Log.d(TAG, "copy data from service finished");
-                    }
-                });
+                thread -> Log.d(TAG, "copy data from service finished"));
 
         ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
         if(requestBodyInputStream != null) {
             requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
-                    new IThreadListener() {
-                        @Override
-                        public void onThreadFinished(Thread thread) {
-                            Log.d(TAG, "copy data from service finished");
-                        }
-                    });
+                    thread -> Log.d(TAG, "copy data from service finished"));
         }
 
         ParcelFileDescriptor output;
