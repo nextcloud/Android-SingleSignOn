@@ -42,7 +42,7 @@ public class NextcloudRequest implements Serializable {
     private String token;
     private String packageName;
     private String accountName;
-    private InputStream bodyAsStream = null;
+    private transient InputStream bodyAsStream = null;
     private boolean followRedirects;
 
     private NextcloudRequest() { }
