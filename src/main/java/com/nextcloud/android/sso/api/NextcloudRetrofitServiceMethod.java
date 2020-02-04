@@ -215,7 +215,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             return buffer.inputStream();
         }
         catch (final IOException e) {
-            throw new RuntimeException("failed to build request-body", e);
+            throw new IllegalStateException("failed to build request-body", e);
         }
     }
 
