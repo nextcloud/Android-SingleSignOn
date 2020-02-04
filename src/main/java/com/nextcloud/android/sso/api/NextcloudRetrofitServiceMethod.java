@@ -113,14 +113,15 @@ public class NextcloudRetrofitServiceMethod<T> {
 
         // Copy all static query params into parameters array
         parameters.putAll(this.queryParameters);
+
         MultipartBody.Builder multipartBuilder = null;
         if (isMultipart) {
             multipartBuilder = new MultipartBody.Builder();
         }
+
         // Build/parse dynamic parameters
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
-            //TODO: add Part annotation
             if(annotation instanceof Query) {
                 parameters.put(((Query)annotation).value(), String.valueOf(args[i]));
             } else if(annotation instanceof Body) {
@@ -130,13 +131,9 @@ public class NextcloudRetrofitServiceMethod<T> {
                 String url = rBuilder.build().getUrl();
                 rBuilder.setUrl(url.replace(varName, String.valueOf(args[i])));
             } else if(annotation instanceof Header) {
-                Map<String, List<String>> headers = rBuilder.build().getHeader();
-                List<String> arg = new ArrayList<>();
-                if(args[i] != null) {
-                    arg.add(String.valueOf(args[i]));
-                    headers.put(((Header) annotation).value(), arg);
-                }
-                rBuilder.setHeader(headers);
+                Object value = args[i];
+                String key =((Header) annotation).value();
+                addHeader(rBuilder, key, value);
             } else if(annotation instanceof FieldMap) {
                 if(args[i] != null) {
                     Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
@@ -159,8 +156,12 @@ public class NextcloudRetrofitServiceMethod<T> {
                 throw new UnsupportedOperationException("don't know this type yet.. [" + annotation + "]");
             }
         }
+
+        // include multipart body as stream, set header
         if (isMultipart) {
-            rBuilder.setRequestBodyAsStream(bodyToStream(multipartBuilder.build()));
+            MultipartBody multipartBody = multipartBuilder.build();
+            addHeader(rBuilder, "Content-Type", MultipartBody.FORM+"; boundary="+multipartBody.boundary());
+            rBuilder.setRequestBodyAsStream(bodyToStream(multipartBody));
         }
 
         NextcloudRequest request = rBuilder
@@ -192,6 +193,18 @@ public class NextcloudRetrofitServiceMethod<T> {
         }
 
         return nextcloudAPI.performRequest(this.returnType, request);
+    }
+
+    private void addHeader(NextcloudRequest.Builder rBuilder, String key, Object value) {
+        if (key == null || value == null) {
+            Log.d(TAG, "WARNING: Header not set - key or value missing! Key: " + key + " | Value: " + value);
+            return;
+        }
+        Map<String, List<String>> headers = rBuilder.build().getHeader();
+        List<String> arg = new ArrayList<>();
+        arg.add(String.valueOf(value));
+        headers.put(key, arg);
+        rBuilder.setHeader(headers);
     }
 
     private static InputStream bodyToStream(final RequestBody request){
