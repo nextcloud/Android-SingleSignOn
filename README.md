@@ -357,10 +357,16 @@ if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION
 
 ## Examples
 
-- [Nextcloud news app](https://github.com/nextcloud/news-android)
+- [Nextcloud News app](https://github.com/nextcloud/news-android)
     - [API](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/reader/nextcloud/API_SSO.java)
     - [API-Provider (Dagger)](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/di/ApiProvider.java#L98)
     - [Login Fragment](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogFragment.java)
+- [Nextcloud Notes app](https://github.com/stefan-niedermann/nextcloud-notes)
+    - [API](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/persistence/NotesClient.java)
+    - [Login](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/util/SSOUtil.java#L31)
+- [Nextcloud Deck app](https://github.com/stefan-niedermann/nextcloud-deck/)
+    - [API](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/api/DeckAPI.java)
+    - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/DrawerActivity.java#L288) 
 
 
 
