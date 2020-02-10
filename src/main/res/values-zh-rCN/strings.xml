@@ -1,13 +1,13 @@
 <resources>
 
     <string name="no_current_account_selected_exception_title">警告</string>
-    <string name="no_current_account_selected_exception_message">没有选择任何账户</string>
+    <string name="no_current_account_selected_exception_message">没有选择任何账号</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">错误</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">为在此设备上使用Nextcloud单点登录，您需要给此应用授权访问您的账号</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">为在此设备上使用 Nextcloud 单点登录，您需要给此应用授权访问您的账号</string>
 
     <string name="current_account_not_found_exception_title">警告</string>
-    <string name="current_account_not_found_exception_message">找不到所选帐户。出了些问题...</string>
+    <string name="current_account_not_found_exception_message">找不到所选账号。出了些问题...</string>
 
     <string name="token_mismatch_title">错误</string>
     <string name="token_mismatch_message">提供验证口令不匹配，或者不允许此文件执行此操作</string>
@@ -16,7 +16,7 @@
     <string name="nextcloud_files_app_not_installed_message" formatted="true">未安装Nextcloud Files软件。 请安装：%1$s</string>
 
     <string name="nextcloud_files_app_account_not_found_title">错误</string>
-    <string name="nextcloud_files_app_account_not_found_message">在nextcloud文件应用中找不到帐户</string>
+    <string name="nextcloud_files_app_account_not_found_message">在 nextcloud 文件应用中找不到账号</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">错误</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">您必须接受所使用条款才能使用单点登录功能。</string>
