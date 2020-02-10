@@ -4,7 +4,7 @@
     <string name="no_current_account_selected_exception_message">Zatím nebyl vybrán žádný účet</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Chyba</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Pro používání Nextcloud sjednoceného přihlašování (sso) na tomto zařízení je třeba udělit oprávnění pro přístup k vašim účtům</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Abyste na tomto zařízení mohli využívat Nextcloud sjednoceného přihlašování (sso), je třeba udělit oprávnění pro přístup k vašim účtům</string>
 
     <string name="current_account_not_found_exception_title">Varování</string>
     <string name="current_account_not_found_exception_message">Vybraný účet nebyl nalezen. Něco se pokazilo…</string>
@@ -19,13 +19,13 @@
     <string name="nextcloud_files_app_account_not_found_message">Účet nebyl v aplikaci Nextcloud Soubory nalezen</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Chyba</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Pro používání funkce jednotného přihlašování je třeba přijmout požadovaná oprávnění.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Abyste mohli využívat funkci sjednoceného přihlašování, je třeba přijmout požadovaná oprávnění.</string>
 
     <string name="nextcloud_http_request_failed_title">Chyba</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP požadavek se nezdařil se stavovým kódem: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Chyba</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Vámi používaná verze aplikace Nextcloud Soubory nepodporuje sdružené přihlašování. Aktualizujte ji: %1$s</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Vámi používaná verze aplikace Nextcloud Soubory nepodporuje sjednocené přihlašování. Aktualizujte ji: %1$s</string>
 
 
     <string name="nextcloud_files_api_not_responsing_title">Chyba</string>
