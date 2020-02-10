@@ -2,18 +2,16 @@ package com.nextcloud.android.sso.api;
 
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
 import com.nextcloud.android.sso.helper.ReactivexHelper;
 import com.nextcloud.android.sso.helper.Retrofit2Helper;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -27,12 +25,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.annotation.Nullable;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -40,9 +40,13 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
@@ -66,6 +70,8 @@ public class NextcloudRetrofitServiceMethod<T> {
     private Map<String, String> queryParameters;
 
     private final NextcloudRequest.Builder requestBuilder;
+    private boolean isMultipart = false;
+    private boolean isFormEncoded = false;
 
 
     public NextcloudRetrofitServiceMethod(String apiEndpoint, Method method) {
@@ -100,7 +106,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             throw new InvalidParameterException("Expected: " + parameterAnnotationsArray.length + " params - were: " + args.length);
         }
 
-        NextcloudRequest.Builder rBuilder = cloneSerializable(requestBuilder);
+        NextcloudRequest.Builder rBuilder = new NextcloudRequest.Builder(requestBuilder);
 
 
         Map<String, String> parameters = new HashMap<>();
@@ -108,10 +114,14 @@ public class NextcloudRetrofitServiceMethod<T> {
         // Copy all static query params into parameters array
         parameters.putAll(this.queryParameters);
 
+        MultipartBody.Builder multipartBuilder = null;
+        if (isMultipart) {
+            multipartBuilder = new MultipartBody.Builder();
+        }
+
         // Build/parse dynamic parameters
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
-
             if(annotation instanceof Query) {
                 parameters.put(((Query)annotation).value(), String.valueOf(args[i]));
             } else if(annotation instanceof Body) {
@@ -121,13 +131,9 @@ public class NextcloudRetrofitServiceMethod<T> {
                 String url = rBuilder.build().getUrl();
                 rBuilder.setUrl(url.replace(varName, String.valueOf(args[i])));
             } else if(annotation instanceof Header) {
-                Map<String, List<String>> headers = rBuilder.build().getHeader();
-                List<String> arg = new ArrayList<>();
-                if(args[i] != null) {
-                    arg.add(String.valueOf(args[i]));
-                    headers.put(((Header) annotation).value(), arg);
-                }
-                rBuilder.setHeader(headers);
+                Object value = args[i];
+                String key =((Header) annotation).value();
+                addHeader(rBuilder, key, value);
             } else if(annotation instanceof FieldMap) {
                 if(args[i] != null) {
                     Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
@@ -140,9 +146,22 @@ public class NextcloudRetrofitServiceMethod<T> {
                     String field = args[i].toString();
                     parameters.put(((Field)annotation).value(), field);
                 }
+            } else if(annotation instanceof Part) {
+                if (args[i] instanceof MultipartBody.Part){
+                    multipartBuilder.addPart((MultipartBody.Part) args[i]);
+                } else {
+                    throw new IllegalArgumentException("Only MultipartBody.Part type is supported as a @Part");
+                }
             } else {
                 throw new UnsupportedOperationException("don't know this type yet.. [" + annotation + "]");
             }
+        }
+
+        // include multipart body as stream, set header
+        if (isMultipart) {
+            MultipartBody multipartBody = multipartBuilder.build();
+            addHeader(rBuilder, "Content-Type", MultipartBody.FORM+"; boundary="+multipartBody.boundary());
+            rBuilder.setRequestBodyAsStream(bodyToStream(multipartBody));
         }
 
         NextcloudRequest request = rBuilder
@@ -176,6 +195,30 @@ public class NextcloudRetrofitServiceMethod<T> {
         return nextcloudAPI.performRequest(this.returnType, request);
     }
 
+    private void addHeader(NextcloudRequest.Builder rBuilder, String key, Object value) {
+        if (key == null || value == null) {
+            Log.d(TAG, "WARNING: Header not set - key or value missing! Key: " + key + " | Value: " + value);
+            return;
+        }
+        Map<String, List<String>> headers = rBuilder.build().getHeader();
+        List<String> arg = new ArrayList<>();
+        arg.add(String.valueOf(value));
+        headers.put(key, arg);
+        rBuilder.setHeader(headers);
+    }
+
+    private static InputStream bodyToStream(final RequestBody request){
+        try {
+            final RequestBody copy = request;
+            final Buffer buffer = new Buffer();
+            copy.writeTo(buffer);
+            return buffer.inputStream();
+        }
+        catch (final IOException e) {
+            throw new IllegalStateException("failed to build request-body", e);
+        }
+    }
+
     private void parseMethodAnnotation(Annotation annotation) {
         if (annotation instanceof DELETE) {
             parseHttpMethodAndPath("DELETE", ((DELETE) annotation).value(), false);
@@ -185,6 +228,21 @@ public class NextcloudRetrofitServiceMethod<T> {
             parseHttpMethodAndPath("POST", ((POST) annotation).value(), true);
         } else if (annotation instanceof PUT) {
             parseHttpMethodAndPath("PUT", ((PUT) annotation).value(), true);
+        } else if (annotation instanceof HEAD) {
+            parseHttpMethodAndPath("HEAD", ((HEAD) annotation).value(), false);
+        } else if (annotation instanceof HTTP) {
+            HTTP http = (HTTP) annotation;
+            parseHttpMethodAndPath(http.method(), http.path(), http.hasBody());
+        } else if (annotation instanceof Multipart) {
+            if (isFormEncoded) {
+                throw methodError(method, "Only one encoding annotation is allowed.");
+            }
+            isMultipart = true;
+        } else if (annotation instanceof FormUrlEncoded) {
+            if (isMultipart) {
+                throw methodError(method, "Only one encoding annotation is allowed.");
+            }
+            isFormEncoded = true;
         } else if (annotation instanceof Streaming) {
             Log.v(TAG, "streaming interface");
         } else if (annotation instanceof retrofit2.http.Headers) {
@@ -288,24 +346,5 @@ public class NextcloudRetrofitServiceMethod<T> {
                 + method.getDeclaringClass().getSimpleName()
                 + "."
                 + method.getName(), cause);
-    }
-
-    private static <T extends Serializable> T cloneSerializable(T o) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
-        oos.writeObject(o);
-        oos.close();
-
-        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()) );
-        T res  = null;
-        try {
-            res = (T) ois.readObject();
-        } catch (ClassNotFoundException e) {
-            // Can't happen as we just clone an object..
-            Log.e(TAG, "ClassNotFoundException", e);
-        }
-        ois.close();
-
-        return res;
     }
 }

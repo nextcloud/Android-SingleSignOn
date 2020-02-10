@@ -298,8 +298,10 @@ public class TestRetrofitAPI {
         List<String> ping = new ArrayList<>();
         foo.add("Bar");
         ping.add("Pong");
-        expectedHeader.put("X-Foo", foo);
-        expectedHeader.put("X-Ping", ping);
+        // HTTP header names are case-insensitive, according to RFC 2616 -> lowercase!
+        // lower case happens in @Headers.toMultiMap()
+        expectedHeader.put("x-foo", foo);
+        expectedHeader.put("x-ping", ping);
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")

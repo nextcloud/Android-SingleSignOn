@@ -21,6 +21,7 @@ package com.nextcloud.android.sso.aidl;
 
 import androidx.core.util.ObjectsCompat;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -41,9 +42,24 @@ public class NextcloudRequest implements Serializable {
     private String token;
     private String packageName;
     private String accountName;
+    private transient InputStream bodyAsStream = null;
     private boolean followRedirects;
 
     private NextcloudRequest() { }
+
+    public NextcloudRequest(NextcloudRequest ncr) {
+        this.method = ncr.method;
+        this.requestBody = ncr.requestBody;
+        this.url = ncr.url;
+        this.token = ncr.token;
+        this.packageName = ncr.packageName;
+        this.accountName = ncr.accountName;
+        this.followRedirects = ncr.followRedirects;
+        header = new HashMap<>(ncr.header);
+        parameter = new HashMap<>(ncr.parameter);
+        bodyAsStream = ncr.bodyAsStream;
+
+    }
 
     public static class Builder implements Serializable {
 
@@ -53,6 +69,10 @@ public class NextcloudRequest implements Serializable {
 
         public Builder() {
             ncr = new NextcloudRequest();
+        }
+
+        public Builder(Builder cloneSource) {
+            ncr = new NextcloudRequest(cloneSource.ncr);
         }
 
         public NextcloudRequest build() {
@@ -78,6 +98,10 @@ public class NextcloudRequest implements Serializable {
             ncr.requestBody = requestBody;
             return this;
         }
+        public Builder setRequestBodyAsStream(InputStream requestBody) {
+            ncr.bodyAsStream = requestBody;
+            return this;
+        }
 
         public Builder setUrl(String url) {
             ncr.url = url;
@@ -93,6 +117,8 @@ public class NextcloudRequest implements Serializable {
             ncr.accountName = accountName;
             return this;
         }
+
+
 
         /**
          * Default value: true
@@ -153,6 +179,13 @@ public class NextcloudRequest implements Serializable {
         return this.followRedirects;
     }
 
+    public InputStream getBodyAsStream() {
+        return bodyAsStream;
+    }
+
+    public void setBodyAsStream(InputStream bodyAsStream) {
+        this.bodyAsStream = bodyAsStream;
+    }
 
     @Override
     public boolean equals(Object obj) {
