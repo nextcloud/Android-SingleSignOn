@@ -142,7 +142,7 @@ public class AidlNetworkRequest extends NetworkRequest {
                 try {
                     mBound.wait(10000); // wait up to 10 seconds
 
-                    // If api is still not bound after 10 seconds.. try reconnecting
+                    // If api is still not bound after 10 seconds.. throw an exception
                     if(!mBound.get()) {
                         throw new NextcloudApiNotRespondingException();
                     }
