@@ -76,10 +76,6 @@ public class AidlNetworkRequest extends NetworkRequest {
     };
 
     public void connect(String type) {
-        if (mDestroyed) {
-            throw new IllegalStateException("API already stopped");
-        }
-
         super.connect(type);
 
         String componentName = Constants.PACKAGE_NAME_PROD;
