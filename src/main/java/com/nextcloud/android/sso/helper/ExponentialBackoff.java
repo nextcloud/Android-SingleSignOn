@@ -18,6 +18,8 @@ package com.nextcloud.android.sso.helper;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
@@ -26,6 +28,8 @@ import java.security.InvalidParameterException;
 
 /** The implementation of exponential backoff with jitter applied. */
 public class ExponentialBackoff {
+
+    private static final String TAG = ExponentialBackoff.class.getCanonicalName();
 
     private int mRetryCounter;
     private long mStartDelayMs;
@@ -107,8 +111,10 @@ public class ExponentialBackoff {
     }
 
     /** Should call when the retry action has failed and we want to retry after a longer delay. */
-    private void notifyFailed() {
+    private void notifyFailed(Exception ex) {
+        Log.d(TAG, "[notifyFailed] Error: [" + ex.getMessage() + "]");
         if(mRetryCounter > mMaxRetries) {
+            Log.d(TAG, "[notifyFailed] Retries exceeded, ending now");
             stop();
             mFailedCallback.run();
         } else {
@@ -116,6 +122,7 @@ public class ExponentialBackoff {
             long temp = Math.min(
                     mMaximumDelayMs, (long) (mStartDelayMs * Math.pow(mMultiplier, mRetryCounter)));
             mCurrentDelayMs = (long) (((1 + Math.random()) / 2) * temp);
+            Log.d(TAG, "[notifyFailed] retrying in: [" + mCurrentDelayMs + "ms]");
             mHandlerAdapter.removeCallbacks(mRunnable);
             mHandlerAdapter.postDelayed(mRunnable, mCurrentDelayMs);
         }
@@ -134,7 +141,7 @@ public class ExponentialBackoff {
             try {
                 runnable.run();
             } catch (Exception ex) {
-                notifyFailed();
+                notifyFailed(ex);
             }
         }
     }
