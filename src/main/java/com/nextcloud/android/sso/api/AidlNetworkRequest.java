@@ -51,7 +51,7 @@ public class AidlNetworkRequest extends NetworkRequest {
      */
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
-            Log.v(TAG, "Nextcloud Single sign-on: onServiceConnected [" + Thread.currentThread().getName() + "]");
+            Log.d(TAG, "[onServiceConnected] called from Thread: [" + Thread.currentThread().getName() + "] with IBinder [" + className.toString() + "]: " + service);
 
             mService = IInputStreamService.Stub.asInterface(service);
             mBound.set(true);
@@ -62,23 +62,25 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
 
         public void onServiceDisconnected(ComponentName className) {
-            Log.e(TAG, "Nextcloud Single sign-on: ServiceDisconnected");
+            Log.w(TAG, "[onServiceDisconnected] [" + className.toString() + "]");
             // This is called when the connection with the service has been
-            // unexpectedly disconnected -- that is, its process crashed.
-            mService = null;
-            mBound.set(false);
+            // unexpectedly disconnected -- that is, its process crashed or the service was
+            // terminated due to an update (e.g. google play store)
 
             if (!mDestroyed) {
-                connectApiWithBackoff();
+                // In case we're currently not reconnecting
+                Log.d(TAG, "[onServiceDisconnected] Reconnecting lost service connection to component: [" + className.toString() + "]");
+                reconnect();
+            } else {
+                // API was destroyed on purpose
+                mService = null;
+                mBound.set(false);
             }
         }
     };
 
     public void connect(String type) {
-        if (mDestroyed) {
-            throw new IllegalStateException("API already stopped");
-        }
-
+        Log.d(TAG, "[connect] Binding to AccountManagerService for type [" + type + "]");
         super.connect(type);
 
         String componentName = Constants.PACKAGE_NAME_PROD;
@@ -86,32 +88,49 @@ public class AidlNetworkRequest extends NetworkRequest {
             componentName = Constants.PACKAGE_NAME_DEV;
         }
 
+        Log.d(TAG, "[connect] Component name is: [" + componentName+ "]");
+
         try {
             Intent intentService = new Intent();
             intentService.setComponent(new ComponentName(componentName,
                                                          "com.owncloud.android.services.AccountManagerService"));
-            if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE)) {
-                Log.d(TAG, "Binding to AccountManagerService returned false");
+            // https://developer.android.com/reference/android/content/Context#BIND_ABOVE_CLIENT
+            if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE | Context.BIND_ABOVE_CLIENT)) {
+                Log.d(TAG, "[connect] Binding to AccountManagerService returned false");
                 throw new IllegalStateException("Binding to AccountManagerService returned false");
+            } else {
+                Log.d(TAG, "[connect] Bound to AccountManagerService successfully");
             }
         } catch (SecurityException e) {
-            Log.e(TAG, "can't bind to AccountManagerService, check permission in Manifest");
+            Log.e(TAG, "[connect] can't bind to AccountManagerService, check permission in Manifest");
             mCallback.onError(e);
         }
+    }
+
+    public void reconnect() {
+        Log.d(TAG, "[reconnect] called");
+        unbindService();
+        connectApiWithBackoff();
     }
 
     public void stop() {
         super.stop();
 
+        unbindService();
+        mContext = null;
+    }
+
+    private void unbindService() {
         // Unbind from the service
         if (mBound.get()) {
             if (mContext != null) {
+                Log.d(TAG, "[unbindService] Unbinding AccountManagerService");
                 mContext.unbindService(mConnection);
             } else {
-                Log.e(TAG, "Context was null, cannot unbind nextcloud single sign-on service connection!");
+                Log.e(TAG, "[unbindService] Context was null, cannot unbind nextcloud single sign-on service connection!");
             }
             mBound.set(false);
-            mContext = null;
+            mService = null;
         }
     }
 
@@ -123,7 +142,7 @@ public class AidlNetworkRequest extends NetworkRequest {
                 try {
                     mBound.wait(10000); // wait up to 10 seconds
 
-                    // If api is still not bound after 10 seconds.. throw an exception
+                    // If api is still not bound after 10 seconds.. try reconnecting
                     if(!mBound.get()) {
                         throw new NextcloudApiNotRespondingException();
                     }
@@ -143,8 +162,6 @@ public class AidlNetworkRequest extends NetworkRequest {
      * @throws Exception or SSOException
      */
     public Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
-
-
         ParcelFileDescriptor output = performAidlNetworkRequestV2(request, requestBodyInputStream);
         InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
         ExceptionResponse response = deserializeObjectV2(os);
@@ -202,6 +219,10 @@ public class AidlNetworkRequest extends NetworkRequest {
         // Check if we are on the main thread
         if(Looper.myLooper() == Looper.getMainLooper()) {
             throw new NetworkOnMainThreadException();
+        }
+
+        if(mDestroyed) {
+            throw new IllegalStateException("Nextcloud API already destroyed. Please report this issue.");
         }
 
         // Wait for api to be initialized

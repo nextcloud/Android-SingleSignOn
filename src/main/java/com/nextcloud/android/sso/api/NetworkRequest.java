@@ -4,13 +4,13 @@ import android.content.Context;
 import android.os.Looper;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.ExponentialBackoff;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.InputStream;
-
-import androidx.annotation.NonNull;
 
 public abstract class NetworkRequest {
 
@@ -30,7 +30,7 @@ public abstract class NetworkRequest {
 
 
     protected void connect(String type) {
-        Log.v(TAG, "Nextcloud Single sign-on connect() called [" + Thread.currentThread().getName() + "] Account-Type: [" + type + "]");
+        Log.d(TAG, "[connect] connect() called [" + Thread.currentThread().getName() + "] Account-Type: [" + type + "]");
         if (mDestroyed) {
             throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
         }
@@ -41,8 +41,13 @@ public abstract class NetworkRequest {
     protected abstract Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
 
     protected void connectApiWithBackoff() {
-        new ExponentialBackoff(1000, 10000, 2, 5, Looper.getMainLooper(), () -> {
+        Log.d(TAG, "[connectApiWithBackoff] connectApiWithBackoff() called from Thread: [" + Thread.currentThread().getName() + "]");
+        new ExponentialBackoff(1000, 5000, 2, 5, Looper.getMainLooper(), () -> {
+            Log.d(TAG, "[connectApiWithBackoff] trying to connect..");
             connect(mAccount.type);
+        }, () -> {
+            Log.e(TAG, "Unable to recover API");
+            stop();
         }).start();
     }
 
