@@ -4,6 +4,8 @@
     <string name="no_current_account_selected_exception_message">לא נבחרו חשבונות עדיין</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">שגיאה</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">כדי להשתמש בכניסה אחודה (SSO - Single-Sign-On) של Nextcloud במכשיר הזה, עליך להעניק הרשאות גישה לחשבונות שלך</string>
+
     <string name="current_account_not_found_exception_title">אזהרה</string>
     <string name="current_account_not_found_exception_message">החשבון הנבחר לא נמצא. מהו השתבש.</string>
 
@@ -30,4 +32,7 @@
     <string name="nextcloud_files_api_not_responsing_message">ה־API של יישומון הקבצים של Nextcloud. נא לדווח על התקלה הזאת.</string>
 
     <string name="select_account_unknown_error_toast">משהו השתבש. נא לנסות שוב</string>
-    </resources>
+    <string name="sso_canceled">ייבוא ה־SSO בוטל</string>
+    <string name="sso_canceled_message">ייבוא ה־SSO בוטל על ידי המשתמש</string>
+
+</resources>
