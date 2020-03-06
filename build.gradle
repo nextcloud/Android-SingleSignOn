@@ -147,7 +147,7 @@ dependencies {
     implementation ('com.squareup.retrofit2:retrofit:2.6.4') {
         because '2.7.0 requires okhttp:3.14.x which requires API level 19'
     }
-    implementation ('com.squareup.okhttp3:okhttp:3.12.8') {
+    implementation ('com.squareup.okhttp3:okhttp:3.12.10') {
         because '3.13+ requires Lollipop, but our minSdkVersion is 14'
     }
 
