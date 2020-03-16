@@ -116,7 +116,9 @@ public class NextcloudRetrofitServiceMethod<T> {
     }
 
     /**
-     * filter out empty parameter annotations (e.g. when using kotlin)
+     * filter out empty parameter annotations (e.g. when using coroutines in kotlin (suspend functions))
+     * For functions that are suspendable, the Continuation parameter will be added on the JVM side.
+     * https://blog.kotlin-academy.com/a-little-reflection-about-coroutines-34050cbc4fe6
      * @param annotations
      * @return
      */
