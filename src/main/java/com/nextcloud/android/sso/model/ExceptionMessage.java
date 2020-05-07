@@ -1,5 +1,7 @@
 package com.nextcloud.android.sso.model;
 
+import java.io.Serializable;
+
 /**
  *  Nextcloud SingleSignOn
  *
@@ -19,7 +21,7 @@ package com.nextcloud.android.sso.model;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ExceptionMessage {
+public class ExceptionMessage implements Serializable {
 
     public String title;
     public String message;
