@@ -11,7 +11,7 @@
     <string name="current_account_not_found_exception_message">Non se atopou a conta seleccionada. Algo foi mal...</string>
 
     <string name="token_mismatch_title">Erro</string>
-    <string name="token_mismatch_message">A marca de autenticación fornecida non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
+    <string name="token_mismatch_message">A testemuña de autenticación fornecida non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erro</string>
     <string name="nextcloud_files_app_not_installed_message" formatted="true">A aplicación Ficheiros do Nextcloud non está instalada. Instálea: %1$s</string>
