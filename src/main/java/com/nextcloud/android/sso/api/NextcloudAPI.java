@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -91,14 +92,33 @@ public class NextcloudAPI {
         });
     }
 
+    public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
+        return Observable.fromPublisher( s-> {
+            try {
+                Response response = performRequestV2(type, request);
+
+                s.onNext(new ParsedResponse<>(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
+                s.onComplete();
+            } catch (Exception e) {
+                s.onError(e);
+            }
+        });
+    }
+
     public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws Exception {
         Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
 
+        T result = convertStreamToTargetEntity(performNetworkRequest(request), type);
+
+        return result;
+    }
+
+    private <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
         T result = null;
-        try (InputStream os = performNetworkRequest(request);
+        try (InputStream os = inputStream;
              Reader targetReader = new InputStreamReader(os)) {
-            if (type != Void.class) {
-                result = gson.fromJson(targetReader, type);
+            if (targetEntity != Void.class) {
+                result = gson.fromJson(targetReader, targetEntity);
                 if (result != null) {
                     Log.d(TAG, result.toString());
                 }

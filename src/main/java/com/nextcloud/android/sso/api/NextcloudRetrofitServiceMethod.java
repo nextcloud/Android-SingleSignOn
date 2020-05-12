@@ -179,6 +179,12 @@ public class NextcloudRetrofitServiceMethod<T> {
                 // Streaming
                 if(typeArgument == ResponseBody.class) {
                     return (T) Observable.just(Okhttp3Helper.getResponseBodyFromRequest(nextcloudAPI, request));
+                } else if (typeArgument instanceof ParameterizedType) {
+                    ParameterizedType innerType = (ParameterizedType) returnType;
+                    Type innerOwnerType = type.getRawType();
+                    if(innerOwnerType == ParsedResponse.class) {
+                        return (T) nextcloudAPI.performRequestObservableV2(innerType.getActualTypeArguments()[0], request);
+                    }
                 } else {
                     return (T) nextcloudAPI.performRequestObservable(typeArgument, request);
                 }
