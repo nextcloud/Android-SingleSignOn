@@ -18,11 +18,11 @@ public class ParsedResponse <T> {
     }
 
     public static <T> ParsedResponse<T> of(T data) {
-        return ParsedResponse.of(data, null);
+        return new ParsedResponse<>(data, null);
     }
 
     public static <T> ParsedResponse<T> of(T data, ArrayList<AidlNetworkRequest.PlainHeader> headers) {
-        return ParsedResponse.of(data, headers);
+        return new ParsedResponse<>(data, headers);
     }
 
         public T getResponse() {
