@@ -10,9 +10,15 @@ public class ParsedResponse <T> {
 
     public ParsedResponse(T response, ArrayList<AidlNetworkRequest.PlainHeader> headers) {
         this.response = response;
-        for (AidlNetworkRequest.PlainHeader header : headers) {
-            this.headers.put(header.getName(), header.getValue());
+        if (headers!= null) {
+            for (AidlNetworkRequest.PlainHeader header : headers) {
+                this.headers.put(header.getName(), header.getValue());
+            }
         }
+    }
+
+    public static <T> ParsedResponse<T> of(T data) {
+        return new ParsedResponse<>(data, null);
     }
 
     public T getResponse() {
