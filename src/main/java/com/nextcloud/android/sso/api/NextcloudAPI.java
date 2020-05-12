@@ -97,7 +97,7 @@ public class NextcloudAPI {
             try {
                 Response response = performRequestV2(type, request);
 
-                s.onNext(new ParsedResponse<>(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
+                s.onNext(ParsedResponse.of(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
                 s.onComplete();
             } catch (Exception e) {
                 s.onError(e);

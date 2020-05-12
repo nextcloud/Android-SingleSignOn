@@ -180,14 +180,15 @@ public class NextcloudRetrofitServiceMethod<T> {
                 if(typeArgument == ResponseBody.class) {
                     return (T) Observable.just(Okhttp3Helper.getResponseBodyFromRequest(nextcloudAPI, request));
                 } else if (typeArgument instanceof ParameterizedType) {
-                    ParameterizedType innerType = (ParameterizedType) returnType;
-                    Type innerOwnerType = type.getRawType();
+                    ParameterizedType innerType = (ParameterizedType) typeArgument;
+                    Type innerOwnerType = innerType.getRawType();
                     if(innerOwnerType == ParsedResponse.class) {
                         return (T) nextcloudAPI.performRequestObservableV2(innerType.getActualTypeArguments()[0], request);
                     }
-                } else {
-                    return (T) nextcloudAPI.performRequestObservable(typeArgument, request);
                 }
+                //fallback
+                return (T) nextcloudAPI.performRequestObservable(typeArgument, request);
+
             } else if(ownerType == Call.class) {
                 Type typeArgument = type.getActualTypeArguments()[0];
                 return (T) Retrofit2Helper.WrapInCall(nextcloudAPI, request, typeArgument);
