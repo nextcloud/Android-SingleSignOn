@@ -95,7 +95,7 @@ public class NextcloudAPI {
     public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
         return Observable.fromPublisher( s-> {
             try {
-                Response response = performRequestV2(type, request);
+                Response response = performNetworkRequestV2(request);
 
                 s.onNext(ParsedResponse.of(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
                 s.onComplete();
@@ -147,6 +147,7 @@ public class NextcloudAPI {
         Reader targetReader = new InputStreamReader(response.getBody());
 
         if (type != Void.class) {
+            //FIXME: @original-devs: this will never work (ClassCastException), unless type is Response.
             result = gson.fromJson(targetReader, type);
             if (result != null) {
                 Log.d(TAG, result.toString());
