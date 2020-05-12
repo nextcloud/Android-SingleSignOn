@@ -201,6 +201,10 @@ AccountImporter.getSingleSignOnAccount(context, accountName);
         @GET("user")
         Observable<UserInfo> user();
 
+        // use ParsedResponse, in case you also need the response headers. Works currently only for Observable calls.
+        @GET("user")
+        Observable<ParsedResponse<UserInfo>> user();
+
         @POST("feeds")
         Call<List<Feed>> createFeed(@Body Map<String, Object> feedMap);
 
