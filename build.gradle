@@ -142,7 +142,7 @@ dependencies {
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
 
-    implementation 'commons-io:commons-io:2.6'
+    implementation 'commons-io:commons-io:2.7'
 
     implementation ('com.squareup.retrofit2:retrofit:2.6.4') {
         because '2.7.0 requires okhttp:3.14.x which requires API level 19'
