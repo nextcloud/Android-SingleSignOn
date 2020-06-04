@@ -68,7 +68,7 @@ public class TestRetrofitAPI {
                 .setMethod("GET")
                 .setUrl(mApiEndpoint + "version")
                 .build();
-        verify(nextcloudApiMock).performRequestObservable(eq(String.class), eq(request));
+        verify(nextcloudApiMock).performRequestObservableV2(eq(String.class), eq(request));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class TestRetrofitAPI {
                 .build();
 
         Type type = new TypeToken<List<String>>() {}.getType();
-        verify(nextcloudApiMock).performRequestObservable(eq(type), eq(request));
+        verify(nextcloudApiMock).performRequestObservableV2(eq(type), eq(request));
     }
 
 
@@ -311,7 +311,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<Void>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
