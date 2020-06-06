@@ -187,19 +187,19 @@ public class NextcloudRetrofitServiceMethod<T> {
                     }
                 }
                 //fallback
-                return (T) nextcloudAPI.performRequestObservable(typeArgument, request);
+                return (T) nextcloudAPI.performRequestObservableV2(typeArgument, request).map(r -> r.getResponse());
 
             } else if(ownerType == Call.class) {
                 Type typeArgument = type.getActualTypeArguments()[0];
                 return (T) Retrofit2Helper.WrapInCall(nextcloudAPI, request, typeArgument);
             }
         } else if(this.returnType == Observable.class) {
-            return (T) nextcloudAPI.performRequestObservable(Object.class, request);
+            return (T) nextcloudAPI.performRequestObservableV2(Object.class, request).map(r -> r.getResponse());
         } else if (this.returnType == Completable.class) {
             return (T) ReactivexHelper.wrapInCompletable(nextcloudAPI, request);
         }
 
-        return nextcloudAPI.performRequest(this.returnType, request);
+        return nextcloudAPI.performRequestV2(this.returnType, request);
     }
 
     private void addHeader(NextcloudRequest.Builder rBuilder, String key, Object value) {

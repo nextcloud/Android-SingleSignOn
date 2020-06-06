@@ -22,10 +22,10 @@ public class ParsedResponse <T> {
     }
 
     public static <T> ParsedResponse<T> of(T data, ArrayList<AidlNetworkRequest.PlainHeader> headers) {
-        return new ParsedResponse<>(data, headers);
+        return new ParsedResponse<T>(data, headers);
     }
 
-        public T getResponse() {
+    public T getResponse() {
         return response;
     }
 

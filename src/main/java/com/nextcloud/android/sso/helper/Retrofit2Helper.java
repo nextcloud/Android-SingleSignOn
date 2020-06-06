@@ -50,7 +50,7 @@ public final class Retrofit2Helper {
             @Override
             public Response<T> execute() {
                 try {
-                    T body = nextcloudAPI.performRequest(resType, nextcloudRequest);
+                    T body = nextcloudAPI.performRequestV2(resType, nextcloudRequest);
                     return Response.success(body);
                 } catch (NextcloudHttpRequestFailedException e) {
                     return Response.error(e.getStatusCode(), ResponseBody.create(null, e.getCause().getMessage()));
