@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-	implementation "com.github.nextcloud:Android-SingleSignOn:0.4.1"
+	implementation "com.github.nextcloud:Android-SingleSignOn:0.5.1"
 }
 
 compileOptions {
