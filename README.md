@@ -10,7 +10,7 @@ This library allows you to use accounts as well as the network stack provided by
 
 ## How to use this library
 
-1) Add this library to your project
+### 1) Add this library to your project
 
 ```gradle
 repositories {
@@ -31,7 +31,7 @@ compileOptions {
 
 We use some features from Java 8, so your project needs also to be compiled with (at least) this version.
 
-2) To choose an account, include the following code in your login dialog:
+### 2) To choose an account, include the following code in your login dialog:
 
 From an Activity
 
@@ -55,7 +55,7 @@ private void openAccountChooser() {
     }
 }
 ```
-3) To handle the result of the Account Chooser, include the following:
+### 3) To handle the result of the Account Chooser, include the following:
 
 From an Activity
 
@@ -152,7 +152,7 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 // Complete example: https://github.com/nextcloud/news-android/blob/890828441ba0c8a9b90afe56f3e08ed63366ece5/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogActivity.java#L470-L475
 ```
 
-4) How to get account information?
+### 4) How to get account information?
 
 ```java
 // If you stored the "default" account using setCurrentAccount(…) you can get the account by using the following line:
@@ -167,7 +167,7 @@ ssoAccount.token;
 ssoAccount.url;
 ```
 
-5) How to make a network request?
+### 5) How to make a network request?
 
 You'll notice that there is an callback parameter in the constructor of the `NextcloudAPI`.
 
@@ -177,9 +177,9 @@ public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, Api
 
 You can use this callback to subscribe to errors that might occur during the initialization of the API. You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object. For a minimal example to get started (without retrofit) take a look at section 5.2. The callback method `onConnected` will be called once the connection to the files app is established. You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established.
 
-5.1) **Using Retrofit**
+#### 5.1) **Using Retrofit**
 
-5.1.1) Before using this single sign on library, your interface for your retrofit API might look like this:
+##### 5.1.1) Before using this single sign on library, your interface for your retrofit API might look like this:
 
 ```java
 public interface API {
@@ -212,7 +212,7 @@ public class ApiProvider {
 }
 ```
 
-5.1.2) Use of new API using the nextcloud app network stack
+##### 5.1.2) Use of new API using the nextcloud app network stack
 
 ```java
 public class ApiProvider {
@@ -231,7 +231,7 @@ Enjoy! If you're already using retrofit, you don't need to modify your applicati
 
 Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
 
-5.2) **Without Retrofit**
+#### 5.2) **Without Retrofit**
 
 `NextcloudAPI` provides a method called `performNetworkRequest(NextcloudRequest request)` that allows you to handle the server response yourself.
 
