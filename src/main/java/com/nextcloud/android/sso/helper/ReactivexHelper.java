@@ -29,7 +29,7 @@ public final class ReactivexHelper {
     private ReactivexHelper() { }
 
     public static Completable wrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
-        return Completable.fromAction(() -> nextcloudAPI.performRequest(Void.class, request));
+        return Completable.fromAction(() -> nextcloudAPI.performRequestV2(Void.class, request));
     }
 
 }
