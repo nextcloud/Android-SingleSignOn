@@ -49,7 +49,7 @@ public final class Okhttp3Helper {
             InputStream os = nextcloudAPI.performNetworkRequestV2(request).getBody();
             return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
         } catch (Exception e) {
-            Log.e(TAG, "[getResponseBodyFromRequest] encountered a problem", e);
+            Log.e(TAG, "[getResponseBodyFromRequestV2] encountered a problem", e);
         }
         return ResponseBody.create(null, "");
     }

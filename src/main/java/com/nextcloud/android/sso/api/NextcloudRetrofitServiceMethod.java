@@ -179,20 +179,27 @@ public class NextcloudRetrofitServiceMethod<T> {
                 // Streaming
                 if(typeArgument == ResponseBody.class) {
                     return (T) Observable.just(Okhttp3Helper.getResponseBodyFromRequest(nextcloudAPI, request));
-                } else {
-                    return (T) nextcloudAPI.performRequestObservable(typeArgument, request);
+                } else if (typeArgument instanceof ParameterizedType) {
+                    ParameterizedType innerType = (ParameterizedType) typeArgument;
+                    Type innerOwnerType = innerType.getRawType();
+                    if(innerOwnerType == ParsedResponse.class) {
+                        return (T) nextcloudAPI.performRequestObservableV2(innerType.getActualTypeArguments()[0], request);
+                    }
                 }
+                //fallback
+                return (T) nextcloudAPI.performRequestObservableV2(typeArgument, request).map(r -> r.getResponse());
+
             } else if(ownerType == Call.class) {
                 Type typeArgument = type.getActualTypeArguments()[0];
                 return (T) Retrofit2Helper.WrapInCall(nextcloudAPI, request, typeArgument);
             }
         } else if(this.returnType == Observable.class) {
-            return (T) nextcloudAPI.performRequestObservable(Object.class, request);
+            return (T) nextcloudAPI.performRequestObservableV2(Object.class, request).map(r -> r.getResponse());
         } else if (this.returnType == Completable.class) {
             return (T) ReactivexHelper.wrapInCompletable(nextcloudAPI, request);
         }
 
-        return nextcloudAPI.performRequest(this.returnType, request);
+        return nextcloudAPI.performRequestV2(this.returnType, request);
     }
 
     private void addHeader(NextcloudRequest.Builder rBuilder, String key, Object value) {

@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -46,7 +47,6 @@ public class NextcloudAPI {
 
     private NetworkRequest networkRequest;
     private Gson gson;
-
 
     @Documented
     @Target(METHOD)
@@ -91,17 +91,40 @@ public class NextcloudAPI {
         });
     }
 
+    public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
+        return Observable.fromPublisher( s-> {
+            try {
+                Response response = performNetworkRequestV2(request);
+                s.onNext(ParsedResponse.of(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
+                s.onComplete();
+            } catch (Exception e) {
+                s.onError(e);
+            }
+        });
+    }
+
     public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws Exception {
         Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
+        return convertStreamToTargetEntity(performNetworkRequest(request), type);
+    }
 
+    public <T> T performRequestV2(final @NonNull Type type, NextcloudRequest request) throws Exception {
+        Log.d(TAG, "performRequestV2() called with: type = [" + type + "], request = [" + request + "]");
+        Response response = performNetworkRequestV2(request);
+        return convertStreamToTargetEntity(response.getBody(), type);
+    }
+
+    private <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
         T result = null;
-        try (InputStream os = performNetworkRequest(request);
+        try (InputStream os = inputStream;
              Reader targetReader = new InputStreamReader(os)) {
-            if (type != Void.class) {
-                result = gson.fromJson(targetReader, type);
+            if (targetEntity != Void.class) {
+                result = gson.fromJson(targetReader, targetEntity);
+                /*
                 if (result != null) {
                     Log.d(TAG, result.toString());
                 }
+                */
             }
         }
         return result;
@@ -118,24 +141,6 @@ public class NextcloudAPI {
      public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
         return networkRequest.performNetworkRequest(request, request.getBodyAsStream());
     }
-
-    public Response performRequestV2(final @NonNull Type type, NextcloudRequest request) throws Exception {
-        Log.d(TAG, "performRequestV2() called with: type = [" + type + "], request = [" + request + "]");
-
-        Response result = null;
-        Response response = performNetworkRequestV2(request);
-        Reader targetReader = new InputStreamReader(response.getBody());
-
-        if (type != Void.class) {
-            result = gson.fromJson(targetReader, type);
-            if (result != null) {
-                Log.d(TAG, result.toString());
-            }
-
-        }
-        return result;
-    }
-
 
     /**
      * The InputStreams needs to be closed after reading from it
