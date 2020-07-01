@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ObsoleteLintCustomCheck" severity="warning">
+        <ignore path="**/fragment-1.2.5/**/lint.jar" />
+    </issue>
+</lint>
