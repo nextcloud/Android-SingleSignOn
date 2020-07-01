@@ -1,4 +1,4 @@
-import com.github.spotbugs.SpotBugsTask
+import com.github.spotbugs.snom.SpotBugsTask
 
 buildscript {
     ext {
@@ -16,9 +16,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.6'
+        classpath 'gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.4.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
     }
@@ -45,11 +45,11 @@ configurations {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName '1.0'
     }
@@ -82,22 +82,17 @@ android {
     productFlavors {
     }
 
-    tasks.register("spotbugsDebug", SpotBugsTask) {
-        ignoreFailures = false
+    tasks.register("spotbugsDebugReport", SpotBugsTask) {
+        ignoreFailures = true
         effort = "max"
         reportLevel = "medium"
         classes = fileTree("$project.buildDir/intermediates/javac/debug/classes/")
         excludeFilter = file("${project.rootDir}/spotbugs-filter.xml")
-        pluginClasspath = project.configurations.spotbugsPlugins
-        source = fileTree('src/main/java')
-        classpath = files()
-        include '**/*.java'
-        exclude '**/gen/**'
 
         reports {
             xml.enabled = false
-            html.enabled = true
             html {
+                enabled = true
                 destination = file("$project.buildDir/reports/spotbugs/spotbugs.html")
             }
         }
