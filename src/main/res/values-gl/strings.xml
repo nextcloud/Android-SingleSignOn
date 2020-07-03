@@ -7,7 +7,7 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Para poder utilizar o «Inicio de sesión único» (Single-Sign-On) do Nextcloud neste dispositivo, ten que concederlle permiso para acceder as súas contas.
 </string>
 
-    <string name="current_account_not_found_exception_title">Aviso</string>
+    <string name="current_account_not_found_exception_title">Advertencia</string>
     <string name="current_account_not_found_exception_message">Non se atopou a conta seleccionada. Algo foi mal...</string>
 
     <string name="token_mismatch_title">Erro</string>
