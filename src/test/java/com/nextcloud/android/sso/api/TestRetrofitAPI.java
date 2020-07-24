@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +33,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -57,7 +59,8 @@ public class TestRetrofitAPI {
 
     @Before
     public void setUp() {
-        when(nextcloudApiMock.getGson()).thenReturn(new GsonBuilder().create());
+        lenient().when(nextcloudApiMock.getGson()).thenReturn(new GsonBuilder().create());
+        lenient().when(nextcloudApiMock.performRequestObservableV2(any(), any())).thenReturn(Observable.empty());
         mApi = new NextcloudRetrofitApiBuilder(nextcloudApiMock, mApiEndpoint).create(API.class);
     }
 
@@ -107,7 +110,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<List<String>>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -132,7 +135,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<Void>(){}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -152,7 +155,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<Void>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -192,7 +195,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<List<String>>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -252,7 +255,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<Void>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -342,7 +345,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<Void>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -369,7 +372,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<Void>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -394,7 +397,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<ResponseBody>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -420,7 +423,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<ResponseBody>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -447,7 +450,7 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<ResponseBody>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequest(eq(type), eq(request));
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
             fail(e.getMessage());
         }
