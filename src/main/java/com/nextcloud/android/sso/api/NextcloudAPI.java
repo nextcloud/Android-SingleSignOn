@@ -33,6 +33,7 @@ import java.io.Reader;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 
 import io.reactivex.Observable;
@@ -44,6 +45,18 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public class NextcloudAPI {
 
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
+
+    private static final Void NOTHING = getVoidInstance();
+
+    private static Void getVoidInstance() {
+        Constructor<Void> constructor = (Constructor<Void>) Void.class.getDeclaredConstructors()[0];
+        constructor.setAccessible(true);
+        try {
+            return constructor.newInstance();
+        } catch (Exception e) {
+            throw new IllegalStateException("Should never happen, but did: unable to instantiate Void");
+        }
+    }
 
     private NetworkRequest networkRequest;
     private Gson gson;
@@ -125,6 +138,8 @@ public class NextcloudAPI {
                     Log.d(TAG, result.toString());
                 }
                 */
+            } else {
+                result = (T) NOTHING;
             }
         }
         return result;
