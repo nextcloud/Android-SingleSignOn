@@ -46,18 +46,6 @@ public class NextcloudAPI {
 
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
 
-    private static final Void NOTHING = getVoidInstance();
-
-    private static Void getVoidInstance() {
-        Constructor<Void> constructor = (Constructor<Void>) Void.class.getDeclaredConstructors()[0];
-        constructor.setAccessible(true);
-        try {
-            return constructor.newInstance();
-        } catch (Exception e) {
-            throw new IllegalStateException("Should never happen, but did: unable to instantiate Void");
-        }
-    }
-
     private NetworkRequest networkRequest;
     private Gson gson;
 
@@ -127,22 +115,13 @@ public class NextcloudAPI {
         return convertStreamToTargetEntity(response.getBody(), type);
     }
 
-    private <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
-        T result = null;
-        try (InputStream os = inputStream;
-             Reader targetReader = new InputStreamReader(os)) {
+    private <T> T convertStreamToTargetEntity(InputStream responseStream, Type targetEntity) throws IOException {
+        try (Reader targetReader = new InputStreamReader(responseStream)) {
             if (targetEntity != Void.class) {
-                result = gson.fromJson(targetReader, targetEntity);
-                /*
-                if (result != null) {
-                    Log.d(TAG, result.toString());
-                }
-                */
-            } else {
-                result = (T) NOTHING;
+                return gson.fromJson(targetReader, targetEntity);
             }
         }
-        return result;
+        return null;
     }
 
 

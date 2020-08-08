@@ -65,6 +65,16 @@ public class TestRetrofitAPI {
     }
 
     @Test
+    public void callWithNoReturnType() throws Exception {
+        mApi.callWithNoReturnType();
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "callWithNoReturnType")
+                .build();
+        verify(nextcloudApiMock).performRequestV2(eq(retrofit2.Call.class), eq(request));
+    }
+
+    @Test
     public void getRequest() {
         mApi.getRequest();
         NextcloudRequest request = new NextcloudRequest.Builder()
@@ -72,6 +82,26 @@ public class TestRetrofitAPI {
                 .setUrl(mApiEndpoint + "version")
                 .build();
         verify(nextcloudApiMock).performRequestObservableV2(eq(String.class), eq(request));
+    }
+
+    @Test
+    public void getWithNoReturnType() {
+        mApi.getWithNoReturnType();
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "getWithNoReturnType")
+                .build();
+        verify(nextcloudApiMock).performRequestObservableV2(eq(Void.class), eq(request));
+    }
+
+    @Test
+    public void getWithVoidReturnType() {
+        mApi.getWithVoidReturnType();
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "getWithVoidReturnType")
+                .build();
+        verify(nextcloudApiMock).performRequestObservableV2(eq(Void.class), eq(request));
     }
 
     @Test

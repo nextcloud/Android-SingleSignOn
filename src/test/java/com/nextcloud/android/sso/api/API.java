@@ -28,6 +28,15 @@ import retrofit2.http.Streaming;
 
 
 public interface API {
+    @GET("callWithNoReturnType")
+    Call callWithNoReturnType();
+
+    @GET("getWithNoReturnType")
+    Observable getWithNoReturnType();
+
+    @GET("getWithVoidReturnType")
+    Observable<Void> getWithVoidReturnType();
+
     @GET("version")
     Observable<String> getRequest();
 
