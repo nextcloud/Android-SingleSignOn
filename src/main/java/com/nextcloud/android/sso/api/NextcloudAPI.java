@@ -165,7 +165,7 @@ public class NextcloudAPI {
      * @throws Exception or SSOException
      */
     public Response performNetworkRequestV2(NextcloudRequest request) throws Exception {
-        return networkRequest.performNetworkRequestV2(request, null);
+        return networkRequest.performNetworkRequestV2(request, request.getBodyAsStream());
     }
 
     protected Gson getGson() {
