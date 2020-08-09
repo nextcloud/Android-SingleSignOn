@@ -33,7 +33,6 @@ import java.io.Reader;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 
 import io.reactivex.Observable;
@@ -119,9 +118,12 @@ public class NextcloudAPI {
         try (Reader targetReader = new InputStreamReader(responseStream)) {
             if (targetEntity != Void.class) {
                 return gson.fromJson(targetReader, targetEntity);
+            } else {
+                // If the developer doesn't tell us what return type he wants.. there is nothing
+                // we can do.. so we'll just return an empty object
+                return (T) new Object();
             }
         }
-        return null;
     }
 
 

@@ -188,14 +188,13 @@ public class NextcloudRetrofitServiceMethod<T> {
                 }
                 //fallback
                 return (T) nextcloudAPI.performRequestObservableV2(typeArgument, request).map(r -> r.getResponse());
-
             } else if(ownerType == Call.class) {
                 Type typeArgument = type.getActualTypeArguments()[0];
                 return (T) Retrofit2Helper.WrapInCall(nextcloudAPI, request, typeArgument);
             }
         } else if(this.returnType == Observable.class) {
             // Observables without any type information (see above for Observables with type info)
-            return (T) nextcloudAPI.performRequestObservableV2(Void.class, request); //.map(r -> r.getResponse());
+            return (T) nextcloudAPI.performRequestObservableV2(Void.class, request).map(r -> r.getResponse());
         } else if (this.returnType == Completable.class) {
             return (T) ReactivexHelper.wrapInCompletable(nextcloudAPI, request);
         }

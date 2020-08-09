@@ -34,6 +34,9 @@ public interface API {
     @GET("getWithNoReturnType")
     Observable getWithNoReturnType();
 
+    @GET("getListWithNoType")
+    Observable<List> getListWithNoType();
+
     @GET("getWithVoidReturnType")
     Observable<Void> getWithVoidReturnType();
 

@@ -36,7 +36,6 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class TestRetrofitAPI {
 
@@ -82,6 +81,16 @@ public class TestRetrofitAPI {
                 .setUrl(mApiEndpoint + "version")
                 .build();
         verify(nextcloudApiMock).performRequestObservableV2(eq(String.class), eq(request));
+    }
+
+    @Test
+    public void getListWithNoType() {
+        mApi.getListWithNoType();
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "getListWithNoType")
+                .build();
+        verify(nextcloudApiMock).performRequestObservableV2(eq(List.class), eq(request));
     }
 
     @Test
