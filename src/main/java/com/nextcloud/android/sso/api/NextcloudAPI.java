@@ -133,11 +133,14 @@ public class NextcloudAPI {
              Reader targetReader = new InputStreamReader(os)) {
             if (targetEntity != Void.class) {
                 result = gson.fromJson(targetReader, targetEntity);
-                /*
-                if (result != null) {
-                    Log.d(TAG, result.toString());
+                if (result == null) {
+                    if (targetEntity == Object.class) {
+                        return (T) NOTHING;
+                    } else {
+                        throw new IllegalStateException("Could not instantiate \"" +
+                                targetEntity.toString() + "\", because response was null.");
+                    }
                 }
-                */
             } else {
                 result = (T) NOTHING;
             }
