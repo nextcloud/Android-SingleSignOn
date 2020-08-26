@@ -19,20 +19,20 @@
     <string name="nextcloud_files_app_account_not_found_message">Kont kavet ebet er meziant restroù nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Fazi</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Ret eo deoc\'h aotreañ ar goulenn aotre evit implij ar gewestur enskrivañ e unan.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Ret eo deoc\'h aotreañ ar goulenn aotre evit implij ar perzh enskrivañ e unan.</string>
 
     <string name="nextcloud_http_request_failed_title">Fazi</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">C\'hwitet ar goulenn HTTP gant ar c\'hod-stad HTTP : %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Fazi</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ho meziant restroù nextcloud na zoug ket ar gewestru enskrivañ e unan. Adnevesiit anezhi : %1$s</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ho meziant restroù nextcloud na zoug ket ar perzh enskrivañ e unan. Adnevesiit anezhi : %1$s</string>
 
 
     <string name="nextcloud_files_api_not_responsing_title">Fazi</string>
     <string name="nextcloud_files_api_not_responsing_message">API ar meziant restroù nextcloud na respont ket. Kemennit ar gudenn.</string>
 
     <string name="select_account_unknown_error_toast">Ur dra fall z temennat... Klaskit en dro</string>
-    <string name="sso_canceled">Enbrroañ SSO arested</string>
-    <string name="sso_canceled_message">Enbroañ SSO a zo bet arested gant an implijer</string>
+    <string name="sso_canceled">Emporzhiañ SSO arested</string>
+    <string name="sso_canceled_message">Emporzhiañ SSO a zo bet arested gant an implijer</string>
 
 </resources>
