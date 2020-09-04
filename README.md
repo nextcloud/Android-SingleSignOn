@@ -1,12 +1,12 @@
 # Nextcloud Single Sign On
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8aa66fac0af94ef2836d386fad69f199)](https://www.codacy.com/app/Nextcloud/Android-SingleSignOn?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nextcloud/Android-SingleSignOn&amp;utm_campaign=Badge_Grade)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8aa66fac0af94ef2836d386fad69f199)](https://www.codacy.com/app/Nextcloud/Android-SingleSignOn?utm_source=github.com&utm_medium=referral&utm_content=nextcloud/Android-SingleSignOn&utm_campaign=Badge_Grade)
 
 [![](https://jitpack.io/v/nextcloud/Android-SingleSignOn.svg)](https://jitpack.io/#nextcloud/Android-SingleSignOn)
 
-
 This library allows you to use accounts as well as the network stack provided by the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client). Therefore you as a developer don't need to worry about asking the user for credentials as well as you don't need to worry about self-signed ssl certificates, two factor authentication, save credential storage etc.
 
-*Please note that the user needs to install the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client) in order to use those features.* While this might seem like a "no-go" for some developers, we still think that using this library is worth consideration as it makes the account handling much faster and safer.
+_Please note that the user needs to install the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client) in order to use those features._ While this might seem like a "no-go" for some developers, we still think that using this library is worth consideration as it makes the account handling much faster and safer.
 
 ## How to use this library
 
@@ -44,6 +44,7 @@ private void openAccountChooser() {
     }
 }
 ```
+
 From a Fragment
 
 ```java
@@ -55,6 +56,7 @@ private void openAccountChooser() {
     }
 }
 ```
+
 ### 3) To handle the result of the Account Chooser, include the following:
 
 From an Activity
@@ -93,7 +95,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException e) {
                 UiExceptionManager.showDialogForException(l_context, e);
             }
-            
+
             NextcloudAPI nextcloudAPI = new NextcloudAPI(l_context, ssoAccount, new GsonBuilder().create(), callback);
 
             // TODO ... (see code in section 4 and below)
@@ -110,35 +112,36 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
     AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogFragment.this, new AccountImporter.IAccountAccessGranted() {
-    
+
         NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
             @Override
-            public void onConnected() { 
+            public void onConnected() {
                 // ignore this one… see 5)
             }
-    
+
             @Override
-            public void onError(Exception ex) { 
+            public void onError(Exception ex) {
                 // TODO handle errors
             }
         };
-        
+
         @Override
         public void accountAccessGranted(SingleSignOnAccount account) {
             // As this library supports multiple accounts we created some helper methods if you only want to use one.
-            // The following line stores the selected account as the "default" account which can be queried by using 
+            // The following line stores the selected account as the "default" account which can be queried by using
             // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
             SingleAccountHelper.setCurrentAccount(getActivity(), account.name);
-            
+
             // Get the "default" account
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
-    
+
             // TODO ... (see code in section 4 and below)
         }
     });
 }
 ```
+
 From both an Activity and Fragment
 
 ```java
@@ -203,8 +206,8 @@ public interface API {
 }
 ```
 
-You might instantiate your retrofit `API` by using something like this: 
-   
+You might instantiate your retrofit `API` by using something like this:
+
 ```java
 public class ApiProvider {
 
@@ -230,7 +233,7 @@ public class ApiProvider {
    }
 }
 ```
-    
+
 Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
 
 Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
@@ -270,7 +273,7 @@ public class MyActivity extends AppCompatActivity {
         // disconnect API from Context (prevent Memory Leak)
         mNextcloudAPI.stop();
     }
-    
+
     private NextcloudAPI.ApiConnectedListener apiCallback = new NextcloudAPI.ApiConnectedListener() {
         @Override
         public void onConnected() {
@@ -304,8 +307,7 @@ public class MyActivity extends AppCompatActivity {
 }
 ```
 
-
-6) WebDAV
+6. WebDAV
 
 The following WebDAV Methods are supported: `PROPFIND` / `MKCOL`
 
@@ -331,9 +333,17 @@ In case that you require some sso features that were introduced in a specific ne
 int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
 
 if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
-   // Version requirement is satisfied! 
+   // Version requirement is satisfied!
 }
-``` 
+```
+
+## Security
+
+Once the user clicks on "Allow" in the login dialog, the Nextcloud Files App will generate a token for your app. Only your app is allowed to use that token. Even if another app will get a hold of that token, it won't be able to make any requests to the nextcloud server as the nextcloud files app matches that token against the namespace of your app.
+
+![](doc/NextcloudSSO.png)
+
+![](doc/NextcloudSSOHacker.png)
 
 ## Nextcloud Conference 2018 Talk (5min)
 
@@ -343,22 +353,18 @@ if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION
 
 ![](https://user-images.githubusercontent.com/4489723/41563281-75cbc196-734f-11e8-8b22-7b906363e34a.gif)
 
-
 ## Examples
 
 - [Nextcloud News app](https://github.com/nextcloud/news-android)
-    - [API](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/reader/nextcloud/API.java)
-    - [API-Provider (Dagger)](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/di/ApiProvider.java#L97)
-    - [Login Activity](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogActivity.java)
+  - [API](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/reader/nextcloud/API.java)
+  - [API-Provider (Dagger)](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/di/ApiProvider.java#L97)
+  - [Login Activity](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogActivity.java)
 - [Nextcloud Notes app](https://github.com/stefan-niedermann/nextcloud-notes)
-    - [API](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/persistence/NotesClient.java)
-    - [Login](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/util/SSOUtil.java#L31)
+  - [API](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/persistence/NotesClient.java)
+  - [Login](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/util/SSOUtil.java#L31)
 - [Nextcloud Deck app](https://github.com/stefan-niedermann/nextcloud-deck/)
-    - [API](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/api/DeckAPI.java)
-    - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/ImportAccountActivity.java#L76)
-
-
-
+  - [API](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/api/DeckAPI.java)
+  - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/ImportAccountActivity.java#L76)
 
 ## Flow Diagram
 
@@ -367,4 +373,5 @@ Note that the "Make network request" section in the diagram only shows the workf
 ![Flow Diagram](doc/NextcloudSingleSignOn.png)
 
 # Translations
+
 We manage translations via [Transifex](https://www.transifex.com/nextcloud/nextcloud/android-singlesignon/). So just request joining the translation team for Android on the site and start translating. All translations will then be automatically pushed to this repository, there is no need for any pull request for translations.
