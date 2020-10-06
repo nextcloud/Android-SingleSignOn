@@ -307,7 +307,7 @@ public class MyActivity extends AppCompatActivity {
 }
 ```
 
-6. WebDAV
+#### 6. WebDAV
 
 The following WebDAV Methods are supported: `PROPFIND` / `MKCOL`
 
@@ -365,6 +365,12 @@ Once the user clicks on "Allow" in the login dialog, the Nextcloud Files App wil
 - [Nextcloud Deck app](https://github.com/stefan-niedermann/nextcloud-deck/)
   - [API](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/api/DeckAPI.java)
   - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/ImportAccountActivity.java#L76)
+
+## Troubleshooting
+
+If you are experiencing any issues, the following tips might workaround:
+- Disable battery optimizations of the nextcloud files app, especially [in case of a `NextcloudApiNotRespondingException`](https://github.com/nextcloud/Android-SingleSignOn/issues/162)
+- [Permit auto start](https://github.com/stefan-niedermann/nextcloud-deck/issues/660#issuecomment-682002392)
 
 ## Flow Diagram
 
