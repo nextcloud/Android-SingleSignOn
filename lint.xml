@@ -2,5 +2,6 @@
 <lint>
     <issue id="ObsoleteLintCustomCheck" severity="warning">
         <ignore path="**/fragment-1.2.5/**/lint.jar" />
+        <ignore path="**/appcompat-1.2.**/**/lint.jar" />
     </issue>
 </lint>
