@@ -65,6 +65,7 @@ public class AccountImporter {
 
     private static final String TAG = AccountImporter.class.getCanonicalName();
     private static final String PREF_ACCOUNT_STRING = "PREF_ACCOUNT_STRING";
+    private static final String AUTH_TOKEN_SSO = "SSO";
 
     public static final int CHOOSE_ACCOUNT_SSO = 4242;
     public static final int REQUEST_AUTH_TOKEN_SSO = 4243;
@@ -85,7 +86,7 @@ public class AccountImporter {
         
         if (appInstalledOrNot(activity)) {
             Intent intent = AccountManager.newChooseAccountIntent(null, null, ACCOUNT_TYPES,
-                                                                  true, null, null, null, null);
+                    true, null, AUTH_TOKEN_SSO, null, null);
             activity.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
         } else {
             throw new NextcloudFilesAppNotInstalledException();
@@ -98,7 +99,7 @@ public class AccountImporter {
         
         if (appInstalledOrNot(fragment.getContext())) {
             Intent intent = AccountManager.newChooseAccountIntent(null, null, ACCOUNT_TYPES,
-                                                                  true, null, null, null, null);
+                    true, null, AUTH_TOKEN_SSO, null, null);
             fragment.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
         } else {
             throw new NextcloudFilesAppNotInstalledException();
