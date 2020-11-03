@@ -349,6 +349,11 @@ Once the user clicks on "Allow" in the login dialog, the Nextcloud Files App wil
 
 [![Nextcloud Single Sign On for Android David Luhmer](https://img.youtube.com/vi/gnLOwmrJLUw/0.jpg)](https://www.youtube.com/watch?v=gnLOwmrJLUw)
 
+## Nextcloud Conference 2020 Talk (5min)
+
+[![Nextcloud Single Sign On for Android David Luhmer](https://i.ytimg.com/vi/oQJWAv2wVuc/hqdefault.jpg)](https://www.youtube.com/watch?v=oQJWAv2wVuc)
+
+
 ## Video
 
 ![](https://user-images.githubusercontent.com/4489723/41563281-75cbc196-734f-11e8-8b22-7b906363e34a.gif)
