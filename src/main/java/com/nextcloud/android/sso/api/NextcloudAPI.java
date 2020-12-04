@@ -94,7 +94,7 @@ public class NextcloudAPI {
     }
 
     public <T> Observable<T> performRequestObservable(final Type type, final NextcloudRequest request) {
-        return Observable.fromPublisher( s-> {
+        return Observable.fromPublisher( s -> {
             try {
                 s.onNext(performRequest(type, request));
                 s.onComplete();
@@ -105,7 +105,7 @@ public class NextcloudAPI {
     }
 
     public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
-        return Observable.fromPublisher( s-> {
+        return Observable.fromPublisher( s -> {
             try {
                 Response response = performNetworkRequestV2(request);
                 s.onNext(ParsedResponse.of(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
