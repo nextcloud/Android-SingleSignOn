@@ -9,12 +9,14 @@ import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import java.lang.reflect.Type;
 
 import okhttp3.MediaType;
+import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 import okio.BufferedSource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 /**
  *  Nextcloud SingleSignOn
@@ -53,7 +55,16 @@ public final class Retrofit2Helper {
                     T body = nextcloudAPI.performRequestV2(resType, nextcloudRequest);
                     return Response.success(body);
                 } catch (NextcloudHttpRequestFailedException e) {
-                    return Response.error(e.getStatusCode(), ResponseBody.create(null, e.getCause().getMessage()));
+                    ResponseBody body = ResponseBody.create(null, e.getCause().getMessage());
+                    return Response.error(
+                            body,
+                            new okhttp3.Response.Builder()
+                                    .body(body)
+                                    .code(e.getStatusCode())
+                                    .message(e.getCause().getMessage())
+                                    .protocol(Protocol.HTTP_1_1)
+                                    .request(new Request.Builder().url("http://localhost/" + nextcloudRequest.getUrl()).build())
+                                    .build());
                 } catch (Exception e) {
                     return Response.error(520, ResponseBody.create(null, e.toString()));
                 }
