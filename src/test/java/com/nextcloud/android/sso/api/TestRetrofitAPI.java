@@ -215,7 +215,7 @@ public class TestRetrofitAPI {
         //);
 
 
-        mApi.getStreamingUpdatedItems(1000, 1000, 1000);
+        mApi.getStreamingUpdatedItems(1000, 1000, 1000).blockingSubscribe();
 
         HashMap<String, String> expectedParams = new HashMap<>();
         expectedParams.put("lastModified", "1000");
