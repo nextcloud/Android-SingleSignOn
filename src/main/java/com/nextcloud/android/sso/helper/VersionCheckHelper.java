@@ -49,6 +49,14 @@ public final class VersionCheckHelper {
         return false;
     }
 
+    /**
+     * @deprecated use {@link #getNextcloudFilesVersionCode(Context, boolean)}
+     */
+    @Deprecated
+    public static int getNextcloudFilesVersionCode(Context context) throws PackageManager.NameNotFoundException {
+        return getNextcloudFilesVersionCode(context, true);
+    }
+
     public static int getNextcloudFilesVersionCode(Context context, boolean prod) throws PackageManager.NameNotFoundException {
         PackageInfo pInfo = context.getPackageManager().getPackageInfo(prod ? Constants.PACKAGE_NAME_PROD : Constants.PACKAGE_NAME_DEV, 0);
         int verCode = pInfo.versionCode;
