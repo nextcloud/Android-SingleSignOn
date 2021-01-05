@@ -13,6 +13,7 @@ import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 import okio.BufferedSource;
+import okio.Timeout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -102,6 +103,11 @@ public final class Retrofit2Helper {
                 throw new UnsupportedOperationException("Not implemented");
             }
 
+            @Override
+            public Timeout timeout() {
+                throw new UnsupportedOperationException("Not implemented");
+            }
+
             private Response<T> convertExceptionToResponse(int statusCode, String errorMessage) {
                 ResponseBody body = ResponseBody.create(null, errorMessage);
                 return Response.error(
@@ -165,6 +171,11 @@ public final class Retrofit2Helper {
 
             @Override
             public Request request() {
+                throw new UnsupportedOperationException("Not implemented");
+            }
+
+            @Override
+            public Timeout timeout() {
                 throw new UnsupportedOperationException("Not implemented");
             }
         };
