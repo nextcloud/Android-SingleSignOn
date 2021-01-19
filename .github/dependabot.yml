@@ -14,13 +14,4 @@ updates:
   ignore:
   - dependency-name: com.squareup.okhttp3:okhttp
     versions:
-    - ">= 3.13.a"
-    - "< 3.14"
-  - dependency-name: com.squareup.okhttp3:okhttp
-    versions:
-    - ">= 3.14.a"
-    - "< 3.15"
-  - dependency-name: com.squareup.okhttp3:okhttp
-    versions:
     - ">= 4.a"
-    - "< 5"
