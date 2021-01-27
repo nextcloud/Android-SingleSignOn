@@ -11,13 +11,10 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
-import com.nextcloud.android.sso.aidl.IThreadListener;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil;
 import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
@@ -32,6 +29,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import androidx.annotation.NonNull;
 
 import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
 
@@ -164,16 +163,23 @@ public class AidlNetworkRequest extends NetworkRequest {
     public Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
         ParcelFileDescriptor output = performAidlNetworkRequestV2(request, requestBodyInputStream);
         InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
-        ExceptionResponse response = deserializeObjectV2(os);
+        try {
+            ExceptionResponse response = deserializeObjectV2(os);
 
-        // Handle Remote Exceptions
-        if (response.getException() != null) {
-            if (response.getException().getMessage() != null) {
-                throw parseNextcloudCustomException(response.getException());
+            // Handle Remote Exceptions
+            if (response.getException() != null) {
+                if (response.getException().getMessage() != null) {
+                    throw parseNextcloudCustomException(response.getException());
+                }
+                throw response.getException();
             }
-            throw response.getException();
+            // os stream needs to stay open to be able to read response
+            return new Response(os, response.headers);
+        } catch (Exception e) {
+            // close os stream if something goes wrong and no response will be created
+            os.close();
+            throw e;
         }
-        return new Response(os, response.headers);
     }
 
     /**
@@ -198,11 +204,15 @@ public class AidlNetworkRequest extends NetworkRequest {
 
         // Handle Remote Exceptions
         if (exception != null) {
+            // close os stream if something goes wrong and no response will be created
+            os.close();
             if (exception.getMessage() != null) {
                 exception = parseNextcloudCustomException(exception);
             }
             throw exception;
         }
+
+        // os stream needs to stay open to be able to read response
         return os;
     }
 
@@ -239,23 +249,23 @@ public class AidlNetworkRequest extends NetworkRequest {
         baos.close();
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
 
-        ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
-                thread -> Log.d(TAG, "copy data from service finished"));
+        try (ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
+                thread -> Log.d(TAG, "copy data from service finished"))) {
 
-        ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
-        if(requestBodyInputStream != null) {
-            requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
-                    thread -> Log.d(TAG, "copy data from service finished"));
+            ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
+            if (requestBodyInputStream != null) {
+                requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
+                        thread -> Log.d(TAG, "copy data from service finished"));
+            }
+
+            ParcelFileDescriptor output;
+            if (requestBodyParcelFileDescriptor != null) {
+                output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
+            } else {
+                output = mService.performNextcloudRequest(input);
+            }
+            return output;
         }
-
-        ParcelFileDescriptor output;
-        if(requestBodyParcelFileDescriptor != null) {
-            output = mService.performNextcloudRequestAndBodyStream(input, requestBodyParcelFileDescriptor);
-        } else {
-            output = mService.performNextcloudRequest(input);
-        }
-
-        return output;
     }
 
     /**
@@ -288,33 +298,23 @@ public class AidlNetworkRequest extends NetworkRequest {
         baos.close();
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
 
-        ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
-                new IThreadListener() {
-                    @Override
-                    public void onThreadFinished(Thread thread) {
-                        Log.d(TAG, "copy data from service finished");
-                    }
-                });
+        try (ParcelFileDescriptor input = ParcelFileDescriptorUtil.pipeFrom(is,
+                thread -> Log.d(TAG, "copy data from service finished"))) {
 
-        ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
-        if (requestBodyInputStream != null) {
-            requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
-                    new IThreadListener() {
-                        @Override
-                        public void onThreadFinished(Thread thread) {
-                            Log.d(TAG, "copy data from service finished");
-                        }
-                    });
+            ParcelFileDescriptor requestBodyParcelFileDescriptor = null;
+            if (requestBodyInputStream != null) {
+                requestBodyParcelFileDescriptor = ParcelFileDescriptorUtil.pipeFrom(requestBodyInputStream,
+                        thread -> Log.d(TAG, "copy data from service finished"));
+            }
+
+            ParcelFileDescriptor output;
+            if (requestBodyParcelFileDescriptor != null) {
+                output = mService.performNextcloudRequestAndBodyStreamV2(input, requestBodyParcelFileDescriptor);
+            } else {
+                output = mService.performNextcloudRequestV2(input);
+            }
+            return output;
         }
-
-        ParcelFileDescriptor output;
-        if (requestBodyParcelFileDescriptor != null) {
-            output = mService.performNextcloudRequestAndBodyStreamV2(input, requestBodyParcelFileDescriptor);
-        } else {
-            output = mService.performNextcloudRequestV2(input);
-        }
-
-        return output;
     }
 
     private static <T> T deserializeObject(InputStream is) throws IOException, ClassNotFoundException {
@@ -349,7 +349,7 @@ public class AidlNetworkRequest extends NetworkRequest {
             this.name = name;
             this.value = value;
         }
-        
+
         public String getName() {
             return name;
         }
