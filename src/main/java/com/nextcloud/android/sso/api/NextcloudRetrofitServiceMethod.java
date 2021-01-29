@@ -18,6 +18,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -123,7 +124,14 @@ public class NextcloudRetrofitServiceMethod<T> {
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
             if(annotation instanceof Query) {
-                parameters.put(((Query)annotation).value(), String.valueOf(args[i]));
+                String key = ((Query)annotation).value();
+                if (args[i] instanceof Collection) {
+                    for (Object arg : (Collection)args[i]) {
+                        parameters.put(key, String.valueOf(arg));
+                    }
+                } else {
+                    parameters.put(key, String.valueOf(args[i]));
+                }
             } else if(annotation instanceof Body) {
                 rBuilder.setRequestBody(nextcloudAPI.getGson().toJson(args[i]));
             } else if(annotation instanceof Path) {
