@@ -1,5 +1,7 @@
 package com.nextcloud.android.sso.api;
 
+import androidx.core.util.Pair;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
@@ -36,7 +38,6 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class TestRetrofitAPI {
 
@@ -438,14 +439,14 @@ public class TestRetrofitAPI {
             fail(e.getMessage());
         }
 
-        Map<String, String> map = new HashMap<>();
-        map.put("format", "json");
-        map.put("test", "1");
+        List<Pair<String, String>> params = new ArrayList<>();
+        params.add(new Pair<>("format", "json"));
+        params.add(new Pair<>("test", "1"));
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")
                 .setUrl(mApiEndpoint + "cloud/capabilities")
-                .setParameter(map)
+                .setParameter(params)
                 .build();
 
         Type type = new TypeToken<ResponseBody>() {}.getType();

@@ -19,9 +19,9 @@
 
 package com.nextcloud.android.sso.aidl;
 
-import android.util.Pair;
 
 import androidx.core.util.ObjectsCompat;
+import androidx.core.util.Pair;
 
 import java.io.InputStream;
 import java.io.Serializable;
