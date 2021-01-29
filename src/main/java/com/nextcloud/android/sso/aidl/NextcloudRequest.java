@@ -19,11 +19,17 @@
 
 package com.nextcloud.android.sso.aidl;
 
+import android.util.Pair;
+
 import androidx.core.util.ObjectsCompat;
 
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +42,7 @@ public class NextcloudRequest implements Serializable {
 
     private String method;
     private Map<String, List<String>> header = new HashMap<>();
-    private Map<String, String> parameter = new HashMap<>();
+    private Collection<Pair<String, String>> parameter = new LinkedList<>();
     private String requestBody;
     private String url;
     private String token;
@@ -56,7 +62,7 @@ public class NextcloudRequest implements Serializable {
         this.accountName = ncr.accountName;
         this.followRedirects = ncr.followRedirects;
         header = new HashMap<>(ncr.header);
-        parameter = new HashMap<>(ncr.parameter);
+        parameter = new ArrayList<>(ncr.parameter);
         bodyAsStream = ncr.bodyAsStream;
 
     }
@@ -89,10 +95,86 @@ public class NextcloudRequest implements Serializable {
             return this;
         }
 
+        /**
+         * Sets the parameters for this request.
+         * All existing parameters will be wiped!
+         * @param parameter new set of parameters
+         * @return this (Builder)
+         * @deprecated since this won't allow RFC 3986 compliant parameters, please use {@link #setParameter(Collection) setParameter(Collection)} instead
+         */
+        @Deprecated
         public Builder setParameter(Map<String, String> parameter) {
+            ncr.parameter = new ArrayList<>();
+            for (Map.Entry<String, String> mapEntry : parameter.entrySet()) {
+                ncr.parameter.add(new Pair<>(mapEntry.getKey(), mapEntry.getValue()));
+            }
+            return this;
+        }
+
+        /**
+         * Sets the parameters for this request.
+         * All existing parameters will be wiped!
+         * @param parameter new set of parameters
+         * @return this (Builder)
+         */
+        public Builder setParameter(Collection<Pair<String, String>> parameter) {
             ncr.parameter = parameter;
             return this;
         }
+
+        public Builder addParameter(Collection<Pair<String, String>> parameter) {
+            for (Pair<String, String> param : parameter) {
+                nullCheck(param);
+                ncr.parameter.add(param);
+            }
+            return this;
+        }
+
+        public Builder addParameter(Pair<String, String> parameter) {
+            nullCheck(parameter);
+            ncr.parameter.add(parameter);
+            return this;
+        }
+
+        private static void nullCheck(Object o) {
+            if (o == null) {
+                throw new IllegalArgumentException("null is not allowed here");
+            }
+        }
+
+        public Builder clearParameter() {
+            ncr.parameter.clear();
+            return this;
+        }
+
+        /**
+         * Remove a parameter by pair.
+         * This method calls the remove() method of a list!
+         * @param parameter
+         * @return this (Builder)
+         */
+        public Builder removeParameter(Pair<String, String> parameter) {
+            ncr.parameter.remove(parameter);
+            return this;
+        }
+        /**
+         * Removes all parameters with the specified key.
+         * If the key doesn't exist, the parameters won't be modified.
+         * @param key key of the parameter
+         * @return this (Builder)
+         */
+        public Builder removeParameter(String key) {
+            if (key == null) {
+                throw new IllegalArgumentException("null keys shouldn't be added as parameters at all");
+            }
+            for (Pair<String, String> pair : ncr.parameter) {
+                if (pair != null && key.equals(pair.first)) {
+                     ncr.parameter.remove(pair);
+                }
+            }
+            return this;
+        }
+
 
         public Builder setRequestBody(String requestBody) {
             ncr.requestBody = requestBody;
@@ -139,8 +221,24 @@ public class NextcloudRequest implements Serializable {
         return this.header;
     }
 
-    public Map<String, String> getParameter() {
+    public Collection<Pair<String, String>> getParameterV2() {
         return this.parameter;
+    }
+
+    /**
+     * Returns the set or parameters for this request.
+     * @return set of parameters
+     * @deprecated since this won't allow RFC 3986 compliant parameters, please use {@link #getParameterV2() getParameterV2()} instead
+     */
+    @Deprecated
+    public Map<String, String> getParameter() {
+        Map<String, String> params = new LinkedHashMap<>();
+        for (Pair<String, String> pair : this.parameter) {
+            if (pair != null) {
+                params.put(pair.first, pair.second);
+            }
+        }
+        return params;
     }
 
     public String getRequestBody() {
