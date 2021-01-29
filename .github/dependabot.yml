@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: saturday
+    time: "03:00"
+    timezone: Europe/Paris
+  open-pull-requests-limit: 10
+  labels:
+  - 2. to review
+  - dependencies
+  ignore:
+  - dependency-name: com.squareup.okhttp3:okhttp
+    versions:
+    - ">= 4.a"

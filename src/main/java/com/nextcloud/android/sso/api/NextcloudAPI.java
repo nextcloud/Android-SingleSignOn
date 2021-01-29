@@ -33,6 +33,7 @@ import java.io.Reader;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 
 import io.reactivex.Observable;
@@ -44,6 +45,18 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public class NextcloudAPI {
 
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
+
+    private static final Void NOTHING = getVoidInstance();
+
+    private static Void getVoidInstance() {
+        Constructor<Void> constructor = (Constructor<Void>) Void.class.getDeclaredConstructors()[0];
+        constructor.setAccessible(true);
+        try {
+            return constructor.newInstance();
+        } catch (Exception e) {
+            throw new IllegalStateException("Should never happen, but did: unable to instantiate Void");
+        }
+    }
 
     private NetworkRequest networkRequest;
     private Gson gson;
@@ -81,7 +94,7 @@ public class NextcloudAPI {
     }
 
     public <T> Observable<T> performRequestObservable(final Type type, final NextcloudRequest request) {
-        return Observable.fromPublisher( s-> {
+        return Observable.fromPublisher( s -> {
             try {
                 s.onNext(performRequest(type, request));
                 s.onComplete();
@@ -92,7 +105,7 @@ public class NextcloudAPI {
     }
 
     public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
-        return Observable.fromPublisher( s-> {
+        return Observable.fromPublisher( s -> {
             try {
                 Response response = performNetworkRequestV2(request);
                 s.onNext(ParsedResponse.of(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
@@ -120,11 +133,16 @@ public class NextcloudAPI {
              Reader targetReader = new InputStreamReader(os)) {
             if (targetEntity != Void.class) {
                 result = gson.fromJson(targetReader, targetEntity);
-                /*
-                if (result != null) {
-                    Log.d(TAG, result.toString());
+                if (result == null) {
+                    if (targetEntity == Object.class) {
+                        return (T) NOTHING;
+                    } else {
+                        throw new IllegalStateException("Could not instantiate \"" +
+                                targetEntity.toString() + "\", because response was null.");
+                    }
                 }
-                */
+            } else {
+                result = (T) NOTHING;
             }
         }
         return result;
@@ -150,7 +168,7 @@ public class NextcloudAPI {
      * @throws Exception or SSOException
      */
     public Response performNetworkRequestV2(NextcloudRequest request) throws Exception {
-        return networkRequest.performNetworkRequestV2(request, null);
+        return networkRequest.performNetworkRequestV2(request, request.getBodyAsStream());
     }
 
     protected Gson getGson() {

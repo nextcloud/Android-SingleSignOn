@@ -1,17 +1,17 @@
 <resources>
 
     <string name="no_current_account_selected_exception_title">Aviso</string>
-    <string name="no_current_account_selected_exception_message">Non hai contas seleccionadas</string>
+    <string name="no_current_account_selected_exception_message">Non hai ningunha conta configurada</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Erro</string>
     <string name="android_get_accounts_permission_not_granted_exception_message">Para poder utilizar o «Inicio de sesión único» (Single-Sign-On) do Nextcloud neste dispositivo, ten que concederlle permiso para acceder as súas contas.
 </string>
 
-    <string name="current_account_not_found_exception_title">Aviso</string>
+    <string name="current_account_not_found_exception_title">Advertencia</string>
     <string name="current_account_not_found_exception_message">Non se atopou a conta seleccionada. Algo foi mal...</string>
 
     <string name="token_mismatch_title">Erro</string>
-    <string name="token_mismatch_message">A testemuña de autenticación fornecida non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
+    <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erro</string>
     <string name="nextcloud_files_app_not_installed_message" formatted="true">A aplicación Ficheiros do Nextcloud non está instalada. Instálea: %1$s</string>

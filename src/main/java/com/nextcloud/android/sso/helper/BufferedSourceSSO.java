@@ -45,12 +45,10 @@ public class BufferedSourceSSO implements BufferedSource {
         throw new UnsupportedOperationException("Not implemented");
     }
 
-    /*
     @Override
     public Buffer getBuffer() {
         return buffer();
     }
-    */
 
     @Override
     public boolean exhausted() throws IOException {
@@ -253,12 +251,10 @@ public class BufferedSourceSSO implements BufferedSource {
         throw new UnsupportedOperationException("Not implemented");
     }
 
-    /*
     @Override
     public BufferedSource peek() {
         throw new UnsupportedOperationException("Not implemented");
     }
-    */
 
     @Override
     public InputStream inputStream() {

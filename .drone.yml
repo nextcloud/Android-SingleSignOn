@@ -1,4 +1,46 @@
 kind: pipeline
+type: docker
+name: tests
+
+steps:
+  - name: gplay
+    image: nextcloudci/android:android-49
+    environment:
+      LOG_USERNAME:
+        from_secret: LOG_USERNAME
+      LOG_PASSWORD:
+        from_secret: LOG_PASSWORD
+      GIT_USERNAME:
+        from_secret: GIT_USERNAME
+      GIT_TOKEN:
+        from_secret: GIT_TOKEN
+      ORG_GRADLE_PROJECT_coverage: ''
+    commands:
+      - ./gradlew assemble
+      - ./gradlew test
+  - name: notify
+    image: drillster/drone-email
+    settings:
+      port: 587
+      from: nextcloud-drone@kaminsky.me
+      recipients_only: true
+      username:
+        from_secret: EMAIL_USERNAME
+      password:
+        from_secret: EMAIL_PASSWORD
+      recipients:
+        from_secret: EMAIL_RECIPIENTS
+      host:
+        from_secret: EMAIL_HOST
+    when:
+      event:
+        - push
+      status:
+        - failure
+      branch:
+        - master
+---
+kind: pipeline
 name: analysis
 
 steps:
@@ -44,5 +86,4 @@ trigger:
   branch:
     - master
   event:
-    - push
     - pull_request
