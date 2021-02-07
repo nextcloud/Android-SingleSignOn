@@ -28,7 +28,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +41,7 @@ public class NextcloudRequest implements Serializable {
 
     private String method;
     private Map<String, List<String>> header = new HashMap<>();
-    private Collection<Pair<String, String>> parameter = new LinkedList<>();
+    private Map<String, String> parameter = new HashMap<>();
     private String requestBody;
     private String url;
     private String token;
@@ -50,6 +49,7 @@ public class NextcloudRequest implements Serializable {
     private String accountName;
     private transient InputStream bodyAsStream = null;
     private boolean followRedirects;
+    private Collection<Pair<String, String>> parameterV2 = new LinkedList<>();
 
     private NextcloudRequest() { }
 
@@ -62,7 +62,8 @@ public class NextcloudRequest implements Serializable {
         this.accountName = ncr.accountName;
         this.followRedirects = ncr.followRedirects;
         header = new HashMap<>(ncr.header);
-        parameter = new ArrayList<>(ncr.parameter);
+        parameter = new HashMap<>(ncr.parameter);
+        parameterV2 = new ArrayList<>(ncr.parameterV2);
         bodyAsStream = ncr.bodyAsStream;
 
     }
@@ -104,9 +105,10 @@ public class NextcloudRequest implements Serializable {
          */
         @Deprecated
         public Builder setParameter(Map<String, String> parameter) {
-            ncr.parameter = new ArrayList<>();
+            ncr.parameter = parameter;
+            ncr.parameterV2 = new ArrayList<>();
             for (Map.Entry<String, String> mapEntry : parameter.entrySet()) {
-                ncr.parameter.add(new Pair<>(mapEntry.getKey(), mapEntry.getValue()));
+                ncr.parameterV2.add(new Pair<>(mapEntry.getKey(), mapEntry.getValue()));
             }
             return this;
         }
@@ -118,21 +120,27 @@ public class NextcloudRequest implements Serializable {
          * @return this (Builder)
          */
         public Builder setParameter(Collection<Pair<String, String>> parameter) {
-            ncr.parameter = parameter;
+            ncr.parameterV2 = parameter;
+            ncr.parameter = new HashMap<>();
+            for (Pair<String, String> pair : parameter) {
+                ncr.parameter.put(pair.first, pair.second);
+            }
             return this;
         }
 
         public Builder addParameter(Collection<Pair<String, String>> parameter) {
             for (Pair<String, String> param : parameter) {
                 nullCheck(param);
-                ncr.parameter.add(param);
+                ncr.parameterV2.add(param);
+                ncr.parameter.put(param.first, param.second);
             }
             return this;
         }
 
         public Builder addParameter(Pair<String, String> parameter) {
             nullCheck(parameter);
-            ncr.parameter.add(parameter);
+            ncr.parameter.put(parameter.first, parameter.second);
+            ncr.parameterV2.add(parameter);
             return this;
         }
 
@@ -143,6 +151,7 @@ public class NextcloudRequest implements Serializable {
         }
 
         public Builder clearParameter() {
+            ncr.parameterV2.clear();
             ncr.parameter.clear();
             return this;
         }
@@ -154,7 +163,8 @@ public class NextcloudRequest implements Serializable {
          * @return this (Builder)
          */
         public Builder removeParameter(Pair<String, String> parameter) {
-            ncr.parameter.remove(parameter);
+            ncr.parameterV2.remove(parameter);
+            ncr.parameter.remove(parameter.first);
             return this;
         }
         /**
@@ -167,11 +177,12 @@ public class NextcloudRequest implements Serializable {
             if (key == null) {
                 throw new IllegalArgumentException("null keys shouldn't be added as parameters at all");
             }
-            for (Pair<String, String> pair : ncr.parameter) {
+            for (Pair<String, String> pair : ncr.parameterV2) {
                 if (pair != null && key.equals(pair.first)) {
-                     ncr.parameter.remove(pair);
+                     ncr.parameterV2.remove(pair);
                 }
             }
+            ncr.parameter.remove(key);
             return this;
         }
 
@@ -222,7 +233,7 @@ public class NextcloudRequest implements Serializable {
     }
 
     public Collection<Pair<String, String>> getParameterV2() {
-        return this.parameter;
+        return this.parameterV2;
     }
 
     /**
@@ -232,13 +243,7 @@ public class NextcloudRequest implements Serializable {
      */
     @Deprecated
     public Map<String, String> getParameter() {
-        Map<String, String> params = new LinkedHashMap<>();
-        for (Pair<String, String> pair : this.parameter) {
-            if (pair != null) {
-                params.put(pair.first, pair.second);
-            }
-        }
-        return params;
+        return parameter;
     }
 
     public String getRequestBody() {
@@ -302,6 +307,7 @@ public class NextcloudRequest implements Serializable {
         equal &= ObjectsCompat.equals(this.header, rq.header);
         equal &= ObjectsCompat.equals(this.method, rq.method);
         equal &= ObjectsCompat.equals(this.packageName, rq.packageName);
+        equal &= ObjectsCompat.equals(this.parameterV2, rq.parameterV2);
         equal &= ObjectsCompat.equals(this.parameter, rq.parameter);
         equal &= ObjectsCompat.equals(this.requestBody, rq.requestBody);
         equal &= ObjectsCompat.equals(this.token, rq.token);
