@@ -3,6 +3,7 @@ package com.nextcloud.android.sso.api;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.util.Pair;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
@@ -20,7 +21,7 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -68,7 +69,7 @@ public class NextcloudRetrofitServiceMethod<T> {
     private @Nullable Headers headers;
     private Type returnType;
     private boolean followRedirects = false;
-    private Map<String, String> queryParameters;
+    private List<Pair<String, String>> queryParameters;
 
     private final NextcloudRequest.Builder requestBuilder;
     private boolean isMultipart = false;
@@ -110,10 +111,10 @@ public class NextcloudRetrofitServiceMethod<T> {
         NextcloudRequest.Builder rBuilder = new NextcloudRequest.Builder(requestBuilder);
 
 
-        Map<String, String> parameters = new HashMap<>();
+        List<Pair<String, String>> parameters = new LinkedList<>();
 
         // Copy all static query params into parameters array
-        parameters.putAll(this.queryParameters);
+        parameters.addAll(this.queryParameters);
 
         MultipartBody.Builder multipartBuilder = null;
         if (isMultipart) {
@@ -127,10 +128,10 @@ public class NextcloudRetrofitServiceMethod<T> {
                 String key = ((Query)annotation).value();
                 if (args[i] instanceof Collection) {
                     for (Object arg : (Collection)args[i]) {
-                        parameters.put(key, String.valueOf(arg));
+                        parameters.add(new Pair(key, String.valueOf(arg)));
                     }
                 } else {
-                    parameters.put(key, String.valueOf(args[i]));
+                    parameters.add(new Pair(key, String.valueOf(args[i])));
                 }
             } else if(annotation instanceof Body) {
                 rBuilder.setRequestBody(nextcloudAPI.getGson().toJson(args[i]));
@@ -146,13 +147,13 @@ public class NextcloudRetrofitServiceMethod<T> {
                 if(args[i] != null) {
                     Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
                     for (String key : fieldMap.keySet()) {
-                        parameters.put(key, fieldMap.get(key).toString());
+                        parameters.add(new Pair(key, fieldMap.get(key).toString()));
                     }
                 }
             } else if(annotation instanceof Field) {
                 if(args[i] != null) {
                     String field = args[i].toString();
-                    parameters.put(((Field)annotation).value(), field);
+                    parameters.add(new Pair(((Field)annotation).value(), field));
                 }
             } else if(annotation instanceof Part) {
                 if (args[i] instanceof MultipartBody.Part){
@@ -317,8 +318,8 @@ public class NextcloudRetrofitServiceMethod<T> {
      * Gets the set of unique path parameters used in the given URI. If a parameter is used twice
      * in the URI, it will only show up once in the set.
      */
-    private Map<String, String> parsePathParameters() {
-        Map<String, String> queryPairs = new LinkedHashMap<>();
+    private List<Pair<String, String>> parsePathParameters() {
+        List<Pair<String, String>> queryPairs = new LinkedList<>();
 
         if(this.relativeUrl == null) {
             return queryPairs;
@@ -340,7 +341,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             String[] pairs = query.split("&");
             for (String pair : pairs) {
                 int idx = pair.indexOf("=");
-                queryPairs.put(pair.substring(0, idx), pair.substring(idx + 1));
+                queryPairs.add(new Pair<>(pair.substring(0, idx), pair.substring(idx + 1)));
             }
 
             // Remove query params from url

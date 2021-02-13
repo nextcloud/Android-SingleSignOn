@@ -16,6 +16,7 @@ import org.mockito.junit.MockitoRule;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -442,6 +443,33 @@ public class TestRetrofitAPI {
         List<Pair<String, String>> params = new ArrayList<>();
         params.add(new Pair<>("format", "json"));
         params.add(new Pair<>("test", "1"));
+
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "cloud/capabilities")
+                .setParameter(params)
+                .build();
+
+        Type type = new TypeToken<ResponseBody>() {}.getType();
+        try {
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testQueryParamInUrlMultiValueForKey() {
+        try {
+            mApi.getCapabilitiesMultiValue(Arrays.asList(1L, 3L)).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+
+        List<Pair<String, String>> params = new ArrayList<>();
+        params.add(new Pair<>("format", "json"));
+        params.add(new Pair<>("test", "1"));
+        params.add(new Pair<>("test", "3"));
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")

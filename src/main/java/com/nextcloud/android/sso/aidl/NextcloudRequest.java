@@ -307,7 +307,14 @@ public class NextcloudRequest implements Serializable {
         equal &= ObjectsCompat.equals(this.header, rq.header);
         equal &= ObjectsCompat.equals(this.method, rq.method);
         equal &= ObjectsCompat.equals(this.packageName, rq.packageName);
-        equal &= ObjectsCompat.equals(this.parameterV2, rq.parameterV2);
+        equal &= (
+                ObjectsCompat.equals(this.parameterV2, rq.parameterV2) ||
+                (
+                    this.parameterV2 != null && rq.parameterV2 != null
+                    && this.parameterV2.size() == rq.parameterV2.size()
+                    && this.parameterV2.containsAll(rq.parameterV2)
+                )
+        );
         equal &= ObjectsCompat.equals(this.parameter, rq.parameter);
         equal &= ObjectsCompat.equals(this.requestBody, rq.requestBody);
         equal &= ObjectsCompat.equals(this.token, rq.token);
