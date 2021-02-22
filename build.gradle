@@ -135,7 +135,7 @@ dependencies {
 
     api 'com.google.code.gson:gson:2.8.6'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
 
     implementation 'commons-io:commons-io:2.8.0'
 
