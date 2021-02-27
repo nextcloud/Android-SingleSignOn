@@ -33,6 +33,6 @@
 
     <string name="select_account_unknown_error_toast">發生錯誤，請重試</string>
     <string name="sso_canceled">取消 SSO 匯入</string>
-    <string name="sso_canceled_message">使用者取消 SSO 匯入。</string>
+    <string name="sso_canceled_message">用戶取消了 SSO 匯入。</string>
 
 </resources>
