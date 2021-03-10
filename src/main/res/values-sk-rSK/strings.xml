@@ -7,8 +7,6 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Ak chcete na tomto zariadení používať Nextcloud Single-Sign-On, je potrebné prideliť oprávnenie pre prístup k vašim účtom</string>
 
     <string name="current_account_not_found_exception_title">Varovanie</string>
-    <string name="current_account_not_found_exception_message">Vybratý účet nebol nájdený.  Niečo nie je v poriadku..</string>
-
     <string name="token_mismatch_title">Chyba</string>
     <string name="token_mismatch_message">Poskytnutý overovací token sa nezhoduje alebo nie je tomuto balíčku umožnené túto akciu uskutočniť</string>
 
@@ -31,7 +29,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Chyba</string>
     <string name="nextcloud_files_api_not_responsing_message">API apky Nextcloud Súbory neodpovedá. Nahláste prosím túto chybu.</string>
 
-    <string name="select_account_unknown_error_toast">Niečo sa nepodarilo.. prosím skúste znova</string>
     <string name="sso_canceled">SSO import zrušený</string>
     <string name="sso_canceled_message">SSO import bol zrušený používateľom</string>
 

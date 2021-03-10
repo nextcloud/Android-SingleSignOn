@@ -7,8 +7,6 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Да бисте користили једнократну Некстклауд пријаву на овом уређају, морате дати дозволе за приступ налозима</string>
 
     <string name="current_account_not_found_exception_title">Упозорење</string>
-    <string name="current_account_not_found_exception_message">Одабрани налог није нађен. Нешто је пошло наопако.</string>
-
     <string name="token_mismatch_title">Грешка</string>
     <string name="token_mismatch_message">Токен за проверу идентитета се не поклапа или имену овог пакета није дозвољено да изврши ову радњу</string>
 
@@ -31,7 +29,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Грешка</string>
     <string name="nextcloud_files_api_not_responsing_message">АПИ Некстклауд апликације се не одазива. Пријавите ову грешку.</string>
 
-    <string name="select_account_unknown_error_toast">Нешто је пошло наопако... покушајте поново</string>
     <string name="sso_canceled">ССО увоз је отказан</string>
     <string name="sso_canceled_message">ССО увоз је прекинуо корисник</string>
 

@@ -5,8 +5,6 @@
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Virhe</string>
     <string name="current_account_not_found_exception_title">Varoitus</string>
-    <string name="current_account_not_found_exception_message">Valittua tiliä ei löytynyt. Jokin meni pieleen...</string>
-
     <string name="token_mismatch_title">Virhe</string>
     <string name="token_mismatch_message">Annettu todennusavain ei vastaa tai paketin ei ole sallittua suorittaa tätä toimintoa</string>
 
@@ -29,7 +27,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Virhe</string>
     <string name="nextcloud_files_api_not_responsing_message">Nextcloudin tiedostosovelluksen API ei vastaa. Ilmoita tapauksesta.</string>
 
-    <string name="select_account_unknown_error_toast">Jokin meni pieleen... Yritä uudelleen.</string>
     <string name="sso_canceled">SSO-tuonti peruttu</string>
     <string name="sso_canceled_message">SSO-tuonti peruttiin käyttäjän toimesta</string>
 

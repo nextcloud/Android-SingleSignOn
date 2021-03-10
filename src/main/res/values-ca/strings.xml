@@ -7,8 +7,6 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Per a poder usar el sistema d\'Autenticació Única a Nextcloud en aquest dispositiu, heu de donar permís per accedir als vostres comptes</string>
 
     <string name="current_account_not_found_exception_title">Avís</string>
-    <string name="current_account_not_found_exception_message">No s\'ha trobat el compte seleccionat. Alguna cosa ha fallat.</string>
-
     <string name="token_mismatch_title">Error</string>
     <string name="token_mismatch_message">L\'identificador (token) d\'autentificació que heu proporcionat no coincideix o el nom del paquet no té permís per realitzar aquesta acció</string>
 
@@ -31,7 +29,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Error</string>
     <string name="nextcloud_files_api_not_responsing_message">L\'API de l\'aplicació de fitxers Nextcloud no està responent. Si us plau, informeu d\'aquest problema.</string>
 
-    <string name="select_account_unknown_error_toast">Alguna cosa ha fallat.. si us plau, torneu-ho a provar</string>
     <string name="sso_canceled">S\'ha cancel·lat la importació SSO</string>
     <string name="sso_canceled_message">L\'usuari ha cancel·lat la importació SSO</string>
 

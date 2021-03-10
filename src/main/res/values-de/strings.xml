@@ -7,8 +7,6 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Um den Nextcloud Single-Sign-On auf diesem Gerät zu nutzen, müssen Sie Zugriff auf Ihre Konten gewähren</string>
 
     <string name="current_account_not_found_exception_title">Warnung</string>
-    <string name="current_account_not_found_exception_message">Ausgewähltes Konto wurde nicht gefunden. Etwas ist schief gelaufen…</string>
-
     <string name="token_mismatch_title">Fehler</string>
     <string name="token_mismatch_message">Der Authentifizierungs-Token stimmt nicht überein oder dem Paketnamen fehlt die Berechtigung für diese Aktion</string>
 
@@ -31,7 +29,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Fehler</string>
     <string name="nextcloud_files_api_not_responsing_message">Die API der Nextcloud-Dateien-App reagiert nicht. Bitte melden Sie diesen Fehler.</string>
 
-    <string name="select_account_unknown_error_toast">Etwas ist schiefgelaufen. Bitte erneut versuchen</string>
     <string name="sso_canceled">SSO-Import abgebrochen</string>
     <string name="sso_canceled_message">SSO-Import wurde vom Benutzer abgebrochen</string>
 

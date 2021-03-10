@@ -5,8 +5,6 @@
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Erro</string>
     <string name="current_account_not_found_exception_title">Aviso</string>
-    <string name="current_account_not_found_exception_message">A conta selecionada não foi encontrada. Ocorreu algo de errado.</string>
-
     <string name="token_mismatch_title">Erro</string>
     <string name="token_mismatch_message">O token de autenticação não corresponde ao  esperado ou o nome da package não permite a realização desta acção</string>
 
@@ -29,5 +27,4 @@
     <string name="nextcloud_files_api_not_responsing_title">Erro</string>
     <string name="nextcloud_files_api_not_responsing_message">A api da aplicação de ficheiros Nextcloud não está a responder. Por favor, reporte este problema.</string>
 
-    <string name="select_account_unknown_error_toast">Algo correu mal...por favor, tente outra vez</string>
     </resources>

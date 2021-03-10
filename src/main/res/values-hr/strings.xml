@@ -7,8 +7,6 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Kako biste se mogli koristiti značajkom jedinstvene prijave Nextcloud Single-Sign-On na ovom uređaju, morate dati dopuštenje za pristup svojim računima</string>
 
     <string name="current_account_not_found_exception_title">Upozorenje</string>
-    <string name="current_account_not_found_exception_message">Odabrani račun nije pronađen. Nešto je pošlo po krivu..</string>
-
     <string name="token_mismatch_title">Pogreška</string>
     <string name="token_mismatch_message">Navedeni token za autentifikaciju nije podudaran ili naziv paketa nije dopušten za izvođenje ove radnje</string>
 
@@ -31,7 +29,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Pogreška</string>
     <string name="nextcloud_files_api_not_responsing_message">API aplikacije Nextcloud Files ne reagira. Prijavite ovu poteškoću.</string>
 
-    <string name="select_account_unknown_error_toast">Nešto je pošlo po krivu... pokušajte ponovno</string>
     <string name="sso_canceled">Uvoz SSO-a je otkazan</string>
     <string name="sso_canceled_message">Korisnik je otkazao uvoz SSO-a</string>
 

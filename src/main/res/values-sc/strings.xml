@@ -7,8 +7,6 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Pro impreare s\'autenticatzione ùnica de Nextcloud in custu dispositivu, depes donare su permissu de atzessu a is contos tuos</string>
 
     <string name="current_account_not_found_exception_title">Avisu</string>
-    <string name="current_account_not_found_exception_message">Su contu seletzionadu non s\'est agatadu. B\'at àpidu un\'errore...</string>
-
     <string name="token_mismatch_title">Errore</string>
     <string name="token_mismatch_message">Su getone de autenticatzione frunidu non cointzidet o su nùmene de su pachete non tenet su permissu de esecutare custa atzione</string>
 
@@ -31,7 +29,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Errore</string>
     <string name="nextcloud_files_api_not_responsing_message">S\'aplicatzione de archìvios Nextcloud api non rispondet. Sinnala custu problema.</string>
 
-    <string name="select_account_unknown_error_toast">B\'at àpidu un\'errore.. torra a proare</string>
     <string name="sso_canceled">Importatzione de SSO annullada</string>
     <string name="sso_canceled_message">S\'utente at annulladu s\'importatzione de SSO</string>
 

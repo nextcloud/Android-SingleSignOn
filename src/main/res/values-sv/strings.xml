@@ -7,8 +7,6 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">För att kunna använda Nextcloud Single-Sign-On på den här enheten måste du ge tillstånd för att få åtkomst till dina konton</string>
 
     <string name="current_account_not_found_exception_title">Varning</string>
-    <string name="current_account_not_found_exception_message">Valt konto hittades inte. Något gick fel..</string>
-
     <string name="token_mismatch_title">Fel</string>
     <string name="token_mismatch_message">Förutsatt att autentiserings-token inte matchar eller paketnamnet inte är tillåtet att utföra denna åtgärd</string>
 
@@ -31,7 +29,6 @@
     <string name="nextcloud_files_api_not_responsing_title">Fel</string>
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud filer-app api svarar inte. Vänligen rapportera detta problem.</string>
 
-    <string name="select_account_unknown_error_toast">Något gick fel. Vänligen försök igen</string>
     <string name="sso_canceled">SSO-import avbruten</string>
     <string name="sso_canceled_message">SSO-import avbruten av användaren</string>
 
