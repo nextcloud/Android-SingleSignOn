@@ -8,6 +8,8 @@
 </string>
 
     <string name="current_account_not_found_exception_title">Advertencia</string>
+    <string name="current_account_not_found_exception_message">Non se atopou a conta seleccionada. Algo foi mal.</string>
+
     <string name="token_mismatch_title">Erro</string>
     <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
 
@@ -31,6 +33,7 @@
     <string name="nextcloud_files_api_not_responsing_title">Erro</string>
     <string name="nextcloud_files_api_not_responsing_message">A API da aplicación de Ficheiros do Nextcloud non está respondendo. Informe deste incidente.</string>
 
+    <string name="select_account_unknown_error_toast">Algo foi mal. Ténteo de novo</string>
     <string name="sso_canceled">Importación SSO cancelada</string>
     <string name="sso_canceled_message">A importación SSO foi cancelada polo usuaro</string>
 

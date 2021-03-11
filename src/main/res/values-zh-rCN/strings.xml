@@ -7,6 +7,8 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">为在此设备上使用 Nextcloud 单点登录，您需要给此应用授权访问您的账号</string>
 
     <string name="current_account_not_found_exception_title">警告</string>
+    <string name="current_account_not_found_exception_message">未找到所选帐户。出了些问题。</string>
+
     <string name="token_mismatch_title">错误</string>
     <string name="token_mismatch_message">提供验证口令不匹配，或者不允许此文件执行此操作</string>
 
@@ -29,6 +31,7 @@
     <string name="nextcloud_files_api_not_responsing_title">错误</string>
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud文件应用api无响应。请反馈这个问题。</string>
 
+    <string name="select_account_unknown_error_toast">出现了一些异常情况。请重试</string>
     <string name="sso_canceled">SSO导入已取消</string>
     <string name="sso_canceled_message">SSO导入已被用户取消</string>
 
