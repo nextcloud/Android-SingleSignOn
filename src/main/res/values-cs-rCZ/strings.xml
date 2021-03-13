@@ -31,6 +31,7 @@
     <string name="nextcloud_files_api_not_responsing_title">Chyba</string>
     <string name="nextcloud_files_api_not_responsing_message">Aplikační programové rozhraní (API) Nextcloud aplikace Soubory neodpovídá. Prosíme nahlaste tento problém vývojářům.</string>
 
+    <string name="select_account_unknown_error_toast">Něco se pokazilo. Zkuste to znovu.</string>
     <string name="sso_canceled">SSO import zrušen</string>
     <string name="sso_canceled_message">SSO import byl zrušen uživatelem</string>
 
