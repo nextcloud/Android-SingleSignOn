@@ -7,6 +7,8 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Bu aygıt üzerinde Nextcloud Tek Oturum Açma özelliğini kullanabilmek için hesaplarınıza erişim izni vermelisiniz</string>
 
     <string name="current_account_not_found_exception_title">Uyarı</string>
+    <string name="current_account_not_found_exception_message">Seçili hesap bulunamadı. Bazı şeyler kötü gitti.</string>
+
     <string name="token_mismatch_title">Hata</string>
     <string name="token_mismatch_message">Belirtilen kimlik doğrulama kodu eşleşmiyor ya da paket adının bu işlemi yapmasına izin verilmiyor</string>
 
@@ -29,6 +31,7 @@
     <string name="nextcloud_files_api_not_responsing_title">Hata</string>
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud Dosyalar uygulaması API arayüzü yanıt vermiyor. Lütfen bu sorunu bildirin.</string>
 
+    <string name="select_account_unknown_error_toast">Bazı şeyler kötü gitti. Lütfen tekrar deneyin.</string>
     <string name="sso_canceled">Tek oturum açma içe aktarma işlemi iptal edildi</string>
     <string name="sso_canceled_message">Tek oturum açma içe aktarma işlemi kullanıcı tarafından iptal edildi</string>
 

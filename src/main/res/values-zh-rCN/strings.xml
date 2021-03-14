@@ -31,6 +31,7 @@
     <string name="nextcloud_files_api_not_responsing_title">错误</string>
     <string name="nextcloud_files_api_not_responsing_message">Nextcloud文件应用api无响应。请反馈这个问题。</string>
 
+    <string name="select_account_unknown_error_toast">出现了一些异常情况。请重试 </string>
     <string name="sso_canceled">SSO导入已取消</string>
     <string name="sso_canceled_message">SSO导入已被用户取消</string>
 
