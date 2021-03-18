@@ -7,6 +7,8 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Za uporabo storitve Nextcloud Single-Sign-On na tej napravi je treba odobriti dovoljenja za dostop do računov.</string>
 
     <string name="current_account_not_found_exception_title">Opozorilo</string>
+    <string name="current_account_not_found_exception_message">Prišlo je do napake. Izbranega računa ni mogoče najti.</string>
+
     <string name="token_mismatch_title">Napaka</string>
     <string name="token_mismatch_message">Podan žeton za overitev ni skladen, ali pa za paket ni ustreznih dovoljenj za to dejanje.</string>
 
