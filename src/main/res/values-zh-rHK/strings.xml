@@ -10,7 +10,7 @@
     <string name="current_account_not_found_exception_message">找不到所選的賬戶。出了些問題。</string>
 
     <string name="token_mismatch_title">錯誤</string>
-    <string name="token_mismatch_message">提供的驗證憑證不符，或是不允許此名稱的軟體包執行此動作。</string>
+    <string name="token_mismatch_message">提供的驗證憑證不符，或是不允許此名稱的軟體包執行此操作。</string>
 
     <string name="nextcloud_files_app_not_installed_title">錯誤</string>
     <string name="nextcloud_files_app_not_installed_message" formatted="true">未安裝 Nextcloud Files App。請安裝：%1$s</string>
