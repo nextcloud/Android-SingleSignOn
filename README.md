@@ -31,6 +31,15 @@ compileOptions {
 
 We use some features from Java 8, so your project needs also to be compiled with (at least) this version.
 
+For Android 11 and later you may need to add queries to your app's manifest file. It will not find the nextcloud-app otherwise.
+
+```
+   <queries>
+      <package android:name="com.nextcloud.client" />
+      <package android:name="com.nextcloud.android.beta" />
+   </queries>
+```
+
 ### 2) To choose an account, include the following code in your login dialog:
 
 From an Activity
