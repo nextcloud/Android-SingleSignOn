@@ -1,7 +1,5 @@
 package com.nextcloud.android.sso.api;
 
-import androidx.core.util.Pair;
-
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
@@ -440,9 +438,9 @@ public class TestRetrofitAPI {
             fail(e.getMessage());
         }
 
-        List<Pair<String, String>> params = new ArrayList<>();
-        params.add(new Pair<>("format", "json"));
-        params.add(new Pair<>("test", "1"));
+        List<QueryPair> params = new ArrayList<>();
+        params.add(new QueryPair("format", "json"));
+        params.add(new QueryPair("test", "1"));
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")
@@ -450,7 +448,8 @@ public class TestRetrofitAPI {
                 .setParameter(params)
                 .build();
 
-        Type type = new TypeToken<ResponseBody>() {}.getType();
+        Type type = new TypeToken<ResponseBody>() {
+        }.getType();
         try {
             verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
@@ -466,10 +465,10 @@ public class TestRetrofitAPI {
             fail(e.getMessage());
         }
 
-        List<Pair<String, String>> params = new ArrayList<>();
-        params.add(new Pair<>("format", "json"));
-        params.add(new Pair<>("test", "1"));
-        params.add(new Pair<>("test", "3"));
+        List<QueryPair> params = new ArrayList<>();
+        params.add(new QueryPair("format", "json"));
+        params.add(new QueryPair("test", "1"));
+        params.add(new QueryPair("test", "3"));
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")
@@ -477,7 +476,8 @@ public class TestRetrofitAPI {
                 .setParameter(params)
                 .build();
 
-        Type type = new TypeToken<ResponseBody>() {}.getType();
+        Type type = new TypeToken<ResponseBody>() {
+        }.getType();
         try {
             verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {

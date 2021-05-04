@@ -243,7 +243,9 @@ Note: If you need a different mapping between your json-structure and your java-
 `NextcloudAPI` provides a method called `performNetworkRequest(NextcloudRequest request)` that allows you to handle the server response yourself.
 
 ```java
-import java.util.LinkedList;public class MyActivity extends AppCompatActivity {
+import java.util.LinkedList;
+
+public class MyActivity extends AppCompatActivity {
 
     private NextcloudAPI mNextcloudAPI;
 
@@ -288,7 +290,7 @@ import java.util.LinkedList;public class MyActivity extends AppCompatActivity {
 
     private void downloadFile() {
         List<Pair<String, String>> parameters = new ArrayList<>();
-        parameters.add(new Pair<>("quality", "1024p"));
+        parameters.add(new QueryPair("quality", "1024p"));
         parameters.add(new Pair<>("someOtherParameter", "parameterValue"));
         
         NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()

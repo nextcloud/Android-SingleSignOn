@@ -2,9 +2,6 @@ package com.nextcloud.android.sso.api;
 
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-import androidx.core.util.Pair;
-
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
 import com.nextcloud.android.sso.helper.ReactivexHelper;
@@ -27,6 +24,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
@@ -69,7 +67,7 @@ public class NextcloudRetrofitServiceMethod<T> {
     private @Nullable Headers headers;
     private Type returnType;
     private boolean followRedirects = false;
-    private List<Pair<String, String>> queryParameters;
+    private List<QueryPair> queryParameters;
 
     private final NextcloudRequest.Builder requestBuilder;
     private boolean isMultipart = false;
@@ -111,7 +109,7 @@ public class NextcloudRetrofitServiceMethod<T> {
         NextcloudRequest.Builder rBuilder = new NextcloudRequest.Builder(requestBuilder);
 
 
-        List<Pair<String, String>> parameters = new LinkedList<>();
+        List<QueryPair> parameters = new LinkedList<>();
 
         // Copy all static query params into parameters array
         parameters.addAll(this.queryParameters);
@@ -128,10 +126,10 @@ public class NextcloudRetrofitServiceMethod<T> {
                 String key = ((Query)annotation).value();
                 if (args[i] instanceof Collection) {
                     for (Object arg : (Collection)args[i]) {
-                        parameters.add(new Pair(key, String.valueOf(arg)));
+                        parameters.add(new QueryPair(key, String.valueOf(arg)));
                     }
                 } else {
-                    parameters.add(new Pair(key, String.valueOf(args[i])));
+                    parameters.add(new QueryPair(key, String.valueOf(args[i])));
                 }
             } else if(annotation instanceof Body) {
                 rBuilder.setRequestBody(nextcloudAPI.getGson().toJson(args[i]));
@@ -147,13 +145,13 @@ public class NextcloudRetrofitServiceMethod<T> {
                 if(args[i] != null) {
                     Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
                     for (String key : fieldMap.keySet()) {
-                        parameters.add(new Pair(key, fieldMap.get(key).toString()));
+                        parameters.add(new QueryPair(key, fieldMap.get(key).toString()));
                     }
                 }
             } else if(annotation instanceof Field) {
                 if(args[i] != null) {
                     String field = args[i].toString();
-                    parameters.add(new Pair(((Field)annotation).value(), field));
+                    parameters.add(new QueryPair(((Field) annotation).value(), field));
                 }
             } else if(annotation instanceof Part) {
                 if (args[i] instanceof MultipartBody.Part){
@@ -318,10 +316,10 @@ public class NextcloudRetrofitServiceMethod<T> {
      * Gets the set of unique path parameters used in the given URI. If a parameter is used twice
      * in the URI, it will only show up once in the set.
      */
-    private List<Pair<String, String>> parsePathParameters() {
-        List<Pair<String, String>> queryPairs = new LinkedList<>();
+    private List<QueryPair> parsePathParameters() {
+        List<QueryPair> queryPairs = new LinkedList<>();
 
-        if(this.relativeUrl == null) {
+        if (this.relativeUrl == null) {
             return queryPairs;
         }
 
@@ -341,7 +339,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             String[] pairs = query.split("&");
             for (String pair : pairs) {
                 int idx = pair.indexOf("=");
-                queryPairs.add(new Pair<>(pair.substring(0, idx), pair.substring(idx + 1)));
+                queryPairs.add(new QueryPair(pair.substring(0, idx), pair.substring(idx + 1)));
             }
 
             // Remove query params from url
