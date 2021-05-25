@@ -20,7 +20,7 @@
 package com.nextcloud.android.sso.aidl;
 
 
-import com.nextcloud.android.sso.api.QueryPair;
+import com.nextcloud.android.sso.api.QueryParam;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -50,7 +50,7 @@ public class NextcloudRequest implements Serializable {
     private String accountName;
     private transient InputStream bodyAsStream = null;
     private boolean followRedirects;
-    private Collection<QueryPair> parameterV2 = new LinkedList<>();
+    private Collection<QueryParam> parameterV2 = new LinkedList<>();
 
     private NextcloudRequest() { }
 
@@ -109,7 +109,7 @@ public class NextcloudRequest implements Serializable {
             ncr.parameter = parameter;
             ncr.parameterV2 = new ArrayList<>();
             for (Map.Entry<String, String> mapEntry : parameter.entrySet()) {
-                ncr.parameterV2.add(new QueryPair(mapEntry.getKey(), mapEntry.getValue()));
+                ncr.parameterV2.add(new QueryParam(mapEntry.getKey(), mapEntry.getValue()));
             }
             return this;
         }
@@ -121,27 +121,27 @@ public class NextcloudRequest implements Serializable {
          * @param parameter new set of parameters
          * @return this (Builder)
          */
-        public Builder setParameter(Collection<QueryPair> parameter) {
+        public Builder setParameter(Collection<QueryParam> parameter) {
             ncr.parameterV2 = parameter;
             ncr.parameter = new HashMap<>();
-            for (QueryPair pair : parameter) {
-                ncr.parameter.put(pair.first, pair.second);
+            for (QueryParam pair : parameter) {
+                ncr.parameter.put(pair.key, pair.value);
             }
             return this;
         }
 
-        public Builder addParameter(Collection<QueryPair> parameter) {
-            for (QueryPair param : parameter) {
+        public Builder addParameter(Collection<QueryParam> parameter) {
+            for (QueryParam param : parameter) {
                 nullCheck(param);
                 ncr.parameterV2.add(param);
-                ncr.parameter.put(param.first, param.second);
+                ncr.parameter.put(param.key, param.value);
             }
             return this;
         }
 
-        public Builder addParameter(QueryPair parameter) {
+        public Builder addParameter(QueryParam parameter) {
             nullCheck(parameter);
-            ncr.parameter.put(parameter.first, parameter.second);
+            ncr.parameter.put(parameter.key, parameter.value);
             ncr.parameterV2.add(parameter);
             return this;
         }
@@ -179,8 +179,8 @@ public class NextcloudRequest implements Serializable {
             if (key == null) {
                 throw new IllegalArgumentException("null keys shouldn't be added as parameters at all");
             }
-            for (QueryPair pair : ncr.parameterV2) {
-                if (pair != null && key.equals(pair.first)) {
+            for (QueryParam pair : ncr.parameterV2) {
+                if (pair != null && key.equals(pair.key)) {
                     ncr.parameterV2.remove(pair);
                 }
             }
@@ -234,7 +234,7 @@ public class NextcloudRequest implements Serializable {
         return this.header;
     }
 
-    public Collection<QueryPair> getParameterV2() {
+    public Collection<QueryParam> getParameterV2() {
         return this.parameterV2;
     }
 

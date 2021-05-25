@@ -438,9 +438,9 @@ public class TestRetrofitAPI {
             fail(e.getMessage());
         }
 
-        List<QueryPair> params = new ArrayList<>();
-        params.add(new QueryPair("format", "json"));
-        params.add(new QueryPair("test", "1"));
+        List<QueryParam> params = new ArrayList<>();
+        params.add(new QueryParam("format", "json"));
+        params.add(new QueryParam("test", "1"));
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")
@@ -465,10 +465,10 @@ public class TestRetrofitAPI {
             fail(e.getMessage());
         }
 
-        List<QueryPair> params = new ArrayList<>();
-        params.add(new QueryPair("format", "json"));
-        params.add(new QueryPair("test", "1"));
-        params.add(new QueryPair("test", "3"));
+        List<QueryParam> params = new ArrayList<>();
+        params.add(new QueryParam("format", "json"));
+        params.add(new QueryParam("test", "1"));
+        params.add(new QueryParam("test", "3"));
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")
