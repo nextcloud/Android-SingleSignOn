@@ -34,6 +34,6 @@
 
     <string name="select_account_unknown_error_toast">何か問題が発生しました。もう一度お試しください。</string>
     <string name="sso_canceled">SSOインポートをキャンセルしました</string>
-    <string name="sso_canceled_message">SSOインポートがユーザによりキャンセルされました</string>
+    <string name="sso_canceled_message">SSOインポートがユーザーによりキャンセルされました</string>
 
 </resources>
