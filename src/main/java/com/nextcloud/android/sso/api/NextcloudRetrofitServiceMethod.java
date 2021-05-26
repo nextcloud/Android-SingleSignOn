@@ -2,8 +2,6 @@ package com.nextcloud.android.sso.api;
 
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
 import com.nextcloud.android.sso.helper.ReactivexHelper;
@@ -18,13 +16,15 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
@@ -67,7 +67,7 @@ public class NextcloudRetrofitServiceMethod<T> {
     private @Nullable Headers headers;
     private Type returnType;
     private boolean followRedirects = false;
-    private Map<String, String> queryParameters;
+    private List<QueryParam> queryParameters;
 
     private final NextcloudRequest.Builder requestBuilder;
     private boolean isMultipart = false;
@@ -109,10 +109,10 @@ public class NextcloudRetrofitServiceMethod<T> {
         NextcloudRequest.Builder rBuilder = new NextcloudRequest.Builder(requestBuilder);
 
 
-        Map<String, String> parameters = new HashMap<>();
+        List<QueryParam> parameters = new LinkedList<>();
 
         // Copy all static query params into parameters array
-        parameters.putAll(this.queryParameters);
+        parameters.addAll(this.queryParameters);
 
         MultipartBody.Builder multipartBuilder = null;
         if (isMultipart) {
@@ -123,7 +123,14 @@ public class NextcloudRetrofitServiceMethod<T> {
         for(int i = 0; i < parameterAnnotationsArray.length; i++) {
             Annotation annotation = parameterAnnotationsArray[i][0];
             if(annotation instanceof Query) {
-                parameters.put(((Query)annotation).value(), String.valueOf(args[i]));
+                String key = ((Query)annotation).value();
+                if (args[i] instanceof Collection) {
+                    for (Object arg : (Collection)args[i]) {
+                        parameters.add(new QueryParam(key, String.valueOf(arg)));
+                    }
+                } else {
+                    parameters.add(new QueryParam(key, String.valueOf(args[i])));
+                }
             } else if(annotation instanceof Body) {
                 rBuilder.setRequestBody(nextcloudAPI.getGson().toJson(args[i]));
             } else if(annotation instanceof Path) {
@@ -138,13 +145,13 @@ public class NextcloudRetrofitServiceMethod<T> {
                 if(args[i] != null) {
                     Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
                     for (String key : fieldMap.keySet()) {
-                        parameters.put(key, fieldMap.get(key).toString());
+                        parameters.add(new QueryParam(key, fieldMap.get(key).toString()));
                     }
                 }
             } else if(annotation instanceof Field) {
                 if(args[i] != null) {
                     String field = args[i].toString();
-                    parameters.put(((Field)annotation).value(), field);
+                    parameters.add(new QueryParam(((Field) annotation).value(), field));
                 }
             } else if(annotation instanceof Part) {
                 if (args[i] instanceof MultipartBody.Part){
@@ -309,10 +316,10 @@ public class NextcloudRetrofitServiceMethod<T> {
      * Gets the set of unique path parameters used in the given URI. If a parameter is used twice
      * in the URI, it will only show up once in the set.
      */
-    private Map<String, String> parsePathParameters() {
-        Map<String, String> queryPairs = new LinkedHashMap<>();
+    private List<QueryParam> parsePathParameters() {
+        List<QueryParam> queryPairs = new LinkedList<>();
 
-        if(this.relativeUrl == null) {
+        if (this.relativeUrl == null) {
             return queryPairs;
         }
 
@@ -332,7 +339,7 @@ public class NextcloudRetrofitServiceMethod<T> {
             String[] pairs = query.split("&");
             for (String pair : pairs) {
                 int idx = pair.indexOf("=");
-                queryPairs.put(pair.substring(0, idx), pair.substring(idx + 1));
+                queryPairs.add(new QueryParam(pair.substring(0, idx), pair.substring(idx + 1)));
             }
 
             // Remove query params from url

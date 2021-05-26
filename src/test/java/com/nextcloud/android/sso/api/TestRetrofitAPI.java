@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoRule;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,6 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class TestRetrofitAPI {
 
@@ -438,17 +438,46 @@ public class TestRetrofitAPI {
             fail(e.getMessage());
         }
 
-        Map<String, String> map = new HashMap<>();
-        map.put("format", "json");
-        map.put("test", "1");
+        List<QueryParam> params = new ArrayList<>();
+        params.add(new QueryParam("format", "json"));
+        params.add(new QueryParam("test", "1"));
 
         NextcloudRequest request = new NextcloudRequest.Builder()
                 .setMethod("GET")
                 .setUrl(mApiEndpoint + "cloud/capabilities")
-                .setParameter(map)
+                .setParameter(params)
                 .build();
 
-        Type type = new TypeToken<ResponseBody>() {}.getType();
+        Type type = new TypeToken<ResponseBody>() {
+        }.getType();
+        try {
+            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testQueryParamInUrlMultiValueForKey() {
+        try {
+            mApi.getCapabilitiesMultiValue(Arrays.asList(1L, 3L)).execute();
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+
+        List<QueryParam> params = new ArrayList<>();
+        params.add(new QueryParam("format", "json"));
+        params.add(new QueryParam("test", "1"));
+        params.add(new QueryParam("test", "3"));
+
+        NextcloudRequest request = new NextcloudRequest.Builder()
+                .setMethod("GET")
+                .setUrl(mApiEndpoint + "cloud/capabilities")
+                .setParameter(params)
+                .build();
+
+        Type type = new TypeToken<ResponseBody>() {
+        }.getType();
         try {
             verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {

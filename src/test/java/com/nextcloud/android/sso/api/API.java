@@ -92,4 +92,7 @@ public interface API {
 
     @GET("cloud/capabilities?format=json")
     Call<ResponseBody> getCapabilities(@Query("test") long test);
+
+    @GET("cloud/capabilities?format=json")
+    Call<ResponseBody> getCapabilitiesMultiValue(@Query("test") List<Long> test);
 }

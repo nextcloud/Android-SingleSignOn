@@ -19,14 +19,20 @@
 
 package com.nextcloud.android.sso.aidl;
 
-import androidx.core.util.ObjectsCompat;
+
+import com.nextcloud.android.sso.api.QueryParam;
 
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import androidx.core.util.ObjectsCompat;
+import androidx.core.util.Pair;
 import lombok.ToString;
 
 @ToString
@@ -44,6 +50,7 @@ public class NextcloudRequest implements Serializable {
     private String accountName;
     private transient InputStream bodyAsStream = null;
     private boolean followRedirects;
+    private Collection<QueryParam> parameterV2 = new LinkedList<>();
 
     private NextcloudRequest() { }
 
@@ -57,6 +64,7 @@ public class NextcloudRequest implements Serializable {
         this.followRedirects = ncr.followRedirects;
         header = new HashMap<>(ncr.header);
         parameter = new HashMap<>(ncr.parameter);
+        parameterV2 = new ArrayList<>(ncr.parameterV2);
         bodyAsStream = ncr.bodyAsStream;
 
     }
@@ -89,10 +97,97 @@ public class NextcloudRequest implements Serializable {
             return this;
         }
 
+        /**
+         * Sets the parameters for this request.
+         * All existing parameters will be wiped!
+         * @param parameter new set of parameters
+         * @return this (Builder)
+         * @deprecated since this won't allow RFC 3986 compliant parameters, please use {@link #setParameter(Collection) setParameter(Collection)} instead
+         */
+        @Deprecated
         public Builder setParameter(Map<String, String> parameter) {
             ncr.parameter = parameter;
+            ncr.parameterV2 = new ArrayList<>();
+            for (Map.Entry<String, String> mapEntry : parameter.entrySet()) {
+                ncr.parameterV2.add(new QueryParam(mapEntry.getKey(), mapEntry.getValue()));
+            }
             return this;
         }
+
+        /**
+         * Sets the parameters for this request.
+         * All existing parameters will be wiped!
+         *
+         * @param parameter new set of parameters
+         * @return this (Builder)
+         */
+        public Builder setParameter(Collection<QueryParam> parameter) {
+            ncr.parameterV2 = parameter;
+            ncr.parameter = new HashMap<>();
+            for (QueryParam pair : parameter) {
+                ncr.parameter.put(pair.key, pair.value);
+            }
+            return this;
+        }
+
+        public Builder addParameter(Collection<QueryParam> parameter) {
+            for (QueryParam param : parameter) {
+                nullCheck(param);
+                ncr.parameterV2.add(param);
+                ncr.parameter.put(param.key, param.value);
+            }
+            return this;
+        }
+
+        public Builder addParameter(QueryParam parameter) {
+            nullCheck(parameter);
+            ncr.parameter.put(parameter.key, parameter.value);
+            ncr.parameterV2.add(parameter);
+            return this;
+        }
+
+        private static void nullCheck(Object o) {
+            if (o == null) {
+                throw new IllegalArgumentException("null is not allowed here");
+            }
+        }
+
+        public Builder clearParameter() {
+            ncr.parameterV2.clear();
+            ncr.parameter.clear();
+            return this;
+        }
+
+        /**
+         * Remove a parameter by pair.
+         * This method calls the remove() method of a list!
+         * @param parameter
+         * @return this (Builder)
+         */
+        public Builder removeParameter(Pair<String, String> parameter) {
+            ncr.parameterV2.remove(parameter);
+            ncr.parameter.remove(parameter.first);
+            return this;
+        }
+        /**
+         * Removes all parameters with the specified key.
+         * If the key doesn't exist, the parameters won't be modified.
+         * @param key key of the parameter
+         * @return this (Builder)
+         */
+        public Builder removeParameter(String key) {
+            if (key == null) {
+                throw new IllegalArgumentException("null keys shouldn't be added as parameters at all");
+            }
+            for (QueryParam pair : ncr.parameterV2) {
+                if (pair != null && key.equals(pair.key)) {
+                    ncr.parameterV2.remove(pair);
+                }
+            }
+            ncr.parameter.remove(key);
+            return this;
+        }
+
 
         public Builder setRequestBody(String requestBody) {
             ncr.requestBody = requestBody;
@@ -139,8 +234,18 @@ public class NextcloudRequest implements Serializable {
         return this.header;
     }
 
+    public Collection<QueryParam> getParameterV2() {
+        return this.parameterV2;
+    }
+
+    /**
+     * Returns the set or parameters for this request.
+     * @return set of parameters
+     * @deprecated since this won't allow RFC 3986 compliant parameters, please use {@link #getParameterV2() getParameterV2()} instead
+     */
+    @Deprecated
     public Map<String, String> getParameter() {
-        return this.parameter;
+        return parameter;
     }
 
     public String getRequestBody() {
@@ -204,6 +309,14 @@ public class NextcloudRequest implements Serializable {
         equal &= ObjectsCompat.equals(this.header, rq.header);
         equal &= ObjectsCompat.equals(this.method, rq.method);
         equal &= ObjectsCompat.equals(this.packageName, rq.packageName);
+        equal &= (
+                ObjectsCompat.equals(this.parameterV2, rq.parameterV2) ||
+                (
+                    this.parameterV2 != null && rq.parameterV2 != null
+                    && this.parameterV2.size() == rq.parameterV2.size()
+                    && this.parameterV2.containsAll(rq.parameterV2)
+                )
+        );
         equal &= ObjectsCompat.equals(this.parameter, rq.parameter);
         equal &= ObjectsCompat.equals(this.requestBody, rq.requestBody);
         equal &= ObjectsCompat.equals(this.token, rq.token);
