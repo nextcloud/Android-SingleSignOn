@@ -13,5 +13,5 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP užklausa patyrė nesėkmę su HTTP būsenos kodu: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Klaida</string>
-    <string name="nextcloud_files_api_not_responsing_title">Klaida</string>
+    <string name="nextcloud_files_api_not_responding_title">Klaida</string>
     </resources>

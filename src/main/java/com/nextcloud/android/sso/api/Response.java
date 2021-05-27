@@ -1,13 +1,13 @@
 package com.nextcloud.android.sso.api;
 
+import androidx.annotation.Nullable;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import androidx.annotation.Nullable;
-
 public class Response {
-    private InputStream body;
-    private ArrayList<AidlNetworkRequest.PlainHeader> headers;
+    private final InputStream body;
+    private final ArrayList<AidlNetworkRequest.PlainHeader> headers;
 
     public Response(InputStream inputStream, ArrayList<AidlNetworkRequest.PlainHeader> headers) {
         this.body = inputStream;

@@ -48,15 +48,16 @@ public final class Retrofit2Helper {
 
             /**
              * Execute synchronous
-             * @return
              */
+            @NonNull
             @Override
             public Response<T> execute() {
                 try {
                     T body = nextcloudAPI.performRequestV2(resType, nextcloudRequest);
                     return Response.success(body);
                 } catch (NextcloudHttpRequestFailedException e) {
-                    return convertExceptionToResponse(e.getStatusCode(), e.getCause().getMessage());
+                    final Throwable cause = e.getCause();
+                    return convertExceptionToResponse(e.getStatusCode(), cause == null ? e.getMessage() : cause.getMessage());
                 } catch (Exception e) {
                     return convertExceptionToResponse(520, e.toString());
                 }
@@ -64,18 +65,11 @@ public final class Retrofit2Helper {
 
             /**
              * Execute asynchronous
-             * @param callback
              */
             @Override
-            public void enqueue(final Callback<T> callback) {
+            public void enqueue(@NonNull final Callback<T> callback) {
                 final Call<T> call = this;
-                final Thread thr = new Thread() {
-                    @Override
-                    public void run() {
-                        callback.onResponse(call, execute());
-                    }
-                };
-                thr.start();
+                new Thread(() -> callback.onResponse(call, execute())).start();
             }
 
             @Override
@@ -93,16 +87,19 @@ public final class Retrofit2Helper {
                 throw new UnsupportedOperationException("Not implemented");
             }
 
+            @NonNull
             @Override
             public Call<T> clone() {
                 throw new UnsupportedOperationException("Not implemented");
             }
 
+            @NonNull
             @Override
             public Request request() {
                 throw new UnsupportedOperationException("Not implemented");
             }
 
+            @NonNull
             @Override
             public Timeout timeout() {
                 throw new UnsupportedOperationException("Not implemented");
@@ -126,11 +123,11 @@ public final class Retrofit2Helper {
 
     /**
      *
-     * @param success if true, a Response.success will be returned, otherwise Response.error(520)
-     * @return
+     * @param success if <code>true</code>, a Response.success will be returned, otherwise Response.error(520)
      */
     public static Call<Void> wrapVoidCall(final boolean success) {
         return new Call<Void>() {
+            @NonNull
             @Override
             public Response<Void> execute() {
                 if(success) {
@@ -141,7 +138,7 @@ public final class Retrofit2Helper {
             }
 
             @Override
-            public void enqueue(@NonNull Callback callback) {
+            public void enqueue(@NonNull Callback<Void> callback) {
                 if(success) {
                     callback.onResponse(this, Response.success(null));
                 } else {
@@ -164,16 +161,19 @@ public final class Retrofit2Helper {
                 return false;
             }
 
+            @NonNull
             @Override
             public Call<Void> clone() {
                 throw new UnsupportedOperationException("Not implemented");
             }
 
+            @NonNull
             @Override
             public Request request() {
                 throw new UnsupportedOperationException("Not implemented");
             }
 
+            @NonNull
             @Override
             public Timeout timeout() {
                 throw new UnsupportedOperationException("Not implemented");
@@ -182,7 +182,7 @@ public final class Retrofit2Helper {
 
     }
 
-    private static ResponseBody emptyResponseBody = new ResponseBody() {
+    private final static ResponseBody emptyResponseBody = new ResponseBody() {
         @Override
         public MediaType contentType() {
             return null;

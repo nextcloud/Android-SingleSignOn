@@ -2,6 +2,9 @@ package com.nextcloud.android.sso.api;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
 import com.nextcloud.android.sso.helper.ReactivexHelper;
@@ -24,7 +27,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.annotation.Nullable;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
@@ -53,7 +55,7 @@ import retrofit2.http.Streaming;
 
 public class NextcloudRetrofitServiceMethod<T> {
 
-    private static String TAG = NextcloudRetrofitServiceMethod.class.getCanonicalName();
+    private final static String TAG = NextcloudRetrofitServiceMethod.class.getCanonicalName();
     private final Annotation[][] parameterAnnotationsArray;
 
 
@@ -61,20 +63,20 @@ public class NextcloudRetrofitServiceMethod<T> {
     private static final String PARAM = "[a-zA-Z][a-zA-Z0-9_-]*";
     private static final Pattern PARAM_URL_REGEX = Pattern.compile("\\{(" + PARAM + ")\\}");
 
-    private Method method;
+    private final Method method;
     private String httpMethod;
     private @Nullable String relativeUrl;
     private @Nullable Headers headers;
-    private Type returnType;
+    private final Type returnType;
     private boolean followRedirects = false;
-    private List<QueryParam> queryParameters;
+    private final List<QueryParam> queryParameters;
 
     private final NextcloudRequest.Builder requestBuilder;
     private boolean isMultipart = false;
     private boolean isFormEncoded = false;
 
 
-    public NextcloudRetrofitServiceMethod(String apiEndpoint, Method method) {
+    public NextcloudRetrofitServiceMethod(String apiEndpoint, @NonNull Method method) {
         this.method = method;
         this.returnType = method.getGenericReturnType();
         Annotation[] methodAnnotations = method.getAnnotations();
@@ -106,26 +108,22 @@ public class NextcloudRetrofitServiceMethod<T> {
             throw new InvalidParameterException("Expected: " + parameterAnnotationsArray.length + " params - were: " + args.length);
         }
 
-        NextcloudRequest.Builder rBuilder = new NextcloudRequest.Builder(requestBuilder);
-
-
-        List<QueryParam> parameters = new LinkedList<>();
+        final NextcloudRequest.Builder rBuilder = new NextcloudRequest.Builder(requestBuilder);
 
         // Copy all static query params into parameters array
-        parameters.addAll(this.queryParameters);
+        final List<QueryParam> parameters = new LinkedList<>(this.queryParameters);
 
-        MultipartBody.Builder multipartBuilder = null;
-        if (isMultipart) {
-            multipartBuilder = new MultipartBody.Builder();
-        }
+        final MultipartBody.Builder multipartBuilder = isMultipart
+                ? new MultipartBody.Builder()
+                : null;
 
         // Build/parse dynamic parameters
-        for(int i = 0; i < parameterAnnotationsArray.length; i++) {
-            Annotation annotation = parameterAnnotationsArray[i][0];
-            if(annotation instanceof Query) {
-                String key = ((Query)annotation).value();
+        for (int i = 0; i < parameterAnnotationsArray.length; i++) {
+            final Annotation annotation = parameterAnnotationsArray[i][0];
+            if (annotation instanceof Query) {
+                final String key = ((Query)annotation).value();
                 if (args[i] instanceof Collection) {
-                    for (Object arg : (Collection)args[i]) {
+                    for (Object arg : (Collection<?>) args[i]) {
                         parameters.add(new QueryParam(key, String.valueOf(arg)));
                     }
                 } else {
@@ -134,24 +132,22 @@ public class NextcloudRetrofitServiceMethod<T> {
             } else if(annotation instanceof Body) {
                 rBuilder.setRequestBody(nextcloudAPI.getGson().toJson(args[i]));
             } else if(annotation instanceof Path) {
-                String varName = "{" + ((Path)annotation).value() + "}";
-                String url = rBuilder.build().getUrl();
+                final String varName = "{" + ((Path) annotation).value() + "}";
+                final String url = rBuilder.build().getUrl();
                 rBuilder.setUrl(url.replace(varName, String.valueOf(args[i])));
             } else if(annotation instanceof Header) {
-                Object value = args[i];
-                String key =((Header) annotation).value();
-                addHeader(rBuilder, key, value);
+                addHeader(rBuilder, ((Header) annotation).value(), args[i]);
             } else if(annotation instanceof FieldMap) {
                 if(args[i] != null) {
-                    Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
+                    final Map<String, Object> fieldMap = (HashMap<String, Object>) args[i];
                     for (String key : fieldMap.keySet()) {
-                        parameters.add(new QueryParam(key, fieldMap.get(key).toString()));
+                        final Object value = fieldMap.get(key);
+                        parameters.add(new QueryParam(key, value == null ? "" : value.toString()));
                     }
                 }
             } else if(annotation instanceof Field) {
                 if(args[i] != null) {
-                    String field = args[i].toString();
-                    parameters.add(new QueryParam(((Field) annotation).value(), field));
+                    parameters.add(new QueryParam(((Field) annotation).value(), args[i].toString()));
                 }
             } else if(annotation instanceof Part) {
                 if (args[i] instanceof MultipartBody.Part){
@@ -166,12 +162,15 @@ public class NextcloudRetrofitServiceMethod<T> {
 
         // include multipart body as stream, set header
         if (isMultipart) {
-            MultipartBody multipartBody = multipartBuilder.build();
-            addHeader(rBuilder, "Content-Type", MultipartBody.FORM+"; boundary="+multipartBody.boundary());
+            if(multipartBuilder == null) {
+                throw new IllegalStateException("isMultipart == true, expected multipartBuilder to not be null.");
+            }
+            final MultipartBody multipartBody = multipartBuilder.build();
+            addHeader(rBuilder, "Content-Type", MultipartBody.FORM + "; boundary=" + multipartBody.boundary());
             rBuilder.setRequestBodyAsStream(bodyToStream(multipartBody));
         }
 
-        NextcloudRequest request = rBuilder
+        final NextcloudRequest request = rBuilder
                 .setParameter(parameters)
                 .build();
 
@@ -214,14 +213,14 @@ public class NextcloudRetrofitServiceMethod<T> {
             Log.d(TAG, "WARNING: Header not set - key or value missing! Key: " + key + " | Value: " + value);
             return;
         }
-        Map<String, List<String>> headers = rBuilder.build().getHeader();
-        List<String> arg = new ArrayList<>();
+        final Map<String, List<String>> headers = rBuilder.build().getHeader();
+        final List<String> arg = new ArrayList<>();
         arg.add(String.valueOf(value));
         headers.put(key, arg);
         rBuilder.setHeader(headers);
     }
 
-    private static InputStream bodyToStream(final RequestBody request){
+    private static InputStream bodyToStream(final @NonNull RequestBody request){
         try {
             final RequestBody copy = request;
             final Buffer buffer = new Buffer();
@@ -265,9 +264,6 @@ public class NextcloudRetrofitServiceMethod<T> {
                 throw methodError(method, "@Headers annotation is empty.");
             }
             headers = parseHeaders(headersToParse);
-        } else if(annotation instanceof FormUrlEncoded) {
-            //formUrlEncoded = true;
-            Log.v(TAG, "FormUrlEncoded request");
         } else if(annotation instanceof NextcloudAPI.FollowRedirects) {
             followRedirects = true;
         } else {
@@ -275,7 +271,7 @@ public class NextcloudRetrofitServiceMethod<T> {
         }
     }
 
-    private void parseHttpMethodAndPath(String httpMethod, String value, boolean hasBody) {
+    private void parseHttpMethodAndPath(@Nullable String httpMethod, @NonNull String value, boolean hasBody) {
         if (this.httpMethod != null) {
             throw methodError(method, "Only one HTTP method is allowed. Found: %s and %s.",
                     this.httpMethod, httpMethod);
@@ -290,15 +286,15 @@ public class NextcloudRetrofitServiceMethod<T> {
     }
 
     private Headers parseHeaders(String[] headers) {
-        Headers.Builder builder = new Headers.Builder();
+        final Headers.Builder builder = new Headers.Builder();
         for (String header : headers) {
-            int colon = header.indexOf(':');
+            final int colon = header.indexOf(':');
             if (colon == -1 || colon == 0 || colon == header.length() - 1) {
                 throw methodError(method,
                         "@Headers value must be in the form \"Name: Value\". Found: \"%s\"", header);
             }
-            String headerName = header.substring(0, colon);
-            String headerValue = header.substring(colon + 1).trim();
+            final String headerName = header.substring(0, colon);
+            final String headerValue = header.substring(colon + 1).trim();
             if ("Content-Type".equalsIgnoreCase(headerName)) {
                 try {
                     MediaType.parse(headerValue);
@@ -317,28 +313,28 @@ public class NextcloudRetrofitServiceMethod<T> {
      * in the URI, it will only show up once in the set.
      */
     private List<QueryParam> parsePathParameters() {
-        List<QueryParam> queryPairs = new LinkedList<>();
+        final List<QueryParam> queryPairs = new LinkedList<>();
 
         if (this.relativeUrl == null) {
             return queryPairs;
         }
 
-        int idxQuery = this.relativeUrl.indexOf("?");
+        final int idxQuery = this.relativeUrl.indexOf("?");
         if (idxQuery != -1 && idxQuery < this.relativeUrl.length() - 1) {
             // Ensure the query string does not have any named parameters.
-            String query = this.relativeUrl.substring(idxQuery + 1);
+            final String query = this.relativeUrl.substring(idxQuery + 1);
 
             // Check for named parameters
-            Matcher queryParamMatcher = PARAM_URL_REGEX.matcher(query);
+            final Matcher queryParamMatcher = PARAM_URL_REGEX.matcher(query);
             if (queryParamMatcher.find()) {
                 throw methodError(method, "URL query string \"%s\" must not have replace block. "
                         + "For dynamic query parameters use @Query.", query);
             }
 
             // If none found.. parse the static query parameters
-            String[] pairs = query.split("&");
+            final String[] pairs = query.split("&");
             for (String pair : pairs) {
-                int idx = pair.indexOf("=");
+                final int idx = pair.indexOf("=");
                 queryPairs.add(new QueryParam(pair.substring(0, idx), pair.substring(idx + 1)));
             }
 
@@ -354,7 +350,7 @@ public class NextcloudRetrofitServiceMethod<T> {
 
     private static RuntimeException methodError(Method method, @Nullable Throwable cause, String message,
                                         Object... args) {
-        String formattedMessage = String.format(message, args);
+        final String formattedMessage = String.format(message, args);
         return new IllegalArgumentException(formattedMessage
                 + "\n    for method "
                 + method.getDeclaringClass().getSimpleName()

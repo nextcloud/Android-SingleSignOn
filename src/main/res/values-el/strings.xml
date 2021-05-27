@@ -26,8 +26,8 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Η εφαρμογή αρχείων σας nextcloud δεν υποστηρίζει την δυνατότητα απλής υπογραφής. Παρακαλώ ενημερώστε την: %1$s</string>
 
 
-    <string name="nextcloud_files_api_not_responsing_title">Σφάλμα</string>
-    <string name="nextcloud_files_api_not_responsing_message">Η εφαρμογή αρχείων Nextcloud δεν ανταποκρίνεται. Παρακαλώ αναφέρετε το πρόβλημα.</string>
+    <string name="nextcloud_files_api_not_responding_title">Σφάλμα</string>
+    <string name="nextcloud_files_api_not_responding_message">Η εφαρμογή αρχείων Nextcloud δεν ανταποκρίνεται. Παρακαλώ αναφέρετε το πρόβλημα.</string>
 
     <string name="sso_canceled">Ακυρώθηκε η εισαγωγή SSO</string>
     <string name="sso_canceled_message">Η εισαγωγή SSO ακυρώθηκε από τον χρήστη</string>

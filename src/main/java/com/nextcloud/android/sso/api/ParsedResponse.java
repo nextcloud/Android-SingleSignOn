@@ -1,16 +1,18 @@
 package com.nextcloud.android.sso.api;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParsedResponse <T> {
-    private T response;
-    private Map<String, String> headers = new HashMap<>();
+public class ParsedResponse<T> {
+    private final T response;
+    private final Map<String, String> headers = new HashMap<>();
 
-    public ParsedResponse(T response, ArrayList<AidlNetworkRequest.PlainHeader> headers) {
+    public ParsedResponse(T response, @Nullable ArrayList<AidlNetworkRequest.PlainHeader> headers) {
         this.response = response;
-        if (headers!= null) {
+        if (headers != null) {
             for (AidlNetworkRequest.PlainHeader header : headers) {
                 this.headers.put(header.getName(), header.getValue());
             }

@@ -20,6 +20,9 @@
 package com.nextcloud.android.sso.aidl;
 
 
+import androidx.core.util.ObjectsCompat;
+import androidx.core.util.Pair;
+
 import com.nextcloud.android.sso.api.QueryParam;
 
 import java.io.InputStream;
@@ -31,8 +34,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import androidx.core.util.ObjectsCompat;
-import androidx.core.util.Pair;
 import lombok.ToString;
 
 @ToString
@@ -73,7 +74,7 @@ public class NextcloudRequest implements Serializable {
 
         private static final long serialVersionUID = 2121321432424242L; //assign a long value
 
-        private NextcloudRequest ncr;
+        private final NextcloudRequest ncr;
 
         public Builder() {
             ncr = new NextcloudRequest();
@@ -213,8 +214,6 @@ public class NextcloudRequest implements Serializable {
             return this;
         }
 
-
-
         /**
          * Default value: true
          * @param followRedirects
@@ -301,7 +300,6 @@ public class NextcloudRequest implements Serializable {
         if (!(obj instanceof NextcloudRequest)) {
             return false;
         }
-
 
         NextcloudRequest rq = (NextcloudRequest)obj;
         boolean equal;

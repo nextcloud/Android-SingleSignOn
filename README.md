@@ -236,8 +236,8 @@ public class ApiProvider {
     private API mApi;
 
     public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
-       SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-       NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
+       final SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+       final NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
        mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
    }
 }
@@ -262,16 +262,11 @@ public class MyActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         try {
-            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(this);
+            final SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(this);
             mNextcloudAPI = new NextcloudAPI(this, ssoAccount, new GsonBuilder().create(), apiCallback);
 
             // Start download of file in background thread (otherwise you'll get a NetworkOnMainThreadException)
-            new Thread() {
-                @Override
-                public void run() {
-                    downloadFile();
-                }
-            }.start();
+            new Thread(this::downloadFile).start();
         } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException e) {
             // TODO handle errors
         }
@@ -298,24 +293,22 @@ public class MyActivity extends AppCompatActivity {
     };
 
     private void downloadFile() {
-        List<Pair<String, String>> parameters = new ArrayList<>();
+        final List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new QueryPair("quality", "1024p"));
         parameters.add(new Pair<>("someOtherParameter", "parameterValue"));
         
-        NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
+        final NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
                 .setMethod("GET")
                 .setParameter(parameters)
                 .setUrl(Uri.encode("/remote.php/webdav/sample movie.mp4","/"))
                 .build();
 
-        try {
-            InputStream inputStream = mNextcloudAPI.performNetworkRequest(nextcloudRequest);
+        try (InputStream inputStream = mNextcloudAPI.performNetworkRequest(nextcloudRequest)) {
             while(inputStream.available() > 0) {
                 inputStream.read();
                 // TODO do something useful with the data here..
-                // like writing it to a file..?
+                // like writing it to a file…?
             }
-            inputStream.close();
         } catch (Exception e) {
             // TODO handle errors
         }
@@ -346,7 +339,7 @@ NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
 In case that you require some sso features that were introduced in a specific nextcloud files app version, you can run a simple version check using the following helper method:
 
 ```java
-int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
+final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
 
 if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
    // Version requirement is satisfied!

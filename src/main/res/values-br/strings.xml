@@ -26,8 +26,8 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ho meziant restroù nextcloud na zoug ket ar perzh enskrivañ e unan. Adnevesiit anezhi : %1$s</string>
 
 
-    <string name="nextcloud_files_api_not_responsing_title">Fazi</string>
-    <string name="nextcloud_files_api_not_responsing_message">API ar meziant restroù nextcloud na respont ket. Kemennit ar gudenn.</string>
+    <string name="nextcloud_files_api_not_responding_title">Fazi</string>
+    <string name="nextcloud_files_api_not_responding_message">API ar meziant restroù nextcloud na respont ket. Kemennit ar gudenn.</string>
 
     <string name="sso_canceled">Emporzhiañ SSO arested</string>
     <string name="sso_canceled_message">Emporzhiañ SSO a zo bet arested gant an implijer</string>

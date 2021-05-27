@@ -26,8 +26,8 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">현재 Nextcloud Files App 은 단일 로그인 기능을 지원하지 않습니다. %1$s를 업데이트 해주세요</string>
 
 
-    <string name="nextcloud_files_api_not_responsing_title">오류</string>
-    <string name="nextcloud_files_api_not_responsing_message">Nextcloud Files App이 응답하지 않습니다. 이 오류를 보고해주세요.</string>
+    <string name="nextcloud_files_api_not_responding_title">오류</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files App이 응답하지 않습니다. 이 오류를 보고해주세요.</string>
 
     <string name="sso_canceled">통합 인증 가져오기 취소됨</string>
     <string name="sso_canceled_message">통합인증 가져오기가 사용자에 의해 취소되었습니다</string>

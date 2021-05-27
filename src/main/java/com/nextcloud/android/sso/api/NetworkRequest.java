@@ -21,13 +21,11 @@ public abstract class NetworkRequest {
     protected NextcloudAPI.ApiConnectedListener mCallback;
     protected boolean mDestroyed = false; // Flag indicating if API is destroyed
 
-
     protected NetworkRequest(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull NextcloudAPI.ApiConnectedListener callback) {
         this.mContext = context;
         this.mAccount = account;
         this.mCallback = callback;
     }
-
 
     protected void connect(String type) {
         Log.d(TAG, "[connect] connect() called [" + Thread.currentThread().getName() + "] Account-Type: [" + type + "]");
@@ -42,7 +40,7 @@ public abstract class NetworkRequest {
 
     protected void connectApiWithBackoff() {
         Log.d(TAG, "[connectApiWithBackoff] connectApiWithBackoff() called from Thread: [" + Thread.currentThread().getName() + "]");
-        new ExponentialBackoff(1000, 5000, 2, 5, Looper.getMainLooper(), () -> {
+        new ExponentialBackoff(1_000, 5_000, 2, 5, Looper.getMainLooper(), () -> {
             Log.d(TAG, "[connectApiWithBackoff] trying to connect..");
             connect(mAccount.type);
         }, () -> {
@@ -56,7 +54,6 @@ public abstract class NetworkRequest {
         mAccount = null;
         mDestroyed = true;
     }
-
 
     protected String getAccountName() {
         return mAccount.name;

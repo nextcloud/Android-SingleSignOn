@@ -24,8 +24,8 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Nexcloudin tiedostosovellus ei tue SSO -toimintoa. Ole hyvä ja päivitä se: %1$s</string>
 
 
-    <string name="nextcloud_files_api_not_responsing_title">Virhe</string>
-    <string name="nextcloud_files_api_not_responsing_message">Nextcloudin tiedostosovelluksen API ei vastaa. Ilmoita tapauksesta.</string>
+    <string name="nextcloud_files_api_not_responding_title">Virhe</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloudin tiedostosovelluksen API ei vastaa. Ilmoita tapauksesta.</string>
 
     <string name="sso_canceled">SSO-tuonti peruttu</string>
     <string name="sso_canceled_message">SSO-tuonti peruttiin käyttäjän toimesta</string>

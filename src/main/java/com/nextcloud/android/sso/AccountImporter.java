@@ -34,6 +34,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
@@ -49,9 +53,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import io.reactivex.annotations.NonNull;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -97,7 +98,7 @@ public class AccountImporter {
             AndroidGetAccountsPermissionNotGranted {
         checkAndroidAccountPermissions(fragment.getContext());
         
-        if (appInstalledOrNot(fragment.getContext())) {
+        if (appInstalledOrNot(fragment.requireContext())) {
             Intent intent = AccountManager.newChooseAccountIntent(null, null, ACCOUNT_TYPES,
                     true, null, AUTH_TOKEN_SSO, null, null);
             fragment.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
