@@ -21,6 +21,8 @@ package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.model.ExceptionMessage;
 
@@ -35,7 +37,7 @@ public class NextcloudHttpRequestFailedException extends SSOException {
     }
 
     @Override
-    public void loadExceptionMessage(Context context) {
+    public void loadExceptionMessage(@NonNull Context context) {
         this.em = new ExceptionMessage(
                 context.getString(R.string.nextcloud_http_request_failed_title),
                 context.getString(R.string.nextcloud_http_request_failed_message, statusCode)

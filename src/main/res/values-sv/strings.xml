@@ -26,8 +26,8 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Din Nextcloud filer-app stöder för närvarande inte single sign on funktionen. Vänligen uppdatera den: %1$s</string>
 
 
-    <string name="nextcloud_files_api_not_responsing_title">Fel</string>
-    <string name="nextcloud_files_api_not_responsing_message">Nextcloud filer-app api svarar inte. Vänligen rapportera detta problem.</string>
+    <string name="nextcloud_files_api_not_responding_title">Fel</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud filer-app api svarar inte. Vänligen rapportera detta problem.</string>
 
     <string name="sso_canceled">SSO-import avbruten</string>
     <string name="sso_canceled_message">SSO-import avbruten av användaren</string>

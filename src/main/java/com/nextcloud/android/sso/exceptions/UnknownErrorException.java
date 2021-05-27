@@ -21,6 +21,8 @@ package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class UnknownErrorException extends SSOException {
@@ -35,7 +37,7 @@ public class UnknownErrorException extends SSOException {
     }
 
     @Override
-    public void loadExceptionMessage(Context context) {
+    public void loadExceptionMessage(@NonNull Context context) {
         if (this.em == null) {
             super.loadExceptionMessage(context);
         }

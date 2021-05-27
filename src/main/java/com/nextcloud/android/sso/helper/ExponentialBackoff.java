@@ -32,11 +32,11 @@ public class ExponentialBackoff {
     private static final String TAG = ExponentialBackoff.class.getCanonicalName();
 
     private int mRetryCounter;
-    private long mStartDelayMs;
-    private long mMaximumDelayMs;
+    private final long mStartDelayMs;
+    private final long mMaximumDelayMs;
     private long mCurrentDelayMs;
-    private int mMaxRetries;
-    private int mMultiplier;
+    private final int mMaxRetries;
+    private final int mMultiplier;
     private final Runnable mRunnable;
     private final Runnable mFailedCallback;
     private final Handler mHandler;
@@ -59,6 +59,7 @@ public class ExponentialBackoff {
      * Need to spy final methods for testing.
      */
     public interface HandlerAdapter {
+        @SuppressWarnings("UnusedReturnValue")
         boolean postDelayed(Runnable runnable, long delayMillis);
         void removeCallbacks(Runnable runnable);
     }

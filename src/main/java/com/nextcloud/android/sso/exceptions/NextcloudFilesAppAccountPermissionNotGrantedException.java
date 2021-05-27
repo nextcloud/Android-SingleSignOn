@@ -21,13 +21,15 @@ package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudFilesAppAccountPermissionNotGrantedException extends SSOException {
 
     @Override
-    public void loadExceptionMessage(Context context) {
+    public void loadExceptionMessage(@NonNull Context context) {
         this.em = new ExceptionMessage(
                 context.getString(R.string.nextcloud_files_app_account_permission_not_granted_title),
                 context.getString(R.string.nextcloud_files_app_account_permission_not_granted_message)

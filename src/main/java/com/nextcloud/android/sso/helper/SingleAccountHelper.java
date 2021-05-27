@@ -19,9 +19,12 @@
 
 package com.nextcloud.android.sso.helper;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import androidx.fragment.app.Fragment;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
@@ -29,8 +32,6 @@ import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNo
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
-
-import androidx.fragment.app.Fragment;
 
 public final class SingleAccountHelper {
 
@@ -53,9 +54,23 @@ public final class SingleAccountHelper {
         return AccountImporter.getSingleSignOnAccount(context, getCurrentAccountName(context));
     }
 
+    /**
+     * Warning: This call is writing synchronously to the disk.
+     * You should use {@link #setCurrentAccountAsync(Context, String)} if possible.
+     */
+    @SuppressLint("ApplySharedPref")
     public static void setCurrentAccount(Context context, String accountName) {
-        SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
-        mPrefs.edit().putString(PREF_CURRENT_ACCOUNT_STRING, accountName).commit();
+        AccountImporter.getSharedPreferences(context)
+                .edit()
+                .putString(PREF_CURRENT_ACCOUNT_STRING, accountName)
+                .commit();
+    }
+
+    public static void setCurrentAccountAsync(Context context, String accountName) {
+        AccountImporter.getSharedPreferences(context)
+                .edit()
+                .putString(PREF_CURRENT_ACCOUNT_STRING, accountName)
+                .apply();
     }
 
     public static void reauthenticateCurrentAccount(Fragment fragment) throws NoCurrentAccountSelectedException, NextcloudFilesAppAccountNotFoundException, NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {

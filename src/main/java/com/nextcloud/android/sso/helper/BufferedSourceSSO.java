@@ -1,11 +1,12 @@
 package com.nextcloud.android.sso.helper;
 
+import androidx.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
-import androidx.annotation.Nullable;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.ByteString;
@@ -34,7 +35,7 @@ import okio.Timeout;
 
 public class BufferedSourceSSO implements BufferedSource {
 
-    private InputStream mInputStream;
+    private final InputStream mInputStream;
 
     public BufferedSourceSSO(InputStream inputStream) {
         this.mInputStream = inputStream;

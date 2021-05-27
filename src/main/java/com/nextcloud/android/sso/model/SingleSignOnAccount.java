@@ -50,9 +50,9 @@ public class SingleSignOnAccount implements Serializable {
     /** Read the object from Base64 string. */
     public static SingleSignOnAccount fromString(String s) throws IOException, ClassNotFoundException {
         byte [] data = Base64.decode(s, Base64.DEFAULT);
-        ObjectInputStream ois = new ObjectInputStream(
-                new ByteArrayInputStream(  data ) );
-        SingleSignOnAccount o  = (SingleSignOnAccount) ois.readObject();
+        final ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream( data ) );
+        final SingleSignOnAccount o = (SingleSignOnAccount) ois.readObject();
         ois.close();
         return o;
     }
@@ -60,8 +60,8 @@ public class SingleSignOnAccount implements Serializable {
     /** Write the object to a Base64 string.
      * @param o*/
     public static String toString(SingleSignOnAccount o) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        final ObjectOutputStream oos = new ObjectOutputStream( baos );
         oos.writeObject( o );
         oos.close();
         return new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));

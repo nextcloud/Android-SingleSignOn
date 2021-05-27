@@ -19,11 +19,16 @@
 
 package com.nextcloud.android.sso.exceptions;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.nextcloud.android.sso.Constants;
+import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class SSOException extends Exception {
@@ -35,21 +40,21 @@ public class SSOException extends Exception {
         super("Single Sign On Exception (use getMessage(context) for more information)");
     }
 
-    public void loadExceptionMessage(Context context) {
+    public void loadExceptionMessage(@NonNull Context context) {
         this.em = new ExceptionMessage(
-                "Unknown error",
-                "Unknown error.."
+                context.getString(R.string.unknown_error),
+                context.getString(R.string.unknown_error)
         );
     }
 
-    public String getTitle(Context context) {
+    public String getTitle(@NonNull Context context) {
         if (em == null) {
             loadExceptionMessage(context);
         }
         return em.title;
     }
 
-    public String getMessage(Context context) {
+    public String getMessage(@NonNull Context context) {
         if (em == null) {
             loadExceptionMessage(context);
         }
@@ -74,19 +79,28 @@ public class SSOException extends Exception {
         return super.getMessage();
     }
 
+    @SuppressLint("PrivateApi")
     private Application getApplication() {
         try {
             return (Application) Class.forName("android.app.ActivityThread")
                     .getMethod("currentApplication").invoke(null, (Object[]) null);
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            final String message = e.getMessage();
+            Log.e(TAG, message == null ? e.getClass().getSimpleName() : message);
         }
         return null;
     }
 
 
-    public static SSOException parseNextcloudCustomException(Exception exception) {
-        switch (exception.getMessage()) {
+    public static SSOException parseNextcloudCustomException(@Nullable Exception exception) {
+        if (exception == null) {
+            return new UnknownErrorException("Parsed exception is null");
+        }
+        final String message = exception.getMessage();
+        if (message == null) {
+            return new UnknownErrorException("Exception message is null");
+        }
+        switch (message) {
             case Constants.EXCEPTION_INVALID_TOKEN:
                 return new TokenMismatchException();
             case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
