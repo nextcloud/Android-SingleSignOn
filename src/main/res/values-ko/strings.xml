@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">경고</string>
     <string name="no_current_account_selected_exception_message">계정을 선택하지 않았습니다</string>
 
@@ -7,6 +6,8 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">이 기기에 Nextcloud 통합 인증을 사용하려면 계정에 접근권한을 부여해야합니다.</string>
 
     <string name="current_account_not_found_exception_title">경고</string>
+    <string name="current_account_not_found_exception_message">선택한 계정을 찾을 수 없습니다. 문제가 발생했습니다.</string>
+
     <string name="token_mismatch_title">오류</string>
     <string name="token_mismatch_message">제공된 인증 토큰이 일치하지 않거나 작동하기에 충분한 권한이 없습니다</string>
 
@@ -25,11 +26,7 @@
     <string name="nextcloud_files_app_not_supported_title">오류</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">현재 Nextcloud Files App 은 단일 로그인 기능을 지원하지 않습니다. %1$s를 업데이트 해주세요</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">오류</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files App이 응답하지 않습니다. 이 오류를 보고해주세요.</string>
-
+    <string name="select_account_unknown_error_toast">문제가 발생했습니다. 다시 시도하십시오.</string>
     <string name="sso_canceled">통합 인증 가져오기 취소됨</string>
     <string name="sso_canceled_message">통합인증 가져오기가 사용자에 의해 취소되었습니다</string>
-
 </resources>

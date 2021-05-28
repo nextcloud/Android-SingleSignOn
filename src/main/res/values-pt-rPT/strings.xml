@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Aviso</string>
     <string name="no_current_account_selected_exception_message">Ainda nenhuma conta selecionada</string>
 
@@ -22,9 +21,5 @@
 
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Atualmente, a sua aplicação de ficheiros nextcloud não suporta a funcionalidade de início de sessão único. Por favor, atualize-a: %1$s</string>
-
-
-    <string name="nextcloud_files_api_not_responding_title">Erro</string>
-    <string name="nextcloud_files_api_not_responding_message">A api da aplicação de ficheiros Nextcloud não está a responder. Por favor, reporte este problema.</string>
 
     </resources>

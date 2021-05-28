@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Advarsel</string>
     <string name="no_current_account_selected_exception_message">Ingen konto er valgt</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">Feil</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ditt Nextcloud filer tillegg støtter ikke single sign-on. Vennligst oppdater det: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Feil</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud filer API svarer ikke. Vennligst rapporer denne feilen.</string>
-
     <string name="sso_canceled">SSO import avbrutt</string>
     <string name="sso_canceled_message">SSO import var avbrutt av bruker</string>
-
 </resources>

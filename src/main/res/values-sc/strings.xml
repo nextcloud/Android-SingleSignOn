@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Avisu</string>
     <string name="no_current_account_selected_exception_message">Perunu contu seletzionadu ancora</string>
 
@@ -27,12 +26,7 @@
     <string name="nextcloud_files_app_not_supported_title">Errore</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">S\'aplicatzione de archìvios Nextcloud tua non permitit sa funtzione de autenticatzione ùnica. Agiorna·dda: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Errore</string>
-    <string name="nextcloud_files_api_not_responding_message">S\'aplicatzione de archìvios Nextcloud api non rispondet. Sinnala custu problema.</string>
-
     <string name="select_account_unknown_error_toast">Ddoe at àpidu un\'errore. Torra a proare.</string>
     <string name="sso_canceled">Importatzione de SSO annullada</string>
     <string name="sso_canceled_message">S\'utente at annulladu s\'importatzione de SSO</string>
-
 </resources>

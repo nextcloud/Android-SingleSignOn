@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Varovanie</string>
     <string name="no_current_account_selected_exception_message">Žiadny účet nebol vybratý</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">Chyba</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Vaša Nextcloud aplikácia v súčasnosti nepodporuje single sign on.  Prosím aktualizujte ju: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Chyba</string>
-    <string name="nextcloud_files_api_not_responding_message">API apky Nextcloud Súbory neodpovedá. Nahláste prosím túto chybu.</string>
-
     <string name="sso_canceled">SSO import zrušený</string>
     <string name="sso_canceled_message">SSO import bol zrušený používateľom</string>
-
 </resources>

@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">אזהרה</string>
     <string name="no_current_account_selected_exception_message">לא נבחרו חשבונות עדיין</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">שגיאה</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">ליישומון הקבצים שלך ב־Nextcloud אין עדיין תמיכה בתכונה הכניסה האחודה. נא לעדכן אותו: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">שגיאה</string>
-    <string name="nextcloud_files_api_not_responding_message">ה־API של יישומון הקבצים של Nextcloud. נא לדווח על התקלה הזאת.</string>
-
     <string name="sso_canceled">ייבוא ה־SSO בוטל</string>
     <string name="sso_canceled_message">ייבוא ה־SSO בוטל על ידי המשתמש</string>
-
 </resources>

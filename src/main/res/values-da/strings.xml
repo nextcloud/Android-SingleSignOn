@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Advarsel</string>
     <string name="no_current_account_selected_exception_message">Der er ikke valgt en konto</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">Fejl</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Din nextcloud files app under for tiden ikke enkel sign-on funktion. Opdater den venligst: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Fejl</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud files app api svarer ikke. Rapporter gerne dette problem.</string>
-
     <string name="sso_canceled">SSO-import annulleret</string>
     <string name="sso_canceled_message">SSO-import blev annulleret af bruger</string>
-
 </resources>

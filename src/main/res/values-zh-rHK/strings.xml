@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">警告</string>
     <string name="no_current_account_selected_exception_message">沒有選擇任何賬戶</string>
 
@@ -27,12 +26,7 @@
     <string name="nextcloud_files_app_not_supported_title">錯誤</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">您的 Nextcloud Files App 尚未支援單一登入功能。請更新：%1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">錯誤</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files App API 無回應。請舉報此問題。</string>
-
     <string name="select_account_unknown_error_toast">發生錯誤，請重試</string>
     <string name="sso_canceled">取消 SSO 導入</string>
     <string name="sso_canceled_message">用戶取消了 SSO 導入。</string>
-
 </resources>

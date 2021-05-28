@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">هشدار</string>
     <string name="no_current_account_selected_exception_message">هنوز حساب کاربری انتخاب نشده است</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">خطا</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">برنامه پرونده های نکست کلود شما در حال حاضر از ویژگی یک نشانه پشتیبانی نمی کند. لطفا آن را به روز کنید: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">خطا</string>
-    <string name="nextcloud_files_api_not_responding_message">api برنامه فایلهای نکست کلود پاسخ نمی دهد. لطفا این مسئله را گزارش کنید</string>
-
     <string name="sso_canceled">واردکردن SSO لغو شد</string>
     <string name="sso_canceled_message">واردکردن SSO توسط کاربر لغو شد</string>
-
 </resources>

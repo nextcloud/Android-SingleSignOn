@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Упозорење</string>
     <string name="no_current_account_selected_exception_message">Још није одабран налог</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">Грешка</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваша Некстклауд апликација тренутно не подржава једнократно пријављивање. Ажурирајте је: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Грешка</string>
-    <string name="nextcloud_files_api_not_responding_message">АПИ Некстклауд апликације се не одазива. Пријавите ову грешку.</string>
-
     <string name="sso_canceled">ССО увоз је отказан</string>
     <string name="sso_canceled_message">ССО увоз је прекинуо корисник</string>
-
 </resources>

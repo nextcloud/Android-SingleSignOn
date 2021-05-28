@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Avís</string>
     <string name="no_current_account_selected_exception_message">Encara no heu seleccionat cap compte.</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">Error</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">La vostra aplicació de fitxers nextcloud no disposa de l\'inici de sessió única. Si us plau, actualitzeu-la: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Error</string>
-    <string name="nextcloud_files_api_not_responding_message">L\'API de l\'aplicació de fitxers Nextcloud no està responent. Si us plau, informeu d\'aquest problema.</string>
-
     <string name="sso_canceled">S\'ha cancel·lat la importació SSO</string>
     <string name="sso_canceled_message">L\'usuari ha cancel·lat la importació SSO</string>
-
 </resources>

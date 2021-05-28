@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Advertencia</string>
     <string name="no_current_account_selected_exception_message">Todavía no hay ninguna cuenta seleccionada</string>
 
@@ -27,12 +26,7 @@
     <string name="nextcloud_files_app_not_supported_title">Error</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Tu app de Archivos de Nextcloud no soporta actualmente la característica de single sign on. Por favor, actualízala: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Error</string>
-    <string name="nextcloud_files_api_not_responding_message">La API de archivos de Nextcloud no responde. Por favor, informa de este problema.</string>
-
     <string name="select_account_unknown_error_toast">Algo ha salido mal. Por favor, vuelve a intentarlo.</string>
     <string name="sso_canceled">Importación SSO cancelada</string>
     <string name="sso_canceled_message">La importación SSO fue cancelada por el usuario</string>
-
 </resources>

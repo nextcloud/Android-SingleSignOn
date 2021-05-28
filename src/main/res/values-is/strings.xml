@@ -1,5 +1,4 @@
 <resources>
-
     <string name="no_current_account_selected_exception_title">Aðvörun</string>
     <string name="no_current_account_selected_exception_message">Enginn notandaaðgangur ennþá uppgefinn</string>
 
@@ -25,11 +24,6 @@
     <string name="nextcloud_files_app_not_supported_title">Villa</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Nextcloud skráaforritið þitt styður ekki eins-þreps innskráningareiginleikann. Endilega uppfærðu það: %1$s</string>
 
-
-    <string name="nextcloud_files_api_not_responding_title">Villa</string>
-    <string name="nextcloud_files_api_not_responding_message">API-forritsviðmót Nextcloud Files forritsins svarar ekki. Endilega tilkynntu þetta vandamál.</string>
-
     <string name="sso_canceled">Hætt við innflutning á SSO</string>
     <string name="sso_canceled_message">Notandi hætti við innflutning á SSO</string>
-
 </resources>
