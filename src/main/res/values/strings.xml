@@ -35,7 +35,7 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Your Nextcloud Files app currently does not support the single sign on feature. Please update it: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Error</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files app api is not responding. Please report this issue.</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files app API is not responding. Please report this issue.</string>
 
     <string name="select_account_unknown_error_toast">Something went wrong. Please try again.</string>
     <string name="sso_canceled">SSO import canceled</string>
