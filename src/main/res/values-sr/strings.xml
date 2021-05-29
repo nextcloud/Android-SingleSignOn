@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Токен за проверу идентитета се не поклапа или имену овог пакета није дозвољено да изврши ову радњу</string>
 
     <string name="nextcloud_files_app_not_installed_title">Грешка</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Некстклауд апликација за фајлове није инсталирана. Инсталирајте је са: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Грешка</string>
-    <string name="nextcloud_files_app_account_not_found_message">Налог није нађен у Некстклауд апликацији</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Грешка</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Морате да прихватите захтеване дозволе да бисте могли да користите могућност једнократне пријаве.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">ХТТП захтев није успео са статусом грешке: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Грешка</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваша Некстклауд апликација тренутно не подржава једнократно пријављивање. Ажурирајте је: %1$s</string>
-
     <string name="sso_canceled">ССО увоз је отказан</string>
     <string name="sso_canceled_message">ССО увоз је прекинуо корисник</string>
 </resources>

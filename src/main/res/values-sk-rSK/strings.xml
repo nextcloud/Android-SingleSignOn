@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Poskytnutý overovací token sa nezhoduje alebo nie je tomuto balíčku umožnené túto akciu uskutočniť</string>
 
     <string name="nextcloud_files_app_not_installed_title">Chyba</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikácia Nextcloud Files nie je nainštalovaná.  Prosím nainštalujte ju: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Chyba</string>
-    <string name="nextcloud_files_app_account_not_found_message">Účet nebol nájdený v aplikácii Nextcloud Files</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Chyba</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Musíte prijať požadované právomoci aby ste mohli používať single sign-on.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Chyba pri HTTP požiadavke, HTTP status kód: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Chyba</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Vaša Nextcloud aplikácia v súčasnosti nepodporuje single sign on.  Prosím aktualizujte ju: %1$s</string>
-
     <string name="sso_canceled">SSO import zrušený</string>
     <string name="sso_canceled_message">SSO import bol zrušený používateľom</string>
 </resources>

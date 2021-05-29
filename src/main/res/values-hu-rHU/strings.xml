@@ -12,11 +12,7 @@
     <string name="token_mismatch_message">A megadott hitelesítési token nem egyezik meg, vagy a csomagnév nem engedélyezett ebben a környezeteben</string>
 
     <string name="nextcloud_files_app_not_installed_title">Hiba</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">A Nextcloud fájlok alkalmazás nincs telepítve. Telepítse: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Hiba</string>
-    <string name="nextcloud_files_app_account_not_found_message">A Nextcloud fájlok alkalmazásban nem található ilyen fiók</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Hiba</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Az egyszeri bejelentkezés funkció használatához el kell fogadnia a kért engedélyeket.</string>
 
@@ -24,8 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">A HTTP kérés sikertelen, a kapott HTTP állapotkód: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Hiba</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">A Nextcloud fájlok alkalmazás jelenleg nem támogatja az egyszeri bejelentkezés funkciót. Frissítse: %1$s</string>
-
     <string name="select_account_unknown_error_toast">Valami balul sült el. Próbálja újra.</string>
     <string name="sso_canceled">SSO importálás megszakítva</string>
     <string name="sso_canceled_message">SSO importálás megszakítva a felhasználó által</string>

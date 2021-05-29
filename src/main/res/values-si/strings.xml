@@ -6,11 +6,7 @@
     <string name="current_account_not_found_exception_title">අවවාදයයි</string>
     <string name="token_mismatch_title">දෝෂය</string>
     <string name="nextcloud_files_app_not_installed_title">දෝෂය</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">නෙක්ස්ට් ක්ලවුඩ් ගොනු යෙදුම ස්ථාපනය කර නැත. කරුණාකර එය ස්ථාපනය කරන්න: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">දෝෂය</string>
-    <string name="nextcloud_files_app_account_not_found_message">නෙක්ස්ට් ක්ලවුඩ් ගොනු යෙදුම තුළ ගිණුම හමු නොවීය</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">දෝෂය</string>
     <string name="nextcloud_http_request_failed_title">දෝෂය</string>
     <string name="nextcloud_files_app_not_supported_title">දෝෂය</string>

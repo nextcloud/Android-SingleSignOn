@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Förutsatt att autentiserings-token inte matchar eller paketnamnet inte är tillåtet att utföra denna åtgärd</string>
 
     <string name="nextcloud_files_app_not_installed_title">Fel</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files App är inte installerad. Vänligen installera den: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Fel</string>
-    <string name="nextcloud_files_app_account_not_found_message">Kontot hittades inte i Nextcloud filer-app</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Fel</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Du måste acceptera de begärda behörigheterna för att använda single sign-on funktionen.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-förfrågan misslyckades med HTTP-statuskod: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Fel</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Din Nextcloud filer-app stöder för närvarande inte single sign on funktionen. Vänligen uppdatera den: %1$s</string>
-
     <string name="sso_canceled">SSO-import avbruten</string>
     <string name="sso_canceled_message">SSO-import avbruten av användaren</string>
 </resources>

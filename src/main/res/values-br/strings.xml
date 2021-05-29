@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Ar jedouer dilesa roet na glot ket pe anv ar bakat n\'eo ket aotreet d\'ober an oberenn-mañ</string>
 
     <string name="nextcloud_files_app_not_installed_title">Fazi</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Ar Meziant Restroù Nextcloud n\'eo ket staliet. Staliit anezhañ : %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Fazi</string>
-    <string name="nextcloud_files_app_account_not_found_message">Kont kavet ebet er meziant restroù nextcloud</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Fazi</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Ret eo deoc\'h aotreañ ar goulenn aotre evit implij ar perzh enskrivañ e unan.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">C\'hwitet ar goulenn HTTP gant ar c\'hod-stad HTTP : %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Fazi</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ho meziant restroù nextcloud na zoug ket ar perzh enskrivañ e unan. Adnevesiit anezhi : %1$s</string>
-
     <string name="sso_canceled">Emporzhiañ SSO arested</string>
     <string name="sso_canceled_message">Emporzhiañ SSO a zo bet arested gant an implijer</string>
 </resources>

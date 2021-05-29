@@ -12,11 +12,7 @@
     <string name="token_mismatch_message">Podan žeton za overitev ni skladen, ali pa za paket ni ustreznih dovoljenj za to dejanje.</string>
 
     <string name="nextcloud_files_app_not_installed_title">Napaka</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Program za upravljanje z datotekami Nextcloud Files App ni na voljo. Pred nadaljevanjem ga je treba namestiti: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Napaka</string>
-    <string name="nextcloud_files_app_account_not_found_message">Računa v programu ni mogoče najti v programu nextcloud</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Napaka</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Za uporabe storitve enojne prijave je treba sprejeti zahtevana dovoljenja.</string>
 
@@ -24,8 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Zahteva HTTP je spodletela s kodo stanja: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Napaka</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Trenutna različica programa datotek ne podpira možnosti enojne prijave. Posodobiti jo je treba na %1$s</string>
-
     <string name="select_account_unknown_error_toast">Prišlo je do napake. poskusite znova.</string>
     <string name="sso_canceled">Uvoz SSO je preklican</string>
     <string name="sso_canceled_message">Uvoz SSO je preklican s strani uporabnika</string>

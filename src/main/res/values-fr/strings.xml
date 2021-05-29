@@ -12,11 +12,7 @@
     <string name="token_mismatch_message">Le jeton d\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erreur</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'application Nexcloud Files n\'est pas installée. Veuillez l\'installer : %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
-    <string name="nextcloud_files_app_account_not_found_message">Compte non trouvé dans l\'application Nextcloud Files.</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Erreur</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Vous devez accepter les demandes d\'autorisations pour utiliser l\'authentification unique.</string>
 
@@ -24,8 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">La requête HTTP a échoué avec le statut HTTP :%1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erreur</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Votre application Nextcloud Files ne prend  actuellement pas en charge l\'authentification unique. Veuillez la mettre à jour :%1$s</string>
-
     <string name="select_account_unknown_error_toast">Quelque chose s\'est mal passé. Veuillez réessayer.</string>
     <string name="sso_canceled">Import SSO annulé</string>
     <string name="sso_canceled_message">L\'import SSO a été annulé par un utilisateur</string>

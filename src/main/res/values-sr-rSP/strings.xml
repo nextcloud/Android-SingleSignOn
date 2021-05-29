@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Token za proveru identiteta se ne poklapa ili imenu ovog paketa nije dozvoljeno da izvrši ovu radnju</string>
 
     <string name="nextcloud_files_app_not_installed_title">Greška</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nekstklaud aplikacija za fajlove nije instalirana. Instalirajte je sa: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Greška</string>
-    <string name="nextcloud_files_app_account_not_found_message">Nalog nije nađen u Nekstklaud aplikaciji fajlova</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Greška</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Morate da prihvatite zahtevane dozvole da biste mogli da koristite mogućnost jednokratne prijave.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP zahtev nije uspeo sa statusom greške: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Vaša Nekstklaud aplikacija za Fajlove trenutno ne podržava mogućnost jednokratnog prijavljivanja. Ažurirajte je: %1$s</string>
-
     <string name="sso_canceled">SSO uvoz je prekinut</string>
     <string name="sso_canceled_message">SSO pristup je prekinut od strane korisnika</string>
 </resources>

@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">אסימון האימות שסופק לא מתאים או ששם החבילה אינו מורשה לבצע את הפעולה הזאת</string>
 
     <string name="nextcloud_files_app_not_installed_title">שגיאה</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">יישומון הקבצים של Nextcloud אינו מותקן. נא להתקין אותו: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">שגיאה</string>
-    <string name="nextcloud_files_app_account_not_found_message">החשבון לא נמצא ביישומון הקבצים של Nextcloud</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">שגיאה</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">עליך לאשר את ההרשאה שנתבקשה כדי להשתמש בתכונת הכניסה האחודה.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">בקשת ה־HTTP נכשלה עם קוד המצב של HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">שגיאה</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">ליישומון הקבצים שלך ב־Nextcloud אין עדיין תמיכה בתכונה הכניסה האחודה. נא לעדכן אותו: %1$s</string>
-
     <string name="sso_canceled">ייבוא ה־SSO בוטל</string>
     <string name="sso_canceled_message">ייבוא ה־SSO בוטל על ידי המשתמש</string>
 </resources>

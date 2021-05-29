@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">مشروط به تأیید اعتبار ، مطابقت ندارد یا نام بسته برای انجام این کار مجاز نیست</string>
 
     <string name="nextcloud_files_app_not_installed_title">خطا</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">برنامه Nextcloud Files نصب نشده است. لطفاً آن را نصب کنید:%1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">خطا</string>
-    <string name="nextcloud_files_app_account_not_found_message">حساب در برنامه فایلهای نکست کلود یافت نشد</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">خطا</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">برای استفاده از ویژگی ورود به سیستم مجبورید مجوزهای درخواستی را بپذیرید.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">درخواست HTTP با کد وضعیت HTTP انجام نشد: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">خطا</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">برنامه پرونده های نکست کلود شما در حال حاضر از ویژگی یک نشانه پشتیبانی نمی کند. لطفا آن را به روز کنید: %1$s</string>
-
     <string name="sso_canceled">واردکردن SSO لغو شد</string>
     <string name="sso_canceled_message">واردکردن SSO توسط کاربر لغو شد</string>
 </resources>

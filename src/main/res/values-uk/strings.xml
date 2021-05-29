@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Наданий токен аутентифікації не співпадає або даному пакету не дозволено виконувати дану дію</string>
 
     <string name="nextcloud_files_app_not_installed_title">Помилка</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Застосунок Nextcloud Files App не встановлено. Будь-ласка встановіть: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Помилка</string>
-    <string name="nextcloud_files_app_account_not_found_message">Обліковий запис не знайдено у застосунку Nextcloud files</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Помилка</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Ви мусите налати дозволи для подальшо користування службою єдиного входу.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Помилка HTTP запиту з таким статус-кодом HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Помилка</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваші застосунки NextCloud наразі не підтримують функцію єдиного входу. Буль-ласка виконайте оновлення: %1$s</string>
-
     <string name="sso_canceled">Імпорт служби єдиного входу скасовано</string>
     <string name="sso_canceled_message">Імпорт служби єдиного входу скасовано користувачем</string>
 </resources>

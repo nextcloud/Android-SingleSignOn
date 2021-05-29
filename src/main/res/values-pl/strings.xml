@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Nieznany błąd</string>
+
     <string name="no_current_account_selected_exception_title">Uwaga</string>
     <string name="no_current_account_selected_exception_message">Nie wybrano jeszcze konta</string>
 
@@ -12,11 +14,7 @@
     <string name="token_mismatch_message">Podany token uwierzytelniania nie pasuje lub nazwa pakietu nie może wykonać tej akcji</string>
 
     <string name="nextcloud_files_app_not_installed_title">Błąd</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikacja Nextcloud nie jest zainstalowana. Proszę ją zainstalować: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Błąd</string>
-    <string name="nextcloud_files_app_account_not_found_message">Konto nie zostało znalezione w aplikacji Nextcloud Files</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Błąd</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Musisz zaakceptować wymagane uprawnienia do korzystania z funkcji pojedynczego logowania (SSO).</string>
 
@@ -24,8 +22,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Zapytanie HTTP nie powiodło się z kodem: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Błąd</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Twoja aplikacja plików Nextcloud nie obsługuje pojedynczego logowania (SSO). Proszę zaktualizować: %1$s.</string>
-
+    <string name="nextcloud_files_api_not_responding_title">Błąd</string>
     <string name="select_account_unknown_error_toast">Coś poszło nie tak. Spróbuj ponownie.</string>
     <string name="sso_canceled">Anulowano import SSO</string>
     <string name="sso_canceled_message">Użytkownik przerwał import SSO</string>

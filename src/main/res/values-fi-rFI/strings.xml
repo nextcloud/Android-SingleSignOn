@@ -8,11 +8,7 @@
     <string name="token_mismatch_message">Annettu todennusavain ei vastaa tai paketin ei ole sallittua suorittaa tätä toimintoa</string>
 
     <string name="nextcloud_files_app_not_installed_title">Virhe</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloudin tiedostosovellusta ei ole asennettu. Asenna se: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Virhe</string>
-    <string name="nextcloud_files_app_account_not_found_message">Tiliä ei löytynyt Nextcloudin tiedostosovelluksesta</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Virhe</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Sinun tulee hyväksyä esitetyt käyttöoikeudet käyttääksesi kertakirjautumisominaisuutta.</string>
 
@@ -20,8 +16,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-pyyntö epäonnistui HTTP-tilakoodilla: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Virhe</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Nexcloudin tiedostosovellus ei tue SSO -toimintoa. Ole hyvä ja päivitä se: %1$s</string>
-
     <string name="sso_canceled">SSO-tuonti peruttu</string>
     <string name="sso_canceled_message">SSO-tuonti peruttiin käyttäjän toimesta</string>
 </resources>

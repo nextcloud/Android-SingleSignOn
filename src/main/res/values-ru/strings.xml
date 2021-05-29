@@ -12,11 +12,7 @@
     <string name="token_mismatch_message">Предоставленный токен подтверждения подлинности недействителен или имя пакета не позволяет выполнить данное действие</string>
 
     <string name="nextcloud_files_app_not_installed_title">Ошибка</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Не установлено приложение Файлы для Nextcloud. Установите его чтобы продолжить: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Ошибка</string>
-    <string name="nextcloud_files_app_account_not_found_message">Учетная запись не найдена в приложении Файлы для Nextcloud</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Ошибка</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Для использования функции единого входа необходимо принять запрашиваемые разрешения.</string>
 
@@ -24,8 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Ошибка выполнения запроса HTTP. Код состояния: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Ошибка</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Установленная версия приложения Файлы для Nextcloud не поддерживает технологию единой точки входа, необходимо выполнить обновление: %1$s</string>
-
     <string name="select_account_unknown_error_toast">Что-то пошло не так. Пожалуйста, попробуйте ещё раз.</string>
     <string name="sso_canceled">Импорт SSO отменён</string>
     <string name="sso_canceled_message">Импорт SSO отменён пользователем</string>

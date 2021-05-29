@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">رمز المصادقة المقدم غير مطابق أو لا يُسمح لاسم الحزمة بتنفيذ هذا الإجراء</string>
 
     <string name="nextcloud_files_app_not_installed_title">خطأ</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">تطبيق ملفات Nextcloud غير مثبت. الرجاء تثبيته: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">خطأ</string>
-    <string name="nextcloud_files_app_account_not_found_message">الحساب غير موجود في تطبيق ملفات nextcloud</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">خطأ</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">يجب عليك قبول الأذونات المطلوبة لاستخدام ميزة تسجيل الدخول الأحادي.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">فشل طلب HTTP مع رمز حالة HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">خطأ</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">لا يدعم تطبيق ملفات Nextcloud الخاص بك حاليًا ميزة تسجيل الدخول الأحادي. يرجى تحديثه: %1$s</string>
-
     <string name="sso_canceled">تم إلغاء استيراد SSO</string>
     <string name="sso_canceled_message">تم إلغاء استيراد SSO من قبل المستخدم</string>
 </resources>

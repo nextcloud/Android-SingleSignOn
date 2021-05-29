@@ -12,11 +12,7 @@
     <string name="token_mismatch_message">Het opgegeven authenticatie token komt niet overeen of de packagenaam is niet toegestaan om deze actie uit te voeren</string>
 
     <string name="nextcloud_files_app_not_installed_title">Fout</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud bestandenapp is niet geïnstalleerd. Installeer de app alstublieft: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Fout</string>
-    <string name="nextcloud_files_app_account_not_found_message">Account niet gevonden in nextcloud files app</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Fout</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Je moet de gevraagde permissies accepteren om single sign-on te kunnen gebruiken.</string>
 
@@ -24,8 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP aanvraag mislukt met HTTP status-code: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Fout</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Je nextcloud bestandenapp ondersteunt de single sign-on faciliteit momenteel niet. Graag updaten alstublieft: %1$s</string>
-
     <string name="select_account_unknown_error_toast">Er ging iets fout... probeer het opnieuw.</string>
     <string name="sso_canceled">SSO import geannuleerd</string>
     <string name="sso_canceled_message">SSO import was geannuleerd door de gebruiker</string>

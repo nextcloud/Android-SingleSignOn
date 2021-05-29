@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Provided authentication token does not match or package name is not permitted to perform this action</string>
 
     <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files App is not installed. Please install it: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
-    <string name="nextcloud_files_app_account_not_found_message">Account not found in nextcloud files app</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">You have to accept the requested permissions to use the single sign-on feature.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP request failed with HTTP status-code: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Your nextcloud files app currently does not support the single sign on feature. Please update it: %1$s</string>
-
     <string name="sso_canceled">SSO import cancelled</string>
     <string name="sso_canceled_message">SSO import was cancelled by user</string>
 </resources>

@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Το αναγνωριστικό πιστοποίησης που παρείχατε δεν είναι δωστό ή το όνομα πακέτου δεν επιτρέπετε για αυτή την ενέργεια</string>
 
     <string name="nextcloud_files_app_not_installed_title">Σφάλμα</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Το Nextcloud Files App δεν είναι εγκατεστημένο. Παρακαλώ εγκαταστήστε το: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Σφάλμα</string>
-    <string name="nextcloud_files_app_account_not_found_message">Δεν βρέθηκε ο λογαριασμός στην εφαρμογή αρχείων του Nextcloud</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Σφάλμα</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Πρέπει να χορηγήσετε τα απαραίτητα δικαιώματα για χρήση της απλής εισόδου χρήστη.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Απέτυχε το αίτημα HTTP με κατάσταση-κώδικα HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Σφάλμα</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Η εφαρμογή αρχείων σας nextcloud δεν υποστηρίζει την δυνατότητα απλής υπογραφής. Παρακαλώ ενημερώστε την: %1$s</string>
-
     <string name="sso_canceled">Ακυρώθηκε η εισαγωγή SSO</string>
     <string name="sso_canceled_message">Η εισαγωγή SSO ακυρώθηκε από τον χρήστη</string>
 </resources>

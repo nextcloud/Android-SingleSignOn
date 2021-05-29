@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">Den afleverede godkendelsestoken stemmer ikke overens eller pakkenavnet er ikke tilladt for denne handling</string>
 
     <string name="nextcloud_files_app_not_installed_title">Fejl</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files App er ikke installeret. Venligst installer it: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Fejl</string>
-    <string name="nextcloud_files_app_account_not_found_message">Konto ikke fundet i nextcloud files appen</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Fejl</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Du skal accepterer de anmodede tilladelser for at bruge enkel sign-on funktion.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP anmodning fejlede med HTTP status-kode: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Fejl</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Din nextcloud files app under for tiden ikke enkel sign-on funktion. Opdater den venligst: %1$s</string>
-
     <string name="sso_canceled">SSO-import annulleret</string>
     <string name="sso_canceled_message">SSO-import blev annulleret af bruger</string>
 </resources>

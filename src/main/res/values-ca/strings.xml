@@ -10,11 +10,7 @@
     <string name="token_mismatch_message">L\'identificador (token) d\'autentificació que heu proporcionat no coincideix o el nom del paquet no té permís per realitzar aquesta acció</string>
 
     <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'aplicació Fitxers de Nextcloud no està instal·lada. Si us plau, instal·leu-la: %1$s</string>
-
     <string name="nextcloud_files_app_account_not_found_title">Error</string>
-    <string name="nextcloud_files_app_account_not_found_message">No s\'ha trobat el compte a l\'aplicació de fitxers de nextcloud</string>
-
     <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Heu d\'acceptar els permisos sol·licitats per fer servir la funcionalitat d\'inici de sessió única.</string>
 
@@ -22,8 +18,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Ha fallat la petició HTTP amb el codi d\'estat HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">La vostra aplicació de fitxers nextcloud no disposa de l\'inici de sessió única. Si us plau, actualitzeu-la: %1$s</string>
-
     <string name="sso_canceled">S\'ha cancel·lat la importació SSO</string>
     <string name="sso_canceled_message">L\'usuari ha cancel·lat la importació SSO</string>
 </resources>
