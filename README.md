@@ -1,12 +1,33 @@
 # Nextcloud Single Sign On
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8aa66fac0af94ef2836d386fad69f199)](https://www.codacy.com/app/Nextcloud/Android-SingleSignOn?utm_source=github.com&utm_medium=referral&utm_content=nextcloud/Android-SingleSignOn&utm_campaign=Badge_Grade)
-
-[![](https://jitpack.io/v/nextcloud/Android-SingleSignOn.svg)](https://jitpack.io/#nextcloud/Android-SingleSignOn)
+[![Last release](https://jitpack.io/v/nextcloud/Android-SingleSignOn.svg)](https://jitpack.io/#nextcloud/Android-SingleSignOn)
+[![GitHub issues](https://img.shields.io/github/issues/nextcloud/Android-SingleSignOn.svg)](https://github.com/nextcloud/Android-SingleSignOn/issues)
+[![GitHub stars](https://img.shields.io/github/stars/nextcloud/Android-SingleSignOn.svg)](https://github.com/nextcloud/Android-SingleSignOn/stargazers)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This library allows you to use accounts as well as the network stack provided by the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client). Therefore you as a developer don't need to worry about asking the user for credentials as well as you don't need to worry about self-signed ssl certificates, two factor authentication, save credential storage etc.
 
-_Please note that the user needs to install the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client) in order to use those features._ While this might seem like a "no-go" for some developers, we still think that using this library is worth consideration as it makes the account handling much faster and safer.
+*Please note that the user needs to install the [nextcloud files app](https://play.google.com/store/apps/details?id=com.nextcloud.client) in order to use those features.* While this might seem like a "no-go" for some developers, we still think that using this library is worth consideration as it makes the account handling much faster and safer.
+
+- [How to use this library](#how-to-use-this-library)
+  - [1) Add this library to your project](#1-add-this-library-to-your-project)
+  - [2) To choose an account, include the following code in your login dialog](#2-to-choose-an-account-include-the-following-code-in-your-login-dialog)
+  - [3) To handle the result of the Account Chooser, include the following](#3-to-handle-the-result-of-the-account-chooser-include-the-following)
+  - [4) How to get account information?](#4-how-to-get-account-information)
+  - [5) How to make a network request?](#5-how-to-make-a-network-request)
+    - [5.1) Using Retrofit](#51-using-retrofit)
+    - [5.2) Without Retrofit](#52-without-retrofit)
+    - [5.3) WebDAV](#53-webdav)
+- [Additional info](#additional-info)
+- [Security](#security)
+- [Media](#media)
+  - [Talks at the Nextcloud Conference](#talks-at-the-nextcloud-conference)
+  - [Demo video](#demo-video)
+- [Known apps](#known-apps)
+- [Troubleshooting](#troubleshooting)
+- [Flow diagram](#flow-diagram)
+- [Translations](#translations)
 
 ## How to use this library
 
@@ -14,22 +35,23 @@ _Please note that the user needs to install the [nextcloud files app](https://pl
 
 ```gradle
 repositories {
-    ...
+    // …
     maven { url "https://jitpack.io" }
 
 }
 
 dependencies {
-    implementation "com.github.nextcloud:Android-SingleSignOn:0.5.1"
+    implementation "com.github.nextcloud:Android-SingleSignOn:0.5.6"
 }
 
-compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-}
+// This is only required if you are using Android Grade Plugin < 4.2
+// See https://developer.android.com/studio/releases/gradle-plugin#java-8-default
+// 
+// compileOptions {
+//     sourceCompatibility JavaVersion.VERSION_1_8
+//     targetCompatibility JavaVersion.VERSION_1_8
+// }
 ```
-
-We use some features from Java 8, so your project needs also to be compiled with (at least) this version.
 
 For Android 11 and later [you need to add queries](https://github.com/nextcloud/Android-SingleSignOn/issues/277) to your app's manifest file. It will not find the Nextcloud app otherwise.
 
@@ -40,7 +62,7 @@ For Android 11 and later [you need to add queries](https://github.com/nextcloud/
 </queries>
 ```
 
-### 2) To choose an account, include the following code in your login dialog:
+### 2) To choose an account, include the following code in your login dialog
 
 From an Activity
 
@@ -66,7 +88,7 @@ private void openAccountChooser() {
 }
 ```
 
-### 3) To handle the result of the Account Chooser, include the following:
+### 3) To handle the result of the Account Chooser, include the following
 
 From an Activity
 
@@ -107,7 +129,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
             NextcloudAPI nextcloudAPI = new NextcloudAPI(l_context, ssoAccount, new GsonBuilder().create(), callback);
 
-            // TODO ... (see code in section 4 and below)
+            // TODO … (see code in section 4 and below)
         }
     });
 }
@@ -145,7 +167,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
 
-            // TODO ... (see code in section 4 and below)
+            // TODO … (see code in section 4 and below)
         }
     });
 }
@@ -168,7 +190,7 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 
 ```java
 // If you stored the "default" account using setCurrentAccount(…) you can get the account by using the following line:
-SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+final SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
 
 // Otherwise (for multi-account support): (you'll have to keep track of the account names yourself. Note: this has to be the name of SingleSignOnAccount.name)
 AccountImporter.getSingleSignOnAccount(context, accountName);
@@ -220,7 +242,7 @@ You might instantiate your retrofit `API` by using something like this:
 ```java
 public class ApiProvider {
 
-    private API mApi;
+    private final API mApi;
 
     public ApiProvider() {
         mApi = retrofit.create(API.class);
@@ -233,9 +255,9 @@ public class ApiProvider {
 ```java
 public class ApiProvider {
 
-    private API mApi;
+    private final API mApi;
 
-    public ApiProvider(NextcloudAPI.ApiConnectedListener callback) {
+    public ApiProvider(@NonNull NextcloudAPI.ApiConnectedListener callback) {
        final SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
        final NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
        mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
@@ -245,7 +267,7 @@ public class ApiProvider {
 
 Enjoy! If you're already using retrofit, you don't need to modify your application logic. Just exchange the API and you're good to go!
 
-Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(...)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
+Note: If you need a different mapping between your json-structure and your java-structure you might want to create a custom type adapter using `new GsonBuilder().create().registerTypeAdapter(…)`. Take a look at [this](https://github.com/nextcloud/news-android/blob/783836390b4c27aba285bad1441b53154df16685/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/helper/GsonConfig.java) example for more information.
 
 #### 5.2) **Without Retrofit**
 
@@ -316,25 +338,25 @@ public class MyActivity extends AppCompatActivity {
 }
 ```
 
-#### 6. WebDAV
+#### 5.3) **WebDAV**
 
-The following WebDAV Methods are supported: `PROPFIND` / `MKCOL`
+The following `WebDAV` Methods are supported: `PROPFIND` / `MKCOL`
 
 The following examples shows how to use the `PROPFIND` method. With a depth of 0.
 
 ```java
-List<String>depth = new ArrayList<>();
+final List<String> depth = new ArrayList<>();
 depth.add("0");
 header.put("Depth", depth);
 
-NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
+final NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
         .setMethod("PROPFIND")
         .setHeader(header)
-        .setUrl(Uri.encode("/remote.php/webdav/"+remotePath,"/"))
+        .setUrl(Uri.encode("/remote.php/webdav/" + remotePath, "/"))
         .build();
 ```
 
-## Additional Info:
+## Additional info
 
 In case that you require some sso features that were introduced in a specific nextcloud files app version, you can run a simple version check using the following helper method:
 
@@ -354,31 +376,30 @@ Once the user clicks on "Allow" in the login dialog, the Nextcloud Files App wil
 
 ![](doc/NextcloudSSOHacker.png)
 
-## Nextcloud Conference 2018 Talk (5min)
+## Media
 
-[![Nextcloud Single Sign On for Android David Luhmer](https://img.youtube.com/vi/gnLOwmrJLUw/0.jpg)](https://www.youtube.com/watch?v=gnLOwmrJLUw)
+### Talks at the Nextcloud Conference
 
-## Nextcloud Conference 2020 Talk (5min)
+| 2018 (5min) | 2020 (5min) |
+| --- | --- |
+| [![Nextcloud Single Sign On for Android David Luhmer](https://img.youtube.com/vi/gnLOwmrJLUw/0.jpg)](https://www.youtube.com/watch?v=gnLOwmrJLUw) | [![Nextcloud Single Sign On for Android David Luhmer](https://i.ytimg.com/vi/oQJWAv2wVuc/hqdefault.jpg)](https://www.youtube.com/watch?v=oQJWAv2wVuc) |
 
-[![Nextcloud Single Sign On for Android David Luhmer](https://i.ytimg.com/vi/oQJWAv2wVuc/hqdefault.jpg)](https://www.youtube.com/watch?v=oQJWAv2wVuc)
+### Demo video
 
+![Demo video](https://user-images.githubusercontent.com/4489723/41563281-75cbc196-734f-11e8-8b22-7b906363e34a.gif)
 
-## Video
-
-![](https://user-images.githubusercontent.com/4489723/41563281-75cbc196-734f-11e8-8b22-7b906363e34a.gif)
-
-## Examples
+## Known apps
 
 - [Nextcloud News app](https://github.com/nextcloud/news-android)
-  - [API](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/reader/nextcloud/API.java)
-  - [API-Provider (Dagger)](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/di/ApiProvider.java#L97)
+  - [API](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/reader/nextcloud/NewsAPI.java)
+  - [API-Provider (Dagger)](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/di/ApiProvider.java#L105-L114)
   - [Login Activity](https://github.com/nextcloud/news-android/blob/master/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogActivity.java)
 - [Nextcloud Notes app](https://github.com/stefan-niedermann/nextcloud-notes)
-  - [API](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/persistence/NotesClient.java)
-  - [Login](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/util/SSOUtil.java#L31)
+  - [API](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/persistence/ApiProvider.java#L85-L106)
+  - [Login](https://github.com/stefan-niedermann/nextcloud-notes/blob/master/app/src/main/java/it/niedermann/owncloud/notes/shared/util/SSOUtil.java#L33)
 - [Nextcloud Deck app](https://github.com/stefan-niedermann/nextcloud-deck/)
   - [API](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/api/DeckAPI.java)
-  - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/ImportAccountActivity.java#L76)
+  - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/ImportAccountActivity.java#L77)
 
 ## Troubleshooting
 
