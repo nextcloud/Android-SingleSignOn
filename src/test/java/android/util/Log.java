@@ -30,5 +30,5 @@ public final class Log {
         return 0;
     }
 
-    // add other methods if required...
+    // add other methods if required…
 }

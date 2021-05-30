@@ -45,7 +45,7 @@ public class TestRetrofitAPI {
      GET, POST, PUT, DELETE
 
      Unsupported Methods:
-     PATCH, ...
+     PATCH, …
      **/
 
     private final String mApiEndpoint = "/index.php/apps/news/api/v1-2/";
