@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Bilinmeyen sorun</string>
+
     <string name="no_current_account_selected_exception_title">Uyarı</string>
     <string name="no_current_account_selected_exception_message">Henüz bir hesap seçilmemiş</string>
 
@@ -12,7 +14,11 @@
     <string name="token_mismatch_message">Belirtilen kimlik doğrulama kodu eşleşmiyor ya da paket adının bu işlemi yapmasına izin verilmiyor</string>
 
     <string name="nextcloud_files_app_not_installed_title">Hata</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Dosyalar uygulaması kurulmamış. Lütfen uygulamayı kurun: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Hata</string>
+    <string name="nextcloud_files_app_account_not_found_message">Hesap Nextcloud Dosyalar uygulamasında bulunamadı</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Hata</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Tek oturum açma özelliğini kullanabilmek için istenen izinleri vermeniz gerekiyor.</string>
 
@@ -20,6 +26,11 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP isteği şu HTTP durum koduyla karşılanamadı: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Hata</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Nextcloud Dosyalar uygulamanız şu anda tek oturum açma özelliğini desteklemiyor. Lütfen şu adresten güncelleyin: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Hata</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Dosyalar uygulaması API arayüzü yanıt vermiyor. Lütfen bu sorunu bildirin.</string>
+
     <string name="select_account_unknown_error_toast">Bir şeyler ters gitti. Lütfen yeniden deneyin.</string>
     <string name="sso_canceled">Tek oturum açma içe aktarma işlemi iptal edildi</string>
     <string name="sso_canceled_message">Tek oturum açma içe aktarma işlemi kullanıcı tarafından iptal edildi</string>
