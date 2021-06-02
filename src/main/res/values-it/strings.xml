@@ -14,10 +14,10 @@
     <string name="token_mismatch_message">Il token di autenticazione fornito non corrisponde o il nome del pacchetto non è permesso per eseguire questa azione</string>
 
     <string name="nextcloud_files_app_not_installed_title">Errore</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'applicazione File Nextcloud non è installata. Per favore installala: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'applicazione File di Nextcloud non è installata. Installala: %1$s</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Errore</string>
-    <string name="nextcloud_files_app_account_not_found_message">Account non trovato nell\'applicazione File Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_message">Account non trovato nell\'applicazione File di Nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Errore</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Devi accettare i permessi richiesti per utilizzare la funzionalità di single sign-on.</string>
@@ -26,10 +26,10 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Richiesta HTTP non riuscita con codice di stato HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Errore</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">La tua applicazione File Nextcloud attualmente non supporta la funzione single sign on. Per favore aggiornala: %1$s</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">La tua applicazione File di Nextcloud attualmente non supporta la funzione di Single Sign On. Aggiornala: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Errore</string>
-    <string name="nextcloud_files_api_not_responding_message">L\'API dell\'applicazione File Nextcloud non risponde. Per favore segnala questo problema.</string>
+    <string name="nextcloud_files_api_not_responding_message">L\'API dell\'applicazione File di Nextcloud non risponde. Segnala questo problema.</string>
 
     <string name="select_account_unknown_error_toast">Qualcosa non ha funzionato. Prova ancora.</string>
     <string name="sso_canceled">Importazione SSO annullata</string>
