@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Akats ezezaguna</string>
+
     <string name="no_current_account_selected_exception_title">Abisua</string>
     <string name="no_current_account_selected_exception_message">Oraindik ez da konturik hautatu</string>
 
@@ -12,7 +14,11 @@
     <string name="token_mismatch_message">Hornitutako autentifikazio tokenak ez du bat egiten edo paketearen izenak ez du ekintza hau egiteko baimenik.</string>
 
     <string name="nextcloud_files_app_not_installed_title">Errorea</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Fitxategiak aplikazioa ez dago instalatuta. Mesedez, instalatu ezazu: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Errorea</string>
+    <string name="nextcloud_files_app_account_not_found_message">Kontua ez da aurkitu Nextcloud Fitxategiak aplikazioan</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Errorea</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Sinadura bakarraren funtzioa erabiltzeko eskatutako baimenak onartu behar dituzu.</string>
 
@@ -20,6 +26,9 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP eskaerak huts egin du HTTP egoera-kodearekin: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Errorea</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Zure nextcloud fitxategiak aplikazioak une honetan ez du onartzen sinadura bakarraren funtzioa. Mesedez. eguneratu ezazu: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Errorea</string>
     <string name="select_account_unknown_error_toast">Arazoren bat izan da. Saiatu berriro.</string>
     <string name="sso_canceled">SSO inportazioa ezeztatua</string>
     <string name="sso_canceled_message">Erabiltzaileak SSO inportazioa ezeztatu du</string>
