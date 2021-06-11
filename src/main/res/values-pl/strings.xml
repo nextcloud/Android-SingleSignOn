@@ -1,7 +1,7 @@
 <resources>
     <string name="unknown_error">Nieznany błąd</string>
 
-    <string name="no_current_account_selected_exception_title">Uwaga</string>
+    <string name="no_current_account_selected_exception_title">Ostrzeżenie</string>
     <string name="no_current_account_selected_exception_message">Nie wybrano jeszcze konta</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Błąd</string>
