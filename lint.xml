@@ -5,4 +5,8 @@
         <ignore path="**/appcompat-1.2.**/**/lint.jar" />
         <ignore path="**/jetified-annotation-experimental-1.0.**/**/lint.jar" />
     </issue>
+
+    <issue id="UnusedResources">
+        <ignore path="**/values-**/strings.xml" />
+    </issue>
 </lint>
