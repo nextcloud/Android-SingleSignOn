@@ -1,0 +1,20 @@
+<resources>
+    <string name="unknown_error">ข้อผิดพลาดที่ไม่รู้จัก</string>
+
+    <string name="no_current_account_selected_exception_title">คำเตือน</string>
+    <string name="no_current_account_selected_exception_message">ยังไม่ได้เลือกบัญชี</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">ข้อผิดพลาด</string>
+    <string name="current_account_not_found_exception_title">คำเตือน</string>
+    <string name="current_account_not_found_exception_message">ไม่พบบัญชีที่เลือก มีบางอย่างผิดพลาด</string>
+
+    <string name="token_mismatch_title">ข้อผิดพลาด</string>
+    <string name="nextcloud_files_app_not_installed_title">ข้อผิดพลาด</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">ยังไม่ได้ติดตั้งแอป Nextcloud Files โปรดติดตั้งแอป: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">ข้อผิดพลาด</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">ข้อผิดพลาด</string>
+    <string name="nextcloud_http_request_failed_title">ข้อผิดพลาด</string>
+    <string name="nextcloud_files_app_not_supported_title">ข้อผิดพลาด</string>
+    <string name="nextcloud_files_api_not_responding_title">ข้อผิดพลาด</string>
+    </resources>
