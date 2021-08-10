@@ -31,7 +31,6 @@
     <string name="nextcloud_files_api_not_responding_title">Chyba</string>
     <string name="nextcloud_files_api_not_responding_message">Aplikácia Nextcloud Files neodpovedá. Prosím, oznámte tento problém.</string>
 
-    <string name="select_account_unknown_error_toast">Niečo sa pokazilo. Skúste to prosím znova.</string>
     <string name="sso_canceled">SSO import zrušený</string>
     <string name="sso_canceled_message">SSO import bol zrušený používateľom</string>
 </resources>

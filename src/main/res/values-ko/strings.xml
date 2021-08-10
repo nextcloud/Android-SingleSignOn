@@ -20,7 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP status-code: %1$d 의 HTTP 요청이 실패하였습니다</string>
 
     <string name="nextcloud_files_app_not_supported_title">오류</string>
-    <string name="select_account_unknown_error_toast">문제가 발생했습니다. 다시 시도하십시오.</string>
     <string name="sso_canceled">통합 인증 가져오기 취소됨</string>
     <string name="sso_canceled_message">통합인증 가져오기가 사용자에 의해 취소되었습니다</string>
 </resources>

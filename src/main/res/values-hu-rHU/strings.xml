@@ -20,7 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">A HTTP kérés sikertelen, a kapott HTTP állapotkód: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Hiba</string>
-    <string name="select_account_unknown_error_toast">Valami balul sült el. Próbálja újra.</string>
     <string name="sso_canceled">SSO importálás megszakítva</string>
     <string name="sso_canceled_message">SSO importálás megszakítva a felhasználó által</string>
 </resources>

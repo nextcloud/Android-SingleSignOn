@@ -26,7 +26,6 @@
     <string name="nextcloud_files_app_not_supported_title">エラー</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">このNextcloudファイルアプリはシングルサインオン機能をサポートしていません。更新してください：%1$s</string>
 
-    <string name="select_account_unknown_error_toast">何か問題が発生しました。もう一度お試しください。</string>
     <string name="sso_canceled">SSOインポートをキャンセルしました</string>
     <string name="sso_canceled_message">SSOインポートがユーザーによりキャンセルされました</string>
 </resources>

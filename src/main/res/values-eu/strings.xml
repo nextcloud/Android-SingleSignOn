@@ -31,7 +31,6 @@
     <string name="nextcloud_files_api_not_responding_title">Errorea</string>
     <string name="nextcloud_files_api_not_responding_message">Nextcloud Files aplikazioaren APIak ez du erantzuten. Mesedez, eman arazo honen berri.</string>
 
-    <string name="select_account_unknown_error_toast">Arazoren bat izan da. Saiatu berriro.</string>
     <string name="sso_canceled">SSO inportazioa ezeztatua</string>
     <string name="sso_canceled_message">Erabiltzaileak SSO inportazioa ezeztatu du</string>
 </resources>

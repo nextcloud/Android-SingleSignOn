@@ -20,7 +20,6 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">La petición HTTP ha fallado con un código de estado: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="select_account_unknown_error_toast">Algo ha salido mal. Por favor, vuelve a intentarlo.</string>
     <string name="sso_canceled">Importación SSO cancelada</string>
     <string name="sso_canceled_message">La importación SSO fue cancelada por el usuario</string>
 </resources>
