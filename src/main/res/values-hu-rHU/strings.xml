@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Ismeretlen hiba</string>
+
     <string name="no_current_account_selected_exception_title">Figyelmeztetés</string>
     <string name="no_current_account_selected_exception_message">Nincs még fiók kiválasztva.</string>
 
@@ -12,7 +14,11 @@
     <string name="token_mismatch_message">A megadott hitelesítési token nem egyezik meg, vagy a csomagnév nem engedélyezett ebben a környezeteben</string>
 
     <string name="nextcloud_files_app_not_installed_title">Hiba</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">A Nextcloud Fájlok alkalmazás nincs telepítve. Telepítse: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Hiba</string>
+    <string name="nextcloud_files_app_account_not_found_message">A Nextcloud Fájlok alkalmazásban nem található ilyen fiók</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Hiba</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Az egyszeri bejelentkezés funkció használatához el kell fogadnia a kért engedélyeket.</string>
 
@@ -20,6 +26,11 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">A HTTP kérés sikertelen, a kapott HTTP állapotkód: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Hiba</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">A Nextcloud Fájlok alkalmazás jelenleg nem támogatja az egyszeri bejelentkezés funkciót. Frissítse: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Hiba</string>
+    <string name="nextcloud_files_api_not_responding_message">A Nextcloud Fájlok alkalmazás API-ja nem válaszol. Jelentse a problémát.</string>
+
     <string name="sso_canceled">SSO importálás megszakítva</string>
     <string name="sso_canceled_message">SSO importálás megszakítva a felhasználó által</string>
 </resources>
