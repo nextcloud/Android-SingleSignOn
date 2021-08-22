@@ -9,4 +9,5 @@
         <package android:name="com.nextcloud.client" />
         <package android:name="com.nextcloud.android.beta" />
     </queries>
+
 </manifest>
