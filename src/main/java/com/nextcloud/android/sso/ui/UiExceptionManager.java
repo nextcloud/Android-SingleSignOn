@@ -5,8 +5,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -107,16 +105,5 @@ public final class UiExceptionManager {
         }
 
         manager.notify(NOTIFICATION_ID, builder.build());
-    }
-
-    /**
-     * return true if in App's Battery settings "Not optimized" and false if "Optimizing battery use"
-     */
-    public static boolean isIgnoringBatteryOptimizations(Context context, String packageName) {
-        PowerManager pwrm = (PowerManager) context.getApplicationContext().getSystemService(Context.POWER_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return pwrm.isIgnoringBatteryOptimizations(packageName);
-        }
-        return true;
     }
 }
