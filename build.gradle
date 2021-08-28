@@ -150,5 +150,5 @@ dependencies {
     // Required for local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.13.2'
     // required if you want to use Mockito for unit tests
-    testImplementation 'org.mockito:mockito-core:3.12.1'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
 }
