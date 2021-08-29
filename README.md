@@ -37,19 +37,13 @@ This library allows you to use accounts as well as the network stack provided by
 repositories {
     // …
     maven { url "https://jitpack.io" }
-
 }
 
 dependencies {
-    implementation "com.github.nextcloud:Android-SingleSignOn:0.5.6"
+    // Note: Starting with Version 0.5.7 Android Gradle Plugin (AGP) Version 7.0.0 or higher is
+    // required.
+    implementation "com.github.nextcloud:Android-SingleSignOn:0.5.7"
 }
-
-// This is only required if you are using Android Grade Plugin > 7.0.0
-// 
-// compileOptions {
-//     sourceCompatibility JavaVersion.VERSION_11
-//     targetCompatibility JavaVersion.VERSION_11
-// }
 ```
 
 For Android 11 and later [you need to add queries](https://github.com/nextcloud/Android-SingleSignOn/issues/277) to your app's manifest file. It will not find the Nextcloud app otherwise.
