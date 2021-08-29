@@ -44,12 +44,11 @@ dependencies {
     implementation "com.github.nextcloud:Android-SingleSignOn:0.5.6"
 }
 
-// This is only required if you are using Android Grade Plugin < 4.2
-// See https://developer.android.com/studio/releases/gradle-plugin#java-8-default
+// This is only required if you are using Android Grade Plugin > 7.0.0
 // 
 // compileOptions {
-//     sourceCompatibility JavaVersion.VERSION_1_8
-//     targetCompatibility JavaVersion.VERSION_1_8
+//     sourceCompatibility JavaVersion.VERSION_11
+//     targetCompatibility JavaVersion.VERSION_11
 // }
 ```
 
