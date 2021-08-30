@@ -4,14 +4,18 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.NotificationCompat;
+import android.content.Intent;
+import android.provider.Settings;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+
+import com.nextcloud.android.sso.R;
+import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
 import com.nextcloud.android.sso.exceptions.SSOException;
 
 /**
@@ -49,17 +53,25 @@ public final class UiExceptionManager {
         final SpannableString message = new SpannableString(exception.getMessage(context));
         Linkify.addLinks(message, Linkify.ALL);
 
-        AlertDialog dialog = new AlertDialog.Builder(context)
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context)
                 .setTitle(exception.getTitle(context))
                 .setMessage(message)
                 .setPositiveButton(android.R.string.yes, callback)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .create();
+                .setIcon(android.R.drawable.ic_dialog_alert);
 
+
+        if (exception instanceof NextcloudApiNotRespondingException && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            dialogBuilder.setNegativeButton(context.getString(R.string.nextcloud_files_api_not_responding_open_battery_optimization_settings), (dialogInterface, i) -> {
+                Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+                context.startActivity(intent);
+            });
+        }
+
+        AlertDialog dialog = dialogBuilder.create();
         dialog.show();
 
         // Make the textview clickable. Must be called after show()
-        ((TextView)dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     public static void showNotificationForException(Context context, SSOException exception) {
