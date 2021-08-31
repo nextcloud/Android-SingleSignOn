@@ -17,8 +17,6 @@
 
     <string name="nextcloud_files_app_not_supported_title">Error</string>
     <string name="nextcloud_files_api_not_responding_title">Gabim</string>
-    <string name="nextcloud_files_api_not_responding_message">API i aplikacionit Nextcloud Files nuk po përgjigjet. Ju lutemi raportoni këtë çështje.</string>
-
     <string name="sso_canceled">Importimi i SSO-së u anulua</string>
     <string name="sso_canceled_message">Importi i SSO u anulua nga përdoruesi</string>
 </resources>

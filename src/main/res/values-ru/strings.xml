@@ -23,8 +23,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваше приложение Файлы Nextcloud в настоящее время не поддерживает функцию единого входа. Пожалуйста, обновите его: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Ошибка</string>
-    <string name="nextcloud_files_api_not_responding_message">API вашего приложения Файлы Nextcloud  не отвечает. Пожалуйста сообщите об этой проблеме</string>
-
     <string name="sso_canceled">Импорт SSO отменён</string>
     <string name="sso_canceled_message">Импорт SSO отменён пользователем</string>
 </resources>

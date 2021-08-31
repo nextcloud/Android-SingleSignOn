@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">S\'aplicatzione de archìvios Nextcloud tua non permitit sa funtzione de autenticatzione ùnica. Agiorna·dda: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Errore</string>
-    <string name="nextcloud_files_api_not_responding_message">S\'aplicatzione de archìvios Nextcloud api non rispondet. Sinnala custu problema.</string>
-
     <string name="sso_canceled">Importatzione de SSO annullada</string>
     <string name="sso_canceled_message">S\'utente at annulladu s\'importatzione de SSO</string>
 </resources>

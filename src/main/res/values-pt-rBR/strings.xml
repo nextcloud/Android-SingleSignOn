@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Seu aplicativo Nextcloud Arquivos atualmente não suporta o recurso de logon único. Por favor, atualize-o: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Erro</string>
-    <string name="nextcloud_files_api_not_responding_message">A API do aplicativo Nextcloud Arquivos não está respondendo. Por favor, relate este problema.</string>
-
     <string name="sso_canceled">Importação SSO cancelada</string>
     <string name="sso_canceled_message">Importação SSO cancelada pelo usuário</string>
 </resources>

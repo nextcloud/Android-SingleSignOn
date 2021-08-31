@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">La tua applicazione File di Nextcloud attualmente non supporta la funzione di Single Sign On. Aggiornala: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Errore</string>
-    <string name="nextcloud_files_api_not_responding_message">L\'API dell\'applicazione File di Nextcloud non risponde. Segnala questo problema.</string>
-
     <string name="sso_canceled">Importazione SSO annullata</string>
     <string name="sso_canceled_message">Importazione SSO annullata dall\'utente</string>
 </resources>

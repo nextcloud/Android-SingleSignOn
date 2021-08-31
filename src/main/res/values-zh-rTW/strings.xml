@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">您的 Nextcloud Files 應用程式尚未支援單一登入功能。請更新：%1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">錯誤</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files 應用程式 API 無回應。請回報此問題。</string>
-
     <string name="sso_canceled">取消 SSO 匯入</string>
     <string name="sso_canceled_message">使用者取消 SSO 匯入</string>
 </resources>

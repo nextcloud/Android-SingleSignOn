@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Zure nextcloud fitxategiak aplikazioak une honetan ez du onartzen sinadura bakarraren funtzioa. Mesedez. eguneratu ezazu: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Errorea</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files aplikazioaren APIak ez du erantzuten. Mesedez, eman arazo honen berri.</string>
-
     <string name="sso_canceled">SSO inportazioa ezeztatua</string>
     <string name="sso_canceled_message">Erabiltzaileak SSO inportazioa ezeztatu du</string>
 </resources>

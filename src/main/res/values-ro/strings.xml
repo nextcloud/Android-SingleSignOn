@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Aplicația ta Fișiere Nextcloud nu suportă în acest moment înregistrarea singulară. Vă rugăm să face-ți update: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Eroare</string>
-    <string name="nextcloud_files_api_not_responding_message">API-urile pentru aplicația Fișiere Nextcloud nu răspund, Vă rugăm raportați acest incident</string>
-
     <string name="sso_canceled">Importul SSO a fost anulat.</string>
     <string name="sso_canceled_message">Importul SSO a fost anulat de utilizator.</string>
 </resources>

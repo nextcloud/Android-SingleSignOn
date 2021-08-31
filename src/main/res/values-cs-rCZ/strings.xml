@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Vámi používaná verze aplikace Nextcloud Soubory nepodporuje sjednocené přihlašování. Aktualizujte ji: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Chyba</string>
-    <string name="nextcloud_files_api_not_responding_message">Aplikační programové rozhraní (API) Nextcloud aplikace Soubory neodpovídá. Prosíme nahlaste tento problém vývojářům.</string>
-
     <string name="sso_canceled">SSO import zrušen</string>
     <string name="sso_canceled_message">SSO import byl zrušen uživatelem</string>
 </resources>

@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Vaša aplikácia Nextcloud Files v súčasnosti nepodporuje jednotné prihlasovanie. Prosím aktualizujte: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Chyba</string>
-    <string name="nextcloud_files_api_not_responding_message">Aplikácia Nextcloud Files neodpovedá. Prosím, oznámte tento problém.</string>
-
     <string name="sso_canceled">SSO import zrušený</string>
     <string name="sso_canceled_message">SSO import bol zrušený používateľom</string>
 </resources>

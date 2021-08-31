@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Je nextcloud bestandenapp ondersteunt de single sign-on faciliteit momenteel niet. Graag updaten: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Fout</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud bestandenapp api reageert niet. Meld het probleem.</string>
-
     <string name="sso_canceled">SSO import geannuleerd</string>
     <string name="sso_canceled_message">SSO import was geannuleerd door de gebruiker</string>
 </resources>

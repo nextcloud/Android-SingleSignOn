@@ -29,8 +29,6 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">A Nextcloud Fájlok alkalmazás jelenleg nem támogatja az egyszeri bejelentkezés funkciót. Frissítse: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Hiba</string>
-    <string name="nextcloud_files_api_not_responding_message">A Nextcloud Fájlok alkalmazás API-ja nem válaszol. Jelentse a problémát.</string>
-
     <string name="sso_canceled">SSO importálás megszakítva</string>
     <string name="sso_canceled_message">SSO importálás megszakítva a felhasználó által</string>
 </resources>
