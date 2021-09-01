@@ -29,6 +29,10 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Ihre Nextcloud-Files-App unterstützt aktuell nicht die Funktion Single-Sign-On. Bitte aktualisieren: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Fehler</string>
+    <string name="nextcloud_files_api_not_responding_message">Die API der Nextcloud Dateien-App reagiert nicht. Dies ist höchstwahrscheinlich auf die Akkuoptimierungen Ihres Telefons zurückzuführen. Versuchen Sie, die Akkuoptimierung für beide Apps (Nextcloud Android und diese App) zu deaktivieren. In allen anderen Fällen versuchen Sie bitte, den Speicher beider Apps zu löschen. </string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Batterie-Optim.-Einstellungen</string>
+
     <string name="sso_canceled">SSO-Import abgebrochen</string>
     <string name="sso_canceled_message">SSO-Import wurde vom Benutzer abgebrochen</string>
 </resources>

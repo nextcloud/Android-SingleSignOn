@@ -29,6 +29,10 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Vámi používaná verze aplikace Nextcloud Soubory nepodporuje sjednocené přihlašování. Aktualizujte ji: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Chyba</string>
+    <string name="nextcloud_files_api_not_responding_message">Aplikační program. rozhraní (API) Nextcloud aplikace Soubory neodpovídá. Toto je nejpravděpodobněji kvůli optimalizacím využití energie z akumulátoru, nastaveným ve vašem telefonu. Zkuste tyto optimalizace vypnout pro obě aplikace (Nextcloud Android a tuto aplikaci). Ve všech ostatních případech zkuste v rámci systému vyčistit úložiště obou aplikací.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Nastav. optimalizace pro aku</string>
+
     <string name="sso_canceled">SSO import zrušen</string>
     <string name="sso_canceled_message">SSO import byl zrušen uživatelem</string>
 </resources>
