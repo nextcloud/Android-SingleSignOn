@@ -399,6 +399,7 @@ Once the user clicks on "Allow" in the login dialog, the Nextcloud Files App wil
 If you are experiencing any issues, the following tips might workaround:
 - Disable battery optimizations of the nextcloud files app, especially [in case of a `NextcloudApiNotRespondingException`](https://github.com/nextcloud/Android-SingleSignOn/issues/162)
 - [Permit auto start](https://github.com/stefan-niedermann/nextcloud-deck/issues/660#issuecomment-682002392)
+- A quickly appearing and disappearing menu when attempting to select an account is often a hint for an outdated Nextcloud files app
 
 ## Flow Diagram
 
