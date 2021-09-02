@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Tuntematon virhe</string>
+
     <string name="no_current_account_selected_exception_title">Varoitus</string>
     <string name="no_current_account_selected_exception_message">Tiliä ei ole vielä valittu</string>
 
@@ -16,6 +18,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-pyyntö epäonnistui HTTP-tilakoodilla: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Virhe</string>
+    <string name="nextcloud_files_api_not_responding_title">Virhe</string>
     <string name="sso_canceled">SSO-tuonti peruttu</string>
     <string name="sso_canceled_message">SSO-tuonti peruttiin käyttäjän toimesta</string>
 </resources>
