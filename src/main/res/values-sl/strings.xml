@@ -20,6 +20,8 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Zahteva HTTP je spodletela s kodo stanja: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Napaka</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Trenutna različica programa datotek ne podpira možnosti enojne prijave. Posodobiti jo je treba na %1$s</string>
+
     <string name="sso_canceled">Uvoz SSO je preklican</string>
     <string name="sso_canceled_message">Uvoz SSO je preklican s strani uporabnika</string>
 </resources>
