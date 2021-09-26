@@ -126,6 +126,19 @@ detekt {
     input = files("src/")
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.nextcloud.android.sso'
+                artifactId = 'master'
+            }
+        }
+    }
+}
+
 dependencies {
     implementation "androidx.appcompat:appcompat:1.3.1"
     implementation 'androidx.annotation:annotation:1.2.0'
