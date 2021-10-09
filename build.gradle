@@ -145,7 +145,7 @@ dependencies {
     implementation 'androidx.core:core:1.6.0'
     implementation 'androidx.fragment:fragment:1.3.6'
 
-    compileOnly "org.projectlombok:lombok:1.18.20"
+    compileOnly "org.projectlombok:lombok:1.18.22"
     annotationProcessor "org.projectlombok:lombok:1.18.20"
 
     api 'com.google.code.gson:gson:2.8.8'
