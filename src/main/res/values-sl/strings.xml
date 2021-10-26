@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Neznana napaka</string>
+
     <string name="no_current_account_selected_exception_title">Opozorilo</string>
     <string name="no_current_account_selected_exception_message">Ni izbranega računa</string>
 
@@ -25,6 +27,9 @@
 
     <string name="nextcloud_files_app_not_supported_title">Napaka</string>
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Trenutna različica programa datotek ne podpira možnosti enojne prijave. Posodobiti jo je treba na %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Napaka</string>
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Nastavitve baterije</string>
 
     <string name="sso_canceled">Uvoz SSO je preklican</string>
     <string name="sso_canceled_message">Uvoz SSO je preklican s strani uporabnika</string>
