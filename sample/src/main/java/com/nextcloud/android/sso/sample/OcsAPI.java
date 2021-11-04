@@ -7,10 +7,10 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-
 /**
  * @see <a href="https://deck.readthedocs.io/en/latest/API-Nextcloud/">Nextcloud REST API</a>
  */
+@SuppressWarnings("unused")
 public interface OcsAPI {
 
     @GET("capabilities?format=json")
@@ -41,7 +41,7 @@ public interface OcsAPI {
     }
 
     class OcsServerInfo {
-        /* Extend the classes by the attributes you are actually using */
+        /* Extend your object mappers by the attributes you are actually using */
         public OcsVersion version;
         public OcsCapabilities capabilities;
 
