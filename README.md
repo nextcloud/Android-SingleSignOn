@@ -31,6 +31,9 @@ This library allows you to use accounts as well as the network stack provided by
 
 ## How to use this library
 
+You can check out the [sample app](https://github.com/nextcloud/Android-SingleSignOn/tree/master/sample) which uses this library to fetch some information via SSO from a Nextcloud instance.
+The sample app uses the [Retrofit approach](#51-using-retrofit). Be aware though, that it is for demonstration purposes only. Exception handling, state management etc. must be implemented depending on your use case.
+
 ### 1) Add this library to your project
 
 ```gradle
