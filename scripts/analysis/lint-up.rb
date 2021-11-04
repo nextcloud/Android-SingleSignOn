@@ -18,7 +18,7 @@ TRAVIS_GIT_USERNAME = String.new("Drone CI server")
 #   lintOptions {
 #       htmlOutput file("[FILE_NAME].html")
 #   }
-LINT_REPORT_FILE = String.new("build/reports/lint/lint.html")
+LINT_REPORT_FILE = String.new("lib/build/reports/lint/lint.html")
 
 # File name and relative path of previous results of this script.
 PREVIOUS_LINT_RESULTS_FILE=String.new("scripts/analysis/lint-results.txt")
@@ -56,7 +56,7 @@ end
 
 # run Lint
 puts "running Lint..."
-system './gradlew clean lint'
+system './gradlew clean lib:lint'
 
 # confirm that Lint ran w/out error
 result = $?.to_i
