@@ -205,7 +205,7 @@ You'll notice that there is an callback parameter in the constructor of the `Nex
 public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, ApiConnectedListener callback) {
 ```
 
-You can use this callback to subscribe to errors that might occur during the initialization of the API. You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object. For a minimal example to get started (without retrofit) take a look at section 5.2. The callback method `onConnected` will be called once the connection to the files app is established. You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established.
+You can use this callback to subscribe to errors that might occur during the initialization of the API. You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object. For a minimal example to get started (without retrofit) take a look at section 5.2. The callback method `onConnected` will be called once the connection to the files app is established. You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established[¹](https://github.com/nextcloud/Android-SingleSignOn/issues/400).
 
 #### 5.1) **Using Retrofit**
 
