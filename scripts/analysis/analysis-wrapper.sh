@@ -19,7 +19,7 @@ ruby scripts/analysis/findbugs-up.rb $1 $2 $3
 findbugsValue=$?
 
 
-./gradlew ktlint
+./gradlew lib:ktlint
 ktlintValue=$?
 
 ./gradlew detekt
