@@ -1,6 +1,5 @@
 package com.nextcloud.android.sso.sample;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,8 +23,6 @@ import java.util.concurrent.Executors;
 
 import retrofit2.NextcloudRetrofitApiBuilder;
 
-@SuppressLint("SetTextI18n")
-@SuppressWarnings("ConstantConditions")
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -51,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                 /* Network requests need to be performed on a background thread */
                 executor.submit(() -> {
-                    runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText("Loading…"));
+                    runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(R.string.loading));
 
                     /* Create local bridge API to the Nextcloud Files Android app */
                     final var nextcloudAPI = createNextcloudAPI(ssoAccount);
@@ -73,7 +71,12 @@ public class MainActivity extends AppCompatActivity {
                         final var serverInfo = ocsAPI.getServerInfo().execute().body().ocs.data;
 
                         /* Set the result on the UI thread */
-                        runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(user.displayName + " on " + serverInfo.capabilities.theming.name + " (" + serverInfo.version.semanticVersion + ")"));
+                        runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(
+                                getString(R.string.account_info,
+                                        user.displayName,
+                                        serverInfo.capabilities.theming.name,
+                                        serverInfo.version.semanticVersion))
+                        );
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
