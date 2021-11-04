@@ -18,7 +18,7 @@ TRAVIS_GIT_USERNAME = String.new("Drone CI server")
 #   lintOptions {
 #       htmlOutput file("[FILE_NAME].html")
 #   }
-FINDBUGS_REPORT_FILE = String.new("build/reports/spotbugs/spotbugs.html")
+FINDBUGS_REPORT_FILE = String.new("lib/build/reports/spotbugs/spotbugs.html")
 
 # File name and relative path of previous results of this script.
 PREVIOUS_FINDBUGS_RESULTS_FILE=String.new("scripts/analysis/findbugs-results.txt")
@@ -47,8 +47,8 @@ require 'xmlsimple'
 
 # run FindBugs
 puts "running FindBugs..."
-system './gradlew assembleDebug'
-system './gradlew spotbugsDebugReport'
+system './gradlew lib:assembleDebug'
+system './gradlew lib:spotbugsDebugReport'
 
 # find FindBugs report file
 findbugs_reports = Dir.glob(FINDBUGS_REPORT_FILE)
