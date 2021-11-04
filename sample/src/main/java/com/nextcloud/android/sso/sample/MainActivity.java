@@ -16,7 +16,6 @@ import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
-import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.IOException;
@@ -41,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 /*
                  * Prompt dialog to select existing or create a new account
                  * As soon as an account has been imported, we will continue in #onActivityResult()
+                 *
+                 * In real live applications, you won't import an account on each app start, but remember the imported account via SingleAccountHelper.
                  */
                 AccountImporter.pickNewAccount(this);
             } catch (NextcloudFilesAppNotInstalledException | AndroidGetAccountsPermissionNotGranted e) {
@@ -55,25 +56,32 @@ public class MainActivity extends AppCompatActivity {
         try {
             AccountImporter.onActivityResult(requestCode, resultCode, data, this, ssoAccount -> {
                 Log.i(TAG, "Imported account: " + ssoAccount.name);
-                SingleAccountHelper.setCurrentAccount(this, ssoAccount.name);
-                executor.submit(() -> {
 
-                    // Create local bridge API to the Nextcloud Files Android app
+                /* Network requests need to be performed on a background thread */
+                executor.submit(() -> {
+                    runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText("Loading…"));
+
+                    /* Create local bridge API to the Nextcloud Files Android app */
                     final var nextcloudAPI = createNextcloudAPI(ssoAccount);
 
-                    // Create the Ocs API to talk to the server
-                    final var ocsAPI = new NextcloudRetrofitApiBuilder(nextcloudAPI, "ocs/v2.php/cloud/").create(OcsAPI.class);
+                    /* Create the Ocs API to talk to the server */
+                    final var ocsAPI = new NextcloudRetrofitApiBuilder(nextcloudAPI, "/ocs/v2.php/cloud/").create(OcsAPI.class);
 
                     try {
-                        // Perform actual requests
-                        final var userName = ocsAPI.getUser(ssoAccount.userId).execute().body().ocs.data.displayName;
-                        final var instanceName = ocsAPI.getCapabilities().execute().body().ocs.data.theming.name;
+                        /* Perform actual requests */
+                        final var user = ocsAPI.getUser(ssoAccount.userId).execute().body().ocs.data;
+                        final var serverInfo = ocsAPI.getServerInfo().execute().body().ocs.data;
 
-                        ((TextView) findViewById(R.id.result)).setText(userName + " on " + instanceName);
+                        /* Set the result on the UI thread */
+                        runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(user.displayName + " on " + serverInfo.capabilities.theming.name + " (" + serverInfo.version.semanticVersion + ")"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
+                    /*
+                     * Keep the NextcloudAPI alive as long as possible,
+                     * but don't forget to destroy it when you don't need it any longer
+                     */
                     nextcloudAPI.stop();
                 });
             });
