@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
                         final var user = ocsAPI.getUser(ssoAccount.userId).execute().body().ocs.data;
                         final var serverInfo = ocsAPI.getServerInfo().execute().body().ocs.data;
 
-                        /* Set the result on the UI thread */
+                        /* Show result on the UI thread */
                         runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(
                                 getString(R.string.account_info,
-                                        user.displayName,
+                                        user.displayname,
                                         serverInfo.capabilities.theming.name,
                                         serverInfo.version.semanticVersion))
                         );
@@ -82,8 +82,12 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     /*
-                     * Keep the NextcloudAPI alive as long as possible,
-                     * but don't forget to destroy it when you don't need it any longer
+                     * If you need to make multiple calls, keep the NextcloudAPI open as long as you
+                     * can. This way the services will stay active and the connection between the
+                     * files app and your app is already established when you make subsequent requests.
+                     * Otherwise you'll have to bind to the service again and again for each request.
+                     *
+                     * @see https://github.com/nextcloud/Android-SingleSignOn/issues/120#issuecomment-540069990
                      */
                     nextcloudAPI.stop();
                 });
@@ -98,8 +102,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onConnected() {
                 /*
-                 * We don't have to wait for this callback because requests are queued and executed
+                 * We don't have to actually wait for this callback because requests are queued and executed
                  * automatically as soon as the connection has been established.
+                 *
+                 * @see https://github.com/nextcloud/Android-SingleSignOn#5-how-to-make-a-network-request
+                 * @see https://github.com/nextcloud/Android-SingleSignOn/issues/400
                  */
                 Log.i(TAG, "SSO API connected for " + ssoAccount);
             }
