@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         /* Show result on the UI thread */
                         runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(
                                 getString(R.string.account_info,
-                                        user.displayname,
+                                        user.displayName,
                                         serverInfo.capabilities.theming.name,
                                         serverInfo.version.semanticVersion))
                         );
