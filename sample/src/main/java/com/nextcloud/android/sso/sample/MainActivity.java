@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +14,6 @@ import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
-import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(R.string.loading));
 
                     /* Create local bridge API to the Nextcloud Files Android app */
-                    final var nextcloudAPI = createNextcloudAPI(ssoAccount);
+                    final var nextcloudAPI = new NextcloudAPI(this, ssoAccount, new GsonBuilder().create());
 
                     /* Create the Ocs API to talk to the server */
                     final var ocsAPI = new NextcloudRetrofitApiBuilder(nextcloudAPI, "/ocs/v2.php/cloud/").create(OcsAPI.class);
@@ -95,26 +93,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (AccountImportCancelledException e) {
             Log.i(TAG, "Account import cancelled.");
         }
-    }
-
-    private NextcloudAPI createNextcloudAPI(@NonNull SingleSignOnAccount ssoAccount) {
-        return new NextcloudAPI(this, ssoAccount, new GsonBuilder().create(), new NextcloudAPI.ApiConnectedListener() {
-            @Override
-            public void onConnected() {
-                /*
-                 * We don't have to actually wait for this callback because requests are queued and executed
-                 * automatically as soon as the connection has been established.
-                 *
-                 * @see https://github.com/nextcloud/Android-SingleSignOn#5-how-to-make-a-network-request
-                 * @see https://github.com/nextcloud/Android-SingleSignOn/issues/400
-                 */
-                Log.i(TAG, "SSO API connected for " + ssoAccount);
-            }
-
-            @Override
-            public void onError(Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 }
