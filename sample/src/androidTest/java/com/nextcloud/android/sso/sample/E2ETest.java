@@ -28,7 +28,7 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class E2ETest {
 
-    private static final String TAG = E2ETest.class.getSimpleName();
+    private static final String TAG = "E2E";
 
     private UiDevice mDevice;
 
@@ -54,73 +54,75 @@ public class E2ETest {
 
     @Test
     public void test_00_configureNextcloudAccount() throws UiObjectNotFoundException {
+        Log.i(TAG, "Configure Nextcloud account");
         launch(APP_NEXTCLOUD);
 
         final var loginButton = mDevice.findObject(new UiSelector().textContains("Log in"));
         loginButton.waitForExists(TIMEOUT);
-        log("Login Button exists. Clicking on it...");
+        Log.d(TAG, "Login Button exists. Clicking on it...");
         loginButton.click();
-        log("Login Button clicked.");
+        Log.d(TAG, "Login Button clicked.");
 
         final var urlInput = mDevice.findObject(new UiSelector().focused(true));
         urlInput.waitForExists(TIMEOUT);
-        log("URL input exists.");
-        log("Entering URL...");
+        Log.d(TAG, "URL input exists.");
+        Log.d(TAG, "Entering URL...");
         urlInput.setText(SERVER_URL);
-        log("URL entered.");
+        Log.d(TAG, "URL entered.");
 
-        log("Pressing enter...");
+        Log.d(TAG, "Pressing enter...");
         mDevice.pressEnter();
-        log("Enter pressed.");
+        Log.d(TAG, "Enter pressed.");
 
-        log("Waiting for WebView...");
+        Log.d(TAG, "Waiting for WebView...");
         mDevice.wait(findObject(By.clazz(WebView.class)), TIMEOUT);
-        log("WebView exists.");
+        Log.d(TAG, "WebView exists.");
 
         final var webViewLoginButton = mDevice.findObject(new UiSelector()
                 .instance(0)
                 .className(Button.class));
-        log("Waiting for WebView Login Button...");
+        Log.d(TAG, "Waiting for WebView Login Button...");
         webViewLoginButton.waitForExists(TIMEOUT);
-        log("WebView Login Button exists. Clicking on it...");
+        Log.d(TAG, "WebView Login Button exists. Clicking on it...");
         webViewLoginButton.click();
 
         final var usernameInput = mDevice.findObject(new UiSelector()
                 .instance(0)
                 .className(EditText.class));
-        log("Waiting for Username Input...");
+        Log.d(TAG, "Waiting for Username Input...");
         usernameInput.waitForExists(TIMEOUT);
-        log("Username Input exists. Setting text...");
+        Log.d(TAG, "Username Input exists. Setting text...");
         usernameInput.setText(SERVER_USERNAME);
-        log("Username has been set.");
+        Log.d(TAG, "Username has been set.");
 
         final var passwordInput = mDevice.findObject(new UiSelector()
                 .instance(1)
                 .className(EditText.class));
-        log("Waiting for Password Input...");
+        Log.d(TAG, "Waiting for Password Input...");
         passwordInput.waitForExists(TIMEOUT);
-        log("Password Input exists. Setting text...");
+        Log.d(TAG, "Password Input exists. Setting text...");
         passwordInput.setText(SERVER_PASSWORD);
 
         final var webViewSubmitButton = mDevice.findObject(new UiSelector()
                 .instance(0)
                 .className(Button.class));
-        log("Waiting for WebView Submit Button...");
+        Log.d(TAG, "Waiting for WebView Submit Button...");
         webViewSubmitButton.waitForExists(TIMEOUT);
-        log("WebView Submit Button exists. Clicking on it...");
+        Log.d(TAG, "WebView Submit Button exists. Clicking on it...");
         webViewSubmitButton.click();
 
         final var webViewGrantAccessButton = mDevice.findObject(new UiSelector()
                 .instance(0)
                 .className(Button.class));
-        log("Waiting for WebView Grant Access Button...");
+        Log.d(TAG, "Waiting for WebView Grant Access Button...");
         webViewGrantAccessButton.waitForExists(TIMEOUT);
-        log("WebView Grant Access Button exists. Clicking on it...");
+        Log.d(TAG, "WebView Grant Access Button exists. Clicking on it...");
         webViewGrantAccessButton.click();
     }
 
     @Test
     public void test_01_importAccountIntoSampleApp() throws UiObjectNotFoundException, InterruptedException {
+        Log.i(TAG, "Import account into sample app");
         launch(APP_SAMPLE);
 
         final var accountButton = mDevice.findObject(new UiSelector()
@@ -142,31 +144,32 @@ public class E2ETest {
         Thread.sleep(10_000);
         final var okButton = mDevice.findObject(new UiSelector()
                 .textContains("OK"));
-        log("Waiting for OK Button...");
+        Log.d(TAG, "Waiting for OK Button...");
         okButton.waitForExists(TIMEOUT);
-        log("OK Button exists. Clicking on it...");
+        Log.d(TAG, "OK Button exists. Clicking on it...");
         okButton.click();
-        log("OK Button clicked");
+        Log.d(TAG, "OK Button clicked");
 
         mDevice.waitForWindowUpdate(null, TIMEOUT);
 
         final var allowButton = mDevice.findObject(new UiSelector()
                 .instance(1)
                 .className(Button.class));
-        log("Waiting for Allow Button...");
+        Log.d(TAG, "Waiting for Allow Button...");
         allowButton.waitForExists(TIMEOUT);
-        log("Allow Button exists. Clicking on it...");
+        Log.d(TAG, "Allow Button exists. Clicking on it...");
         allowButton.click();
-        log("Allow Button clicked");
+        Log.d(TAG, "Allow Button clicked");
 
-        log("Waiting for finished import...");
+        Log.d(TAG, "Waiting for finished import...");
         final var welcomeText = mDevice.findObject(new UiSelector().description("Filter"));
         welcomeText.waitForExists(TIMEOUT);
-        log("Import finished.");
+        Log.d(TAG, "Import finished.");
     }
 
     @Test
     public void test_02_verifyResult() throws UiObjectNotFoundException {
+        Log.i(TAG, "Verify successful import");
         launch(APP_SAMPLE);
 
         final var result = mDevice.findObject(new UiSelector()
@@ -175,11 +178,8 @@ public class E2ETest {
         System.out.println("Found: " + result.getText());
     }
 
-    private void log(@NonNull String message) {
-        Log.i(TAG, message);
-    }
-
     private void launch(@NonNull String packageName) {
+        Log.d(TAG, "Launching " + packageName);
         final var context = getInstrumentation().getContext();
         context.startActivity(context
                 .getPackageManager()
