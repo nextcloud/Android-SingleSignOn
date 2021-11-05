@@ -169,10 +169,10 @@ public class E2ETest {
     public void test_02_verifyResult() throws UiObjectNotFoundException {
         launch(APP_SAMPLE);
 
-        final var taskCard = mDevice.findObject(new UiSelector()
+        final var result = mDevice.findObject(new UiSelector()
                 .textContains("Test on Nextcloud"));
-        taskCard.waitForExists(TIMEOUT);
-        System.out.println("Found: " + taskCard.getText());
+        result.waitForExists(TIMEOUT);
+        System.out.println("Found: " + result.getText());
     }
 
     private void log(@NonNull String message) {
