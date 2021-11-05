@@ -40,7 +40,7 @@ public class OcsCapabilitiesResponse {
             @SerializedName("color-text")
             public String colorText;
             @SerializedName("color-element")
-            public String cnextcloudapiolorElement;
+            public String colorElement;
             @SerializedName("color-element-bright")
             public String colorElementBright;
             @SerializedName("color-element-dark")
@@ -51,7 +51,8 @@ public class OcsCapabilitiesResponse {
             public boolean backgroundPlain;
             @SerializedName("background-default")
             public boolean backgroundDefault;
-            public String logoheader;
+            @SerializedName("logoheader")
+            public String logoHeader;
             public String favicon;
         }
     }
