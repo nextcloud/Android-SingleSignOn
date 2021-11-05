@@ -22,6 +22,7 @@ package com.nextcloud.android.sso.api;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -89,6 +90,18 @@ public class NextcloudAPI {
         new Thread(NextcloudAPI.this.networkRequest::connectApiWithBackoff).start();
     }
 
+    /**
+     * <blockquote>
+     * If you need to make multiple calls, keep the NextcloudAPI open as long as you
+     * can. This way the services will stay active and the connection between the
+     * files app and your app is already established when you make subsequent requests.
+     * Otherwise you'll have to bind to the service again and again for each request.
+     * <cite><a href="https://github.com/nextcloud/Android-SingleSignOn/issues/120#issuecomment-540069990">Source</a></cite>
+     * </blockquote>
+     *
+     * <p>A good place <em>depending on your actual implementation</em> might be {@link Activity#onStop()}.</p>
+     */
+    @SuppressWarnings("JavadocReference")
     public void stop() {
         gson = null;
         networkRequest.stop();
@@ -161,17 +174,17 @@ public class NextcloudAPI {
         return result;
     }
 
-     /**
-      * The InputStreams needs to be closed after reading from it
-      *
-      * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest)}
+    /**
+     * The InputStreams needs to be closed after reading from it
+     *
+     * @param request {@link NextcloudRequest} request to be executed on server via Files app
+     * @return InputStream answer from server as InputStream
+     * @throws Exception or {@link SSOException}
      * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-      * @param request {@link NextcloudRequest} request to be executed on server via Files app
-      * @return InputStream answer from server as InputStream
-      * @throws Exception or {@link SSOException}
+     * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest)}
      */
-     @Deprecated
-     public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
+    @Deprecated
+    public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
         return networkRequest.performNetworkRequest(request, request.getBodyAsStream());
     }
 
