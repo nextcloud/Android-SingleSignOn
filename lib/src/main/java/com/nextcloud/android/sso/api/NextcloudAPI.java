@@ -86,7 +86,7 @@ public class NextcloudAPI {
 
     /**
      * <blockquote>
-     * If you need to make multiple calls, keep the NextcloudAPI open as long as you
+     * If you need to make multiple calls, keep the {@link NextcloudAPI} open as long as you
      * can. This way the services will stay active and the connection between the
      * files app and your app is already established when you make subsequent requests.
      * Otherwise you'll have to bind to the service again and again for each request.
