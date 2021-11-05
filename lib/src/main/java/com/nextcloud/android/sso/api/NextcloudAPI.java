@@ -69,8 +69,14 @@ public class NextcloudAPI {
     public @interface FollowRedirects { }
 
     public interface ApiConnectedListener {
-        void onConnected();
-        void onError(Exception ex);
+        default void onConnected() {
+            Log.i(TAG, "Single Sign On API successfully connected.");
+        }
+        void onError(Exception e);
+    }
+
+    public NextcloudAPI(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull Gson gson) {
+        this(gson, new AidlNetworkRequest(context, account, Throwable::printStackTrace));
     }
 
     public NextcloudAPI(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull Gson gson, @NonNull ApiConnectedListener callback) {
