@@ -87,5 +87,5 @@ jobs:
             adb install latest.apk
             adb shell pm grant com.nextcloud.android.beta android.permission.READ_EXTERNAL_STORAGE
             adb logcat -c || true
-            adb logcat *:I -v color &
+            adb logcat com.nextcloud.*:I -v color &
             ./gradlew connectedDebugAndroidTest || true
