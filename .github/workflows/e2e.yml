@@ -15,6 +15,7 @@ jobs:
           SQLITE_DATABASE: db.sqlite
           NEXTCLOUD_ADMIN_USER: Test
           NEXTCLOUD_ADMIN_PASSWORD: Test
+          NEXTCLOUD_TRUSTED_DOMAINS: 172.17.0.1
         ports:
           - 8080:80
         options: >-
@@ -27,12 +28,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Make Nextcloud accessible from AVD
-        run: |
-          docker exec `docker ps -f 'name=_nextcloud' -l -q` bash -c 'runuser -u www-data -- php occ config:system:set trusted_domains 2 --value=172.17.0.1'
-
       # TODO 172.17.0.1 is the hard coded IP address of the docker container. Make this more generic.
-      - name: Verify Nextcloud being present on 172.17.0.1
+      - name: Verify Nextcloud being present
         run: |
           curl -v -X GET 'http://Test:Test@172.17.0.1:8080/ocs/v2.php/cloud/capabilities?format=json' -H 'OCS-APIRequest: true' | jq
 
