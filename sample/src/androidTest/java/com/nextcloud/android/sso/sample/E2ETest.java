@@ -113,7 +113,7 @@ public class E2ETest {
     }
 
     @Test
-    public void test_01_importAccountIntoSampleApp() throws UiObjectNotFoundException {
+    public void test_01_importAccountIntoSampleApp() throws UiObjectNotFoundException, InterruptedException {
         Log.i(TAG, "Import account into sample app");
         launch(APP_SAMPLE);
 
@@ -131,7 +131,7 @@ public class E2ETest {
         radioAccount.waitForExists(TIMEOUT);
         radioAccount.click();
 
-        mDevice.waitForWindowUpdate(null, TIMEOUT);
+        Thread.sleep(5_000);
 
         final var okButton = mDevice.findObject(new UiSelector()
                 .textContains("OK"));
