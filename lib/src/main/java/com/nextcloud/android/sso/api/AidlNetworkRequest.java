@@ -39,7 +39,8 @@ public class AidlNetworkRequest extends NetworkRequest {
     private static final String TAG = AidlNetworkRequest.class.getCanonicalName();
 
     private IInputStreamService mService = null;
-    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
+    /** Flag indicating whether we have called bind on the service */
+    private final AtomicBoolean mBound = new AtomicBoolean(false);
 
     AidlNetworkRequest(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull NextcloudAPI.ApiConnectedListener callback) {
         super(context, account, callback);
@@ -134,13 +135,13 @@ public class AidlNetworkRequest extends NetworkRequest {
 
     private void waitForApi() throws NextcloudApiNotRespondingException {
         synchronized (mBound) {
-            // If service is not bound yet.. wait
+            // If service is not bound yet… wait
             if(!mBound.get()) {
                 Log.v(TAG, "[waitForApi] - api not ready yet.. waiting [" + Thread.currentThread().getName() +  "]");
                 try {
-                    mBound.wait(10000); // wait up to 10 seconds
+                    mBound.wait(10_000); // wait up to 10 seconds
 
-                    // If api is still not bound after 10 seconds.. try reconnecting
+                    // If api is still not bound after 10 seconds… try reconnecting
                     if(!mBound.get()) {
                         throw new NextcloudApiNotRespondingException();
                     }
@@ -182,86 +183,6 @@ public class AidlNetworkRequest extends NetworkRequest {
     }
 
     /**
-     * The InputStreams needs to be closed after reading from it
-     *
-     * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest, InputStream)}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     * @param request                {@link NextcloudRequest} request to be executed on server via Files app
-     * @param requestBodyInputStream inputstream to be sent to the server
-     * @return InputStream answer from server as InputStream
-     * @throws Exception or SSOException
-     */
-    @Deprecated
-    public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
-        InputStream os = null;
-        Exception exception;
-        try {
-            os = new ParcelFileDescriptor.AutoCloseInputStream(performAidlNetworkRequest(request, requestBodyInputStream));
-            exception = deserializeObject(os);
-        } catch (ClassNotFoundException e) {
-            //e.printStackTrace();
-            exception = e;
-        }
-
-        // Handle Remote Exceptions
-        if (exception != null) {
-            // close os stream if something goes wrong and no response will be created
-            os.close();
-            if (exception.getMessage() != null) {
-                exception = parseNextcloudCustomException(exception);
-            }
-            throw exception;
-        }
-
-        // os stream needs to stay open to be able to read response
-        return os;
-    }
-
-    /**
-     * <strong>DO NOT CALL THIS METHOD DIRECTLY</strong> - use {@link #performNetworkRequest} instead
-     *
-     * @deprecated Use {@link #performAidlNetworkRequestV2(NextcloudRequest, InputStream)}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     * @param request
-     * @return
-     * @throws IOException
-     */
-    @Deprecated
-    private ParcelFileDescriptor performAidlNetworkRequest(@NonNull NextcloudRequest request,
-                                                           @Nullable InputStream requestBodyInputStream)
-            throws IOException, RemoteException, NextcloudApiNotRespondingException {
-
-        // Check if we are on the main thread
-        if(Looper.myLooper() == Looper.getMainLooper()) {
-            throw new NetworkOnMainThreadException();
-        }
-
-        if(mDestroyed) {
-            throw new IllegalStateException("Nextcloud API already destroyed. Please report this issue.");
-        }
-
-        // Wait for api to be initialized
-        waitForApi();
-
-        // Log.d(TAG, request.url);
-        request.setAccountName(getAccountName());
-        request.setToken(getAccountToken());
-
-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        final ObjectOutputStream oos = new ObjectOutputStream(baos);
-        oos.writeObject(request);
-        oos.close();
-        baos.close();
-        InputStream is = new ByteArrayInputStream(baos.toByteArray());
-
-        try (ParcelFileDescriptor input = pipeFrom(is, thread -> Log.d(TAG, "copy data from service finished"))) {
-            return requestBodyInputStream == null
-                    ? mService.performNextcloudRequest(input)
-                    : mService.performNextcloudRequestAndBodyStream(input, pipeFrom(requestBodyInputStream, thread -> Log.d(TAG, "copy data from service finished")));
-        }
-    }
-
-    /**
      * <strong>DO NOT CALL THIS METHOD DIRECTLY</strong> - use {@link #performNetworkRequestV2} instead
      *
      * @param request
@@ -276,6 +197,11 @@ public class AidlNetworkRequest extends NetworkRequest {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             throw new NetworkOnMainThreadException();
         }
+
+        // TODO This was part of the V1 API but never in the V2. Should we add it to V2?
+        // if (mDestroyed) {
+        //     throw new IllegalStateException("Nextcloud API already destroyed. Please report this issue.");
+        // }
 
         // Wait for api to be initialized
         waitForApi();

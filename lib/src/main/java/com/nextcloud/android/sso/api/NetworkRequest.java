@@ -19,7 +19,8 @@ public abstract class NetworkRequest {
     private SingleSignOnAccount mAccount;
     protected Context mContext;
     protected NextcloudAPI.ApiConnectedListener mCallback;
-    protected boolean mDestroyed = false; // Flag indicating if API is destroyed
+    /** Flag indicating whether API is destroyed */
+    protected boolean mDestroyed = false;
 
     protected NetworkRequest(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull NextcloudAPI.ApiConnectedListener callback) {
         this.mContext = context;
@@ -33,8 +34,6 @@ public abstract class NetworkRequest {
             throw new IllegalStateException("API already destroyed! You cannot reuse a stopped API instance");
         }
     }
-
-    protected abstract InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
 
     protected abstract Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception;
 

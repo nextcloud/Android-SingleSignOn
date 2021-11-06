@@ -1,6 +1,5 @@
 package com.nextcloud.android.sso.helper;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -19,11 +18,11 @@ public final class VersionCheckHelper {
 
     private VersionCheckHelper() { }
 
-    public static boolean verifyMinVersion(Activity activity, int minVersion) {
+    public static boolean verifyMinVersion(@NonNull Context context, int minVersion) {
         try {
-            final int verCode = getNextcloudFilesVersionCode(activity, true);
+            final int verCode = getNextcloudFilesVersionCode(context, true);
             if (verCode < minVersion) {
-                UiExceptionManager.showDialogForException(activity, new NextcloudFilesAppNotSupportedException());
+                UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotSupportedException());
                 return false;
             }
             return true;
@@ -32,7 +31,7 @@ public final class VersionCheckHelper {
 
             // Stable Files App is not installed at all. Therefore we need to run the test on the dev app
             try {
-                final int verCode = getNextcloudFilesVersionCode(activity, false);
+                final int verCode = getNextcloudFilesVersionCode(context, false);
                 // The dev app follows a different versioning schema.. therefore we can't do our normal checks
                 // However beta users are probably always up to date so we will just ignore it for now
                 Log.d(TAG, "Dev files app version is: " + verCode);
@@ -45,24 +44,20 @@ public final class VersionCheckHelper {
                 return true;
             } catch (PackageManager.NameNotFoundException ex) {
                 Log.e(TAG, "PackageManager.NameNotFoundException (dev files app not found): " + e.getMessage());
-                UiExceptionManager.showDialogForException(activity, new NextcloudFilesAppNotInstalledException());
+                UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotInstalledException());
             }
         }
         return false;
     }
 
     /**
-     * @deprecated use {@link #getNextcloudFilesVersionCode(Context, boolean)}
+     * @param context {@link Context}
+     * @param prod    if <code>true</code>, the version of {@link Constants#PACKAGE_NAME_PROD} is checked, otherwise {@link Constants#PACKAGE_NAME_DEV}.
      */
-    @Deprecated
-    public static int getNextcloudFilesVersionCode(@NonNull Context context) throws PackageManager.NameNotFoundException {
-        return getNextcloudFilesVersionCode(context, true);
-    }
-
     public static int getNextcloudFilesVersionCode(@NonNull Context context, boolean prod) throws PackageManager.NameNotFoundException {
         final PackageInfo pInfo = context.getPackageManager().getPackageInfo(prod ? Constants.PACKAGE_NAME_PROD : Constants.PACKAGE_NAME_DEV, 0);
         final int verCode = pInfo.versionCode;
-        Log.d("VersionCheckHelper", "Version Code: " + verCode);
+        Log.d(TAG, "Version Code: " + verCode);
         return verCode;
     }
 }
