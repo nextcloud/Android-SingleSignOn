@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
  * }
  * </pre>
  *
- * @see <a href="https://docs.nextcloud.com/server/latest/developer_manual//client_apis/OCS/ocs-api-overview.html#capabilities-api">Capabilities API</a>
+ * @see <a href="https://docs.nextcloud.com/server/latest/developer_manual/client_apis/OCS/ocs-api-overview.html#capabilities-api">Capabilities API</a>
  */
 @SuppressWarnings("unused, SpellCheckingInspection")
 public class OcsCapabilitiesResponse {
