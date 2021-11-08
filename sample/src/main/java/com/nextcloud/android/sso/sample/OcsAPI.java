@@ -2,21 +2,17 @@ package com.nextcloud.android.sso.sample;
 
 
 import com.google.gson.annotations.SerializedName;
-import com.nextcloud.android.sso.model.ocs.OcsCapabilitiesResponse;
-import com.nextcloud.android.sso.model.ocs.OcsResponse;
-import com.nextcloud.android.sso.model.ocs.OcsUser;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 /**
  * @see <a href="https://deck.readthedocs.io/en/latest/API-Nextcloud/">Nextcloud REST API</a>
  */
 public interface OcsAPI {
 
-    @GET("users/{search}?format=json")
-    Call<OcsResponse<OcsUser>> getUser(@Path("search") String userId);
+//    @GET("users/{search}?format=json")
+//    Call<OcsResponse<OcsUser>> getUser(@Path("search") String userId);
 
     @GET("capabilities?format=json")
     Call<CustomResponse> getServerInfo();

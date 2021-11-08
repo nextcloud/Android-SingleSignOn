@@ -15,7 +15,6 @@ import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -58,24 +57,37 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(R.string.loading));
 
                     /* Create local bridge API to the Nextcloud Files Android app */
-                    final var nextcloudAPI = new NextcloudAPI(this, ssoAccount, new GsonBuilder().create());
+                    final var nextcloudAPI = new NextcloudAPI(this, ssoAccount, new GsonBuilder().create(), new NextcloudAPI.ApiConnectedListener() {
+                        @Override
+                        public void onConnected() {
+
+                        }
+
+                        @Override
+                        public void onError(Exception ex) {
+
+                        }
+                    });
 
                     /* Create the Ocs API to talk to the server */
                     final var ocsAPI = new NextcloudRetrofitApiBuilder(nextcloudAPI, "/ocs/v2.php/cloud/").create(OcsAPI.class);
 
                     try {
                         /* Perform actual requests */
-                        final var user = ocsAPI.getUser(ssoAccount.userId).execute().body().ocs.data;
+//                        final var user = ocsAPI.getUser(ssoAccount.userId).execute().body().ocs.data;
                         final var serverInfo = ocsAPI.getServerInfo().execute().body().ocs.data;
 
                         /* Show result on the UI thread */
                         runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(
                                 getString(R.string.account_info,
-                                        user.displayName,
+                                        "user.displayName",
                                         serverInfo.capabilities.theming.name,
                                         serverInfo.version.semanticVersion))
                         );
-                    } catch (IOException e) {
+                    } catch (Exception e) {
+                        runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(
+                                e.getMessage()
+                        ));
                         e.printStackTrace();
                     }
 
