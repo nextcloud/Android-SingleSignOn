@@ -31,6 +31,8 @@
     <string name="nextcloud_files_api_not_responding_title">Fout</string>
     <string name="nextcloud_files_api_not_responding_message">Nextcloud Files-app-API reageert niet. Dit komt waarschijnlijk door batterij-optimalisaties op je toestel. Probeer de batterij-optimalisatie voor beide apps (Nextcloud Android en deze app) uit te schakelen. Probeer in alle andere gevallen de opslag van beide apps op te schonen.</string>
 
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Instellingen voor batterijoptimalisatie</string>
+
     <string name="sso_canceled">SSO import geannuleerd</string>
     <string name="sso_canceled_message">SSO import was geannuleerd door de gebruiker</string>
 </resources>
