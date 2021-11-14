@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.GsonBuilder;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -19,6 +16,8 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.NextcloudRetrofitApiBuilder;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,17 +1,8 @@
 package com.nextcloud.android.sso.api;
 
-import static junit.framework.TestCase.assertTrue;
-import static junit.framework.TestCase.fail;
-import static org.junit.Assert.assertNotEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.nextcloud.android.sso.QueryParam;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 
 import org.junit.Before;
@@ -38,14 +29,24 @@ import retrofit2.Callback;
 import retrofit2.NextcloudRetrofitApiBuilder;
 import retrofit2.Response;
 
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.fail;
+import static org.junit.Assert.assertNotEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 public class TestRetrofitAPI {
 
     /**
-     Allowed methods:
-     GET, POST, PUT, DELETE
-
-     Unsupported Methods:
-     PATCH, …
+     * Allowed methods:
+     * GET, POST, PUT, DELETE
+     * <p>
+     * Unsupported Methods:
+     * PATCH, …
      **/
 
     private final String mApiEndpoint = "/index.php/apps/news/api/v1-2/";

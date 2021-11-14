@@ -20,10 +20,7 @@
 package com.nextcloud.android.sso.aidl;
 
 
-import androidx.core.util.ObjectsCompat;
-import androidx.core.util.Pair;
-
-import com.nextcloud.android.sso.api.QueryParam;
+import com.nextcloud.android.sso.QueryParam;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -34,6 +31,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import androidx.core.util.ObjectsCompat;
+import androidx.core.util.Pair;
 import lombok.ToString;
 
 @ToString
