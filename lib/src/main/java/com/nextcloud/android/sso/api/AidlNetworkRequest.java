@@ -152,7 +152,7 @@ public class AidlNetworkRequest extends NetworkRequest {
     /**
      * The InputStreams needs to be closed after reading from it
      *
-     * @param request                {@link NextcloudRequest} request to be executed on server via Files app
+     * @param request {@link NextcloudRequest} request to be executed on server via Files app
      * @param requestBodyInputStream inputstream to be sent to the server
      * @return InputStream answer from server as InputStream
      * @throws Exception or SSOException
@@ -182,12 +182,12 @@ public class AidlNetworkRequest extends NetworkRequest {
     /**
      * The InputStreams needs to be closed after reading from it
      *
+     * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest, InputStream)}
+     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
      * @param request                {@link NextcloudRequest} request to be executed on server via Files app
      * @param requestBodyInputStream inputstream to be sent to the server
      * @return InputStream answer from server as InputStream
      * @throws Exception or SSOException
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest, InputStream)}
      */
     @Deprecated
     public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
@@ -218,11 +218,11 @@ public class AidlNetworkRequest extends NetworkRequest {
     /**
      * <strong>DO NOT CALL THIS METHOD DIRECTLY</strong> - use {@link #performNetworkRequest} instead
      *
+     * @deprecated Use {@link #performAidlNetworkRequestV2(NextcloudRequest, InputStream)}
+     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
      * @param request
      * @return
      * @throws IOException
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     * @deprecated Use {@link #performAidlNetworkRequestV2(NextcloudRequest, InputStream)}
      */
     @Deprecated
     private ParcelFileDescriptor performAidlNetworkRequest(@NonNull NextcloudRequest request,
