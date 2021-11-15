@@ -46,16 +46,10 @@ public class Constants {
     public static final String PACKAGE_NAME_PROD = FilesAppType.PROD.packageId;
     /** @deprecated Use {@link FilesAppType#packageId} */
     @Deprecated
-    public static final String PACKAGE_NAME_QA = FilesAppType.QA.packageId;
-    /** @deprecated Use {@link FilesAppType#packageId} */
-    @Deprecated
     public static final String PACKAGE_NAME_DEV = FilesAppType.DEV.packageId;
     /** @deprecated Use {@link FilesAppType#accountType} */
     @Deprecated
     public static final String ACCOUNT_TYPE_PROD = FilesAppType.PROD.accountType;
-    /** @deprecated Use {@link FilesAppType#accountType} */
-    @Deprecated
-    public static final String ACCOUNT_TYPE_QA = FilesAppType.QA.accountType;
     /** @deprecated Use {@link FilesAppType#accountType} */
     @Deprecated
     public static final String ACCOUNT_TYPE_DEV = FilesAppType.DEV.accountType;
