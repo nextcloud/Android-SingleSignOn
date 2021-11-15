@@ -52,6 +52,7 @@ import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNo
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.model.FilesAppType;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
@@ -74,8 +75,7 @@ public class AccountImporter {
 
     private static SharedPreferences SHARED_PREFERENCES;
 
-    private static final List<String> APPS = Arrays.asList(Constants.PACKAGE_NAME_PROD, Constants.PACKAGE_NAME_DEV);
-    private static final String[] ACCOUNT_TYPES = {Constants.ACCOUNT_TYPE_PROD, Constants.ACCOUNT_TYPE_DEV};
+    private static final String[] ACCOUNT_TYPES = Arrays.stream(FilesAppType.values()).map(a -> a.accountType).toArray(String[]::new);
 
     public static boolean accountsToImportAvailable(Context context) {
         return findAccounts(context).size() > 0;
@@ -131,9 +131,9 @@ public class AccountImporter {
     private static boolean appInstalledOrNot(Context context) {
         boolean returnValue = false;
         PackageManager pm = context.getPackageManager();
-        for (String app : APPS) {
+        for (final var appType : FilesAppType.values()) {
             try {
-                pm.getPackageInfo(app, PackageManager.GET_ACTIVITIES);
+                pm.getPackageInfo(appType.packageId, PackageManager.GET_ACTIVITIES);
                 returnValue = true;
                 break;
             } catch (PackageManager.NameNotFoundException e) {
@@ -370,20 +370,14 @@ public class AccountImporter {
             throw new NextcloudFilesAppAccountPermissionNotGrantedException();
         }
 
-        String componentName;
-        if (account.type.equalsIgnoreCase(Constants.ACCOUNT_TYPE_DEV)) {
-            componentName = Constants.PACKAGE_NAME_DEV;
-        } else {
-            componentName = Constants.PACKAGE_NAME_PROD;
-        }
-        
+        String componentName = FilesAppType.findByAccountType(account.type).packageId;
+
         Intent authIntent = new Intent();
         authIntent.setComponent(new ComponentName(componentName,
                                                   "com.owncloud.android.ui.activity.SsoGrantPermissionActivity"));
         authIntent.putExtra(NEXTCLOUD_FILES_ACCOUNT, account);
         return authIntent;
     }
-
 
     public static SharedPreferences getSharedPreferences(Context context) {
         if(SHARED_PREFERENCES != null) {
