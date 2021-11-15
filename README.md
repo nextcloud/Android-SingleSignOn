@@ -54,6 +54,7 @@ For Android 11 and later [you need to add queries](https://github.com/nextcloud/
 ```xml
 <queries>
     <package android:name="com.nextcloud.client" />
+    <package android:name="com.nextcloud.android.qa" />
     <package android:name="com.nextcloud.android.beta" />
 </queries>
 ```

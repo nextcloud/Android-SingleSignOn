@@ -19,10 +19,10 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
-import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
+import com.nextcloud.android.sso.model.FilesAppType;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.ByteArrayInputStream;
@@ -82,16 +82,14 @@ public class AidlNetworkRequest extends NetworkRequest {
         Log.d(TAG, "[connect] Binding to AccountManagerService for type [" + type + "]");
         super.connect(type);
 
-        final String componentName = Constants.ACCOUNT_TYPE_DEV.equals(type)
-            ? Constants.PACKAGE_NAME_DEV
-            : Constants.PACKAGE_NAME_PROD;
+        final String componentName = FilesAppType.findByAccountType(type).packageId;
 
-        Log.d(TAG, "[connect] Component name is: [" + componentName+ "]");
+        Log.d(TAG, "[connect] Component name is: [" + componentName + "]");
 
         try {
             final Intent intentService = new Intent();
             intentService.setComponent(new ComponentName(componentName,
-                                                         "com.owncloud.android.services.AccountManagerService"));
+                    "com.owncloud.android.services.AccountManagerService"));
             // https://developer.android.com/reference/android/content/Context#BIND_ABOVE_CLIENT
             if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE | Context.BIND_ABOVE_CLIENT)) {
                 Log.d(TAG, "[connect] Binding to AccountManagerService returned false");
@@ -135,13 +133,13 @@ public class AidlNetworkRequest extends NetworkRequest {
     private void waitForApi() throws NextcloudApiNotRespondingException {
         synchronized (mBound) {
             // If service is not bound yet.. wait
-            if(!mBound.get()) {
-                Log.v(TAG, "[waitForApi] - api not ready yet.. waiting [" + Thread.currentThread().getName() +  "]");
+            if (!mBound.get()) {
+                Log.v(TAG, "[waitForApi] - api not ready yet.. waiting [" + Thread.currentThread().getName() + "]");
                 try {
                     mBound.wait(10000); // wait up to 10 seconds
 
                     // If api is still not bound after 10 seconds.. try reconnecting
-                    if(!mBound.get()) {
+                    if (!mBound.get()) {
                         throw new NextcloudApiNotRespondingException();
                     }
                 } catch (InterruptedException ex) {
@@ -154,7 +152,7 @@ public class AidlNetworkRequest extends NetworkRequest {
     /**
      * The InputStreams needs to be closed after reading from it
      *
-     * @param request {@link NextcloudRequest} request to be executed on server via Files app
+     * @param request                {@link NextcloudRequest} request to be executed on server via Files app
      * @param requestBodyInputStream inputstream to be sent to the server
      * @return InputStream answer from server as InputStream
      * @throws Exception or SSOException
@@ -184,12 +182,12 @@ public class AidlNetworkRequest extends NetworkRequest {
     /**
      * The InputStreams needs to be closed after reading from it
      *
-     * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest, InputStream)}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
      * @param request                {@link NextcloudRequest} request to be executed on server via Files app
      * @param requestBodyInputStream inputstream to be sent to the server
      * @return InputStream answer from server as InputStream
      * @throws Exception or SSOException
+     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
+     * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest, InputStream)}
      */
     @Deprecated
     public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
@@ -220,11 +218,11 @@ public class AidlNetworkRequest extends NetworkRequest {
     /**
      * <strong>DO NOT CALL THIS METHOD DIRECTLY</strong> - use {@link #performNetworkRequest} instead
      *
-     * @deprecated Use {@link #performAidlNetworkRequestV2(NextcloudRequest, InputStream)}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
      * @param request
      * @return
      * @throws IOException
+     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
+     * @deprecated Use {@link #performAidlNetworkRequestV2(NextcloudRequest, InputStream)}
      */
     @Deprecated
     private ParcelFileDescriptor performAidlNetworkRequest(@NonNull NextcloudRequest request,
@@ -232,11 +230,11 @@ public class AidlNetworkRequest extends NetworkRequest {
             throws IOException, RemoteException, NextcloudApiNotRespondingException {
 
         // Check if we are on the main thread
-        if(Looper.myLooper() == Looper.getMainLooper()) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
             throw new NetworkOnMainThreadException();
         }
 
-        if(mDestroyed) {
+        if (mDestroyed) {
             throw new IllegalStateException("Nextcloud API already destroyed. Please report this issue.");
         }
 
@@ -337,7 +335,7 @@ public class AidlNetworkRequest extends NetworkRequest {
             return value;
         }
 
-        private void writeObject(ObjectOutputStream oos) throws IOException{
+        private void writeObject(ObjectOutputStream oos) throws IOException {
             oos.writeObject(name);
             oos.writeObject(value);
         }
