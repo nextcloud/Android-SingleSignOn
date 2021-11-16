@@ -34,7 +34,6 @@ import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -94,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
                                         serverInfo.capabilities.theming.name,
                                         serverInfo.version.semanticVersion))
                         );
-                    } catch (IOException e) {
+                    } catch (Exception e) {
+                        runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(e.getMessage()));
                         e.printStackTrace();
                     }
 
