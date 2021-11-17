@@ -24,7 +24,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
@@ -54,6 +56,10 @@ public final class SingleAccountHelper {
         return AccountImporter.getSingleSignOnAccount(context, getCurrentAccountName(context));
     }
 
+    public static LiveData<SingleSignOnAccount> getCurrentSingleSignOnAccount$(@NonNull Context context) {
+        return new CurrentSingleSignOnAccountLiveData(context, AccountImporter.getSharedPreferences(context), PREF_CURRENT_ACCOUNT_STRING);
+    }
+
     /**
      * Warning: This call is writing synchronously to the disk.
      * You should use {@link #setCurrentAccountAsync(Context, String)} if possible.
@@ -80,13 +86,19 @@ public final class SingleAccountHelper {
     public static void reauthenticateCurrentAccount(Activity activity) throws NoCurrentAccountSelectedException, NextcloudFilesAppAccountNotFoundException, NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
         AccountImporter.authenticateSingleSignAccount(activity, getCurrentSingleSignOnAccount(activity));
     }
-    
+
+    /**
+     * For a lifecycle aware implementation see {@link #getCurrentSingleSignOnAccount$(Context)}
+     */
     public static void registerSharedPreferenceChangeListener(Context context, 
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)
                 .registerOnSharedPreferenceChangeListener(listener);
     }
-    
+
+    /**
+     * For a lifecycle aware implementation see {@link #getCurrentSingleSignOnAccount$(Context)}
+     */
     public static void unregisterSharedPreferenceChangeListener(Context context,
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)
