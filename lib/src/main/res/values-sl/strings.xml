@@ -29,6 +29,8 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Trenutna različica programa datotek ne podpira možnosti enojne prijave. Posodobiti jo je treba na %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Napaka</string>
+    <string name="nextcloud_files_api_not_responding_message">API aplikacije Nextcloud Files se ne odziva. To je najverjetneje posledica optimizacije baterije v telefonu. Poskusite onemogočiti optimizacijo baterije za obe aplikaciji (Nextcloud Android in to aplikacijo). V vseh drugih primerih poskusite počistiti pomnilnik obeh aplikacij.</string>
+
     <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Nastavitve baterije</string>
 
     <string name="sso_canceled">Uvoz SSO je preklican</string>
