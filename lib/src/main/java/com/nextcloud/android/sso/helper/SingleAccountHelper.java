@@ -88,8 +88,9 @@ public final class SingleAccountHelper {
     }
 
     /**
-     * For a lifecycle aware implementation see {@link #getCurrentSingleSignOnAccount$(Context)}
+     * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
      */
+    @Deprecated
     public static void registerSharedPreferenceChangeListener(Context context, 
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)
@@ -97,8 +98,9 @@ public final class SingleAccountHelper {
     }
 
     /**
-     * For a lifecycle aware implementation see {@link #getCurrentSingleSignOnAccount$(Context)}
+     * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
      */
+    @Deprecated
     public static void unregisterSharedPreferenceChangeListener(Context context,
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)
