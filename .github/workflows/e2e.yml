@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api-level: [ 24, 26 ] #, 25, 27, 28, 29 ]
+        api-level: [ 28 ] #, 24, 25, 26, 27, 28, 29 ]
         nextcloud-version: [ 'nextcloud:latest' ] #, 'nextcloud:stable', 'nextcloud:production' ]
     services:
       nextcloud:
