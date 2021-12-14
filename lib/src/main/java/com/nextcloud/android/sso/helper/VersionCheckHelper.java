@@ -55,7 +55,7 @@ public final class VersionCheckHelper {
             }
             return true;
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "PackageManager.NameNotFoundException (prod files app not found): " + e.getMessage());
+            Log.e(TAG, "PackageManager.NameNotFoundException (" + type + " files app not found): " + e.getMessage());
 
             // Stable Files App is not installed at all. Therefore we need to run the test on the dev app
             try {
