@@ -1,0 +1,39 @@
+<resources>
+    <string name="unknown_error">Erreur inconnue</string>
+
+    <string name="no_current_account_selected_exception_title">Avertissement</string>
+    <string name="no_current_account_selected_exception_message">Aucun compte sélectionné pour le moment</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Erreur</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Afin d\'utiliser l\'authentification unique de Nextcloud sur cet appareil, vous devez en autoriser l\'accès dans vos comptes utilisateur</string>
+
+    <string name="current_account_not_found_exception_title">Avertissement</string>
+    <string name="current_account_not_found_exception_message">Le compte sélectionné n\'a pas été trouvé. Quelque chose s\'est mal passé.</string>
+
+    <string name="token_mismatch_title">Erreur</string>
+    <string name="token_mismatch_message">Le jeton d\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Erreur</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'application Nextcloud Files n\'est pas installée. Veuillez l\'installer : %1$s
+ </string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
+    <string name="nextcloud_files_app_account_not_found_message">Compte non trouvé dans l\'application Nextcloud</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Erreur</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Vous devez accepter les demandes d\'autorisations pour utiliser l\'authentification unique.</string>
+
+    <string name="nextcloud_http_request_failed_title">Erreur</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">La requête HTTP a échoué avec le statut HTTP :%1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Erreur</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Votre application Nextcloud Files ne prend actuellement pas en charge l\'authentification unique. Veuillez la mettre à jour 1%1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Erreur</string>
+    <string name="nextcloud_files_api_not_responding_message">Pas de réponse de l\'API de l\'application Nextcloud Files. Cela est probablement dû à des optimalisations de la batterie de votre téléphone. Essayez de désactiver l\'optimalisation de la batterie pour les 2 applications (Nextcloud Android et cette application). Sinon, essayez de remettre à zero le stockage de ces 2 applications</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Paramètres d\'optimalisation de la batterie</string>
+
+    <string name="sso_canceled">Import SSO annulé</string>
+    <string name="sso_canceled_message">L\'import SSO a été annulé par un utilisateur</string>
+</resources>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="no_current_account_selected_exception_title">Aviso</string>
+    <string name="no_current_account_selected_exception_message">Non hai ningunha conta configurada</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Erro</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Para poder utilizar o «Inicio de sesión único» (Single-Sign-On) do Nextcloud neste dispositivo, ten que concederlle permiso para acceder as súas contas.
+</string>
+
+    <string name="current_account_not_found_exception_title">Advertencia</string>
+    <string name="current_account_not_found_exception_message">Non se atopou a conta seleccionada. Algo foi mal.</string>
+
+    <string name="token_mismatch_title">Erro</string>
+    <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Erro</string>
+    <string name="nextcloud_files_app_account_not_found_title">Erro</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Erro</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Ten que aceptar os permisos solicitados para usar a característica de auténticación única (single-sign-on).
+</string>
+
+    <string name="nextcloud_http_request_failed_title">Erro</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na petición HTTP cun código de estado: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Erro</string>
+    <string name="sso_canceled">Importación SSO cancelada</string>
+    <string name="sso_canceled_message">A importación SSO foi cancelada polo usuaro</string>
+</resources>

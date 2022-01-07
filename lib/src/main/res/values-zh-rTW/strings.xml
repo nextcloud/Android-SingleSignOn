@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">未知的錯誤</string>
+
+    <string name="no_current_account_selected_exception_title">警告</string>
+    <string name="no_current_account_selected_exception_message">沒有選取任何帳戶</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">錯誤</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">您必須先授權存取您的帳號，才能在此裝置上使用 Nextcloud 的單一登入功能</string>
+
+    <string name="current_account_not_found_exception_title">警告</string>
+    <string name="current_account_not_found_exception_message">找不到所選的帳號。似乎出了點問題。</string>
+
+    <string name="token_mismatch_title">錯誤</string>
+    <string name="token_mismatch_message">提供的驗證憑證不符，或是不允許此名稱的軟體包執行此動作。</string>
+
+    <string name="nextcloud_files_app_not_installed_title">錯誤</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">未安裝 Nextcloud Files 應用程式。請安裝：%1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">錯誤</string>
+    <string name="nextcloud_files_app_account_not_found_message">在 Nextcloud Files 應用程式中找不到帳號</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">錯誤</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">您需要接受請求之權限，才能使用單一登入功能。</string>
+
+    <string name="nextcloud_http_request_failed_title">錯誤</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP 請求失敗，HTTP 狀態碼：%1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">錯誤</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">您的 Nextcloud Files 應用程式尚未支援單一登入功能。請更新：%1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">錯誤</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files 應用程式 API 沒有回應。這很可能是因為您手機上的電池最佳化所造成的盾題。請試著對兩個應用程式（Android 版的 Nextcloud 與此應用程式）停用電池最佳化。在其他情況下，請試著清除兩個應用程式的儲存空間。</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">電池最佳化設定</string>
+
+    <string name="sso_canceled">取消 SSO 匯入</string>
+    <string name="sso_canceled_message">使用者取消 SSO 匯入</string>
+</resources>

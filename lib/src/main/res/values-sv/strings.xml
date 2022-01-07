@@ -1,0 +1,23 @@
+<resources>
+    <string name="no_current_account_selected_exception_title">Varning</string>
+    <string name="no_current_account_selected_exception_message">Inget konto valt än</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Fel</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">För att kunna använda Nextcloud Single-Sign-On på den här enheten måste du ge tillstånd för att få åtkomst till dina konton</string>
+
+    <string name="current_account_not_found_exception_title">Varning</string>
+    <string name="token_mismatch_title">Fel</string>
+    <string name="token_mismatch_message">Förutsatt att autentiserings-token inte matchar eller paketnamnet inte är tillåtet att utföra denna åtgärd</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Fel</string>
+    <string name="nextcloud_files_app_account_not_found_title">Fel</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Fel</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Du måste acceptera de begärda behörigheterna för att använda single sign-on funktionen.</string>
+
+    <string name="nextcloud_http_request_failed_title">Fel</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-förfrågan misslyckades med HTTP-statuskod: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Fel</string>
+    <string name="sso_canceled">SSO-import avbruten</string>
+    <string name="sso_canceled_message">SSO-import avbruten av användaren</string>
+</resources>

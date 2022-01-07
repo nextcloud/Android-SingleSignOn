@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">Nepoznata pogreška</string>
+
+    <string name="no_current_account_selected_exception_title">Upozorenje</string>
+    <string name="no_current_account_selected_exception_message">Još nije odabran nijedan račun</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Pogreška</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Kako biste se mogli koristiti značajkom jedinstvene prijave Nextcloud Single-Sign-On na ovom uređaju, morate dati dopuštenje za pristup svojim računima</string>
+
+    <string name="current_account_not_found_exception_title">Upozorenje</string>
+    <string name="current_account_not_found_exception_message">Odabrani račun nije pronađen. Nešto je pošlo po krivu.</string>
+
+    <string name="token_mismatch_title">Pogreška</string>
+    <string name="token_mismatch_message">Navedeni token za autentifikaciju nije podudaran ili naziv paketa nije dopušten za izvođenje ove radnje</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Pogreška</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nije instalirana aplikacija Nextcloud Files. Instalirajte je: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Pogreška</string>
+    <string name="nextcloud_files_app_account_not_found_message">Račun nije pronađen u aplikaciji Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Pogreška</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Morate prihvatiti zahtijevana dopuštenja kako biste se koristili značajkom jedinstvene prijave.</string>
+
+    <string name="nextcloud_http_request_failed_title">Pogreška</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP zahtjev nije uspio, šifra HTTP statusa: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Pogreška</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Aplikacija Nextcloud Files trenutno ne podržava značajku jedinstvene prijave. Ažurirajte je: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Pogreška</string>
+    <string name="nextcloud_files_api_not_responding_message">API aplikacije Nextcloud Files ne odgovara na zahtjev. Vjerojatno zbog optimizacije baterije na vašem telefonu. Pokušajte onemogućiti optimizaciju baterije za obje aplikacije (Nextcloud Android i ovu aplikaciju). U ostalim slučajevima pokušajte osloboditi prostor za pohranu u obje aplikacije.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Postavke opt. baterije</string>
+
+    <string name="sso_canceled">Uvoz SSO-a je otkazan</string>
+    <string name="sso_canceled_message">Korisnik je otkazao uvoz SSO-a</string>
+</resources>

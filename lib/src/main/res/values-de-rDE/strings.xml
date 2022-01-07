@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">Unbekannter Fehler</string>
+
+    <string name="no_current_account_selected_exception_title">Warnung</string>
+    <string name="no_current_account_selected_exception_message">Kein Konto ausgewählt</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Fehler</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Um den Nextcloud Single-Sign-On auf diesem Gerät zu nutzen, müssen Sie Zugriff auf Ihre Konten gewähren</string>
+
+    <string name="current_account_not_found_exception_title">Warnung</string>
+    <string name="current_account_not_found_exception_message">Ausgewähltes Konto wurde nicht gefunden. Etwas ist schief gelaufen.</string>
+
+    <string name="token_mismatch_title">Fehler</string>
+    <string name="token_mismatch_message">Der Authentifizierungs-Token stimmt nicht überein oder dem Paketnamen fehlt die Berechtigung für diese Aktion</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Fehler</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Die Nextcloud-Files-App ist nicht installiert. Bitte installieren Sie: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Fehler</string>
+    <string name="nextcloud_files_app_account_not_found_message">Konto in Nextcloud-App nicht gefunden</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Fehler</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Sie müssen die angefragten Zugriffsrechte akzeptieren um die Funktion Single-Sign-On nutzen zu können.</string>
+
+    <string name="nextcloud_http_request_failed_title">Fehler</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-Anfrage ist fehlgeschlagen mit HTTP-Statuscode: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Fehler</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ihre Nextcloud-Files-App unterstützt aktuell nicht die Funktion Single-Sign-On. Bitte aktualisieren: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Fehler</string>
+    <string name="nextcloud_files_api_not_responding_message">Die API der Nextcloud Dateien-App reagiert nicht. Dies ist höchstwahrscheinlich auf die Akkuoptimierungen Ihres Telefons zurückzuführen. Versuchen Sie, die Akkuoptimierung für beide Apps (Nextcloud Android und diese App) zu deaktivieren. In allen anderen Fällen versuchen Sie bitte, den Speicher beider Apps zu löschen. </string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Batterie-Optim.-Einstellungen</string>
+
+    <string name="sso_canceled">SSO-Import abgebrochen</string>
+    <string name="sso_canceled_message">SSO-Import wurde vom Benutzer abgebrochen</string>
+</resources>

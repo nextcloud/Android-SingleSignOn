@@ -1,0 +1,44 @@
+<resources>
+    <string name="unknown_error">Unknown error</string>
+
+    <string name="no_current_account_selected_exception_title">Warning</string>
+    <string name="no_current_account_selected_exception_message">No account selected yet</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Error</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">In order to use the Nextcloud Single-Sign-On on this device, you need to grant permission to access your accounts</string>
+
+    <string name="current_account_not_found_exception_title">Warning</string>
+    <string name="current_account_not_found_exception_message">Selected account was not found. Something went wrong.</string>
+
+    <string name="token_mismatch_title">Error</string>
+    <string name="token_mismatch_message">Provided authentication token does not match or package name is not permitted to perform this action</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Error</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files app is not installed. Please install it: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Error</string>
+    <string name="nextcloud_files_app_account_not_found_message">Account not found in Nextcloud Files app</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">You have to accept the requested permissions to use the single sign-on feature.</string>
+
+    <string name="nextcloud_http_request_failed_title">Error</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP request failed with HTTP status-code: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_title" translatable="false">Error</string>
+    <string name="nextcloud_unsupported_method_message" translatable="false">The requested HTTP Method is not supported yet! Please contact the developers of the Android Single-On Library for Android</string>
+
+    <string name="nextcloud_invalid_request_url_title" translatable="false">Error</string>
+    <string name="nextcloud_invalid_request_url_message" translatable="false" formatted="true">The requested URL is invalid: %1$s</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Error</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Your Nextcloud Files app currently does not support the single sign on feature. Please update it: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Error</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files app API is not responding. This is most likely due to battery optimizations on your phone. Try to disable the battery optimization for both apps (Nextcloud Android and this app). In all other cases please try to clear the storage of both apps.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Battery Opt. Settings</string>
+
+    <string name="sso_canceled">SSO import canceled</string>
+    <string name="sso_canceled_message">SSO import was cancelled by user</string>
+</resources>

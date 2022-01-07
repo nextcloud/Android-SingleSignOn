@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Nextcloud SSO Sample</string>
+    <string name="choose_account">Choose account</string>
+    <string name="no_account_chosen_yet">No account chosen yet.</string>
+    <string name="account_info">%1$s on %2$s (%3$s)</string>
+    <string name="loading">Loading…</string>
+</resources>

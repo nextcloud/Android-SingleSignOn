@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">未知错误</string>
+
+    <string name="no_current_account_selected_exception_title">警告</string>
+    <string name="no_current_account_selected_exception_message">没有选择任何账号</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">错误</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">为在此设备上使用 Nextcloud 单点登录，您需要给此应用授权访问您的账号</string>
+
+    <string name="current_account_not_found_exception_title">警告</string>
+    <string name="current_account_not_found_exception_message">未找到所选帐户。出了些问题。</string>
+
+    <string name="token_mismatch_title">错误</string>
+    <string name="token_mismatch_message">提供验证口令不匹配，或者不允许此文件执行此操作</string>
+
+    <string name="nextcloud_files_app_not_installed_title">错误</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">未安装 Nextcloud Files 应用。请安装它：%1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">错误</string>
+    <string name="nextcloud_files_app_account_not_found_message">在 Nextcloud Files 应用中找不到账号</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">错误</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">您必须接受所使用条款才能使用单点登录功能。</string>
+
+    <string name="nextcloud_http_request_failed_title">错误</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP 请求失败，HTTP 错误代码：%1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">错误</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">你的 Nextcloud Files 应用目前不支持单点登录功能。请更新它：%1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">错误</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files 应用 API 未响应。这很可能是由于你手机上的电池优化。尝试禁用两个应用程序(Nextcloud Android和这个应用程序)的电池优化。在其他情况下，请尝试清除两个应用程序的存储。</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">电池优化设置</string>
+
+    <string name="sso_canceled">SSO导入已取消</string>
+    <string name="sso_canceled_message">SSO导入已被用户取消</string>
+</resources>

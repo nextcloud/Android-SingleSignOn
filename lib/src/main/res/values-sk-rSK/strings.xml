@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">Neznáma chyba</string>
+
+    <string name="no_current_account_selected_exception_title">Varovanie</string>
+    <string name="no_current_account_selected_exception_message">Žiadny účet nebol vybratý</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Chyba</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Ak chcete na tomto zariadení používať Nextcloud Single-Sign-On, je potrebné prideliť oprávnenie pre prístup k vašim účtom</string>
+
+    <string name="current_account_not_found_exception_title">Varovanie</string>
+    <string name="current_account_not_found_exception_message">Vybraný účet nebol nájdený.</string>
+
+    <string name="token_mismatch_title">Chyba</string>
+    <string name="token_mismatch_message">Poskytnutý overovací token sa nezhoduje alebo nie je tomuto balíčku umožnené túto akciu uskutočniť</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Chyba</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikácia Files app nie je nainštalovaná. Prosím, nainštalujte ju: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Chyba</string>
+    <string name="nextcloud_files_app_account_not_found_message">Účet nenájdený v aplikácii Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Chyba</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Musíte prijať požadované právomoci aby ste mohli používať single sign-on.</string>
+
+    <string name="nextcloud_http_request_failed_title">Chyba</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Chyba pri HTTP požiadavke, HTTP status kód: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Chyba</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Vaša aplikácia Nextcloud Files v súčasnosti nepodporuje jednotné prihlasovanie. Prosím aktualizujte: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Chyba</string>
+    <string name="nextcloud_files_api_not_responding_message">Rozhranie API aplikácie Nextcloud Files nereaguje. Je to pravdepodobne kvôli optimalizácii batérie v telefóne. Skúste vypnúť optimalizáciu batérie pre obe aplikácie (Nextcloud Android a túto aplikáciu). Vo všetkých ostatných prípadoch skúste vymazať ukladací priestor oboch aplikácií.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Nastavenia volieb batérie</string>
+
+    <string name="sso_canceled">SSO import zrušený</string>
+    <string name="sso_canceled_message">SSO import bol zrušený používateľom</string>
+</resources>

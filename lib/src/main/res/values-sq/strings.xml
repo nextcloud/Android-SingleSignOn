@@ -1,0 +1,22 @@
+<resources>
+    <string name="unknown_error">Gabim i panjohur</string>
+
+    <string name="no_current_account_selected_exception_title">Paralajmërim</string>
+    <string name="no_current_account_selected_exception_message">Ende nuk është zgjedhur asnjë llogari</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Error</string>
+    <string name="current_account_not_found_exception_title">Paralajmërim</string>
+    <string name="token_mismatch_title">Gabim</string>
+    <string name="nextcloud_files_app_not_installed_title">Gabim</string>
+    <string name="nextcloud_files_app_account_not_found_title">Gabim</string>
+    <string name="nextcloud_files_app_account_not_found_message">Llogaria nuk u gjet në aplikacionin Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
+    <string name="nextcloud_http_request_failed_title">Gabim</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Kërkesa HTTP dështoi me kodin e statusit HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Error</string>
+    <string name="nextcloud_files_api_not_responding_title">Gabim</string>
+    <string name="sso_canceled">Importimi i SSO-së u anulua</string>
+    <string name="sso_canceled_message">Importi i SSO u anulua nga përdoruesi</string>
+</resources>

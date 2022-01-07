@@ -4,7 +4,7 @@ name: tests
 
 steps:
   - name: gplay
-    image: nextcloudci/android:android-49
+    image: ghcr.io/nextcloud/continuous-integration-androidandroidbase:5
     environment:
       LOG_USERNAME:
         from_secret: LOG_USERNAME
@@ -45,7 +45,7 @@ name: analysis
 
 steps:
   - name: analysis
-    image: nextcloudci/android:android-50
+    image: ghcr.io/nextcloud/continuous-integration-androidandroidbase:5
     environment:
       GIT_USERNAME:
         from_secret: GIT_USERNAME
@@ -86,4 +86,5 @@ trigger:
   branch:
     - master
   event:
+    - push
     - pull_request

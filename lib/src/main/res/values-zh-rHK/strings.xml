@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">未知錯誤</string>
+
+    <string name="no_current_account_selected_exception_title">警告</string>
+    <string name="no_current_account_selected_exception_message">沒有選擇任何賬戶</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">錯誤</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">你必須先授權存取賬戶，才能在裝置上使用  Nextcloud 單一登入功能。</string>
+
+    <string name="current_account_not_found_exception_title">警告</string>
+    <string name="current_account_not_found_exception_message">找不到所選的賬戶。出了些問題。</string>
+
+    <string name="token_mismatch_title">錯誤</string>
+    <string name="token_mismatch_message">提供的驗證憑證不符，或是不允許此名稱的軟體包執行此操作。</string>
+
+    <string name="nextcloud_files_app_not_installed_title">錯誤</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">未安裝 Nextcloud Files App。請安裝：%1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">錯誤</string>
+    <string name="nextcloud_files_app_account_not_found_message">Nextcloud Files App 中找不到賬戶</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">錯誤</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">您需要接受請求之權限，才能使用單一登入功能。</string>
+
+    <string name="nextcloud_http_request_failed_title">錯誤</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP 請求失敗，HTTP 狀態碼：%1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">錯誤</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">您的 Nextcloud Files App 尚未支援單一登入功能。請更新：%1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">錯誤</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files 應用 API 沒有回應。這很可能是由於您手機上的電池優化。嘗試禁用此應用程式及 Nextcloud Android 應用程式的電池優化。在所有其他情況下，請嘗試清除這兩個應用程式的存儲..</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">電池優化設置</string>
+
+    <string name="sso_canceled">取消 SSO 導入</string>
+    <string name="sso_canceled_message">用戶取消了 SSO 導入。</string>
+</resources>

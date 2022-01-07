@@ -1,0 +1,34 @@
+<resources>
+    <string name="unknown_error">Errore disconnotu</string>
+
+    <string name="no_current_account_selected_exception_title">Avisu</string>
+    <string name="no_current_account_selected_exception_message">Perunu contu seletzionadu ancora</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Errore</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Pro impreare s\'autenticatzione ùnica de Nextcloud in custu dispositivu, depes donare su permissu de atzessu a is contos tuos</string>
+
+    <string name="current_account_not_found_exception_title">Avisu</string>
+    <string name="current_account_not_found_exception_message">Su contu seletzionadu non s\'est agatadu. Ddoe at àpidu un\'errore.</string>
+
+    <string name="token_mismatch_title">Errore</string>
+    <string name="token_mismatch_message">Su getone de autenticatzione frunidu non cointzidet o su nùmene de su pachete non tenet su permissu de esecutare custa atzione</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Errore</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">S\'aplicatzione de archìvios Nextcloud no est installada. Installa·dda: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Errore</string>
+    <string name="nextcloud_files_app_account_not_found_message">Contu no agatadu in s\'aplicatzione de archìvios Nextcloud</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Errore</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Depes atzetare is permissos pedidos pro impreare sa funtzione de autenticatzione ùnica.</string>
+
+    <string name="nextcloud_http_request_failed_title">Errore</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Rechesta de HTTP faddida cun su còdighe de istadu HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Errore</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">S\'aplicatzione de archìvios Nextcloud tua non permitit sa funtzione de autenticatzione ùnica. Agiorna·dda: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Errore</string>
+    <string name="sso_canceled">Importatzione de SSO annullada</string>
+    <string name="sso_canceled_message">S\'utente at annulladu s\'importatzione de SSO</string>
+</resources>

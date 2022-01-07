@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">Неизвестная ошибка</string>
+
+    <string name="no_current_account_selected_exception_title">Предупреждение</string>
+    <string name="no_current_account_selected_exception_message">Не выбрано ни одной учётной записи</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Ошибка</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Чтобы использовать Nextcloud Single-Sign-On (единый вход) на этом устройстве, необходимо разрешить доступ к своим учётным записям</string>
+
+    <string name="current_account_not_found_exception_title">Предупреждение</string>
+    <string name="current_account_not_found_exception_message">Выбранная учётная запись не найдена. Что-то пошло не так.</string>
+
+    <string name="token_mismatch_title">Ошибка</string>
+    <string name="token_mismatch_message">Предоставленный токен подтверждения подлинности недействителен или имя пакета не позволяет выполнить данное действие</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Ошибка</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Приложение Nextcloud Файлы не установлено. Пожалуйста, установите его: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Ошибка</string>
+    <string name="nextcloud_files_app_account_not_found_message">Аккаунт не найден в приложении Файлы для Nextcloud</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Ошибка</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Для использования функции единого входа необходимо принять запрашиваемые разрешения.</string>
+
+    <string name="nextcloud_http_request_failed_title">Ошибка</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Ошибка выполнения запроса HTTP. Код состояния: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Ошибка</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваше приложение Файлы Nextcloud в настоящее время не поддерживает функцию единого входа. Пожалуйста, обновите его: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Ошибка</string>
+    <string name="nextcloud_files_api_not_responding_message">API приложения Файлы для Nextcloud не отвечает. Часто это ошибка возникает по причине включённого режима оптимизации расхода батареи на вашем устройстве. Попробуйте отключить оптимизацию расхода батареи для обоих приложений (Nextcloud для Android и для текущего приложения). Если это не поможет, пожалуйста, попробуйте очистить память обоих приложений.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Настройки оптимизации расхода батареи</string>
+
+    <string name="sso_canceled">Импорт SSO отменён</string>
+    <string name="sso_canceled_message">Импорт SSO отменён пользователем</string>
+</resources>

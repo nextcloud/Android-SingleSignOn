@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">Nieznany błąd</string>
+
+    <string name="no_current_account_selected_exception_title">Ostrzeżenie</string>
+    <string name="no_current_account_selected_exception_message">Nie wybrano jeszcze konta</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Błąd</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Aby korzystać z jednokrotnego logowania Nextcloud (SSO) na tym urządzeniu, musisz udzielić zezwolenia na dostęp do swoich kont</string>
+
+    <string name="current_account_not_found_exception_title">Ostrzeżenie</string>
+    <string name="current_account_not_found_exception_message">Wybrane konto nie zostało znalezione. Coś poszło nie tak.</string>
+
+    <string name="token_mismatch_title">Błąd</string>
+    <string name="token_mismatch_message">Podany token uwierzytelniania nie pasuje lub nazwa pakietu nie może wykonać tej akcji</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Błąd</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikacja Nextcloud Files nie jest zainstalowana. Zainstaluj ją: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Błąd</string>
+    <string name="nextcloud_files_app_account_not_found_message">Konto nie zostało znalezione w aplikacji Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Błąd</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Musisz zaakceptować wymagane uprawnienia do korzystania z funkcji pojedynczego logowania (SSO).</string>
+
+    <string name="nextcloud_http_request_failed_title">Błąd</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Zapytanie HTTP nie powiodło się z kodem: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Błąd</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Twoja aplikacja Nextcloud Files obecnie nie obsługuje funkcji jednokrotnego logowania. Zaktualizuj to: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Błąd</string>
+    <string name="nextcloud_files_api_not_responding_message">Interfejs API aplikacji Nextcloud Files nie odpowiada. Jest to najprawdopodobniej spowodowane optymalizacją baterii w telefonie. Spróbuj wyłączyć optymalizację baterii dla obu aplikacji (Nextcloud na Androida i tej aplikacji). We wszystkich innych przypadkach spróbuj wyczyścić pamięć obu aplikacji.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Ustawienia opcji baterii</string>
+
+    <string name="sso_canceled">Anulowano import SSO</string>
+    <string name="sso_canceled_message">Użytkownik przerwał import SSO</string>
+</resources>

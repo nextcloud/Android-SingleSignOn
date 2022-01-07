@@ -1,0 +1,23 @@
+<resources>
+    <string name="no_current_account_selected_exception_title">Упозорење</string>
+    <string name="no_current_account_selected_exception_message">Још није одабран налог</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Грешка</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Да бисте користили једнократну Некстклауд пријаву на овом уређају, морате дати дозволе за приступ налозима</string>
+
+    <string name="current_account_not_found_exception_title">Упозорење</string>
+    <string name="token_mismatch_title">Грешка</string>
+    <string name="token_mismatch_message">Токен за проверу идентитета се не поклапа или имену овог пакета није дозвољено да изврши ову радњу</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Грешка</string>
+    <string name="nextcloud_files_app_account_not_found_title">Грешка</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Грешка</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Морате да прихватите захтеване дозволе да бисте могли да користите могућност једнократне пријаве.</string>
+
+    <string name="nextcloud_http_request_failed_title">Грешка</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">ХТТП захтев није успео са статусом грешке: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Грешка</string>
+    <string name="sso_canceled">ССО увоз је отказан</string>
+    <string name="sso_canceled_message">ССО увоз је прекинуо корисник</string>
+</resources>

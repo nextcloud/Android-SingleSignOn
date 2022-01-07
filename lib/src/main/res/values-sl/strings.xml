@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">Neznana napaka</string>
+
+    <string name="no_current_account_selected_exception_title">Opozorilo</string>
+    <string name="no_current_account_selected_exception_message">Ni izbranega računa</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Napaka</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Za uporabo storitve Nextcloud Single-Sign-On na tej napravi je treba odobriti dovoljenja za dostop do računov.</string>
+
+    <string name="current_account_not_found_exception_title">Opozorilo</string>
+    <string name="current_account_not_found_exception_message">Prišlo je do napake. Izbranega računa ni mogoče najti.</string>
+
+    <string name="token_mismatch_title">Napaka</string>
+    <string name="token_mismatch_message">Podan žeton za overitev ni skladen, ali pa za paket ni ustreznih dovoljenj za to dejanje.</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Napaka</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Program za upravljanje z datotekami Nextcloud Files App ni na voljo. Pred nadaljevanjem ga je treba namestiti: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Napaka</string>
+    <string name="nextcloud_files_app_account_not_found_message">Računa v programu datotek Nextcloud ni mogoče najti</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Napaka</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Za uporabe storitve enojne prijave je treba sprejeti zahtevana dovoljenja.</string>
+
+    <string name="nextcloud_http_request_failed_title">Napaka</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Zahteva HTTP je spodletela s kodo stanja: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Napaka</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Trenutna različica programa datotek ne podpira možnosti enojne prijave. Posodobiti jo je treba na %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Napaka</string>
+    <string name="nextcloud_files_api_not_responding_message">API aplikacije Nextcloud Files se ne odziva. To je najverjetneje posledica optimizacije baterije v telefonu. Poskusite onemogočiti optimizacijo baterije za obe aplikaciji (Nextcloud Android in to aplikacijo). V vseh drugih primerih poskusite počistiti pomnilnik obeh aplikacij.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Nastavitve baterije</string>
+
+    <string name="sso_canceled">Uvoz SSO je preklican</string>
+    <string name="sso_canceled_message">Uvoz SSO je preklican s strani uporabnika</string>
+</resources>

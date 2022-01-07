@@ -1,0 +1,38 @@
+<resources>
+    <string name="unknown_error">Lỗi không xác định</string>
+
+    <string name="no_current_account_selected_exception_title">Cảnh báo</string>
+    <string name="no_current_account_selected_exception_message">Chưa chọn tài khoản nào</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Lỗi</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Để sử dụng Nextcloud Single-Sign-On trên thiết bị này, bạn cần cấp quyền truy cập tài khoản của bạn</string>
+
+    <string name="current_account_not_found_exception_title">Cảnh báo</string>
+    <string name="current_account_not_found_exception_message">Không tìm thấy tài khoản được chọn. Có gì đó sai đã xảy ra.</string>
+
+    <string name="token_mismatch_title">Lỗi</string>
+    <string name="token_mismatch_message">Token xác thực được cung cấp không khớp hoặc tên gói không được cho phép thực hiện hành động này</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Lỗi</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Ứng dụng Nextcloud Files chưa được cài đặt. Vui lòng cài đặt nó: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Lỗi</string>
+    <string name="nextcloud_files_app_account_not_found_message">Không tìm thấy tài khoản trong ứng dụng Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Lỗi</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Bạn phải chấp nhận các quyền được yêu cầu để sử dụng tính năng đăng nhập một lần.</string>
+
+    <string name="nextcloud_http_request_failed_title">Lỗi</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Yêu cầu HTTP thất bại với mã trạng thái HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Lỗi</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ứng dụng Nextcloud Files của bạn hiện tại không hỗ trợ tính năng đăng nhập một lần. Vui lòng cập nhật: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Lỗi</string>
+    <string name="nextcloud_files_api_not_responding_message">API ứng dụng Nextcloud Files đang không phản hồi. Việc này có khả năng cao là do tối ưu hóa pin trên điện thoại của bạn. Hãy thử tắt tối ưu hóa pin cho cả hai ứng dụng (Nextcloud Android và ứng dụng này). Trong tất cả trường hợp khác, vui lòng xóa bộ nhớ của cả hai ứng dụng.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Cài đặt tối ưu hóa pin</string>
+
+    <string name="sso_canceled">Đã hủy nhập SSO</string>
+    <string name="sso_canceled_message">Nhập SSO bị người dùng hủy</string>
+</resources>
