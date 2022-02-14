@@ -29,7 +29,7 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">La tua applicazione File di Nextcloud attualmente non supporta la funzione di Single Sign On. Aggiornala: %1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Errore</string>
-    <string name="nextcloud_files_api_not_responding_message">Le API dell\'app Nextcloud Files non rispondono. Ciò è probabilmente dovuto all\'ottimizzazione della batteria del telefono. Prova a disabilitare l\'ottimizzazione della batteria per entrambe le app (Nextcloud Android e questa app). Se non si risolve, prova a cancellare la memoria di entrambe le applicazioni o prova ad eliminarle e installarle nuovamente.</string>
+    <string name="nextcloud_files_api_not_responding_message">Le API dell\'applicazione Nextcloud File non rispondono. Ciò è probabilmente dovuto all\'ottimizzazione della batteria del telefono. Prova a disabilitare l\'ottimizzazione della batteria per entrambe le applicazioni (Nextcloud Android e questa applicazione). Se non si risolve, prova a cancellare la memoria di entrambe le applicazioni o prova ad eliminarle e installarle nuovamente.</string>
 
     <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Impostazioni batteria</string>
 
