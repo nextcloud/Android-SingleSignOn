@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Ukjent feil</string>
+
     <string name="no_current_account_selected_exception_title">Advarsel</string>
     <string name="no_current_account_selected_exception_message">Ingen konto er valgt</string>
 
@@ -18,6 +20,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP forespørsel feilet med status kode: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Feil</string>
+    <string name="nextcloud_files_api_not_responding_title">Feil</string>
     <string name="sso_canceled">SSO import avbrutt</string>
     <string name="sso_canceled_message">SSO import var avbrutt av bruker</string>
 </resources>

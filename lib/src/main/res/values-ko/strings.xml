@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">알 수 없는 오류</string>
+
     <string name="no_current_account_selected_exception_title">경고</string>
     <string name="no_current_account_selected_exception_message">계정을 선택하지 않았습니다</string>
 
@@ -20,6 +22,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP status-code: %1$d 의 HTTP 요청이 실패하였습니다</string>
 
     <string name="nextcloud_files_app_not_supported_title">오류</string>
+    <string name="nextcloud_files_api_not_responding_title">오류</string>
     <string name="sso_canceled">통합 인증 가져오기 취소됨</string>
     <string name="sso_canceled_message">통합인증 가져오기가 사용자에 의해 취소되었습니다</string>
 </resources>
