@@ -6,6 +6,8 @@
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Erro</string>
     <string name="current_account_not_found_exception_title">Aviso</string>
+    <string name="current_account_not_found_exception_message">Conta selecionada não foi encontrada. Algo correu mal</string>
+
     <string name="token_mismatch_title">Erro</string>
     <string name="token_mismatch_message">O token de autenticação não corresponde ao  esperado ou o nome da package não permite a realização desta acção</string>
 
