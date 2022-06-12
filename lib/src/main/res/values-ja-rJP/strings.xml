@@ -29,6 +29,8 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">このNextcloudファイルアプリはシングルサインオン機能をサポートしていません。更新してください：%1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">エラー</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud ファイルアプリAPIが応答しません。これは、お使いのデバイスのバッテリー最適化によるものと考えられます。Nextcloud Androidとこのアプリのバッテリー最適化を無効にしてください。その他の場合は、両アプリのストレージの削除を実施してください。</string>
+
     <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">バッテリーオプション設定</string>
 
     <string name="sso_canceled">SSOインポートをキャンセルしました</string>
