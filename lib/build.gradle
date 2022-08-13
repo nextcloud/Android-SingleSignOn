@@ -103,7 +103,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.4.2"
     implementation 'androidx.annotation:annotation:1.4.0'
     implementation 'androidx.core:core:1.8.0'
-    implementation 'androidx.fragment:fragment:1.5.1'
+    implementation 'androidx.fragment:fragment:1.5.2'
 
     compileOnly "org.projectlombok:lombok:1.18.24"
     annotationProcessor "org.projectlombok:lombok:1.18.24"
