@@ -2,7 +2,7 @@
     <string name="unknown_error">Neznámá chyba</string>
 
     <string name="no_current_account_selected_exception_title">Varování</string>
-    <string name="no_current_account_selected_exception_message">Zatím nebyl vybrán žádný účet</string>
+    <string name="no_current_account_selected_exception_message">Zatím nevybrán žádný účet</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Chyba</string>
     <string name="android_get_accounts_permission_not_granted_exception_message">Abyste na tomto zařízení mohli využívat Nextcloud sjednoceného přihlašování (sso), je třeba udělit oprávnění pro přístup k vašim účtům</string>
