@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
 import com.nextcloud.android.sso.exceptions.SSOException;
@@ -53,7 +54,7 @@ public final class UiExceptionManager {
         final SpannableString message = new SpannableString(exception.getMessage(context));
         Linkify.addLinks(message, Linkify.ALL);
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context)
+        AlertDialog.Builder dialogBuilder = new MaterialAlertDialogBuilder(context)
                 .setTitle(exception.getTitle(context))
                 .setMessage(message)
                 .setPositiveButton(android.R.string.yes, callback)
