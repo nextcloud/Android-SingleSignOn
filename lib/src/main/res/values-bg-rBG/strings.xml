@@ -34,6 +34,5 @@
     <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Настройки за оптимизиране на батерия</string>
 
     <string name="sso_canceled">Импортирането на SSO е отказано</string>
-    <string name="sso_canceled_message"> 
-Импортирането на SSO е отказано от потребител</string>
+    <string name="sso_canceled_message">Импортирането на SSO е отказано от потребител</string>
 </resources>
