@@ -14,7 +14,11 @@
     <string name="token_mismatch_message">제공된 인증 토큰이 일치하지 않거나 작동하기에 충분한 권한이 없습니다</string>
 
     <string name="nextcloud_files_app_not_installed_title">오류</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files 앱이 설치되지 않았습니다. 설치하십시오: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">오류</string>
+    <string name="nextcloud_files_app_account_not_found_message">Nextcloud Files 앱에서 계정을 찾을 수 없음</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">오류</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">단일 로그인 기능을 사용하려면 요청된 권한을 수락해야 합니다.</string>
 
