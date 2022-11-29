@@ -1,0 +1,28 @@
+<resources>
+    <string name="unknown_error">Kesalahan tidak diketahui</string>
+
+    <string name="no_current_account_selected_exception_title">Peringatan</string>
+    <string name="no_current_account_selected_exception_message">Belum ada akun yang dipilih</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Kesalahan</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Untuk menggunakan Nextcloud Single-Sign-On pada perangkat ini, Anda perlu memberikan izin untuk mengakses akun Anda</string>
+
+    <string name="current_account_not_found_exception_title">Peringatan</string>
+    <string name="current_account_not_found_exception_message">Akun yang dipilih tidak ditemukan. Ada yang tidak beres.</string>
+
+    <string name="token_mismatch_title">Kesalahan</string>
+    <string name="nextcloud_files_app_not_installed_title">Kesalahan</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Aplikasi Nextcloud Files tidak terinstal. Silakan instal: %1$s</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Kesalahan</string>
+    <string name="nextcloud_files_app_account_not_found_message">Akun tidak ditemukan di aplikasi Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Kesalahan</string>
+    <string name="nextcloud_http_request_failed_title">Kesalahan</string>
+    <string name="nextcloud_files_app_not_supported_title">Kesalahan</string>
+    <string name="nextcloud_files_api_not_responding_title">Galat</string>
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Baterai Opt. Pengaturan</string>
+
+    <string name="sso_canceled">Impor SSO dibatalkan</string>
+    <string name="sso_canceled_message">Impor SSO dibatalkan oleh pengguna</string>
+</resources>
