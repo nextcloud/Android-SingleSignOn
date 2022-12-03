@@ -52,6 +52,7 @@ import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountPermissionNo
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.exceptions.UnknownErrorException;
 import com.nextcloud.android.sso.model.FilesAppType;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
@@ -329,8 +330,13 @@ public class AccountImporter {
     }
 
     public static void handleFailedAuthRequest(Intent data) throws SSOException {
-        String exception = data.getStringExtra(NEXTCLOUD_SSO_EXCEPTION);
-        throw SSOException.parseNextcloudCustomException(new Exception(exception));
+        if(data != null) {
+            String exception = data.getStringExtra(NEXTCLOUD_SSO_EXCEPTION);
+            throw SSOException.parseNextcloudCustomException(new Exception(exception));
+        } else {
+            Log.e(TAG, "handleFailedAuthRequest failed - data is null");
+            throw new UnknownErrorException("Authentication request failed - no details available");
+        }
     }
 
     public static void authenticateSingleSignAccount(Fragment fragment, SingleSignOnAccount account) throws NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
