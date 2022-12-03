@@ -2,6 +2,9 @@ package com.nextcloud.android.sso.api;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.nextcloud.android.sso.QueryParam;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.helper.Okhttp3Helper;
@@ -25,8 +28,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Headers;
@@ -184,7 +185,7 @@ public class NextcloudRetrofitServiceMethod<T> {
 
                 // Streaming
                 if(typeArgument == ResponseBody.class) {
-                    return (T) Observable.fromCallable(() -> Okhttp3Helper.getResponseBodyFromRequest(nextcloudAPI, request));
+                    return (T) Observable.fromCallable(() -> Okhttp3Helper.getResponseBodyFromRequestV2(nextcloudAPI, request));
                 } else if (typeArgument instanceof ParameterizedType) {
                     ParameterizedType innerType = (ParameterizedType) typeArgument;
                     Type innerOwnerType = innerType.getRawType();
@@ -331,7 +332,7 @@ public class NextcloudRetrofitServiceMethod<T> {
                         + "For dynamic query parameters use @Query.", query);
             }
 
-            // If none found.. parse the static query parameters
+            // If none found… parse the static query parameters
             final String[] pairs = query.split("&");
             for (String pair : pairs) {
                 final int idx = pair.indexOf("=");

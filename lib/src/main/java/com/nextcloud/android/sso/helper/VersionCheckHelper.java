@@ -19,9 +19,7 @@
 
 package com.nextcloud.android.sso.helper;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
@@ -38,18 +36,10 @@ public final class VersionCheckHelper {
 
     private VersionCheckHelper() { }
 
-    /**
-     * @deprecated Use {@link #verifyMinVersion(Context, int, FilesAppType)}
-     */
-    @Deprecated
-    public static boolean verifyMinVersion(Activity activity, int minVersion) {
-        return verifyMinVersion(activity, minVersion, FilesAppType.PROD);
-    }
-
     public static boolean verifyMinVersion(@NonNull Context context, int minVersion, @NonNull FilesAppType type) {
         try {
-            final int verCode = getNextcloudFilesVersionCode(context, type);
-            if (verCode < minVersion) {
+            final int versionCode = getNextcloudFilesVersionCode(context, type);
+            if (versionCode < minVersion) {
                 UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotSupportedException());
                 return false;
             }
@@ -61,6 +51,7 @@ public final class VersionCheckHelper {
             try {
                 final int verCode = getNextcloudFilesVersionCode(context, FilesAppType.DEV);
                 // The dev app follows a different versioning schema.. therefore we can't do our normal checks
+
                 // However beta users are probably always up to date so we will just ignore it for now
                 Log.d(TAG, "Dev files app version is: " + verCode);
                 return true;
@@ -72,25 +63,9 @@ public final class VersionCheckHelper {
         return false;
     }
 
-    /**
-     * @deprecated use {@link #getNextcloudFilesVersionCode(Context, FilesAppType)}
-     */
-    @Deprecated
-    public static int getNextcloudFilesVersionCode(@NonNull Context context) throws PackageManager.NameNotFoundException {
-        return getNextcloudFilesVersionCode(context, FilesAppType.PROD);
-    }
-
-    /**
-     * @deprecated use {@link #getNextcloudFilesVersionCode(Context, FilesAppType)}
-     */
-    @Deprecated
-    public static int getNextcloudFilesVersionCode(@NonNull Context context, boolean prod) throws PackageManager.NameNotFoundException {
-        return getNextcloudFilesVersionCode(context, prod ? FilesAppType.PROD : FilesAppType.DEV);
-    }
-
     public static int getNextcloudFilesVersionCode(@NonNull Context context, @NonNull FilesAppType appType) throws PackageManager.NameNotFoundException {
-        final PackageInfo pInfo = context.getPackageManager().getPackageInfo(appType.packageId, 0);
-        final int verCode = pInfo.versionCode;
+        final var packageInfo = context.getPackageManager().getPackageInfo(appType.packageId, 0);
+        final int verCode = packageInfo.versionCode;
         Log.d("VersionCheckHelper", "Version Code: " + verCode);
         return verCode;
     }
