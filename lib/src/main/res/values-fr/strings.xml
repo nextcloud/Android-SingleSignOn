@@ -30,6 +30,10 @@
     <string name="nextcloud_files_app_not_supported_message" formatted="true">Votre application Nextcloud Files ne prend actuellement pas en charge l\'authentification unique. Veuillez la mettre à jour 1%1$s</string>
 
     <string name="nextcloud_files_api_not_responding_title">Erreur</string>
+    <string name="nextcloud_files_api_not_responding_message">Pas de réponse de l\'API de l\'application Nextcloud Files. Cela est probablement dû à des optimalisations de la batterie de votre téléphone. Essayez de désactiver l\'optimalisation de la batterie pour les 2 applications (Nextcloud Android et cette application). Sinon, essayez de remettre à zero le stockage de ces 2 applications</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Paramètres d\'optimalisation de la batterie</string>
+
     <string name="sso_canceled">Import SSO annulé</string>
     <string name="sso_canceled_message">L\'import SSO a été annulé par un utilisateur</string>
 </resources>

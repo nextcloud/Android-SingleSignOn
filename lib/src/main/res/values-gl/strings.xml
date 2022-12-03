@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Erro descoñecido</string>
+
     <string name="no_current_account_selected_exception_title">Aviso</string>
     <string name="no_current_account_selected_exception_message">Non hai ningunha conta configurada</string>
 
@@ -22,6 +24,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na petición HTTP cun código de estado: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
+    <string name="nextcloud_files_api_not_responding_title">Erro</string>
     <string name="sso_canceled">Importación SSO cancelada</string>
     <string name="sso_canceled_message">A importación SSO foi cancelada polo usuaro</string>
 </resources>

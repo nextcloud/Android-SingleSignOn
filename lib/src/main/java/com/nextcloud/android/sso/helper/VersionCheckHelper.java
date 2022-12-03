@@ -45,20 +45,15 @@ public final class VersionCheckHelper {
             }
             return true;
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "PackageManager.NameNotFoundException (prod files app not found): " + e.getMessage());
+            Log.e(TAG, "PackageManager.NameNotFoundException (" + type + " files app not found): " + e.getMessage());
 
             // Stable Files App is not installed at all. Therefore we need to run the test on the dev app
             try {
-                final int verCode = getNextcloudFilesVersionCode(context, type);
-                // The dev app follows a different versioning schema… therefore we can't do our normal checks
+                final int verCode = getNextcloudFilesVersionCode(context, FilesAppType.DEV);
+                // The dev app follows a different versioning schema.. therefore we can't do our normal checks
+
                 // However beta users are probably always up to date so we will just ignore it for now
                 Log.d(TAG, "Dev files app version is: " + verCode);
-                /*
-                if (verCode < minVersion) {
-                    UiExceptionManager.showDialogForException(activity, new NextcloudFilesAppNotSupportedException());
-                    return false;
-                }
-                */
                 return true;
             } catch (PackageManager.NameNotFoundException ex) {
                 Log.e(TAG, "PackageManager.NameNotFoundException (dev files app not found): " + e.getMessage());
