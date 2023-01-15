@@ -11,7 +11,7 @@
     <string name="current_account_not_found_exception_message">Ο επιλεγμένος λογαριασμός δεν βρέθηκε. Κάτι πήγε στραβά.</string>
 
     <string name="token_mismatch_title">Σφάλμα</string>
-    <string name="token_mismatch_message">Το αναγνωριστικό πιστοποίησης που παρείχατε δεν είναι δωστό ή το όνομα πακέτου δεν επιτρέπετε για αυτή την ενέργεια</string>
+    <string name="token_mismatch_message">Το αναγνωριστικό πιστοποίησης που παρείχατε δεν είναι σωστό ή το όνομα πακέτου δεν επιτρέπεται για αυτή την ενέργεια</string>
 
     <string name="nextcloud_files_app_not_installed_title">Σφάλμα</string>
     <string name="nextcloud_files_app_not_installed_message" formatted="true">Η εφαρμογή Αρχεία Nextcloud δεν είναι εγκατεστημένη. Παρακαλούμε εγκαταστήστε την: %1$s</string>
