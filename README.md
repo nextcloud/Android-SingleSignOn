@@ -304,6 +304,10 @@ Once the user clicks on "Allow" in the login dialog, the Nextcloud Files App wil
 - [Nextcloud Deck app](https://github.com/stefan-niedermann/nextcloud-deck/)
   - [API](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/api/DeckAPI.java)
   - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/ImportAccountActivity.java#L77)
+- [Nextcloud Bookmarks app](https://gitlab.com/bisada/OCBookmarks)
+  - [API](https://nextcloud-bookmarks.readthedocs.io/en/latest/)
+  - [Login](https://gitlab.com/bisada/OCBookmarks/-/blob/master/app/src/main/java/org/schabi/ocbookmarks/MainActivity.java#L261)
+
 
 ## Troubleshooting
 
