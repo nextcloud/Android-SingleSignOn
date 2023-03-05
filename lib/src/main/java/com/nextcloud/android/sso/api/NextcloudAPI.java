@@ -119,6 +119,18 @@ public class NextcloudAPI {
         });
     }
 
+    public <T> io.reactivex.rxjava3.core.Observable<ParsedResponse<T>> performRequestObservableV3(final Type type, final NextcloudRequest request) {
+        return io.reactivex.rxjava3.core.Observable.fromPublisher( s -> {
+            try {
+                final Response response = performNetworkRequestV2(request);
+                s.onNext(ParsedResponse.of(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
+                s.onComplete();
+            } catch (Exception e) {
+                s.onError(e);
+            }
+        });
+    }
+
     public <T> T performRequestV2(final @NonNull Type type, NextcloudRequest request) throws Exception {
         Log.d(TAG, "performRequestV2() called with: type = [" + type + "], request = [" + request + "]");
         final Response response = performNetworkRequestV2(request);
