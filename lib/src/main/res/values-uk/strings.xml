@@ -14,7 +14,7 @@
     <string name="token_mismatch_message">Наданий токен аутентифікації не співпадає або даному пакету не дозволено виконувати дану дію</string>
 
     <string name="nextcloud_files_app_not_installed_title">Помилка</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Програма Nextcloud Files не встановлена. Будь ласка, встановіть його: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Застосунок Nextcloud Файли не встановлено. Будь ласка, встановіть його: %1$s</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Помилка</string>
     <string name="nextcloud_files_app_account_not_found_message">Обліковий запис не знайдено в програмі Nextcloud Files</string>
