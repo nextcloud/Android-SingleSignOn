@@ -15,7 +15,11 @@
     <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erro</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">A aplicación Nextcloud Files non está instalada. Instálao: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Erro</string>
+    <string name="nextcloud_files_app_account_not_found_message">Non se atopou a conta na aplicación Nextcloud Files</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Erro</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Ten que aceptar os permisos solicitados para usar a característica de auténticación única (single-sign-on).
 </string>
@@ -24,7 +28,13 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na petición HTTP cun código de estado: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">A túa aplicación Nextcloud Files actualmente non admite a función de inicio de sesión único. Actualízao: %1$s</string>
+
     <string name="nextcloud_files_api_not_responding_title">Erro</string>
+    <string name="nextcloud_files_api_not_responding_message">A API da aplicación Nextcloud Files non responde. É probable que isto se deba ás optimizacións da batería do teu teléfono. Tenta desactivar a optimización da batería para ambas as aplicacións (Nextcloud Android e esta aplicación). Nos demais casos, tenta borrar o almacenamento de ambas as aplicacións.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Configuración das opcións da batería</string>
+
     <string name="sso_canceled">Importación SSO cancelada</string>
     <string name="sso_canceled_message">A importación SSO foi cancelada polo usuaro</string>
 </resources>
