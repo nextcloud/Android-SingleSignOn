@@ -108,6 +108,9 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 // If you stored the "default" account using setCurrentAccount(…) you can get the account by using the following line:
 final var ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
 
+// It is also possible to get the "default" account as a LiveData object:
+final var ssoAccount$ = SingleAccountHelper.getCurrentSingleSignOnAccount$(context);
+
 // Otherwise (for multi-account support you'll have to keep track of the account names yourself. Note: this has to be the name of SingleSignOnAccount.name)
 AccountImporter.getSingleSignOnAccount(context, accountName);
 
