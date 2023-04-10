@@ -57,7 +57,7 @@ public final class SingleAccountHelper {
     }
 
     public static LiveData<SingleSignOnAccount> getCurrentSingleSignOnAccount$(@NonNull Context context) {
-        return new CurrentSingleSignOnAccountLiveData(context, AccountImporter.getSharedPreferences(context), PREF_CURRENT_ACCOUNT_STRING);
+        return new SingleSignOnAccountLiveData(context, AccountImporter.getSharedPreferences(context), PREF_CURRENT_ACCOUNT_STRING);
     }
 
     /**
@@ -90,7 +90,7 @@ public final class SingleAccountHelper {
     /**
      * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static void registerSharedPreferenceChangeListener(Context context, 
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)
@@ -100,7 +100,7 @@ public final class SingleAccountHelper {
     /**
      * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static void unregisterSharedPreferenceChangeListener(Context context,
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)

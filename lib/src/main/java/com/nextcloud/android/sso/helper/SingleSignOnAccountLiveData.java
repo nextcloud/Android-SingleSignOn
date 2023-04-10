@@ -31,13 +31,13 @@ import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundExce
 import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
-public class CurrentSingleSignOnAccountLiveData extends LiveData<SingleSignOnAccount> {
+public class SingleSignOnAccountLiveData extends LiveData<SingleSignOnAccount> {
 
     private final Context context;
     private final SharedPreferences sharedPrefs;
     private final SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
-    CurrentSingleSignOnAccountLiveData(@NonNull Context context, @NonNull SharedPreferences sharedPrefs, @NonNull String key) {
+    SingleSignOnAccountLiveData(@NonNull Context context, @NonNull SharedPreferences sharedPrefs, @NonNull String key) {
         this.context = context;
         this.sharedPrefs = sharedPrefs;
         this.preferenceChangeListener = (changedPrefs, changedKey) -> {
