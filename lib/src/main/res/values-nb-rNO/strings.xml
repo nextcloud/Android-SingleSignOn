@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Ukjent feil</string>
+
     <string name="no_current_account_selected_exception_title">Advarsel</string>
     <string name="no_current_account_selected_exception_message">Ingen konto er valgt</string>
 
@@ -6,11 +8,17 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">For å kunne bruke Nextcloud Single-Sign-On på denne enheten, må du gi app\'en tilgang til dine kontoer.</string>
 
     <string name="current_account_not_found_exception_title">Advarsel</string>
+    <string name="current_account_not_found_exception_message">Den valgte kontoen ble ikke funnet. En feil skjedde.</string>
+
     <string name="token_mismatch_title">Feil</string>
     <string name="token_mismatch_message">Oppgitt autentiseringstoken er ikke i samsvar eller pakkenavn er ikke tillatt å utføre denne handlingen</string>
 
     <string name="nextcloud_files_app_not_installed_title">Feil</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Appen Nextcloud Files er ikke installert. Installer den: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Feil</string>
+    <string name="nextcloud_files_app_account_not_found_message">Kontoen ble ikke funnet i Nextcloud Files-appen</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Feil</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Du må tillate forespurt tillatelse for å bruke single sign-on funksjon. </string>
 
@@ -18,6 +26,13 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP forespørsel feilet med status kode: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Feil</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">Din Nextcloud Files-app støtter for øyeblikket ikke enkel pålogging. Vennligst oppdater appen: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Feil</string>
+    <string name="nextcloud_files_api_not_responding_message">APIen til Nextcloud Files-appen svarer ikke. Dette er mest sannsynligvis på grunn av batteri-optimalisering på telefonen din. Prøv å deaktiver batteri-optimalisering for begge apper (Nextcloud Android og denne appen). Prøv også å tømme lagringen for begge apper.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Innstillinger for batteri-optimalisering</string>
+
     <string name="sso_canceled">SSO import avbrutt</string>
     <string name="sso_canceled_message">SSO import var avbrutt av bruker</string>
 </resources>

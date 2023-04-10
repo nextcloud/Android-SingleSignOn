@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Óþekkt villa</string>
+
     <string name="no_current_account_selected_exception_title">Aðvörun</string>
     <string name="no_current_account_selected_exception_message">Enginn notandaaðgangur ennþá uppgefinn</string>
 
@@ -18,6 +20,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-beiðni brást með HTTP-stöðukóðanum: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Villa</string>
+    <string name="nextcloud_files_api_not_responding_title">Villa</string>
     <string name="sso_canceled">Hætt við innflutning á SSO</string>
     <string name="sso_canceled_message">Notandi hætti við innflutning á SSO</string>
 </resources>

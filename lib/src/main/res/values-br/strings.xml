@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Fazi dizanv</string>
+
     <string name="no_current_account_selected_exception_title">Kemenadenn</string>
     <string name="no_current_account_selected_exception_message">Kont ebet choazet c\'hoaz</string>
 
@@ -18,6 +20,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">C\'hwitet ar goulenn HTTP gant ar c\'hod-stad HTTP : %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Fazi</string>
+    <string name="nextcloud_files_api_not_responding_title">Fazi</string>
     <string name="sso_canceled">Emporzhiañ SSO arested</string>
     <string name="sso_canceled_message">Emporzhiañ SSO a zo bet arested gant an implijer</string>
 </resources>

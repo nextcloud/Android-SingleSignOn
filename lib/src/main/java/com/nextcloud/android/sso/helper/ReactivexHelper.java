@@ -32,5 +32,9 @@ public final class ReactivexHelper {
         return Completable.fromAction(() -> nextcloudAPI.performRequestV2(Void.class, request));
     }
 
+    public static io.reactivex.rxjava3.core.Completable wrapInCompletableV3(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
+        return io.reactivex.rxjava3.core.Completable.fromAction(() -> nextcloudAPI.performRequestV2(Void.class, request));
+    }
+
 }
 

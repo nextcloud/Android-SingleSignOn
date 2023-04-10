@@ -43,42 +43,17 @@ repositories {
 }
 
 dependencies {
-    // Note: Starting with Version 0.5.7 Android Gradle Plugin (AGP) Version 7.0.0 or higher is
-    // required.
-    implementation "com.github.nextcloud:Android-SingleSignOn:0.5.7"
+    // Note: Android Gradle Plugin (AGP) version ≥ 7.0.0 is required.
+    implementation "com.github.nextcloud:Android-SingleSignOn:0.6.0"
 }
-```
-
-For Android 11 and later [you need to add queries](https://github.com/nextcloud/Android-SingleSignOn/issues/277) to your app's manifest file. It will not find the Nextcloud app otherwise.
-
-```xml
-<queries>
-    <package android:name="com.nextcloud.client" />
-    <package android:name="com.nextcloud.android.qa" />
-    <package android:name="com.nextcloud.android.beta" />
-</queries>
 ```
 
 ### 2) To choose an account, include the following code in your login dialog
 
-From an Activity
-
 ```java
 private void openAccountChooser() {
     try {
-        AccountImporter.pickNewAccount(this);
-    } catch (NextcloudFilesAppNotInstalledException | AndroidGetAccountsPermissionNotGranted e) {
-        UiExceptionManager.showDialogForException(this, e);
-    }
-}
-```
-
-From a Fragment
-
-```java
-private void openAccountChooser() {
-    try {
-        AccountImporter.pickNewAccount(currentFragment);
+        AccountImporter.pickNewAccount(activityOrFragment);
     } catch (NextcloudFilesAppNotInstalledException | AndroidGetAccountsPermissionNotGranted e) {
         UiExceptionManager.showDialogForException(this, e);
     }
@@ -87,109 +62,53 @@ private void openAccountChooser() {
 
 ### 3) To handle the result of the Account Chooser, include the following
 
-From an Activity
-
 ```java
 @Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
 
-        NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
-            @Override
-            public void onConnected() {
-                // ignore this one… see 5)
-            }
-
-            @Override
-            public void onError(Exception ex) {
-                // TODO handle errors
-            }
-        };
-
         @Override
         public void accountAccessGranted(SingleSignOnAccount account) {
-            Context l_context = getApplicationContext();
+            final var context = getApplicationContext();
 
             // As this library supports multiple accounts we created some helper methods if you only want to use one.
             // The following line stores the selected account as the "default" account which can be queried by using
             // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
-            SingleAccountHelper.setCurrentAccount(l_context, account.name);
+            SingleAccountHelper.setCurrentAccount(context, account.name);
 
             // Get the "default" account
             SingleSignOnAccount ssoAccount = null;
             try {
-                ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(l_context);
+                ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
             } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException e) {
-                UiExceptionManager.showDialogForException(l_context, e);
+                UiExceptionManager.showDialogForException(context, e);
             }
 
-            NextcloudAPI nextcloudAPI = new NextcloudAPI(l_context, ssoAccount, new GsonBuilder().create(), callback);
+            final var nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create());
 
             // TODO … (see code in section 4 and below)
         }
     });
 }
-```
 
-From a Fragment
-
-```java
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    AccountImporter.onActivityResult(requestCode, resultCode, data, LoginDialogFragment.this, new AccountImporter.IAccountAccessGranted() {
-
-        NextcloudAPI.ApiConnectedListener callback = new NextcloudAPI.ApiConnectedListener() {
-            @Override
-            public void onConnected() {
-                // ignore this one… see 5)
-            }
-
-            @Override
-            public void onError(Exception ex) {
-                // TODO handle errors
-            }
-        };
-
-        @Override
-        public void accountAccessGranted(SingleSignOnAccount account) {
-            // As this library supports multiple accounts we created some helper methods if you only want to use one.
-            // The following line stores the selected account as the "default" account which can be queried by using
-            // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
-            SingleAccountHelper.setCurrentAccount(getActivity(), account.name);
-
-            // Get the "default" account
-            SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-            NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
-
-            // TODO … (see code in section 4 and below)
-        }
-    });
-}
-```
-
-From both an Activity and Fragment
-
-```java
 @Override
 public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
     AccountImporter.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
 }
 
 // Complete example: https://github.com/nextcloud/news-android/blob/890828441ba0c8a9b90afe56f3e08ed63366ece5/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogActivity.java#L470-L475
+
 ```
 
 ### 4) How to get account information?
 
 ```java
 // If you stored the "default" account using setCurrentAccount(…) you can get the account by using the following line:
-final SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+final var ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
 
-// Otherwise (for multi-account support): (you'll have to keep track of the account names yourself. Note: this has to be the name of SingleSignOnAccount.name)
+// Otherwise (for multi-account support you'll have to keep track of the account names yourself. Note: this has to be the name of SingleSignOnAccount.name)
 AccountImporter.getSingleSignOnAccount(context, accountName);
 
 ssoAccount.name; // Name of the account used in the android account manager
@@ -200,13 +119,15 @@ ssoAccount.url;
 
 ### 5) How to make a network request?
 
-You'll notice that there is an callback parameter in the constructor of the `NextcloudAPI`.
-
 ```java
-public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson, ApiConnectedListener callback) {
+public NextcloudAPI(Context context, SingleSignOnAccount account, Gson gson) {
 ```
 
-You can use this callback to subscribe to errors that might occur during the initialization of the API. You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object. For a minimal example to get started (without retrofit) take a look at section 5.2. The callback method `onConnected` will be called once the connection to the files app is established. You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established[¹](https://github.com/nextcloud/Android-SingleSignOn/issues/400).
+You'll notice that there is an optional `ApiConnectedListener` callback parameter in the constructor of the `NextcloudAPI`.
+You can use this callback to subscribe to errors that might occur during the initialization of the API.
+You can start making requests to the API as soon as you instantiated the `NextcloudAPI` object.
+The callback method `onConnected` will be called once the connection to the files app is established.
+You can start making calls to the api before that callback is fired as the library will queue your calls until the connection is established[¹](https://github.com/nextcloud/Android-SingleSignOn/issues/400).
 
 #### 5.1) **Using Retrofit**
 
@@ -255,8 +176,8 @@ public class ApiProvider {
     private final API mApi;
 
     public ApiProvider(@NonNull NextcloudAPI.ApiConnectedListener callback) {
-       final SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-       final NextcloudAPI nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
+       final var ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+       final var nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create(), callback);
        mApi = new NextcloudRetrofitApiBuilder(nextcloudAPI, API.mApiEndpoint).create(API.class);
    }
 }
@@ -271,8 +192,6 @@ Note: If you need a different mapping between your json-structure and your java-
 `NextcloudAPI` provides a method called `performNetworkRequest(NextcloudRequest request)` that allows you to handle the server response yourself.
 
 ```java
-import java.util.LinkedList;
-
 public class MyActivity extends AppCompatActivity {
 
     private NextcloudAPI mNextcloudAPI;
@@ -281,8 +200,8 @@ public class MyActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         try {
-            final SingleSignOnAccount ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(this);
-            mNextcloudAPI = new NextcloudAPI(this, ssoAccount, new GsonBuilder().create(), apiCallback);
+            final var ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(this);
+            mNextcloudAPI = new NextcloudAPI(this, ssoAccount, new GsonBuilder().create());
 
             // Start download of file in background thread (otherwise you'll get a NetworkOnMainThreadException)
             new Thread(this::downloadFile).start();
@@ -299,30 +218,18 @@ public class MyActivity extends AppCompatActivity {
         mNextcloudAPI.stop();
     }
 
-    private NextcloudAPI.ApiConnectedListener apiCallback = new NextcloudAPI.ApiConnectedListener() {
-        @Override
-        public void onConnected() {
-            // ignore this one… see 5)
-        }
-
-        @Override
-        public void onError(Exception ex) {
-            // TODO handle error in your app
-        }
-    };
-
     private void downloadFile() {
         final List<Pair<String, String>> parameters = new ArrayList<>();
         parameters.add(new QueryPair("quality", "1024p"));
         parameters.add(new Pair<>("someOtherParameter", "parameterValue"));
         
-        final NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
+        final var nextcloudRequest = new NextcloudRequest.Builder()
                 .setMethod("GET")
                 .setParameter(parameters)
                 .setUrl(Uri.encode("/remote.php/webdav/sample movie.mp4","/"))
                 .build();
 
-        try (InputStream inputStream = mNextcloudAPI.performNetworkRequest(nextcloudRequest)) {
+        try (final var inputStream = mNextcloudAPI.performNetworkRequest(nextcloudRequest)) {
             while(inputStream.available() > 0) {
                 inputStream.read();
                 // TODO do something useful with the data here..
@@ -346,7 +253,7 @@ final List<String> depth = new ArrayList<>();
 depth.add("0");
 header.put("Depth", depth);
 
-final NextcloudRequest nextcloudRequest = new NextcloudRequest.Builder()
+final var nextcloudRequest = new NextcloudRequest.Builder()
         .setMethod("PROPFIND")
         .setHeader(header)
         .setUrl(Uri.encode("/remote.php/webdav/" + remotePath, "/"))
@@ -360,7 +267,7 @@ In case that you require some sso features that were introduced in a specific ne
 ```java
 final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;
 
-if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
+if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE, FilesAppType.PROD)) {
    // Version requirement is satisfied!
 }
 ```
@@ -397,6 +304,10 @@ Once the user clicks on "Allow" in the login dialog, the Nextcloud Files App wil
 - [Nextcloud Deck app](https://github.com/stefan-niedermann/nextcloud-deck/)
   - [API](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/api/DeckAPI.java)
   - [Login](https://github.com/stefan-niedermann/nextcloud-deck/blob/master/app/src/main/java/it/niedermann/nextcloud/deck/ui/ImportAccountActivity.java#L77)
+- [Nextcloud Bookmarks app](https://gitlab.com/bisada/OCBookmarks)
+  - [API](https://gitlab.com/bisada/OCBookmarks/-/blob/master/app/src/main/java/org/schabi/ocbookmarks/REST/OCBookmarksRestConnector.java#L42)
+  - [Login](https://gitlab.com/bisada/OCBookmarks/-/blob/master/app/src/main/java/org/schabi/ocbookmarks/MainActivity.java#L261)
+
 
 ## Troubleshooting
 
@@ -413,4 +324,4 @@ Note that the "Make network request" section in the diagram only shows the workf
 
 # Translations
 
-We manage translations via [Transifex](https://www.transifex.com/nextcloud/nextcloud/android-singlesignon/). So just request joining the translation team for Android on the site and start translating. All translations will then be automatically pushed to this repository, there is no need for any pull request for translations.
+We manage translations via [Transifex](https://app.transifex.com/nextcloud/nextcloud/android-singlesignon/). So just request joining the translation team for Android on the site and start translating. All translations will then be automatically pushed to this repository, there is no need for any pull request for translations.

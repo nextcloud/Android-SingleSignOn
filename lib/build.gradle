@@ -26,12 +26,11 @@ configurations {
 }
 
 android {
+    namespace 'com.nextcloud.android.sso'
     compileSdkVersion 31
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 1
-        versionName '1.0'
     }
 
     buildTypes {
@@ -40,27 +39,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    lintOptions {
-        // translations are imported from transifex, so no need to check here
-        disable 'MissingTranslation'
-        disable 'ExtraTranslation'
-        disable 'MissingQuantity'
-        disable 'InconsistentArrays'
-        disable 'TypographyEllipsis'
-        disable 'GradleDependency'
-        disable 'VectorPath'
-        disable 'IconMissingDensityFolder'
-        disable 'IconDensities'
+
+    productFlavors { }
+
+    lint {
         abortOnError false
-        htmlReport true
+        disable 'MissingTranslation', 'ExtraTranslation', 'MissingQuantity', 'InconsistentArrays', 'TypographyEllipsis', 'GradleDependency', 'VectorPath', 'IconMissingDensityFolder', 'IconDensities'
         htmlOutput file("$project.buildDir/reports/lint/lint.html")
-    }
-    productFlavors {
+        htmlReport true
     }
 
     tasks.register("spotbugsDebugReport", SpotBugsTask) {
@@ -98,34 +90,37 @@ detekt {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 
-    implementation "androidx.appcompat:appcompat:1.3.1"
-    implementation 'androidx.annotation:annotation:1.3.0'
-    implementation 'androidx.core:core:1.7.0'
-    implementation 'androidx.fragment:fragment:1.3.6'
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation 'androidx.annotation:annotation:1.5.0'
+    implementation 'androidx.core:core:1.9.0'
+    implementation 'androidx.fragment:fragment:1.5.6'
 
-    compileOnly "org.projectlombok:lombok:1.18.22"
-    annotationProcessor "org.projectlombok:lombok:1.18.20"
+    implementation 'com.google.android.material:material:1.8.0'
 
-    api 'com.google.code.gson:gson:2.8.9'
+    compileOnly "org.projectlombok:lombok:1.18.26"
+    annotationProcessor "org.projectlombok:lombok:1.18.24"
+
+    api 'com.google.code.gson:gson:2.10.1'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
 
     implementation 'commons-io:commons-io:2.11.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
 
-    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
-    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.4.7'
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
+    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.6.0'
 
-    ktlint "com.pinterest:ktlint:0.43.0"
+    ktlint "com.pinterest:ktlint:0.48.2"
 
     // Required for local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.13.2'
     // required if you want to use Mockito for unit tests
-    testImplementation 'org.mockito:mockito-core:4.0.0'
+    testImplementation 'org.mockito:mockito-core:5.2.0'
 }
 
 afterEvaluate {
