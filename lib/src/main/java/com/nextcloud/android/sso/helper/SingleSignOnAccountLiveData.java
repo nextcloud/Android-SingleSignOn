@@ -19,34 +19,44 @@
 
 package com.nextcloud.android.sso.helper;
 
-import static com.nextcloud.android.sso.helper.SingleAccountHelper.getCurrentSingleSignOnAccount;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.lifecycle.LiveData;
 
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
 import com.nextcloud.android.sso.exceptions.NoCurrentAccountSelectedException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class SingleSignOnAccountLiveData extends LiveData<SingleSignOnAccount> {
 
     private final Context context;
     private final SharedPreferences sharedPrefs;
     private final SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
+    private final ExecutorService executor;
 
-    SingleSignOnAccountLiveData(@NonNull Context context, @NonNull SharedPreferences sharedPrefs, @NonNull String key) {
+    SingleSignOnAccountLiveData(@NonNull Context context,
+                                @NonNull SharedPreferences sharedPrefs,
+                                @NonNull String key) {
+        this(context, sharedPrefs, key, Executors.newSingleThreadExecutor());
+    }
+
+    @VisibleForTesting
+    SingleSignOnAccountLiveData(@NonNull Context context,
+                                @NonNull SharedPreferences sharedPrefs,
+                                @NonNull String key,
+                                @NonNull ExecutorService executor) {
         this.context = context;
         this.sharedPrefs = sharedPrefs;
+        this.executor = executor;
         this.preferenceChangeListener = (changedPrefs, changedKey) -> {
             if (key.equals(changedKey)) {
-                try {
-                    setValue(getValueFromPreferences());
-                } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException e) {
-                    e.printStackTrace();
-                }
+                postValueFromPreferences();
             }
         };
     }
@@ -54,21 +64,24 @@ public class SingleSignOnAccountLiveData extends LiveData<SingleSignOnAccount> {
     @Override
     protected void onActive() {
         super.onActive();
-        try {
-            setValue(getValueFromPreferences());
-        } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException e) {
-            e.printStackTrace();
-        }
+        postValueFromPreferences();
         sharedPrefs.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
-    }
-
-    private SingleSignOnAccount getValueFromPreferences() throws NextcloudFilesAppAccountNotFoundException, NoCurrentAccountSelectedException {
-        return getCurrentSingleSignOnAccount(context);
     }
 
     @Override
     protected void onInactive() {
         sharedPrefs.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
         super.onInactive();
+    }
+
+    private void postValueFromPreferences() {
+        executor.submit(() -> {
+            try {
+                postValue(SingleAccountHelper.getCurrentSingleSignOnAccount(context));
+            } catch (NoCurrentAccountSelectedException | NextcloudFilesAppAccountNotFoundException e) {
+                postValue(null);
+                e.printStackTrace();
+            }
+        });
     }
 }

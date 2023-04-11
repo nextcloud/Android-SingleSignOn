@@ -66,8 +66,13 @@ public class MainActivity extends AppCompatActivity {
         /*
          * We can also observe the current SingleSignOnAccount (set via SingleAccountHelper) with LiveData
          */
-        SingleAccountHelper.getCurrentSingleSignOnAccount$(this)
-                .observe(this, ssoAccount -> Log.i(TAG, "New SingleSignOnAccount set: " + ssoAccount.name));
+        SingleAccountHelper.getCurrentSingleSignOnAccount$(this).observe(this, ssoAccount -> {
+            if (ssoAccount == null) {
+                Log.i(TAG, "Currently no SingleSignOnAccount selected.");
+            } else {
+                Log.i(TAG, "New SingleSignOnAccount set: " + ssoAccount.name);
+            }
+        });
     }
 
     @Override
@@ -82,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                  * A little helper to store the currently selected account.
                  * We can query this later if we want to keep working with it.
                  */
-                SingleAccountHelper.setCurrentAccountAsync(this, ssoAccount.name);
+                SingleAccountHelper.commitCurrentAccount(this, ssoAccount.name);
 
                 /* Network requests need to be performed on a background thread */
                 executor.submit(() -> {

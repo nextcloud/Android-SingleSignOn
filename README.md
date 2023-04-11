@@ -75,7 +75,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             // As this library supports multiple accounts we created some helper methods if you only want to use one.
             // The following line stores the selected account as the "default" account which can be queried by using
             // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
-            SingleAccountHelper.setCurrentAccount(context, account.name);
+            SingleAccountHelper.commitCurrentAccount(context, account.name);
 
             // Get the "default" account
             SingleSignOnAccount ssoAccount = null;
