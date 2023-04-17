@@ -137,7 +137,7 @@ public class NextcloudAPI {
         return convertStreamToTargetEntity(response.getBody(), type);
     }
 
-    private <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
+    public <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
         final T result;
         try (InputStream os = inputStream;
              Reader targetReader = new InputStreamReader(os)) {

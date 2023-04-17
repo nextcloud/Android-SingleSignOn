@@ -7,7 +7,9 @@ import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Request;
@@ -53,8 +55,12 @@ public final class Retrofit2Helper {
             @Override
             public Response<T> execute() {
                 try {
-                    T body = nextcloudAPI.performRequestV2(resType, nextcloudRequest);
-                    return Response.success(body);
+                    com.nextcloud.android.sso.api.Response response = nextcloudAPI.performNetworkRequestV2(nextcloudRequest);
+
+                    T body = nextcloudAPI.convertStreamToTargetEntity(response.getBody(), resType);
+                    return Response.success(body,
+                        Headers.of((String[]) response.getPlainHeaders().stream().map(h -> List.of(h.getName(), h.getValue())).toArray())
+                    );
                 } catch (NextcloudHttpRequestFailedException e) {
                     final Throwable cause = e.getCause();
                     return convertExceptionToResponse(e.getStatusCode(), cause == null ? e.getMessage() : cause.getMessage());
