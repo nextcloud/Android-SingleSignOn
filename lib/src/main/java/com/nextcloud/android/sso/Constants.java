@@ -19,8 +19,6 @@
 
 package com.nextcloud.android.sso;
 
-import com.nextcloud.android.sso.model.FilesAppType;
-
 public class Constants {
 
     // Authenticator related constants
@@ -39,19 +37,5 @@ public class Constants {
     public static final String EXCEPTION_INVALID_REQUEST_URL = "CE_4";
     public static final String EXCEPTION_HTTP_REQUEST_FAILED = "CE_5";
     public static final String EXCEPTION_ACCOUNT_ACCESS_DECLINED = "CE_6";
-
-    // package related constants
-    /** @deprecated Use {@link FilesAppType#packageId} */
-    @Deprecated
-    public static final String PACKAGE_NAME_PROD = FilesAppType.PROD.packageId;
-    /** @deprecated Use {@link FilesAppType#packageId} */
-    @Deprecated
-    public static final String PACKAGE_NAME_DEV = FilesAppType.DEV.packageId;
-    /** @deprecated Use {@link FilesAppType#accountType} */
-    @Deprecated
-    public static final String ACCOUNT_TYPE_PROD = FilesAppType.PROD.accountType;
-    /** @deprecated Use {@link FilesAppType#accountType} */
-    @Deprecated
-    public static final String ACCOUNT_TYPE_DEV = FilesAppType.DEV.accountType;
 
 }

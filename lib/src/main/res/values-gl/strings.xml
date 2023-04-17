@@ -1,4 +1,6 @@
 <resources>
+    <string name="unknown_error">Erro descoñecido</string>
+
     <string name="no_current_account_selected_exception_title">Aviso</string>
     <string name="no_current_account_selected_exception_message">Non hai ningunha conta configurada</string>
 
@@ -13,15 +15,26 @@
     <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
 
     <string name="nextcloud_files_app_not_installed_title">Erro</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">A apli Ficheiros do Nextcloud non está instalada. Instálea: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Erro</string>
+    <string name="nextcloud_files_app_account_not_found_message">Non foi posíbel atopar a conta na apli Ficheiros do Nextcloud</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Erro</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Ten que aceptar os permisos solicitados para usar a característica de auténticación única (single-sign-on).
 </string>
 
     <string name="nextcloud_http_request_failed_title">Erro</string>
-    <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na petición HTTP cun código de estado: %1$d</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na solicitude HTTP cun código de estado: %1$d</string>
 
     <string name="nextcloud_files_app_not_supported_title">Erro</string>
+    <string name="nextcloud_files_app_not_supported_message" formatted="true">A súa aplicación Ficheiros do Nextcloud neste momento non admite a función de inicio de sesión único. Actualícea: %1$s</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Erro</string>
+    <string name="nextcloud_files_api_not_responding_message">A API da aplicación Ficheiros do Nextcloud non responde. É probábel que isto se deba ás optimizacións da batería do seu teléfono. Tente desactivar a optimización da batería para ambas as aplis (Nextcloud Android e esta apli). No resto dos casos, tente borrar o almacenamento de ambas as aplis.</string>
+
+    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Configuración das opcións da batería</string>
+
     <string name="sso_canceled">Importación SSO cancelada</string>
     <string name="sso_canceled_message">A importación SSO foi cancelada polo usuaro</string>
 </resources>

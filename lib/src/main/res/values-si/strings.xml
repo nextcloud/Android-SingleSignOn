@@ -1,0 +1,16 @@
+<resources>
+    <string name="unknown_error">නොදන්නා දෝෂයකි</string>
+
+    <string name="no_current_account_selected_exception_title">අවවාදයයි</string>
+    <string name="no_current_account_selected_exception_message">තවම ගිණුමක් තෝරාගෙන නොමැත</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">දෝෂය</string>
+    <string name="current_account_not_found_exception_title">අවවාදයයි</string>
+    <string name="token_mismatch_title">දෝෂය</string>
+    <string name="nextcloud_files_app_not_installed_title">දෝෂය</string>
+    <string name="nextcloud_files_app_account_not_found_title">දෝෂය</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">දෝෂය</string>
+    <string name="nextcloud_http_request_failed_title">දෝෂය</string>
+    <string name="nextcloud_files_app_not_supported_title">දෝෂය</string>
+    <string name="nextcloud_files_api_not_responding_title">දෝෂය</string>
+    </resources>

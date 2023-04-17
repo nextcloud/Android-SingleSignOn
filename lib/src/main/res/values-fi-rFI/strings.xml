@@ -12,7 +12,11 @@
     <string name="token_mismatch_message">Annettu todennusavain ei vastaa tai paketin ei ole sallittua suorittaa tätä toimintoa</string>
 
     <string name="nextcloud_files_app_not_installed_title">Virhe</string>
+    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files -sovellusta ei ole asennettu. Asenna se: %1$s</string>
+
     <string name="nextcloud_files_app_account_not_found_title">Virhe</string>
+    <string name="nextcloud_files_app_account_not_found_message">Tiliä ei löydy Nextcloud Files -sovelluksesta</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Virhe</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Sinun tulee hyväksyä esitetyt käyttöoikeudet käyttääksesi kertakirjautumisominaisuutta.</string>
 

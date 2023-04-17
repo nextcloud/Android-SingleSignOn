@@ -107,22 +107,6 @@ public class NextcloudAPI {
         networkRequest.stop();
     }
 
-    /**
-     * @deprecated Use {@link #performRequestObservableV2(Type, NextcloudRequest)}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     */
-    @Deprecated
-    public <T> Observable<T> performRequestObservable(final Type type, final NextcloudRequest request) {
-        return Observable.fromPublisher( s -> {
-            try {
-                s.onNext(performRequest(type, request));
-                s.onComplete();
-            } catch (Exception e) {
-                s.onError(e);
-            }
-        });
-    }
-
     public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
         return Observable.fromPublisher( s -> {
             try {
@@ -135,14 +119,16 @@ public class NextcloudAPI {
         });
     }
 
-    /**
-     * @deprecated Use {@link #performRequestV2(Type, NextcloudRequest)}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     */
-    @Deprecated
-    public <T> T performRequest(final @NonNull Type type, NextcloudRequest request) throws Exception {
-        Log.d(TAG, "performRequest() called with: type = [" + type + "], request = [" + request + "]");
-        return convertStreamToTargetEntity(performNetworkRequest(request), type);
+    public <T> io.reactivex.rxjava3.core.Observable<ParsedResponse<T>> performRequestObservableV3(final Type type, final NextcloudRequest request) {
+        return io.reactivex.rxjava3.core.Observable.fromPublisher( s -> {
+            try {
+                final Response response = performNetworkRequestV2(request);
+                s.onNext(ParsedResponse.of(convertStreamToTargetEntity(response.getBody(), type), response.getPlainHeaders()));
+                s.onComplete();
+            } catch (Exception e) {
+                s.onError(e);
+            }
+        });
     }
 
     public <T> T performRequestV2(final @NonNull Type type, NextcloudRequest request) throws Exception {
@@ -172,20 +158,6 @@ public class NextcloudAPI {
             }
         }
         return result;
-    }
-
-    /**
-     * The InputStreams needs to be closed after reading from it
-     *
-     * @param request {@link NextcloudRequest} request to be executed on server via Files app
-     * @return InputStream answer from server as InputStream
-     * @throws Exception or {@link SSOException}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     * @deprecated Use {@link #performNetworkRequestV2(NextcloudRequest)}
-     */
-    @Deprecated
-    public InputStream performNetworkRequest(NextcloudRequest request) throws Exception {
-        return networkRequest.performNetworkRequest(request, request.getBodyAsStream());
     }
 
     /**

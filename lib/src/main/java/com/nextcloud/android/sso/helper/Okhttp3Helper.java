@@ -34,21 +34,6 @@ public final class Okhttp3Helper {
 
     private Okhttp3Helper() { }
 
-    /**
-     * @deprecated Use {@link #getResponseBodyFromRequestV2(NextcloudAPI, NextcloudRequest)}
-     * @see <a href="https://github.com/nextcloud/Android-SingleSignOn/issues/133">Issue #133</a>
-     */
-    @Deprecated
-    public static ResponseBody getResponseBodyFromRequest(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
-        try {
-            final InputStream os = nextcloudAPI.performNetworkRequest(request);
-            return ResponseBody.create(null, 0, new BufferedSourceSSO(os));
-        } catch (Exception e) {
-            Log.e(TAG, "[getResponseBodyFromRequest] encountered a problem", e);
-        }
-        return ResponseBody.create(null, "");
-    }
-
     public static ResponseBody getResponseBodyFromRequestV2(NextcloudAPI nextcloudAPI, NextcloudRequest request) {
         try {
             final InputStream os = nextcloudAPI.performNetworkRequestV2(request).getBody();

@@ -20,6 +20,9 @@
 package com.nextcloud.android.sso.aidl;
 
 
+import androidx.core.util.ObjectsCompat;
+import androidx.core.util.Pair;
+
 import com.nextcloud.android.sso.QueryParam;
 
 import java.io.InputStream;
@@ -31,8 +34,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import androidx.core.util.ObjectsCompat;
-import androidx.core.util.Pair;
 import lombok.ToString;
 
 @ToString
@@ -94,23 +95,6 @@ public class NextcloudRequest implements Serializable {
 
         public Builder setHeader(Map<String, List<String>> header) {
             ncr.header = header;
-            return this;
-        }
-
-        /**
-         * Sets the parameters for this request.
-         * All existing parameters will be wiped!
-         * @param parameter new set of parameters
-         * @return this (Builder)
-         * @deprecated since this won't allow RFC 3986 compliant parameters, please use {@link #setParameter(Collection) setParameter(Collection)} instead
-         */
-        @Deprecated
-        public Builder setParameter(Map<String, String> parameter) {
-            ncr.parameter = parameter;
-            ncr.parameterV2 = new ArrayList<>();
-            for (Map.Entry<String, String> mapEntry : parameter.entrySet()) {
-                ncr.parameterV2.add(new QueryParam(mapEntry.getKey(), mapEntry.getValue()));
-            }
             return this;
         }
 
@@ -234,16 +218,6 @@ public class NextcloudRequest implements Serializable {
 
     public Collection<QueryParam> getParameterV2() {
         return this.parameterV2;
-    }
-
-    /**
-     * Returns the set or parameters for this request.
-     * @return set of parameters
-     * @deprecated since this won't allow RFC 3986 compliant parameters, please use {@link #getParameterV2() getParameterV2()} instead
-     */
-    @Deprecated
-    public Map<String, String> getParameter() {
-        return parameter;
     }
 
     public String getRequestBody() {
