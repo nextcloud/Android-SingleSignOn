@@ -422,8 +422,6 @@ style:
   ForbiddenImport:
     active: false
     imports: ''
-  ForbiddenVoid:
-    active: false
   FunctionOnlyReturningConstant:
     active: false
     ignoreOverridableFunction: true

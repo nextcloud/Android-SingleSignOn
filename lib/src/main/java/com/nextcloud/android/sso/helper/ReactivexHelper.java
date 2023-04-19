@@ -1,6 +1,7 @@
 package com.nextcloud.android.sso.helper;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.api.EmptyResponse;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 
 import io.reactivex.Completable;
@@ -29,11 +30,11 @@ public final class ReactivexHelper {
     private ReactivexHelper() { }
 
     public static Completable wrapInCompletable(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
-        return Completable.fromAction(() -> nextcloudAPI.performRequestV2(Void.class, request));
+        return Completable.fromAction(() -> nextcloudAPI.performRequestV2(EmptyResponse.class, request));
     }
 
     public static io.reactivex.rxjava3.core.Completable wrapInCompletableV3(final NextcloudAPI nextcloudAPI, final NextcloudRequest request) {
-        return io.reactivex.rxjava3.core.Completable.fromAction(() -> nextcloudAPI.performRequestV2(Void.class, request));
+        return io.reactivex.rxjava3.core.Completable.fromAction(() -> nextcloudAPI.performRequestV2(EmptyResponse.class, request));
     }
 
 }
