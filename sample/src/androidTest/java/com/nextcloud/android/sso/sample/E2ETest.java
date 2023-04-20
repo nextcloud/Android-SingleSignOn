@@ -4,6 +4,7 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static androidx.test.uiautomator.Until.hasObject;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.util.Log;
 import android.webkit.WebView;
 import android.widget.Button;
@@ -46,6 +47,16 @@ public class E2ETest {
     @Test
     public void test_00_configureNextcloudAccount() throws UiObjectNotFoundException, InterruptedException {
         Log.i(TAG, "Configure Nextcloud account");
+
+        final var context = getInstrumentation().getContext();
+        final var packageManager = context.getPackageManager();
+        try {
+            packageManager.getPackageInfo(APP_NEXTCLOUD, 0);
+            Log.i(TAG, "Nextcloud APK is installed (checking on runtime)");
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Nextcloud APK is NOT installed (checking on runtime");
+        }
+
         launch(APP_NEXTCLOUD);
 
         final var loginButton = mDevice.findObject(new UiSelector().textContains("Log in"));
@@ -82,7 +93,7 @@ public class E2ETest {
         // Log.d(TAG, "Scroll to bottom of WebView…");
         // mDevice.findObject(By.clazz(WebView.class)).swipe(Direction.UP, 1f);
         // Log.d(TAG, "Finished scrolling");
-        webViewLoginButton.dragTo(0,0, 40);
+        webViewLoginButton.dragTo(0, 0, 40);
 
         webViewLoginButton.click();
 
