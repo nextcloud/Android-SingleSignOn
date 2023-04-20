@@ -81,4 +81,4 @@ jobs:
             adb logcat -c || true
             adb logcat -s "E2E" -v color &
             adb logcat *:I -v color &
-            ./gradlew connectedDebugAndroidTest || true
+            ./gradlew connectedDebugAndroidTest
