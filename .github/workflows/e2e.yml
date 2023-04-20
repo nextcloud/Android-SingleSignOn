@@ -77,13 +77,7 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          # FIXME Execution of connectedDebugAndroidTest fails
-          # TODO latest.apk should be cached when matrix testing is used
           script: |
-            adb shell pm uninstall -k --user 0 com.nextcloud.android.beta || true
-            wget -q https://download.nextcloud.com/android/dev/latest.apk
-            adb install latest.apk
-            adb shell pm grant com.nextcloud.android.beta android.permission.READ_EXTERNAL_STORAGE
             adb logcat -c || true
             adb logcat -s "E2E" -v color &
             adb logcat *:I -v color &

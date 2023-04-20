@@ -5,6 +5,11 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
  
+import com.android.ddmlib.AndroidDebugBridge
+import com.android.ddmlib.NullOutputReceiver
+
+import java.util.concurrent.TimeUnit
+
 apply plugin: 'com.android.application'
 
 android {
@@ -32,6 +37,34 @@ android {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+task downloadNextcloudApk(type: Download) {
+    src 'https://download.nextcloud.com/android/dev/latest.apk'
+    dest new File(buildDir, 'latest.apk')
+    overwrite true
+}
+
+task setupNextcloudEnvironment(dependsOn: downloadNextcloudApk) {
+    def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false, 10, TimeUnit.SECONDS)
+    doLast {
+        bridge.devices.each { device ->
+            println "Uninstall Nextcloud apk from ${device.name}"
+            device.uninstallPackage("com.nextcloud.android.beta")
+
+            println "Install Nextcloud apk on ${device.name}"
+            device.installPackage(new File(buildDir, 'latest.apk').getAbsolutePath(), true)
+
+            println "Grant permissions to Nextcloud"
+            device.executeShellCommand("pm grant com.nextcloud.android.beta android.permission.READ_EXTERNAL_STORAGE", NullOutputReceiver.receiver, 3, TimeUnit.SECONDS)
+        }
+    }
+}
+
+tasks.whenTaskAdded { taskItem ->
+    if (taskItem.name.contains("connected") && taskItem.name.endsWith("AndroidTest")) {
+        taskItem.dependsOn setupNextcloudEnvironment
     }
 }
 
