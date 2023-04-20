@@ -22,10 +22,23 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 /**
- * FIXME This does not yet work
+ * <h1>Setup</h1>
+ * <h2>CI / CD</h2>
+ * <p>No manual configuration needs to be done because the setup already happens in the <code>e2e.yml</code> file.</p>
+ * <h2>Local</h2>
+ * <ol>
+ *     <li>Set {@link #CONFIG_SERVER_URL}, {@link #CONFIG_USERNAME}, {@link #CONFIG_PASSWORD} and {@link #CONFIG_DISPLAY_NAME}. The Nextcloud instance must exist and be reachable.</li>
+ *     <li>Remove any existing installation of the Nextcloud files app</li>
+ *     <li>Install the <a href="https://download.nextcloud.com/android/dev/latest.apk">Dev-Version of the Nextcloud files app</a></li>
+ *     <li>Grant the <code>android.permission.READ_EXTERNAL_STORAGE</code> permission to the Nextcloud files app</li>
+ * </ol>
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class E2ETest {
+    private static final String CONFIG_SERVER_URL = "http://172.17.0.1:8080";
+    private static final String CONFIG_USERNAME = "Test";
+    private static final String CONFIG_DISPLAY_NAME = "Test";
+    private static final String CONFIG_PASSWORD = "Test";
 
     private static final String TAG = "E2E";
     private static final int TIMEOUT = 60_000;
@@ -35,9 +48,6 @@ public class E2ETest {
     private static final String APP_SAMPLE = BuildConfig.APPLICATION_ID;
     // TODO This should be passed as argument
     private static final String APP_NEXTCLOUD = "com.nextcloud.android.beta";
-    private static final String SERVER_URL = "http://172.17.0.1:8080";
-    private static final String SERVER_USERNAME = "Test";
-    private static final String SERVER_PASSWORD = "Test";
 
     @Before
     public void before() {
@@ -69,7 +79,7 @@ public class E2ETest {
         urlInput.waitForExists(TIMEOUT);
         Log.d(TAG, "URL input exists.");
         Log.d(TAG, "Entering URL…");
-        urlInput.setText(SERVER_URL);
+        urlInput.setText(CONFIG_SERVER_URL);
         Log.d(TAG, "URL entered.");
 
         Log.d(TAG, "Pressing enter…");
@@ -103,7 +113,7 @@ public class E2ETest {
         Log.d(TAG, "Waiting for Username Input…");
         usernameInput.waitForExists(TIMEOUT);
         Log.d(TAG, "Username Input exists. Setting text…");
-        usernameInput.setText(SERVER_USERNAME);
+        usernameInput.setText(CONFIG_USERNAME);
         Log.d(TAG, "Username has been set.");
 
         final var passwordInput = mDevice.findObject(new UiSelector()
@@ -112,7 +122,7 @@ public class E2ETest {
         Log.d(TAG, "Waiting for Password Input…");
         passwordInput.waitForExists(TIMEOUT);
         Log.d(TAG, "Password Input exists. Setting text…");
-        passwordInput.setText(SERVER_PASSWORD);
+        passwordInput.setText(CONFIG_PASSWORD);
 
         // mDevice.pressEnter();
         final var webViewSubmitButton = mDevice.findObject(new UiSelector()
@@ -190,7 +200,7 @@ public class E2ETest {
         Log.d(TAG, "Import finished.");
 
         Log.i(TAG, "Verify successful import…");
-        final var expectedToContain = "Test on Nextcloud";
+        final var expectedToContain = CONFIG_DISPLAY_NAME + " on Nextcloud";
         final var result = mDevice.findObject(new UiSelector().textContains(expectedToContain));
         result.waitForExists(TIMEOUT);
         Log.i(TAG, "Expected UI to display '" + expectedToContain + "'. Found: '" + result.getText() + "'.");
