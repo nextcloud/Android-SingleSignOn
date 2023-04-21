@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                      *
                      * @see https://github.com/nextcloud/Android-SingleSignOn/issues/120#issuecomment-540069990
                      */
-                    nextcloudAPI.stop();
+                    nextcloudAPI.close();
                 });
             });
         } catch (AccountImportCancelledException e) {

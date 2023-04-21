@@ -128,11 +128,20 @@ public class AidlNetworkRequest extends NetworkRequest {
         connectApiWithBackoff();
     }
 
-    public void stop() {
-        super.stop();
+    @Override
+    public void close() {
+        super.close();
 
         unbindService();
         mContext = null;
+    }
+
+    /**
+     * @deprecated Use {@link #close()}
+     */
+    @Deprecated(forRemoval = true)
+    public void stop() {
+        close();
     }
 
     private void unbindService() {
