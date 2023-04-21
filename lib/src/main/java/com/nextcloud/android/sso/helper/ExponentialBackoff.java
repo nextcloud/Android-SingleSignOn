@@ -27,7 +27,7 @@ import java.security.InvalidParameterException;
 
 
 /** The implementation of exponential backoff with jitter applied. */
-public class ExponentialBackoff {
+public class ExponentialBackoff implements AutoCloseable {
 
     private static final String TAG = ExponentialBackoff.class.getCanonicalName();
 
@@ -105,10 +105,18 @@ public class ExponentialBackoff {
     }
 
     /** Stops the backoff, all pending messages will be removed from the message queue. */
-    public void stop() {
+    @Override
+    public void close() {
         mRetryCounter = 0;
         mHandlerAdapter.removeCallbacks(mRunnable);
+    }
 
+    /**
+     * @deprecated Use {@link #close()}.
+     */
+    @Deprecated(forRemoval = true)
+    public void stop() {
+        close();
     }
 
     /** Should call when the retry action has failed and we want to retry after a longer delay. */
@@ -116,7 +124,7 @@ public class ExponentialBackoff {
         Log.d(TAG, "[notifyFailed] Error: [" + ex.getMessage() + "]");
         if(mRetryCounter > mMaxRetries) {
             Log.d(TAG, "[notifyFailed] Retries exceeded, ending now");
-            stop();
+            close();
             mFailedCallback.run();
         } else {
             mRetryCounter++;
