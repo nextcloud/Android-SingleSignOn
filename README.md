@@ -75,7 +75,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             // As this library supports multiple accounts we created some helper methods if you only want to use one.
             // The following line stores the selected account as the "default" account which can be queried by using
             // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
-            SingleAccountHelper.setCurrentAccount(context, account.name);
+            SingleAccountHelper.commitCurrentAccount(context, account.name);
 
             // Get the "default" account
             SingleSignOnAccount ssoAccount = null;
@@ -107,6 +107,9 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 ```java
 // If you stored the "default" account using setCurrentAccount(…) you can get the account by using the following line:
 final var ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+
+// It is also possible to get the "default" account as a LiveData object:
+final var ssoAccount$ = SingleAccountHelper.getCurrentSingleSignOnAccount$(context);
 
 // Otherwise (for multi-account support you'll have to keep track of the account names yourself. Note: this has to be the name of SingleSignOnAccount.name)
 AccountImporter.getSingleSignOnAccount(context, accountName);

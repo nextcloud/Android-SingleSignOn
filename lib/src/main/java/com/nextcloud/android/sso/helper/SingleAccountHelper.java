@@ -24,7 +24,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppAccountNotFoundException;
@@ -40,6 +43,7 @@ public final class SingleAccountHelper {
     private SingleAccountHelper() {
     }
 
+    @WorkerThread
     private static String getCurrentAccountName(Context context) throws NoCurrentAccountSelectedException {
         SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         String accountName = mPrefs.getString(PREF_CURRENT_ACCOUNT_STRING, null);
@@ -49,24 +53,41 @@ public final class SingleAccountHelper {
         return accountName;
     }
 
+    @WorkerThread
     public static SingleSignOnAccount getCurrentSingleSignOnAccount(Context context)
             throws NextcloudFilesAppAccountNotFoundException, NoCurrentAccountSelectedException {
         return AccountImporter.getSingleSignOnAccount(context, getCurrentAccountName(context));
     }
 
     /**
-     * Warning: This call is writing synchronously to the disk.
-     * You should use {@link #setCurrentAccountAsync(Context, String)} if possible.
+     * Emits the currently set {@link SingleSignOnAccount} or <code>null</code> if an error occurred.
+     */
+    public static LiveData<SingleSignOnAccount> getCurrentSingleSignOnAccount$(@NonNull Context context) {
+        return new SingleSignOnAccountLiveData(context, AccountImporter.getSharedPreferences(context), PREF_CURRENT_ACCOUNT_STRING);
+    }
+
+    /**
+     * @deprecated Replaced by {@link #commitCurrentAccount(Context, String)}
+     */
+    @Deprecated(forRemoval = true)
+    public static void setCurrentAccount(Context context, String accountName) {
+        commitCurrentAccount(context, accountName);
+    }
+
+    /**
+     * Warning: This call is <em>synchronous</em>.
+     * Consider using {@link #applyCurrentAccount(Context, String)} if possible.
      */
     @SuppressLint("ApplySharedPref")
-    public static void setCurrentAccount(Context context, String accountName) {
+    @WorkerThread
+    public static void commitCurrentAccount(Context context, String accountName) {
         AccountImporter.getSharedPreferences(context)
                 .edit()
                 .putString(PREF_CURRENT_ACCOUNT_STRING, accountName)
                 .commit();
     }
 
-    public static void setCurrentAccountAsync(Context context, String accountName) {
+    public static void applyCurrentAccount(Context context, String accountName) {
         AccountImporter.getSharedPreferences(context)
                 .edit()
                 .putString(PREF_CURRENT_ACCOUNT_STRING, accountName)
@@ -80,13 +101,21 @@ public final class SingleAccountHelper {
     public static void reauthenticateCurrentAccount(Activity activity) throws NoCurrentAccountSelectedException, NextcloudFilesAppAccountNotFoundException, NextcloudFilesAppNotSupportedException, NextcloudFilesAppAccountPermissionNotGrantedException {
         AccountImporter.authenticateSingleSignAccount(activity, getCurrentSingleSignOnAccount(activity));
     }
-    
+
+    /**
+     * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
+     */
+    @Deprecated(forRemoval = true)
     public static void registerSharedPreferenceChangeListener(Context context, 
-                                                                SharedPreferences.OnSharedPreferenceChangeListener listener) {
+                                                              SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)
                 .registerOnSharedPreferenceChangeListener(listener);
     }
-    
+
+    /**
+     * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
+     */
+    @Deprecated(forRemoval = true)
     public static void unregisterSharedPreferenceChangeListener(Context context,
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         AccountImporter.getSharedPreferences(context)
