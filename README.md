@@ -20,6 +20,7 @@ This library allows you to use accounts as well as the network stack provided by
     - [5.2) Without Retrofit](#52-without-retrofit)
     - [5.3) WebDAV](#53-webdav)
 - [Additional info](#additional-info)
+- [R8/ProGuard](#r8proguard)
 - [Security](#security)
 - [Media](#media)
   - [Talks at the Nextcloud Conference](#talks-at-the-nextcloud-conference)
@@ -274,6 +275,30 @@ if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION
    // Version requirement is satisfied!
 }
 ```
+
+## R8/ProGuard
+
+R8 and ProGuard rules are bundled into [SSO](lib/consumer-proguard-rules.pro).
+The bundled rules do **not** cover enabled obfuscation.
+Therefore it is **recommended** to add `-dontobfuscate` to your app-specific proguard rules.
+
+With [R8 full mode](https://r8.googlesource.com/r8/+/refs/heads/master/compatibility-faq.md#r8-full-mode) being enabled by default since [AGP 8.0](https://developer.android.com/build/releases/gradle-plugin#default-changes), you will probably need to handle following app-specific rules yourself (or disable full mode):
+
+### gson
+According to [gson's sample rules](https://github.com/google/gson/blob/master/examples/android-proguard-example/proguard.cfg#L14), you still need to configure rules for your gson-handled classes.
+> ```
+> # Application classes that will be serialized/deserialized over Gson
+> -keep class com.google.gson.examples.android.model.** { <fields>; }
+> ```
+
+### Retrofit
+The same applies to classes which you're using in the api from step [5.1.1](#511-before-using-this-single-sign-on-library-your-interface-for-your-retrofit-api-might-look-like-this) 
+```
+# Application classes that will be serialized/deserialized by retrofit
+-keep class com.google.gson.examples.android.model.**
+```
+
+If you find working less broad rules, contributions to these rules are welcome!
 
 ## Security
 
