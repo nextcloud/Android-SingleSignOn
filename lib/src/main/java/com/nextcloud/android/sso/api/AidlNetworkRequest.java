@@ -221,12 +221,12 @@ public class AidlNetworkRequest extends NetworkRequest {
         request.setAccountName(getAccountName());
         request.setToken(getAccountToken());
 
-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        final ObjectOutputStream oos = new ObjectOutputStream(baos);
-        oos.writeObject(request);
-        oos.close();
-        baos.close();
-        final InputStream is = new ByteArrayInputStream(baos.toByteArray());
+        InputStream is;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+             ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+            oos.writeObject(request);
+            is = new ByteArrayInputStream(baos.toByteArray());
+        }
 
         try (ParcelFileDescriptor input = pipeFrom(is, thread -> Log.d(TAG, "copy data from service finished"))) {
             return requestBodyInputStream == null
