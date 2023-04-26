@@ -219,7 +219,7 @@ public class MyActivity extends AppCompatActivity {
         super.onStop();
         // Close Service Connection to Nextcloud Files App and
         // disconnect API from Context (prevent Memory Leak)
-        mNextcloudAPI.stop();
+        mNextcloudAPI.close();
     }
 
     private void downloadFile() {
