@@ -43,7 +43,7 @@ public final class UiExceptionManager {
 
     public static void showDialogForException(@NonNull Context context,
                                               @NonNull SSOException exception) {
-        final int actionText = exception.getPrimaryActionText().orElse(android.R.string.yes);
+        final int actionText = exception.getPrimaryActionTextRes().orElse(android.R.string.yes);
         final var optionalAction = exception.getPrimaryAction();
 
         if (optionalAction.isPresent()) {
@@ -66,8 +66,9 @@ public final class UiExceptionManager {
      */
     public static void showDialogForException(@NonNull Context context, @NonNull SSOException exception, @StringRes int actionText, @Nullable DialogInterface.OnClickListener callback) {
         final var builder = new MaterialAlertDialogBuilder(context)
-                .setTitle(exception.getTitle(context))
-                .setMessage(exception.getMessage(context));
+                .setMessage(exception.getMessage());
+
+        exception.getTitleRes().ifPresent(builder::setTitle);
 
         if (callback == null) {
             builder.setPositiveButton(R.string.close, null);
@@ -80,16 +81,18 @@ public final class UiExceptionManager {
     }
 
     public static void showNotificationForException(@NonNull Context context, @NonNull SSOException exception) {
-        final String title = exception.getTitle(context);
-        final String message = exception.getMessage(context);
+        final String message = exception.getMessage();
 
         final var builder = new NotificationCompat.Builder(context, "")
                 .setSmallIcon(android.R.drawable.ic_dialog_alert)
                 .setTicker(message)
-                .setContentTitle(title)
                 //.setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true)
                 .setContentText(message);
+
+        exception.getTitleRes()
+                .map(context::getString)
+                .ifPresent(builder::setContentTitle);
 
 
         //Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);

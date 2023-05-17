@@ -2,7 +2,6 @@ package com.nextcloud.android.sso.model;
 
 import android.content.Intent;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
@@ -29,23 +28,23 @@ import java.io.Serializable;
 
 public class ExceptionMessage implements Serializable {
 
-    @NonNull
-    public final String title;
-    @NonNull
-    public final String message;
+    @StringRes
+    public final int title;
+    @StringRes
+    public final int message;
     @Nullable
     @StringRes
     public final Integer actionText;
     @Nullable
     public final Intent actionIntent;
 
-    public ExceptionMessage(@NonNull String title,
-                            @NonNull String message) {
+    public ExceptionMessage(@StringRes int title,
+                            @StringRes int message) {
         this(title, message, null, null);
     }
 
-    public ExceptionMessage(@NonNull String title,
-                            @NonNull String message,
+    public ExceptionMessage(@StringRes int title,
+                            @StringRes int message,
                             @Nullable @StringRes Integer actionText,
                             @Nullable Intent actionIntent) {
         this.title = title;

@@ -48,7 +48,7 @@ public final class SingleAccountHelper {
         SharedPreferences mPrefs = AccountImporter.getSharedPreferences(context);
         String accountName = mPrefs.getString(PREF_CURRENT_ACCOUNT_STRING, null);
         if (accountName == null) {
-            throw new NoCurrentAccountSelectedException();
+            throw new NoCurrentAccountSelectedException(context);
         }
         return accountName;
     }

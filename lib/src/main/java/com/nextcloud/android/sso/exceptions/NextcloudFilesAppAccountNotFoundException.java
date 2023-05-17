@@ -20,38 +20,25 @@
 package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudFilesAppAccountNotFoundException extends SSOException {
 
-    @Nullable
-    final String accountName;
-
-    public NextcloudFilesAppAccountNotFoundException() {
-        this(null);
+    public NextcloudFilesAppAccountNotFoundException(@NonNull Context context) {
+        this(context, null);
     }
 
-    public NextcloudFilesAppAccountNotFoundException(@Nullable String accountName) {
-        this.accountName = accountName;
-    }
-
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        final String message;
-        if (accountName == null) {
-            message = context.getString(R.string.nextcloud_files_app_account_not_found_message);
-        } else {
-            message = context.getString(R.string.nextcloud_files_app_account_not_found_with_account_message, accountName);
-        }
-
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_files_app_account_not_found_title),
-                message
+    public NextcloudFilesAppAccountNotFoundException(@NonNull Context context, @Nullable String accountName) {
+        super(
+                TextUtils.isEmpty(accountName)
+                        ? context.getString(R.string.nextcloud_files_app_account_not_found_message)
+                        : context.getString(R.string.nextcloud_files_app_account_not_found_with_account_message, accountName),
+                R.string.nextcloud_files_app_account_not_found_title
         );
     }
 }

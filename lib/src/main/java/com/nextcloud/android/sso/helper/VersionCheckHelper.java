@@ -40,7 +40,7 @@ public final class VersionCheckHelper {
         try {
             final int versionCode = getNextcloudFilesVersionCode(context, type);
             if (versionCode < minVersion) {
-                UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotSupportedException());
+                UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotSupportedException(context));
                 return false;
             }
             return true;
@@ -57,7 +57,7 @@ public final class VersionCheckHelper {
                 return true;
             } catch (PackageManager.NameNotFoundException ex) {
                 Log.e(TAG, "PackageManager.NameNotFoundException (dev files app not found): " + e.getMessage());
-                UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotInstalledException());
+                UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotInstalledException(context));
             }
         }
         return false;

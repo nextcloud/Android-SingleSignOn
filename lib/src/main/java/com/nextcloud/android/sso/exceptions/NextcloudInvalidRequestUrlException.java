@@ -22,23 +22,16 @@ package com.nextcloud.android.sso.exceptions;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudInvalidRequestUrlException extends SSOException {
 
-    private final String text;
-
-    public NextcloudInvalidRequestUrlException(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_invalid_request_url_title),
-                context.getString(R.string.nextcloud_invalid_request_url_message, text)
+    public NextcloudInvalidRequestUrlException(@NonNull Context context, @Nullable Throwable cause) {
+        super(
+                context.getString(R.string.nextcloud_invalid_request_url_message, cause == null ? context.getString(R.string.unknown_error_title) : cause.getMessage()),
+                R.string.nextcloud_invalid_request_url_title
         );
     }
 }

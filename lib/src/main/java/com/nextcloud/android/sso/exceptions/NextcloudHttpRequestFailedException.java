@@ -22,34 +22,24 @@ package com.nextcloud.android.sso.exceptions;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudHttpRequestFailedException extends SSOException {
 
     private final int statusCode;
-    private final Throwable cause;
 
-    public NextcloudHttpRequestFailedException(int statusCode, Throwable cause) {
-        this.statusCode = statusCode;
-        this.cause = cause;
-    }
-
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_http_request_failed_title),
-                context.getString(R.string.nextcloud_http_request_failed_message, statusCode)
+    public NextcloudHttpRequestFailedException(@NonNull Context context, int statusCode, @Nullable Throwable cause) {
+        super(
+                context.getString(R.string.nextcloud_http_request_failed_message, statusCode),
+                R.string.nextcloud_http_request_failed_title,
+                cause
         );
+        this.statusCode = statusCode;
     }
 
     public int getStatusCode() {
         return statusCode;
-    }
-
-    @Override
-    public synchronized Throwable getCause() {
-        return cause;
     }
 }
