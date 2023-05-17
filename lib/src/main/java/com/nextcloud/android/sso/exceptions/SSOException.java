@@ -22,6 +22,7 @@ package com.nextcloud.android.sso.exceptions;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -31,52 +32,62 @@ import com.nextcloud.android.sso.Constants;
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.model.ExceptionMessage;
 
+import java.util.Optional;
+
 public class SSOException extends Exception {
 
     private static final String TAG = SSOException.class.getCanonicalName();
+    @Nullable
     protected ExceptionMessage em;
 
     public SSOException() {
         super("Single Sign On Exception (use getMessage(context) for more information)");
     }
 
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.unknown_error),
-                context.getString(R.string.unknown_error)
-        );
-    }
-
+    @Nullable
     public String getTitle(@NonNull Context context) {
-        if (em == null) {
-            loadExceptionMessage(context);
-        }
-        return em.title;
+        return loadExceptionMessage()
+                .map(em -> em.message)
+                .orElse(null);
     }
 
     public String getMessage(@NonNull Context context) {
-        if (em == null) {
-            loadExceptionMessage(context);
-        }
-        return em.message;
+        return getMessage();
     }
 
     @Override
     public String getMessage() {
-        // If already loaded.. return it
-        if (em != null) {
-            return em.message;
+        return loadExceptionMessage()
+                .map(em -> em.message)
+                .orElseGet(super::getMessage);
+    }
+
+    public Optional<Integer> getPrimaryActionText() {
+        return loadExceptionMessage()
+                .map(em -> em.actionText);
+    }
+
+    public Optional<Intent> getPrimaryAction() {
+        return loadExceptionMessage()
+                .map(em -> em.actionIntent);
+    }
+
+    private Optional<ExceptionMessage> loadExceptionMessage() {
+        if (this.em == null) {
+            final var app = getApplication();
+            if (app != null) {
+                loadExceptionMessage(app);
+            }
         }
 
-        // Otherwise try to get the application via reflection
-        Application app = getApplication();
-        if (app != null) {
-            loadExceptionMessage(app);
-            return em.message;
-        }
+        return Optional.ofNullable(em);
+    }
 
-        // If that didn't work.. well return the "generic" base message
-        return super.getMessage();
+    public void loadExceptionMessage(@NonNull Context context) {
+        this.em = new ExceptionMessage(
+                context.getString(R.string.unknown_error_title),
+                context.getString(R.string.unknown_error_message)
+        );
     }
 
     @SuppressLint("PrivateApi")
@@ -96,10 +107,12 @@ public class SSOException extends Exception {
         if (exception == null) {
             return new UnknownErrorException("Parsed exception is null");
         }
+
         final String message = exception.getMessage();
         if (message == null) {
             return new UnknownErrorException("Exception message is null");
         }
+
         switch (message) {
             case Constants.EXCEPTION_INVALID_TOKEN:
                 return new TokenMismatchException();
@@ -110,8 +123,8 @@ public class SSOException extends Exception {
             case Constants.EXCEPTION_INVALID_REQUEST_URL:
                 return new NextcloudInvalidRequestUrlException(exception.getCause().getMessage());
             case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
-                int statusCode = Integer.parseInt(exception.getCause().getMessage());
-                Throwable cause = exception.getCause().getCause();
+                final int statusCode = Integer.parseInt(exception.getCause().getMessage());
+                final var cause = exception.getCause().getCause();
                 return new NextcloudHttpRequestFailedException(statusCode, cause);
             case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED:
                 return new NextcloudFilesAppAccountPermissionNotGrantedException();

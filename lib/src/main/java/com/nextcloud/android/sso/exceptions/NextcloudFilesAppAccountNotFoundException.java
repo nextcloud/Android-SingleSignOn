@@ -22,17 +22,36 @@ package com.nextcloud.android.sso.exceptions;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudFilesAppAccountNotFoundException extends SSOException {
 
+    @Nullable
+    final String accountName;
+
+    public NextcloudFilesAppAccountNotFoundException() {
+        this(null);
+    }
+
+    public NextcloudFilesAppAccountNotFoundException(@Nullable String accountName) {
+        this.accountName = accountName;
+    }
+
     @Override
     public void loadExceptionMessage(@NonNull Context context) {
+        final String message;
+        if (accountName == null) {
+            message = context.getString(R.string.nextcloud_files_app_account_not_found_message);
+        } else {
+            message = context.getString(R.string.nextcloud_files_app_account_not_found_with_account_message, accountName);
+        }
+
         this.em = new ExceptionMessage(
                 context.getString(R.string.nextcloud_files_app_account_not_found_title),
-                context.getString(R.string.nextcloud_files_app_account_not_found_message)
+                message
         );
     }
 }

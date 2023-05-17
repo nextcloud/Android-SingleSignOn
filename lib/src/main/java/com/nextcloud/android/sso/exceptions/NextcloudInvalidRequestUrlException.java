@@ -28,7 +28,7 @@ import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudInvalidRequestUrlException extends SSOException {
 
-    private String text;
+    private final String text;
 
     public NextcloudInvalidRequestUrlException(String text) {
         this.text = text;

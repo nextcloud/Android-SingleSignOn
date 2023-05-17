@@ -20,6 +20,8 @@
 package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
@@ -32,7 +34,9 @@ public class NoCurrentAccountSelectedException extends SSOException {
     public void loadExceptionMessage(@NonNull Context context) {
         this.em = new ExceptionMessage(
                 context.getString(R.string.no_current_account_selected_exception_title),
-                context.getString(R.string.no_current_account_selected_exception_message)
+                context.getString(R.string.no_current_account_selected_exception_message),
+                R.string.no_current_account_selected_exception_action,
+                new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_sso_documentation)))
         );
     }
 }

@@ -191,7 +191,7 @@ public class AccountImporter {
                 Log.e(TAG, "[getSingleSignOnAccount]", e);
             }
         }
-        throw new NextcloudFilesAppAccountNotFoundException();
+        throw new NextcloudFilesAppAccountNotFoundException(accountName);
     }
 
     public static SingleSignOnAccount extractSingleSignOnAccountFromResponse(Intent intent, Context context) {
