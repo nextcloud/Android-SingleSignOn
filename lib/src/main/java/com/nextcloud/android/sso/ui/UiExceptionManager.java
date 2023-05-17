@@ -11,7 +11,6 @@ import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -20,20 +19,20 @@ import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
 import com.nextcloud.android.sso.exceptions.SSOException;
 
 /**
- *  Nextcloud SingleSignOn
+ * Nextcloud SingleSignOn
  *
- *  @author David Luhmer
- *
+ * @author David Luhmer
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -43,7 +42,8 @@ public final class UiExceptionManager {
     private static final int NOTIFICATION_ID = 0;
     private static final String CHANNEL_ID = "0";
 
-    private UiExceptionManager() { }
+    private UiExceptionManager() {
+    }
 
     public static void showDialogForException(Context context, SSOException exception) {
         showDialogForException(context, exception, null);
@@ -51,24 +51,23 @@ public final class UiExceptionManager {
 
     public static void showDialogForException(Context context, SSOException exception, DialogInterface.OnClickListener callback) {
         // Enable hyperlinks in message
-        final SpannableString message = new SpannableString(exception.getMessage(context));
+        final var message = new SpannableString(exception.getMessage(context));
         Linkify.addLinks(message, Linkify.ALL);
 
-        AlertDialog.Builder dialogBuilder = new MaterialAlertDialogBuilder(context)
+        final var builder = new MaterialAlertDialogBuilder(context)
                 .setTitle(exception.getTitle(context))
                 .setMessage(message)
-                .setPositiveButton(android.R.string.yes, callback)
-                .setIcon(android.R.drawable.ic_dialog_alert);
+                .setPositiveButton(android.R.string.yes, callback);
 
 
         if (exception instanceof NextcloudApiNotRespondingException && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            dialogBuilder.setNegativeButton(context.getString(R.string.nextcloud_files_api_not_responding_open_battery_optimization_settings), (dialogInterface, i) -> {
-                Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+            builder.setNegativeButton(context.getString(R.string.nextcloud_files_api_not_responding_open_battery_optimization_settings), (dialogInterface, i) -> {
+                final var intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
                 context.startActivity(intent);
             });
         }
 
-        AlertDialog dialog = dialogBuilder.create();
+        final var dialog = builder.create();
         dialog.show();
 
         // Make the textview clickable. Must be called after show()
@@ -76,18 +75,16 @@ public final class UiExceptionManager {
     }
 
     public static void showNotificationForException(Context context, SSOException exception) {
-        String title = exception.getTitle(context);
-        String message = exception.getMessage(context);
-        String tickerMessage = message;
+        final String title = exception.getTitle(context);
+        final String message = exception.getMessage(context);
 
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context, "")
-                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                        .setTicker(tickerMessage)
-                        .setContentTitle(title)
-                        //.setDefaults(Notification.DEFAULT_ALL)
-                        .setAutoCancel(true)
-                        .setContentText(message);
+        final var builder = new NotificationCompat.Builder(context, "")
+                .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                .setTicker(message)
+                .setContentTitle(title)
+                //.setDefaults(Notification.DEFAULT_ALL)
+                .setAutoCancel(true)
+                .setContentText(message);
 
 
         //Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);
@@ -95,16 +92,16 @@ public final class UiExceptionManager {
         //builder.setContentIntent(contentIntent);
 
         // Add as notification
-        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        final var notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_LOW;
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
+            final var channel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
             //mChannel.enableLights(true);
-            manager.createNotificationChannel(mChannel);
+            notificationManager.createNotificationChannel(channel);
             builder.setChannelId(CHANNEL_ID);
         }
 
-        manager.notify(NOTIFICATION_ID, builder.build());
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 }
