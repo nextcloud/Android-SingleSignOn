@@ -34,6 +34,7 @@ import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
+import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                  */
                 AccountImporter.pickNewAccount(this);
             } catch (NextcloudFilesAppNotInstalledException | AndroidGetAccountsPermissionNotGranted e) {
-                e.printStackTrace();
+                UiExceptionManager.showDialogForException(this, e);
             }
         });
 
