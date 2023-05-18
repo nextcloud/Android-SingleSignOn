@@ -26,7 +26,7 @@ import java.io.Serializable;
 /**
  * @deprecated Construct {@link SSOException} directly providing message and title.
  */
-@Deprecated
+@Deprecated(forRemoval = true)
 public class ExceptionMessage implements Serializable {
 
     public String title;

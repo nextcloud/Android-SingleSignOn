@@ -29,6 +29,14 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudFilesAppAccountNotFoundException extends SSOException {
 
+    /**
+     * @deprecated Use {@link #NextcloudFilesAppAccountNotFoundException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudFilesAppAccountNotFoundException() {
+        this(getContext());
+    }
+
     public NextcloudFilesAppAccountNotFoundException(@NonNull Context context) {
         this(context, null);
     }

@@ -29,6 +29,14 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudUnsupportedMethodException extends SSOException {
 
+    /**
+     * @deprecated Use {@link #NextcloudUnsupportedMethodException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudUnsupportedMethodException() {
+        this(getContext());
+    }
+
     public NextcloudUnsupportedMethodException(@NonNull Context context) {
         super(
                 context.getString(R.string.nextcloud_unsupported_method_message),

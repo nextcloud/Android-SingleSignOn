@@ -27,6 +27,14 @@ import com.nextcloud.android.sso.R;
 
 public class AndroidGetAccountsPermissionNotGranted extends SSOException {
 
+    /**
+     * @deprecated Use {@link #AndroidGetAccountsPermissionNotGranted(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public AndroidGetAccountsPermissionNotGranted() {
+        this(getContext());
+    }
+
     public AndroidGetAccountsPermissionNotGranted(@NonNull Context context) {
         super(
                 context.getString(R.string.android_get_accounts_permission_not_granted_exception_message),

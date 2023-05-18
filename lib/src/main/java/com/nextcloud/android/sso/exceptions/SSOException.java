@@ -79,6 +79,29 @@ public class SSOException extends Exception {
         this.actionIntent = actionIntent;
     }
 
+    /**
+     * @deprecated No need to call this method anymore. Message is already loaded in constructor.
+     */
+    @Deprecated(forRemoval = true)
+    public void loadExceptionMessage(@NonNull Context context) {
+        // Nothing to do anymore
+    }
+
+    /**
+     * @deprecated Use {@link #getTitleRes()}
+     */
+    @Deprecated(forRemoval = true)
+    public String getTitle(@NonNull Context context) {
+        return getTitleRes().map(context::getString).orElse("");
+    }
+
+    /**
+     * @deprecated Use {@link #getMessage()}
+     */
+    @Deprecated(forRemoval = true)
+    public String getMessage(@SuppressWarnings("unused") @NonNull Context context) {
+        return getMessage();
+    }
 
     public Optional<Integer> getTitleRes() {
         return Optional.ofNullable(titleRes);
@@ -92,20 +115,25 @@ public class SSOException extends Exception {
         return Optional.ofNullable(actionIntent);
     }
 
+    @Deprecated(forRemoval = true)
+    protected static Context getContext() {
+        try {
+            @SuppressLint("PrivateApi") final var context = (Context) Class.forName("android.app.ActivityThread")
+                    .getMethod("currentApplication")
+                    .invoke(null, (Object[]) null);
+            return context;
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                 IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * @deprecated Use {@link #parseNextcloudCustomException(Context, Exception)}
      */
     @Deprecated(forRemoval = true)
     public static SSOException parseNextcloudCustomException(@Nullable Exception exception) {
-        try {
-            @SuppressLint("PrivateApi") final var context = (Context) Class.forName("android.app.ActivityThread")
-                    .getMethod("currentApplication")
-                    .invoke(null, (Object[]) null);
-            return parseNextcloudCustomException(context, exception);
-        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-                 IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        return parseNextcloudCustomException(getContext(), exception);
     }
 
     public static SSOException parseNextcloudCustomException(@NonNull Context context, @Nullable Exception exception) {

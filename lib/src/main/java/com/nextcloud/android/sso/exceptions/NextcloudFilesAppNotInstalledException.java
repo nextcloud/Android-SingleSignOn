@@ -29,6 +29,14 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudFilesAppNotInstalledException extends SSOException {
 
+    /**
+     * @deprecated Use {@link #NextcloudFilesAppNotInstalledException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudFilesAppNotInstalledException() {
+        this(getContext());
+    }
+
     public NextcloudFilesAppNotInstalledException(@NonNull Context context) {
         super(
                 context.getString(R.string.nextcloud_files_app_not_installed_message),

@@ -28,6 +28,14 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudInvalidRequestUrlException extends SSOException {
 
+    /**
+     * @deprecated Use {@link #NextcloudInvalidRequestUrlException(Context, Throwable)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudInvalidRequestUrlException(String text) {
+        this(getContext(), new Throwable(text));
+    }
+
     public NextcloudInvalidRequestUrlException(@NonNull Context context, @Nullable Throwable cause) {
         super(
                 context.getString(R.string.nextcloud_invalid_request_url_message, cause == null ? context.getString(R.string.unknown_error_title) : cause.getMessage()),

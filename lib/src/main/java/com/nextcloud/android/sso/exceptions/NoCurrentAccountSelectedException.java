@@ -29,6 +29,14 @@ import com.nextcloud.android.sso.R;
 
 public class NoCurrentAccountSelectedException extends SSOException {
 
+    /**
+     * @deprecated Use {@link #NoCurrentAccountSelectedException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NoCurrentAccountSelectedException() {
+        this(getContext());
+    }
+
     public NoCurrentAccountSelectedException(@NonNull Context context) {
         super(
                 context.getString(R.string.no_current_account_selected_exception_message),

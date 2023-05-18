@@ -30,6 +30,14 @@ public class NextcloudHttpRequestFailedException extends SSOException {
 
     private final int statusCode;
 
+    /**
+     * @deprecated Use {@link #NextcloudHttpRequestFailedException(Context, int, Throwable)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudHttpRequestFailedException(int statusCode, Throwable cause) {
+        this(getContext(), statusCode, cause);
+    }
+
     public NextcloudHttpRequestFailedException(@NonNull Context context, int statusCode, @Nullable Throwable cause) {
         super(
                 context.getString(R.string.nextcloud_http_request_failed_message, statusCode),
