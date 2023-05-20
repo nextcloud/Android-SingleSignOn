@@ -4,18 +4,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.provider.Settings;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
 import com.nextcloud.android.sso.exceptions.SSOException;
 
 /**
@@ -45,46 +41,58 @@ public final class UiExceptionManager {
     private UiExceptionManager() {
     }
 
-    public static void showDialogForException(Context context, SSOException exception) {
-        showDialogForException(context, exception, null);
+    public static void showDialogForException(@NonNull Context context,
+                                              @NonNull SSOException exception) {
+        final int actionText = exception.getPrimaryActionTextRes().orElse(android.R.string.yes);
+        final var optionalAction = exception.getPrimaryAction();
+
+        if (optionalAction.isPresent()) {
+            showDialogForException(context, exception, actionText, (dialog, which) -> context.startActivity(optionalAction.get()));
+        } else {
+            showDialogForException(context, exception, actionText, null);
+        }
     }
 
-    public static void showDialogForException(Context context, SSOException exception, DialogInterface.OnClickListener callback) {
-        // Enable hyperlinks in message
-        final var message = new SpannableString(exception.getMessage(context));
-        Linkify.addLinks(message, Linkify.ALL);
+    /**
+     * @deprecated Use {@link #showDialogForException(Context, SSOException)} or {@link #showDialogForException(Context, SSOException, int, DialogInterface.OnClickListener)}
+     */
+    @Deprecated(forRemoval = true)
+    public static void showDialogForException(@NonNull Context context, @NonNull SSOException exception, @Nullable DialogInterface.OnClickListener callback) {
+        showDialogForException(context, exception, android.R.string.yes, callback);
+    }
 
+    /**
+     * Overrides {@link SSOException#getPrimaryAction()} with a custom callback.
+     */
+    public static void showDialogForException(@NonNull Context context, @NonNull SSOException exception, @StringRes int actionText, @Nullable DialogInterface.OnClickListener callback) {
         final var builder = new MaterialAlertDialogBuilder(context)
-                .setTitle(exception.getTitle(context))
-                .setMessage(message)
-                .setPositiveButton(android.R.string.yes, callback);
+                .setMessage(exception.getMessage());
 
+        exception.getTitleRes().ifPresent(builder::setTitle);
 
-        if (exception instanceof NextcloudApiNotRespondingException && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            builder.setNegativeButton(context.getString(R.string.nextcloud_files_api_not_responding_open_battery_optimization_settings), (dialogInterface, i) -> {
-                final var intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
-                context.startActivity(intent);
-            });
+        if (callback == null) {
+            builder.setPositiveButton(R.string.close, null);
+        } else {
+            builder.setPositiveButton(actionText, callback);
+            builder.setNeutralButton(R.string.close, null);
         }
 
-        final var dialog = builder.create();
-        dialog.show();
-
-        // Make the textview clickable. Must be called after show()
-        ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        builder.create().show();
     }
 
-    public static void showNotificationForException(Context context, SSOException exception) {
-        final String title = exception.getTitle(context);
-        final String message = exception.getMessage(context);
+    public static void showNotificationForException(@NonNull Context context, @NonNull SSOException exception) {
+        final String message = exception.getMessage();
 
         final var builder = new NotificationCompat.Builder(context, "")
                 .setSmallIcon(android.R.drawable.ic_dialog_alert)
                 .setTicker(message)
-                .setContentTitle(title)
                 //.setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true)
                 .setContentText(message);
+
+        exception.getTitleRes()
+                .map(context::getString)
+                .ifPresent(builder::setContentTitle);
 
 
         //Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);

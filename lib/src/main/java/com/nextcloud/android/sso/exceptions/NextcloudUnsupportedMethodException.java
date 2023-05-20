@@ -20,19 +20,29 @@
 package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudUnsupportedMethodException extends SSOException {
 
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_unsupported_method_title),
-                context.getString(R.string.nextcloud_unsupported_method_message)
+    /**
+     * @deprecated Use {@link #NextcloudUnsupportedMethodException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudUnsupportedMethodException() {
+        this(getContext());
+    }
+
+    public NextcloudUnsupportedMethodException(@NonNull Context context) {
+        super(
+                context.getString(R.string.nextcloud_unsupported_method_message),
+                R.string.nextcloud_unsupported_method_title,
+                R.string.nextcloud_unsupported_method_action,
+                new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_sso_create_issue)))
         );
     }
 }

@@ -1,5 +1,7 @@
 package com.nextcloud.android.sso.model;
 
+import com.nextcloud.android.sso.exceptions.SSOException;
+
 import java.io.Serializable;
 
 /**
@@ -21,6 +23,10 @@ import java.io.Serializable;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * @deprecated Construct {@link SSOException} directly providing message and title.
+ */
+@Deprecated(forRemoval = true)
 public class ExceptionMessage implements Serializable {
 
     public String title;

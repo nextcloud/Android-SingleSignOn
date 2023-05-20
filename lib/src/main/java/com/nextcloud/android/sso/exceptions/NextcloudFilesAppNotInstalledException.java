@@ -20,21 +20,29 @@
 package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudFilesAppNotInstalledException extends SSOException {
 
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_files_app_not_installed_title),
-                context.getString(
-                        R.string.nextcloud_files_app_not_installed_message,
-                        "https://play.google.com/store/apps/details?id=com.nextcloud.client")
+    /**
+     * @deprecated Use {@link #NextcloudFilesAppNotInstalledException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudFilesAppNotInstalledException() {
+        this(getContext());
+    }
+
+    public NextcloudFilesAppNotInstalledException(@NonNull Context context) {
+        super(
+                context.getString(R.string.nextcloud_files_app_not_installed_message),
+                R.string.nextcloud_files_app_not_installed_title,
+                R.string.nextcloud_files_app_not_installed_action,
+                new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace)))
         );
     }
 }

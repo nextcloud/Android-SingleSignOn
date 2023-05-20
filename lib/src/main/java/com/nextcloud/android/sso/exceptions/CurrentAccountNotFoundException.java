@@ -24,15 +24,25 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
+/**
+ * @deprecated Will be removed in a future release because it is not used anymore within the library
+ */
+@Deprecated(forRemoval = true)
 public class CurrentAccountNotFoundException extends SSOException {
 
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-            context.getString(R.string.current_account_not_found_exception_title),
-            context.getString(R.string.current_account_not_found_exception_message)
+    /**
+     * @deprecated Use {@link #CurrentAccountNotFoundException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public CurrentAccountNotFoundException() {
+        this(getContext());
+    }
+
+    public CurrentAccountNotFoundException(@NonNull Context context) {
+        super(
+                context.getString(R.string.nextcloud_files_app_account_not_found_title),
+                R.string.nextcloud_files_app_account_not_found_message
         );
     }
 }

@@ -20,22 +20,30 @@
 package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 
 public class NextcloudFilesAppNotSupportedException extends SSOException {
 
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_files_app_not_supported_title),
-                context.getString(
-                        R.string.nextcloud_files_app_not_supported_message,
-                        "https://play.google.com/store/apps/details?id=com.nextcloud.client")
+    /**
+     * @deprecated Use {@link #NextcloudFilesAppNotSupportedException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudFilesAppNotSupportedException() {
+        this(getContext());
+    }
+
+    public NextcloudFilesAppNotSupportedException(@NonNull Context context) {
+        super(
+                context.getString(R.string.nextcloud_files_app_not_supported_message),
+                R.string.nextcloud_files_app_not_supported_title,
+                R.string.nextcloud_files_app_not_supported_action,
+                new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace)))
         );
     }
 }
