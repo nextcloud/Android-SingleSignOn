@@ -38,13 +38,15 @@ public abstract class NetworkRequest implements AutoCloseable {
 
     protected void connectApiWithBackoff() {
         Log.d(TAG, "[connectApiWithBackoff] connectApiWithBackoff() called from Thread: [" + Thread.currentThread().getName() + "]");
-        new ExponentialBackoff(1_000, 5_000, 2, 5, Looper.getMainLooper(), () -> {
+        try (final var backoff = new ExponentialBackoff(1_000, 5_000, 2, 5, Looper.getMainLooper(), () -> {
             Log.d(TAG, "[connectApiWithBackoff] trying to connect..");
             connect(mAccount.type);
         }, () -> {
             Log.e(TAG, "Unable to recover API");
             close();
-        }).start();
+        })) {
+            backoff.start();
+        }
     }
 
     @Override
