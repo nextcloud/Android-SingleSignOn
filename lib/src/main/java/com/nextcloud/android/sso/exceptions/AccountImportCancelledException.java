@@ -27,14 +27,6 @@ import com.nextcloud.android.sso.R;
 
 public class AccountImportCancelledException extends SSOException {
 
-    /**
-     * @deprecated Use {@link #AccountImportCancelledException(Context)}
-     */
-    @Deprecated(forRemoval = true)
-    public AccountImportCancelledException() {
-        this(getContext());
-    }
-
     public AccountImportCancelledException(@NonNull Context context) {
         super(
                 context.getString(R.string.sso_canceled_message),

@@ -27,14 +27,6 @@ import com.nextcloud.android.sso.R;
 
 public class TokenMismatchException extends SSOException {
 
-    /**
-     * @deprecated Use {@link #TokenMismatchException(Context)}
-     */
-    @Deprecated(forRemoval = true)
-    public TokenMismatchException() {
-        this(getContext());
-    }
-
     public TokenMismatchException(@NonNull Context context) {
         super(context.getString(R.string.token_mismatch_message), R.string.token_mismatch_title);
     }

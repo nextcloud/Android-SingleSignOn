@@ -67,14 +67,6 @@ public final class SingleAccountHelper {
     }
 
     /**
-     * @deprecated Replaced by {@link #commitCurrentAccount(Context, String)}
-     */
-    @Deprecated(forRemoval = true)
-    public static void setCurrentAccount(Context context, String accountName) {
-        commitCurrentAccount(context, accountName);
-    }
-
-    /**
      * Warning: This call is <em>synchronous</em>.
      * Consider using {@link #applyCurrentAccount(Context, String)} if possible.
      */
@@ -102,24 +94,4 @@ public final class SingleAccountHelper {
         AccountImporter.authenticateSingleSignAccount(activity, getCurrentSingleSignOnAccount(activity));
     }
 
-    /**
-     * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
-     */
-    @Deprecated(forRemoval = true)
-    public static void registerSharedPreferenceChangeListener(Context context, 
-                                                              SharedPreferences.OnSharedPreferenceChangeListener listener) {
-        AccountImporter.getSharedPreferences(context)
-                .registerOnSharedPreferenceChangeListener(listener);
-    }
-
-    /**
-     * @deprecated Use {@link #getCurrentSingleSignOnAccount$(Context)} which is lifecycle aware
-     */
-    @Deprecated(forRemoval = true)
-    public static void unregisterSharedPreferenceChangeListener(Context context,
-                                                                SharedPreferences.OnSharedPreferenceChangeListener listener) {
-        AccountImporter.getSharedPreferences(context)
-                .unregisterOnSharedPreferenceChangeListener(listener);
-        
-    }
 }

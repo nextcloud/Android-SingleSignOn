@@ -54,17 +54,12 @@ public final class UiExceptionManager {
     }
 
     /**
-     * @deprecated Use {@link #showDialogForException(Context, SSOException)} or {@link #showDialogForException(Context, SSOException, int, DialogInterface.OnClickListener)}
-     */
-    @Deprecated(forRemoval = true)
-    public static void showDialogForException(@NonNull Context context, @NonNull SSOException exception, @Nullable DialogInterface.OnClickListener callback) {
-        showDialogForException(context, exception, android.R.string.yes, callback);
-    }
-
-    /**
      * Overrides {@link SSOException#getPrimaryAction()} with a custom callback.
      */
-    public static void showDialogForException(@NonNull Context context, @NonNull SSOException exception, @StringRes int actionText, @Nullable DialogInterface.OnClickListener callback) {
+    public static void showDialogForException(@NonNull Context context,
+                                              @NonNull SSOException exception,
+                                              @StringRes int actionText,
+                                              @Nullable DialogInterface.OnClickListener callback) {
         final var builder = new MaterialAlertDialogBuilder(context)
                 .setMessage(exception.getMessage());
 
@@ -80,7 +75,8 @@ public final class UiExceptionManager {
         builder.create().show();
     }
 
-    public static void showNotificationForException(@NonNull Context context, @NonNull SSOException exception) {
+    public static void showNotificationForException(@NonNull Context context,
+                                                    @NonNull SSOException exception) {
         final String message = exception.getMessage();
 
         final var builder = new NotificationCompat.Builder(context, "")

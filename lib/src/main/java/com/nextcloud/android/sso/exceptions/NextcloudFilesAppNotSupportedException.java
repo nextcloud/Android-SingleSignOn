@@ -30,14 +30,6 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudFilesAppNotSupportedException extends SSOException {
 
-    /**
-     * @deprecated Use {@link #NextcloudFilesAppNotSupportedException(Context)}
-     */
-    @Deprecated(forRemoval = true)
-    public NextcloudFilesAppNotSupportedException() {
-        this(getContext());
-    }
-
     public NextcloudFilesAppNotSupportedException(@NonNull Context context) {
         super(
                 context.getString(R.string.nextcloud_files_app_not_supported_message),

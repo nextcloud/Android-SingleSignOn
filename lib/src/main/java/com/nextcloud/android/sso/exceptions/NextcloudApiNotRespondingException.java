@@ -30,14 +30,6 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudApiNotRespondingException extends SSOException {
 
-    /**
-     * @deprecated Use {@link #NextcloudApiNotRespondingException(Context)}
-     */
-    @Deprecated(forRemoval = true)
-    public NextcloudApiNotRespondingException() {
-        this(getContext());
-    }
-
     public NextcloudApiNotRespondingException(@NonNull Context context) {
         super(
                 context.getString(R.string.nextcloud_files_api_not_responding_message),

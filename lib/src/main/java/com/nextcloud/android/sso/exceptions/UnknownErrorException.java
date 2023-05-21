@@ -23,14 +23,6 @@ import com.nextcloud.android.sso.R;
 
 public class UnknownErrorException extends SSOException {
 
-    /**
-     * @deprecated Use {@link #UnknownErrorException(String)}
-     */
-    @Deprecated(forRemoval = true)
-    public UnknownErrorException() {
-        super();
-    }
-
     public UnknownErrorException(String message) {
         super(message, R.string.unknown_error_title);
     }

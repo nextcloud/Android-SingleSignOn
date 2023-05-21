@@ -54,14 +54,6 @@ public abstract class NetworkRequest implements AutoCloseable {
         mDestroyed = true;
     }
 
-    /**
-     * @deprecated Use {@link #close()}
-     */
-    @Deprecated(forRemoval = true)
-    protected void stop() {
-        close();
-    }
-
     protected String getAccountName() {
         return mAccount.name;
     }
