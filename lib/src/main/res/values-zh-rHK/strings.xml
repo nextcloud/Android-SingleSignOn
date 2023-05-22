@@ -1,11 +1,16 @@
 <resources>
     <string name="close">關閉</string>
 
+    <string name="unknown_error_title">錯誤不詳</string>
+
     <string name="no_current_account_selected_exception_action">說明書</string>
 
     <string name="token_mismatch_title">認證錯誤</string>
     <string name="token_mismatch_message">提供的驗證憑證不符，或是不允許此名稱的軟體包執行此操作。</string>
 
+    <string name="nextcloud_files_app_not_installed_action">安裝</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">找不到賬戶</string>
     <string name="nextcloud_http_request_failed_title">請求失敗</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP 請求失敗，HTTP 狀態碼：%1$d</string>
 

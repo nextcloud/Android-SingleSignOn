@@ -1,8 +1,16 @@
 <resources>
+    <string name="close">Затвори</string>
+
+    <string name="unknown_error_title">Непозната грешка</string>
+
     <string name="no_current_account_selected_exception_action">Документација</string>
 
+    <string name="token_mismatch_title">Грешка при провери идентитета</string>
     <string name="token_mismatch_message">Токен за проверу идентитета се не поклапа или имену овог пакета није дозвољено да изврши ову радњу</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Инсталирај</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Налог није нађен</string>
     <string name="nextcloud_http_request_failed_title">Није успео захтев</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">ХТТП захтев није успео са статусом грешке: %1$d</string>
 

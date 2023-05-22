@@ -1,10 +1,22 @@
 <resources>
+    <string name="close">Sluit</string>
+
+    <string name="unknown_error_title">Onbekende fout</string>
+
     <string name="no_current_account_selected_exception_action">Documentatie</string>
 
+    <string name="token_mismatch_title">Authenticatiefout</string>
     <string name="token_mismatch_message">Het opgegeven authenticatie token komt niet overeen of de packagenaam is niet toegestaan om deze actie uit te voeren</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Installeren</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Account niet gevonden</string>
     <string name="nextcloud_http_request_failed_title">Aanvraag mislukt</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP aanvraag mislukt met HTTP status-code: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Contact</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Update</string>
 
     <string name="nextcloud_files_api_not_responding_action">Instellingen</string>
 

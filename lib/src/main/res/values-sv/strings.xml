@@ -1,8 +1,16 @@
 <resources>
+    <string name="close">Stäng</string>
+
+    <string name="unknown_error_title">Okänt fel</string>
+
     <string name="no_current_account_selected_exception_action">Dokumentation</string>
 
+    <string name="token_mismatch_title">Fel vid autentisering</string>
     <string name="token_mismatch_message">Förutsatt att autentiserings-token inte matchar eller paketnamnet inte är tillåtet att utföra denna åtgärd</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Installera</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Kontot hittades inte</string>
     <string name="nextcloud_http_request_failed_title">Förfrågan misslyckades</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-förfrågan misslyckades med HTTP-statuskod: %1$d</string>
 

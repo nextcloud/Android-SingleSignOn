@@ -1,8 +1,24 @@
 <resources>
+    <string name="close">閉じる</string>
+
+    <string name="unknown_error_title">不明なエラー</string>
+
+    <string name="no_current_account_selected_exception_action">ドキュメント</string>
+
+    <string name="token_mismatch_title">認証エラー</string>
     <string name="token_mismatch_message">提供された認証トークンが一致しないか、パッケージ名がこの操作を実行できません</string>
 
+    <string name="nextcloud_files_app_not_installed_action">インストール</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">アカウントが見つかりません</string>
     <string name="nextcloud_http_request_failed_title">リクエストに失敗しました</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTPステータスコード：%1$d でHTTP要求が失敗しました</string>
+
+    <string name="nextcloud_unsupported_method_action">連絡先</string>
+
+    <string name="nextcloud_files_app_not_supported_action">更新</string>
+
+    <string name="nextcloud_files_api_not_responding_action">設定</string>
 
     <string name="sso_canceled">SSOインポートをキャンセルしました</string>
     <string name="sso_canceled_message">SSOインポートがユーザーによりキャンセルされました</string>

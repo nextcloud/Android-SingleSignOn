@@ -1,8 +1,24 @@
 <resources>
+    <string name="close">Užverti</string>
+
+    <string name="unknown_error_title">Nežinoma klaida</string>
+
+    <string name="no_current_account_selected_exception_action">Dokumentacija</string>
+
+    <string name="token_mismatch_title">Tapatybės nustatymo klaida</string>
     <string name="token_mismatch_message">Naudojamas prieigos raktas nesutampa arba įskiepiui su šiuo pavadinimu nėra leidžiama atlikti šį veiksmą</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Įdiegti</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Paskyra nerasta</string>
     <string name="nextcloud_http_request_failed_title">Užklausa nepavyko</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP užklausa patyrė nesėkmę su HTTP būsenos kodu: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Adresatas</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Atnaujinti</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Nustatymai</string>
 
     <string name="sso_canceled">SSO įkėlimas nutrauktas</string>
     <string name="sso_canceled_message">SSO įkėlimą nutraukė naudotojas</string>

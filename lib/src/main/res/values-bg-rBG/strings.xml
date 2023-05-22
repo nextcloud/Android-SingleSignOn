@@ -1,7 +1,24 @@
 <resources>
+    <string name="close">Затваряне</string>
+
+    <string name="unknown_error_title">Неизвестна грешка</string>
+
+    <string name="no_current_account_selected_exception_action">Документация</string>
+
+    <string name="token_mismatch_title">Грешка при удостоверяването</string>
     <string name="token_mismatch_message">Предоставеният маркер за удостоверяване не съвпада или името на пакета не може да изпълнява това действие</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Инсталиране</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Няма намерен профил</string>
+    <string name="nextcloud_http_request_failed_title">Неуспешна заявка</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP заявката беше неуспешна с HTTP статус-код: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Контакт</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Обновяване</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Настройки</string>
 
     <string name="sso_canceled">Импортирането на SSO е отказано</string>
     <string name="sso_canceled_message">Импортирането на SSO е отказано от потребител</string>

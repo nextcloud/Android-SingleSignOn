@@ -1,26 +1,26 @@
 <resources>
-    <string name="unknown_error">Óþekkt villa</string>
+    <string name="close">Loka</string>
 
-    <string name="no_current_account_selected_exception_title">Aðvörun</string>
-    <string name="no_current_account_selected_exception_message">Enginn notandaaðgangur ennþá uppgefinn</string>
+    <string name="unknown_error_title">Óþekkt villa</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Villa</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Til að geta notað Nextcloud Single-Sign-On (SSO) eins-skiptis-innskráningu á þessu tæki, þarft þú að gefa heimild fyrir aðgang að notandaaðgöngum þínum</string>
+    <string name="no_current_account_selected_exception_action">Hjálparskjöl</string>
 
-    <string name="current_account_not_found_exception_title">Aðvörun</string>
-    <string name="token_mismatch_title">Villa</string>
+    <string name="token_mismatch_title">Villa við auðkenningu</string>
     <string name="token_mismatch_message">Uppgefið auðkenningarteikn samsvarar ekki eða að pakkaheiti er ekki leyfilegt að framkvæma þessa aðgerð</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Villa</string>
-    <string name="nextcloud_files_app_account_not_found_title">Villa</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Villa</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Þú þarft að samþykkja umbeðnar heimildir til að geta notað eins-þreps eiginleikann.</string>
+    <string name="nextcloud_files_app_not_installed_action">Setja upp</string>
 
-    <string name="nextcloud_http_request_failed_title">Villa</string>
+    <string name="nextcloud_files_app_account_not_found_title">Notandaaðgangur fannst ekki</string>
+    <string name="nextcloud_http_request_failed_title">Beiðni mistókst</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-beiðni brást með HTTP-stöðukóðanum: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Villa</string>
-    <string name="nextcloud_files_api_not_responding_title">Villa</string>
+    <string name="nextcloud_unsupported_method_action">Tengiliður</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Uppfæra</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Stillingar</string>
+
     <string name="sso_canceled">Hætt við innflutning á SSO</string>
     <string name="sso_canceled_message">Notandi hætti við innflutning á SSO</string>
-</resources>
+
+    </resources>

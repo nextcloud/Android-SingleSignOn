@@ -1,10 +1,22 @@
 <resources>
+    <string name="close">Zamknij</string>
+
+    <string name="unknown_error_title">Nieznany błąd</string>
+
     <string name="no_current_account_selected_exception_action">Dokumentacja</string>
 
+    <string name="token_mismatch_title">Błąd uwierzytelniania</string>
     <string name="token_mismatch_message">Podany token uwierzytelniania nie pasuje lub nazwa pakietu nie może wykonać tej akcji</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Zainstaluj</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Nie znaleziono konta</string>
     <string name="nextcloud_http_request_failed_title">Żądanie nie powiodło się</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Zapytanie HTTP nie powiodło się z kodem: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Kontakt</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Aktualizuj</string>
 
     <string name="nextcloud_files_api_not_responding_action">Ustawienia</string>
 

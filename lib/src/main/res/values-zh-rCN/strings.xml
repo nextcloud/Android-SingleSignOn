@@ -1,11 +1,16 @@
 <resources>
     <string name="close">关闭</string>
 
+    <string name="unknown_error_title">未知错误</string>
+
     <string name="no_current_account_selected_exception_action">文档</string>
 
     <string name="token_mismatch_title">认证出错</string>
     <string name="token_mismatch_message">提供验证口令不匹配，或者不允许此文件执行此操作</string>
 
+    <string name="nextcloud_files_app_not_installed_action">安装</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">未找到账户</string>
     <string name="nextcloud_http_request_failed_title">请求失败</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP 请求失败，HTTP 错误代码：%1$d</string>
 

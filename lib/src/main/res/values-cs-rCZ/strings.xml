@@ -1,7 +1,24 @@
 <resources>
+    <string name="close">Zavřít</string>
+
+    <string name="unknown_error_title">Neznámá chyba</string>
+
+    <string name="no_current_account_selected_exception_action">Dokumentace</string>
+
+    <string name="token_mismatch_title">Chyba při ověřování se</string>
     <string name="token_mismatch_message">Poskytnutý ověřovací token se neshoduje nebo tomuto balíčku není umožněno provést tuto akci</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Nainstalovat</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Účet nenalezen</string>
+    <string name="nextcloud_http_request_failed_title">Požadavek se nezdařil</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP požadavek se nezdařil se stavovým kódem: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Kontakt</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Aktualizovat</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Nastavení</string>
 
     <string name="sso_canceled">Import SSO zrušen</string>
     <string name="sso_canceled_message">Import SSO byl zrušen uživatelem</string>

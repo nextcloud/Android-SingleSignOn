@@ -1,7 +1,24 @@
 <resources>
+    <string name="close">Sulje</string>
+
+    <string name="unknown_error_title">Tuntematon virhe</string>
+
+    <string name="no_current_account_selected_exception_action">Dokumentaatio</string>
+
+    <string name="token_mismatch_title">Tunnistautumisvirhe</string>
     <string name="token_mismatch_message">Annettu todennusavain ei vastaa tai paketin ei ole sallittua suorittaa tätä toimintoa</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Asenna</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Tiliä ei löydy</string>
+    <string name="nextcloud_http_request_failed_title">Pyyntö epäonnistui</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-pyyntö epäonnistui HTTP-tilakoodilla: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Yhteystieto</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Päivitä</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Asetukset</string>
 
     <string name="sso_canceled">SSO-tuonti peruttu</string>
     <string name="sso_canceled_message">SSO-tuonti peruttiin käyttäjän toimesta</string>

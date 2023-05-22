@@ -1,10 +1,22 @@
 <resources>
+    <string name="close">Fechar</string>
+
+    <string name="unknown_error_title">Erro desconhecido</string>
+
     <string name="no_current_account_selected_exception_action">Documentação</string>
 
+    <string name="token_mismatch_title">Erro de autenticação</string>
     <string name="token_mismatch_message">O token de autenticação fornecido não corresponde ou o nome do pacote não tem permissão para executar esta ação</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Instalar</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Conta não encontrada</string>
     <string name="nextcloud_http_request_failed_title">Erro na solicitação</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">A requisição HTTP falhou com status-code HTTP : %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Contato</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Atualizar</string>
 
     <string name="nextcloud_files_api_not_responding_action">Configurações</string>
 

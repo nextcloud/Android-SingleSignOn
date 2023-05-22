@@ -1,8 +1,24 @@
 <resources>
+    <string name="close">Bezárás</string>
+
+    <string name="unknown_error_title">Ismeretlen hiba</string>
+
+    <string name="no_current_account_selected_exception_action">Dokumentáció</string>
+
+    <string name="token_mismatch_title">Hitelesítési hiba</string>
     <string name="token_mismatch_message">A megadott hitelesítési token nem egyezik meg, vagy a csomagnév nem engedélyezett ebben a környezeteben</string>
 
+    <string name="nextcloud_files_app_not_installed_action">Telepítés</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">A fiók nem található</string>
     <string name="nextcloud_http_request_failed_title">Sikertelen kérés</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">A HTTP kérés sikertelen, a kapott HTTP állapotkód: %1$d</string>
+
+    <string name="nextcloud_unsupported_method_action">Kapcsolat</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Frissítés</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Beállítások</string>
 
     <string name="sso_canceled">SSO importálás megszakítva</string>
     <string name="sso_canceled_message">SSO importálás megszakítva a felhasználó által</string>

@@ -1,38 +1,26 @@
 <resources>
-    <string name="unknown_error">Error desconegut</string>
+    <string name="close">Tanca</string>
 
-    <string name="no_current_account_selected_exception_title">Avís</string>
-    <string name="no_current_account_selected_exception_message">Encara no heu seleccionat cap compte.</string>
+    <string name="unknown_error_title">Error desconegut</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Error</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Per a poder usar el sistema d\'Autenticació Única a Nextcloud en aquest dispositiu, heu de donar permís per accedir als vostres comptes</string>
+    <string name="no_current_account_selected_exception_action">Documentació</string>
 
-    <string name="current_account_not_found_exception_title">Avís</string>
-    <string name="current_account_not_found_exception_message">No s\'ha trobat el compte seleccionat. Alguna cosa ha fallat.</string>
-
-    <string name="token_mismatch_title">Error</string>
+    <string name="token_mismatch_title">Error d\'autenticació</string>
     <string name="token_mismatch_message">L\'identificador (token) d\'autentificació que heu proporcionat no coincideix o el nom del paquet no té permís per realitzar aquesta acció</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'aplicació Fitxers de Nextcloud no està instal·lada. Si us plau, instal·leu-la: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_action">Instal·la</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Error</string>
-    <string name="nextcloud_files_app_account_not_found_message">No s\'ha trobat el compte a l\'aplicació de fitxers de Nextcloud</string>
-
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Heu d\'acceptar els permisos sol·licitats per fer servir la funcionalitat d\'inici de sessió única.</string>
-
-    <string name="nextcloud_http_request_failed_title">Error</string>
+    <string name="nextcloud_files_app_account_not_found_title">No s\'ha trobat el compte</string>
+    <string name="nextcloud_http_request_failed_title">La petició ha fallat</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Ha fallat la petició HTTP amb el codi d\'estat HTTP: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">La vostra aplicació de fitxers nextcloud no disposa de l\'inici de sessió única. Si us plau, actualitzeu-la: %1$s</string>
+    <string name="nextcloud_unsupported_method_action">Contacte</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Error</string>
-    <string name="nextcloud_files_api_not_responding_message">L\'API d\'aplicació de fitxers Nextcloud no respon. És molt probable que això es degui a les optimitzacions de la bateria del telèfon. Intenta inhabilitar l\'optimització de la bateria per a ambdues aplicacions (Nextcloud Android i aquesta aplicació). En tots els altres casos intenteu esborrar l\'emmagatzematge de les dues aplicacions.</string>
+    <string name="nextcloud_files_app_not_supported_action">Actualització</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Paràmetres opcionals de bateria</string>
+    <string name="nextcloud_files_api_not_responding_action">Paràmetres</string>
 
     <string name="sso_canceled">S\'ha cancel·lat la importació SSO</string>
     <string name="sso_canceled_message">L\'usuari ha cancel·lat la importació SSO</string>
-</resources>
+
+    </resources>
