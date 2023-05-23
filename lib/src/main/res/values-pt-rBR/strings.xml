@@ -3,21 +3,36 @@
 
     <string name="unknown_error_title">Erro desconhecido</string>
 
+    <string name="no_current_account_selected_exception_title">Nenhuma conta selecionada</string>
+    <string name="no_current_account_selected_exception_message">Você precisa definir a conta atual antes de realizar esta operação. Por favor, consulte a documentação para o uso adequado.</string>
     <string name="no_current_account_selected_exception_action">Documentação</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Permissão não concedida</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Para usar o Nextcloud Single Sign On neste dispositivo, você precisa conceder permissão para acessar suas contas</string>
 
     <string name="token_mismatch_title">Erro de autenticação</string>
     <string name="token_mismatch_message">O token de autenticação fornecido não corresponde ou o nome do pacote não tem permissão para executar esta ação</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files não está instalado</string>
+    <string name="nextcloud_files_app_not_installed_message">Este aplicativo depende do aplicativo Nextcloud Files. Por favor, instale-o para usar este aplicativo.</string>
     <string name="nextcloud_files_app_not_installed_action">Instalar</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Conta não encontrada</string>
+    <string name="nextcloud_files_app_account_not_found_message">A conta solicitada não foi encontrada no aplicativo Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Permissão não concedida</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Você deve aceitar as permissões solicitadas para usar o recurso Single Sign On.</string>
+
     <string name="nextcloud_http_request_failed_title">Erro na solicitação</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">A requisição HTTP falhou com status-code HTTP : %1$d</string>
 
     <string name="nextcloud_unsupported_method_action">Contato</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Atualize o aplicativo Nextcloud Files</string>
+    <string name="nextcloud_files_app_not_supported_message">Seu aplicativo Nextcloud Files é uma versão mais antiga que ainda não oferece suporte ao recurso Single Sign On.</string>
     <string name="nextcloud_files_app_not_supported_action">Atualizar</string>
 
+    <string name="nextcloud_files_api_not_responding_title">API não está respondendo</string>
+    <string name="nextcloud_files_api_not_responding_message">A API do aplicativo Nextcloud Files não está respondendo. Isso provavelmente ocorre devido a otimizações de bateria em seu telefone. Tente desativar a otimização da bateria para ambos os aplicativos (Nextcloud Files e este aplicativo). Em todos os outros casos, tente limpar o armazenamento de ambos os aplicativos.</string>
     <string name="nextcloud_files_api_not_responding_action">Configurações</string>
 
     <string name="sso_canceled">Importação SSO cancelada</string>
