@@ -19,7 +19,7 @@
 
     <string name="nextcloud_files_app_account_not_found_title">Konto nicht gefunden</string>
     <string name="nextcloud_files_app_account_not_found_message">Das angeforderte Konto wurde in der Nextcloud-Files-App nicht gefunden</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Das Konto %1$s wurde in dern Nextcloud-Files-App nicht gefunden</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Das Konto %1$s wurde in der Nextcloud-Files-App nicht gefunden</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Erlaubnis nicht erteilt</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Sie müssen die angeforderten Berechtigungen bestätigen, um die Single Sign-On-Funktion nutzen zu können.</string>
