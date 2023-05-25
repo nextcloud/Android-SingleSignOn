@@ -19,6 +19,8 @@
 
     <string name="nextcloud_files_app_account_not_found_title">Účet nenalezen</string>
     <string name="nextcloud_files_app_account_not_found_message">Požadovaný účet nebyl v aplikaci Nextcloud pro Android nalezen</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Účet %1$s nebyl v aplikaci Nextcloud pro Android nalezen</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Oprávnění neudělena</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Abyste mohli využívat funkci sjednoceného přihlašování, je třeba přijmout požadovaná oprávnění.</string>
 
