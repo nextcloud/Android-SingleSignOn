@@ -19,6 +19,8 @@
 
     <string name="nextcloud_files_app_account_not_found_title">Conta não encontrada</string>
     <string name="nextcloud_files_app_account_not_found_message">A conta solicitada não foi encontrada no aplicativo Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">A conta %1$s não foi encontrado no aplicativo Nextcloud Files</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Permissão não concedida</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Você deve aceitar as permissões solicitadas para usar o recurso Single Sign On.</string>
 
