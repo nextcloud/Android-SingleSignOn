@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Looper;
 import android.util.Log;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
@@ -27,6 +28,7 @@ public abstract class NetworkRequest implements AutoCloseable {
         this.mCallback = callback;
     }
 
+    @CallSuper
     protected void connect(String type) {
         Log.d(TAG, "[connect] connect() called [" + Thread.currentThread().getName() + "] Account-Type: [" + type + "]");
         if (mDestroyed) {

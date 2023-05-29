@@ -106,11 +106,10 @@ public class AidlNetworkRequest extends NetworkRequest {
         Log.d(TAG, "[connect] Component name is: [" + componentName + "]");
 
         try {
-            final Intent intentService = new Intent();
-            intentService.setComponent(new ComponentName(componentName,
-                    "com.owncloud.android.services.AccountManagerService"));
+            final var intent = new Intent().setComponent(new ComponentName(
+                    componentName, "com.owncloud.android.services.AccountManagerService"));
             // https://developer.android.com/reference/android/content/Context#BIND_ABOVE_CLIENT
-            if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE | Context.BIND_ABOVE_CLIENT)) {
+            if (!mContext.bindService(intent, mConnection, Context.BIND_AUTO_CREATE | Context.BIND_ABOVE_CLIENT)) {
                 Log.d(TAG, "[connect] Binding to AccountManagerService returned false");
                 throw new IllegalStateException("Binding to AccountManagerService returned false");
             } else {
@@ -186,10 +185,14 @@ public class AidlNetworkRequest extends NetworkRequest {
      * @throws Exception or SSOException
      */
     public Response performNetworkRequestV2(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
-        final ParcelFileDescriptor output = performAidlNetworkRequestV2(request, requestBodyInputStream);
-        final InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
+        if (mDestroyed) {
+            throw new IllegalStateException(AidlNetworkRequest.class.getSimpleName() + " has already been closed. This instance can no longer perform any network requests.");
+        }
+
+        final var output = performAidlNetworkRequestV2(request, requestBodyInputStream);
+        final var os = new ParcelFileDescriptor.AutoCloseInputStream(output);
         try {
-            final ExceptionResponse response = deserializeObjectV2(os);
+            final var response = deserializeObjectV2(os);
 
             // Handle Remote Exceptions
             if (response.getException() != null) {
@@ -230,11 +233,11 @@ public class AidlNetworkRequest extends NetworkRequest {
         request.setAccountName(getAccountName());
         request.setToken(getAccountToken());
 
-        InputStream is;
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-             ObjectOutputStream oos = new ObjectOutputStream(baos)) {
-            oos.writeObject(request);
-            is = new ByteArrayInputStream(baos.toByteArray());
+        final InputStream is;
+        try (final var byteArrayOutputStream = new ByteArrayOutputStream();
+             final var objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+            objectOutputStream.writeObject(request);
+            is = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
         }
 
         try (ParcelFileDescriptor input = pipeFrom(is, thread -> Log.d(TAG, "copy data from service finished"))) {
@@ -249,9 +252,9 @@ public class AidlNetworkRequest extends NetworkRequest {
     }
 
     private ExceptionResponse deserializeObjectV2(InputStream is) throws IOException, ClassNotFoundException {
-        final ObjectInputStream ois = new ObjectInputStream(is);
-        final ArrayList<PlainHeader> headerList = new ArrayList<>();
-        final Exception exception = (Exception) ois.readObject();
+        final var ois = new ObjectInputStream(is);
+        final var headerList = new ArrayList<PlainHeader>();
+        final var exception = (Exception) ois.readObject();
 
         if (exception == null) {
             final String headers = (String) ois.readObject();
