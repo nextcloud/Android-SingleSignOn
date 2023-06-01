@@ -12,6 +12,7 @@
     <string name="nextcloud_files_app_not_installed_action">Namesti</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Računa ni mogoče najti</string>
+    <string name="nextcloud_files_app_account_not_found_message">Zahtevanega računa v programu datotek Nextcloud ni mogoče najti</string>
     <string name="nextcloud_http_request_failed_title">Zahteva je spodletela</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Zahteva HTTP je spodletela s kodo stanja: %1$d</string>
 
