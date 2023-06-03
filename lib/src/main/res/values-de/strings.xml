@@ -14,12 +14,12 @@
     <string name="token_mismatch_message">Der Authentifizierungs-Token stimmt nicht überein oder dem Paketnamen fehlt die Berechtigung für diese Aktion</string>
 
     <string name="nextcloud_files_app_not_installed_title">Nextcloud-Files ist nicht installiert</string>
-    <string name="nextcloud_files_app_not_installed_message">Dies App benötigt die Nextcloud-Files-App. Bitte installieren Sie sie, um dies App nutzen zu können.</string>
+    <string name="nextcloud_files_app_not_installed_message">Diese App benötigt die Nextcloud Files-App. Bitte installieren Sie diese, um dies App nutzen zu können.</string>
     <string name="nextcloud_files_app_not_installed_action">Installieren</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Konto nicht gefunden</string>
-    <string name="nextcloud_files_app_account_not_found_message">Das angeforderte Konto wurde in der Nextcloud-Files-App nicht gefunden</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Das Konto %1$s wurde in der Nextcloud-Files-App nicht gefunden</string>
+    <string name="nextcloud_files_app_account_not_found_message">Das angeforderte Konto wurde in der Nextcloud Files-App nicht gefunden</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Das Konto %1$s wurde in der Nextcloud Files-App nicht gefunden</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Erlaubnis nicht erteilt</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Sie müssen die angeforderten Berechtigungen bestätigen, um die Single Sign-On-Funktion nutzen zu können.</string>
@@ -29,7 +29,7 @@
 
     <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Nextcloud-Files-App aktualisieren</string>
+    <string name="nextcloud_files_app_not_supported_title">Nextcloud Files-App aktualisieren</string>
     <string name="nextcloud_files_app_not_supported_message">Bei Ihrer Nextcloud Files-App handelt es sich um eine ältere Version, die die Single Sign-On-Funktion noch nicht unterstützt.</string>
     <string name="nextcloud_files_app_not_supported_action">Aktualisieren</string>
 
