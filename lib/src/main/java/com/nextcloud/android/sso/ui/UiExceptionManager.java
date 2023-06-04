@@ -53,12 +53,12 @@ public final class UiExceptionManager {
             showDialogForException(context, exception, actionText, (dialog, which) -> {
                 try {
                     context.startActivity(optionalAction.get());
-                } catch(ActivityNotFoundException anf) {
+                } catch (ActivityNotFoundException anf) {
                     // in case no store is installed on the phone (e.g. on an emulator)
                     // the ActivityNotFoundException will be thrown. We need to check if
                     // it originated by the NextcloudFilesAppNotInstalledException dialog
                     // if so, just show a generic install window
-                    if(exception instanceof NextcloudFilesAppNotInstalledException) {
+                    if (exception instanceof NextcloudFilesAppNotInstalledException) {
                         showDialogForException(context, new NoStoreInstalledException(context, anf));
                     } else {
                         throw anf;

@@ -35,19 +35,22 @@ import java.util.Optional;
  */
 public class NoStoreInstalledException extends SSOException {
 
+    private final Intent primaryActionIntent;
+
     public NoStoreInstalledException(@NonNull Context context, @Nullable Throwable cause) {
         super(
                 context.getString(R.string.nextcloud_files_app_no_store_installed_message),
                 R.string.nextcloud_files_app_no_store_installed_title,
                 cause
         );
+
+        String url = context.getString(R.string.url_install_nextcloud_client);
+        primaryActionIntent = new Intent(Intent.ACTION_VIEW);
+        primaryActionIntent.setData(Uri.parse(url));
     }
 
     public Optional<Intent> getPrimaryAction() {
-        String url = "https://nextcloud.com/install/#install-clients";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        return Optional.of(i);
+        return Optional.of(primaryActionIntent);
     }
 
     public Optional<Integer> getPrimaryActionTextRes() {
