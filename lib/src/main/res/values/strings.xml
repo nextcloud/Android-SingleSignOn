@@ -28,7 +28,7 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP request failed with HTTP status-code: %1$d</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Files required</string>
-    <string name="nextcloud_files_app_no_store_installed_message">In order to continue please install Nextcloud Files on your phone first.</string>
+    <string name="nextcloud_files_app_no_store_installed_message">In order to continue please install the Nextcloud Files app on your device first.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instructions</string>
 
     <string name="nextcloud_unsupported_method_title" translatable="false">Error</string>

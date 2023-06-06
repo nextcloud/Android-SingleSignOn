@@ -2,7 +2,6 @@ package com.nextcloud.android.sso.ui;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 
@@ -13,8 +12,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
-import com.nextcloud.android.sso.exceptions.NoStoreInstalledException;
 import com.nextcloud.android.sso.exceptions.SSOException;
 
 /**
@@ -50,21 +47,7 @@ public final class UiExceptionManager {
         final var optionalAction = exception.getPrimaryAction();
 
         if (optionalAction.isPresent()) {
-            showDialogForException(context, exception, actionText, (dialog, which) -> {
-                try {
-                    context.startActivity(optionalAction.get());
-                } catch (ActivityNotFoundException anf) {
-                    // in case no store is installed on the phone (e.g. on an emulator)
-                    // the ActivityNotFoundException will be thrown. We need to check if
-                    // it originated by the NextcloudFilesAppNotInstalledException dialog
-                    // if so, just show a generic install window
-                    if (exception instanceof NextcloudFilesAppNotInstalledException) {
-                        showDialogForException(context, new NoStoreInstalledException(context, anf));
-                    } else {
-                        throw anf;
-                    }
-                }
-            });
+            showDialogForException(context, exception, actionText, (dialog, which) -> context.startActivity(optionalAction.get()));
         } else {
             showDialogForException(context, exception, actionText, null);
         }
