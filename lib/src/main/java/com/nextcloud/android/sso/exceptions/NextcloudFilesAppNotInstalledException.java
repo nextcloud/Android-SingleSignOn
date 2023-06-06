@@ -37,12 +37,24 @@ public class NextcloudFilesAppNotInstalledException extends SSOException {
         this(getContext());
     }
 
+
     public NextcloudFilesAppNotInstalledException(@NonNull Context context) {
+        this(context, new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace))));
+    }
+
+    private NextcloudFilesAppNotInstalledException(@NonNull Context context,
+                                                   @NonNull Intent launchStoreIntent) {
+        this(context, launchStoreIntent, launchStoreIntent.resolveActivity(context.getPackageManager()) != null);
+    }
+
+    private NextcloudFilesAppNotInstalledException(@NonNull Context context,
+                                                   @NonNull Intent launchStoreIntent,
+                                                   boolean storeAvailable) {
         super(
-                context.getString(R.string.nextcloud_files_app_not_installed_message),
-                R.string.nextcloud_files_app_not_installed_title,
-                R.string.nextcloud_files_app_not_installed_action,
-                new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace)))
+                storeAvailable ? context.getString(R.string.nextcloud_files_app_not_installed_message) : context.getString(R.string.nextcloud_files_app_no_store_installed_message),
+                storeAvailable ? R.string.nextcloud_files_app_not_installed_title : R.string.nextcloud_files_app_no_store_installed_title,
+                storeAvailable ? R.string.nextcloud_files_app_not_installed_action : R.string.nextcloud_files_app_no_store_installed_action,
+                storeAvailable ? launchStoreIntent : new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_install_nextcloud_client)))
         );
     }
 }
