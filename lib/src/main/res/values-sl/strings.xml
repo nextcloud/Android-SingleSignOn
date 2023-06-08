@@ -16,6 +16,8 @@
     <string name="nextcloud_http_request_failed_title">Zahteva je spodletela</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Zahteva HTTP je spodletela s kodo stanja: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_action">Navodila</string>
+
     <string name="nextcloud_unsupported_method_action">Stik</string>
 
     <string name="nextcloud_files_app_not_supported_action">Posodobi</string>

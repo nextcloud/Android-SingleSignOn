@@ -14,6 +14,8 @@
     <string name="nextcloud_http_request_failed_title">リクエストに失敗しました</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTPステータスコード：%1$d でHTTP要求が失敗しました</string>
 
+    <string name="nextcloud_files_app_no_store_installed_action">手順</string>
+
     <string name="nextcloud_unsupported_method_action">連絡先</string>
 
     <string name="nextcloud_files_app_not_supported_action">更新</string>

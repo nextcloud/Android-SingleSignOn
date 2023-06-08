@@ -14,6 +14,8 @@
     <string name="nextcloud_http_request_failed_title">Rechesta faddida</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Rechesta de HTTP faddida cun su còdighe de istadu HTTP: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_action">Inditos</string>
+
     <string name="nextcloud_unsupported_method_action">Cuntata</string>
 
     <string name="nextcloud_files_app_not_supported_action">Agiorna</string>

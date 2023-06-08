@@ -27,6 +27,8 @@
     <string name="nextcloud_http_request_failed_title">İstek karşılanamadı</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP isteği şu HTTP durum koduyla karşılanamadı: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_action">Nasıl yapılır</string>
+
     <string name="nextcloud_unsupported_method_action">İletişim</string>
 
     <string name="nextcloud_files_app_not_supported_title">Nextcloud Dosyalar uygulamasını güncelle</string>

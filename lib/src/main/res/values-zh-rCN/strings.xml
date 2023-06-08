@@ -14,6 +14,8 @@
     <string name="nextcloud_http_request_failed_title">请求失败</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP 请求失败，HTTP 错误代码：%1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_action">步骤</string>
+
     <string name="nextcloud_unsupported_method_action">联系</string>
 
     <string name="nextcloud_files_app_not_supported_action">更新</string>

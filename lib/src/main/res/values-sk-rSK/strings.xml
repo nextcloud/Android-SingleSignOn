@@ -14,6 +14,8 @@
     <string name="nextcloud_http_request_failed_title">Požiadavka zlyhala</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Chyba pri HTTP požiadavke, HTTP status kód: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_action">Postup</string>
+
     <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
     <string name="nextcloud_files_app_not_supported_action">Aktualizovať</string>
