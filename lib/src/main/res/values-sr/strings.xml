@@ -27,6 +27,8 @@
     <string name="nextcloud_http_request_failed_title">Није успео захтев</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">ХТТП захтев није успео са статусом грешке: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Потребна је апликација Nextcloud Фајлови</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Да бисте наставили, молимо вас да најпре на свој уређај инсталирате апликацију Nextcloud Фајлови.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Упутства</string>
 
     <string name="nextcloud_unsupported_method_action">Контакт</string>

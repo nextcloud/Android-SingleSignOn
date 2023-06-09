@@ -27,6 +27,8 @@
     <string name="nextcloud_http_request_failed_title">請求失敗</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP 請求失敗，HTTP 狀態碼：%1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">需要 Nextcloud Files</string>
+    <string name="nextcloud_files_app_no_store_installed_message">要繼續，請先在您的裝置上安裝 Nextcloud Files 應用程式。</string>
     <string name="nextcloud_files_app_no_store_installed_action">說明</string>
 
     <string name="nextcloud_unsupported_method_action">聯絡人</string>
