@@ -27,6 +27,8 @@
     <string name="nextcloud_http_request_failed_title">Erro na solicitação</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">A requisição HTTP falhou com status-code HTTP : %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Arquivos necessários</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Para continuar, instale primeiro o aplicativo Nextcloud Files no seu dispositivo.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instruções</string>
 
     <string name="nextcloud_unsupported_method_action">Contato</string>

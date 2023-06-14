@@ -3,6 +3,7 @@
 
     <string name="unknown_error_title">Ismeretlen hiba</string>
 
+    <string name="no_current_account_selected_exception_title">Nincs fiók kiválasztva</string>
     <string name="no_current_account_selected_exception_action">Dokumentáció</string>
 
     <string name="token_mismatch_title">Hitelesítési hiba</string>
