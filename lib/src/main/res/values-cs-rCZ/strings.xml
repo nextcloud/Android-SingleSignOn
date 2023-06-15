@@ -27,6 +27,10 @@
     <string name="nextcloud_http_request_failed_title">Požadavek se nezdařil</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP požadavek se nezdařil se stavovým kódem: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Vyžadováno Nextcloud pro Android</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Pokud chcete pokračovat, nejprve na své zařízení nainstalujte Nextcloud pro Android</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Pokyny</string>
+
     <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
     <string name="nextcloud_files_app_not_supported_title">Zaktualizovat aplikace Nextcloud pro Android</string>

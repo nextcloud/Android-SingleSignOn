@@ -27,8 +27,8 @@
     <string name="nextcloud_http_request_failed_title">Anforderung fehlgeschlagen</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-Anfrage ist fehlgeschlagen mit HTTP-Statuscode: %1$d</string>
 
-    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud-Files  erforderlich</string>
-    <string name="nextcloud_files_app_no_store_installed_message">Um fortzufahren, installieren Sie bitte zuerst die Nextcloud Files-App auf Ihrem Gerät.</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Dateien-App für Nextcloud erforderlich</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Um fortzufahren, installieren Sie bitte zuerst die Nextcloud Dateien-App auf Ihrem Gerät.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Zubereitung</string>
 
     <string name="nextcloud_unsupported_method_action">Kontakt</string>

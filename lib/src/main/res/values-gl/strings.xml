@@ -3,21 +3,39 @@
 
     <string name="unknown_error_title">Erro descoñecido</string>
 
+    <string name="no_current_account_selected_exception_title">Non seleccionou ningunha conta</string>
+    <string name="no_current_account_selected_exception_message">Debe estabelecer a conta actual antes de realizar esta operación. Consulte a documentación para un uso correcto.</string>
     <string name="no_current_account_selected_exception_action">Documentación</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Permiso non concedido</string>
     <string name="token_mismatch_title">Produciuse un erro de autenticación</string>
     <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Ficheiros de Nextcloud non está instalada</string>
+    <string name="nextcloud_files_app_not_installed_message">Esta aplicación depende da aplicación Ficheiros de Nextcloud. Instálea para poder usar esta aplicación.</string>
     <string name="nextcloud_files_app_not_installed_action">Instalar</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Non se atopou a conta</string>
-    <string name="nextcloud_http_request_failed_title">Fallou a solicitude</string>
+    <string name="nextcloud_files_app_account_not_found_message">Non foi posíbel atopar a conta solicitada na apli Ficheiros de Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Non foi posíbel atopar a conta %1$s na apli Ficheiros de Nextcloud</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Permiso non concedido</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Debe aceptar os permisos solicitados para utilizar a función de autenticación única (SSO).</string>
+
+    <string name="nextcloud_http_request_failed_title">Produciuse un fallo na solicitude</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na solicitude HTTP cun código de estado: %1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">É necesaria Ficheiros de Nextcloud</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Para poder continuar, instale primeiro a apli Ficheiros de Nextcloud no seu dispositivo.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instrucións</string>
 
     <string name="nextcloud_unsupported_method_action">Contacto</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Actualizar a apli Ficheiros de Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_message">A súa aplicación Ficheiros de Nextcloud é unha versión antiga que aínda non admite a función de autenticación única (SSO).</string>
     <string name="nextcloud_files_app_not_supported_action">Actualizar</string>
 
+    <string name="nextcloud_files_api_not_responding_message">A API da aplicación Ficheiros de Nextcloud non responde. É probábel que isto se deba ás optimizacións da batería do seu teléfono. Tente desactivar a optimización da batería para ambas as aplis (Nextcloud Android máis esta). No resto dos casos, tente borrar o almacenamento de ambas as aplis.</string>
     <string name="nextcloud_files_api_not_responding_action">Axustes</string>
 
     <string name="sso_canceled">Importación SSO cancelada</string>
