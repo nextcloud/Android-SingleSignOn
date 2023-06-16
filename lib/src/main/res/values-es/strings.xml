@@ -27,6 +27,10 @@
     <string name="nextcloud_http_request_failed_title">La petición ha fallado</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">La petición HTTP ha fallado con un código de estado: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Se requiere Archivos de Nextcloud</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Para poder continuar, por favor instale primero la app de Archivos de Nextcloud en su dispositivo.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instrucciones</string>
+
     <string name="nextcloud_unsupported_method_action">Contacto</string>
 
     <string name="nextcloud_files_app_not_supported_title">Actualizar la app de Archivos de Nextcloud</string>
