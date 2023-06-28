@@ -6,13 +6,20 @@
     <string name="no_current_account_selected_exception_title">Ni izbranega računa</string>
     <string name="no_current_account_selected_exception_action">Dokumentacija</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_title">Dovoljenje ni odobreno</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Za uporabo storitve enojne prijave Nextcloud SSO na tej napravi je treba odobriti dovoljenja za dostop do računov.</string>
+
     <string name="token_mismatch_title">Napaka overjanja</string>
     <string name="token_mismatch_message">Podan žeton za overitev ni skladen, ali pa za paket ni ustreznih dovoljenj za to dejanje.</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Program Datoteke Nextcloud ni nameščen</string>
     <string name="nextcloud_files_app_not_installed_action">Namesti</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Računa ni mogoče najti</string>
     <string name="nextcloud_files_app_account_not_found_message">Zahtevanega računa v programu datotek Nextcloud ni mogoče najti</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Dovoljenje ni odobreno</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Za uporabe storitve enojne prijave je treba sprejeti zahtevana dovoljenja.</string>
+
     <string name="nextcloud_http_request_failed_title">Zahteva je spodletela</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Zahteva HTTP je spodletela s kodo stanja: %1$d</string>
 
@@ -20,6 +27,7 @@
 
     <string name="nextcloud_unsupported_method_action">Stik</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Posodobi program Datoteke Nextcloud</string>
     <string name="nextcloud_files_app_not_supported_action">Posodobi</string>
 
     <string name="nextcloud_files_api_not_responding_action">Nastavitve</string>
