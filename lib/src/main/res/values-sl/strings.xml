@@ -13,6 +13,7 @@
     <string name="token_mismatch_message">Podan žeton za overitev ni skladen, ali pa za paket ni ustreznih dovoljenj za to dejanje.</string>
 
     <string name="nextcloud_files_app_not_installed_title">Program Datoteke Nextcloud ni nameščen</string>
+    <string name="nextcloud_files_app_not_installed_message">Delovanje tega programa je odvisno od programa Datoteke Nextcloud. Za pravilno delovanje ga je treba namestiti.</string>
     <string name="nextcloud_files_app_not_installed_action">Namesti</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Računa ni mogoče najti</string>
@@ -30,6 +31,7 @@
     <string name="nextcloud_files_app_not_supported_title">Posodobi program Datoteke Nextcloud</string>
     <string name="nextcloud_files_app_not_supported_action">Posodobi</string>
 
+    <string name="nextcloud_files_api_not_responding_title">Vmesnik API ni odziven</string>
     <string name="nextcloud_files_api_not_responding_action">Nastavitve</string>
 
     <string name="sso_canceled">Uvoz SSO je preklican</string>
