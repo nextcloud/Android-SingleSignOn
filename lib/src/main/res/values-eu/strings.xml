@@ -3,21 +3,42 @@
 
     <string name="unknown_error_title">Errore ezezaguna</string>
 
+    <string name="no_current_account_selected_exception_title">Ez dago konturik hautatuta</string>
+    <string name="no_current_account_selected_exception_message">Uneko kontua ezarri behar duzu hau egin baino lehen. Mesedez ikusi dokumentazioa erabilpen zuzenerako.</string>
     <string name="no_current_account_selected_exception_action">Dokumentazioa</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Ez da baimenik eman</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Nextcloud Sinadura Bakarra gailu honetan erabili ahal izateko, zure kontuetara sartzeko baimena eman behar duzu</string>
 
     <string name="token_mismatch_title">Autentifikazio errorea</string>
     <string name="token_mismatch_message">Hornitutako autentifikazio tokenak ez du bat egiten edo paketearen izenak ez du ekintza hau egiteko baimenik.</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Fitxategiak ez dago instalatuta</string>
+    <string name="nextcloud_files_app_not_installed_message">Aplikazio honek Nextcloud Files aplikazioa behar du. Mesedez instalatu ezazu aplikazio hau erabiltzeko.</string>
     <string name="nextcloud_files_app_not_installed_action">Instalatu</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Ez da kontua aurkitu</string>
+    <string name="nextcloud_files_app_account_not_found_message">Eskatutako kontua ez da aurkitu Nextcloud Fitxategiak aplikazioan</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">%1$s kontua ez da Nextcloud Fitxategiak aplikazioan aurkitu</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Ez da baimenik eman</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Sinadura Bakarraren funtzioa erabili ahal izateko eskatutako baimenak onartu behar dituzu.</string>
+
     <string name="nextcloud_http_request_failed_title">Eskaerak huts egin du</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP eskaerak huts egin du HTTP egoera-kodearekin: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Fitxategiak beharrezkoa da</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Jarraitzeko, mesedez instalatu Nextcloud Fitxategiak aplikazioa zure gailuan lehenago.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Jarraibideak</string>
+
     <string name="nextcloud_unsupported_method_action">Kontaktua</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Eguneratu Nextcloud Files aplikazioa</string>
+    <string name="nextcloud_files_app_not_supported_message">Zure Nextcloud Fitxategiak aplikazioa Sinadura Bakarreko ezaugarria onartzen ez duen bertsio zaharrago bat da.</string>
     <string name="nextcloud_files_app_not_supported_action">Eguneratu</string>
 
+    <string name="nextcloud_files_api_not_responding_title">APIa ez du erantzuten</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files aplikazioaren APIak ez du erantzuten. Litekeena da telefonoan bateria optimizatzeagatik izatea. Saiatu bateriaren optimizazioa desgaitzen bi aplikazioetarako (Nextcloud Fitxategiak eta aplikazio hau). Beste kasu guztietan saiatu bi aplikazioen biltegia garbitzen.</string>
     <string name="nextcloud_files_api_not_responding_action">Ezarpenak</string>
 
     <string name="sso_canceled">SSO inportazioa ezeztatua</string>
