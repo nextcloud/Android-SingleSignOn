@@ -18,8 +18,8 @@
     <string name="nextcloud_files_app_not_installed_action">Instalar</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Non se atopou a conta</string>
-    <string name="nextcloud_files_app_account_not_found_message">Non foi posíbel atopar a conta solicitada na apli Ficheiros de Nextcloud</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Non foi posíbel atopar a conta %1$s na apli Ficheiros de Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_message">Non foi posíbel atopar a conta solicitada na aplicación Ficheiros de Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Non foi posíbel atopar a conta %1$s na aplicación Ficheiros de Nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Permiso non concedido</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Debe aceptar os permisos solicitados para utilizar a función de autenticación única (SSO).</string>
@@ -28,12 +28,12 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na solicitude HTTP cun código de estado: %1$d</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">É necesaria Ficheiros de Nextcloud</string>
-    <string name="nextcloud_files_app_no_store_installed_message">Para poder continuar, instale antes a apli Ficheiros de Nextcloud no seu dispositivo.</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Para poder continuar, instale antes a aplicación Ficheiros de Nextcloud no seu dispositivo.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instrucións</string>
 
     <string name="nextcloud_unsupported_method_action">Contacto</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Actualizar a apli Ficheiros de Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_title">Actualizar a aplicación Ficheiros de Nextcloud</string>
     <string name="nextcloud_files_app_not_supported_message">A súa aplicación Ficheiros de Nextcloud é unha versión antiga que aínda non admite a función de autenticación única (SSO).</string>
     <string name="nextcloud_files_app_not_supported_action">Actualizar</string>
 
