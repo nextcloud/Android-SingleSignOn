@@ -37,6 +37,7 @@
     <string name="nextcloud_files_app_not_supported_message">A súa aplicación Ficheiros de Nextcloud é unha versión antiga que aínda non admite a función de autenticación única (SSO).</string>
     <string name="nextcloud_files_app_not_supported_action">Actualizar</string>
 
+    <string name="nextcloud_files_api_not_responding_title">A API non responde</string>
     <string name="nextcloud_files_api_not_responding_message">A API da aplicación Ficheiros de Nextcloud non responde. É probábel que isto se deba ás optimizacións da batería do seu teléfono. Tente desactivar a optimización da batería para ambas as aplis (Nextcloud Android máis esta). No resto dos casos, tente borrar o almacenamento de ambas as aplis.</string>
     <string name="nextcloud_files_api_not_responding_action">Axustes</string>
 
