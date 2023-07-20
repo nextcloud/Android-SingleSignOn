@@ -27,7 +27,7 @@
     <string name="nextcloud_http_request_failed_title">Produciuse un fallo na solicitude</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na solicitude HTTP cun código de estado: %1$d</string>
 
-    <string name="nextcloud_files_app_no_store_installed_title">É necesaria Ficheiros de Nextcloud</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Precisase Ficheiros de Nextcloud</string>
     <string name="nextcloud_files_app_no_store_installed_message">Para poder continuar, instale antes a aplicación Ficheiros de Nextcloud no seu dispositivo.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instrucións</string>
 
