@@ -1,7 +1,7 @@
 <resources>
     <string name="close">Pechar</string>
 
-    <string name="unknown_error_title">Erro descoñecido</string>
+    <string name="unknown_error_title">Produciuse un erro descoñecido</string>
 
     <string name="no_current_account_selected_exception_title">Non seleccionou ningunha conta</string>
     <string name="no_current_account_selected_exception_message">Debe estabelecer a conta actual antes de realizar esta operación. Consulte a documentación para un uso correcto.</string>
