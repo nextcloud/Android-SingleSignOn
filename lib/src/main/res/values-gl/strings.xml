@@ -8,7 +8,7 @@
     <string name="no_current_account_selected_exception_action">Documentación</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Permiso non concedido</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Para poder utilizar o «Inicio de sesión único» (Single-Sign-On) do Nextcloud neste dispositivo, ten que concederlle permiso para acceder as súas contas.</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Para poder utilizar o «Inicio de sesión único» (Single-Sign-On) de Nextcloud neste dispositivo, ten que concederlle permiso para acceder as súas contas.</string>
 
     <string name="token_mismatch_title">Produciuse un erro de autenticación</string>
     <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
@@ -22,7 +22,7 @@
     <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Non foi posíbel atopar a conta %1$s na aplicación Ficheiros de Nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Permiso non concedido</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Debe aceptar os permisos solicitados para utilizar a función de autenticación única (SSO).</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Debe aceptar os permisos solicitados para utilizar a función de Identificación única (SSO).</string>
 
     <string name="nextcloud_http_request_failed_title">Produciuse un fallo na solicitude</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Produciuse un fallo na solicitude HTTP cun código de estado: %1$d</string>
@@ -34,7 +34,7 @@
     <string name="nextcloud_unsupported_method_action">Contacto</string>
 
     <string name="nextcloud_files_app_not_supported_title">Actualizar a aplicación Ficheiros de Nextcloud</string>
-    <string name="nextcloud_files_app_not_supported_message">A súa aplicación Ficheiros de Nextcloud é unha versión antiga que aínda non admite a función de autenticación única (SSO).</string>
+    <string name="nextcloud_files_app_not_supported_message">A súa aplicación Ficheiros de Nextcloud é unha versión antiga que aínda non admite a función de Identificación única (SSO).</string>
     <string name="nextcloud_files_app_not_supported_action">Actualizar</string>
 
     <string name="nextcloud_files_api_not_responding_title">A API non responde</string>
