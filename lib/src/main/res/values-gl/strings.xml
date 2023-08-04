@@ -8,7 +8,7 @@
     <string name="no_current_account_selected_exception_action">Documentación</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Permiso non concedido</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Para poder utilizar o «Inicio de sesión único» (Single-Sign-On) de Nextcloud neste dispositivo, ten que concederlle permiso para acceder as súas contas.</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Para poder utilizar a «Identificación única» (Single-Sign-On) de Nextcloud neste dispositivo, ten que concederlle permiso para acceder as súas contas.</string>
 
     <string name="token_mismatch_title">Produciuse un erro de autenticación</string>
     <string name="token_mismatch_message">O testemuño de autenticación fornecido non coincide ou o nome do paquete non está permitido para realizar esta acción</string>
