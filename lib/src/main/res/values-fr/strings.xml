@@ -3,16 +3,20 @@
 
     <string name="unknown_error_title">Erreur inconnue</string>
 
+    <string name="no_current_account_selected_exception_title">Aucun compte sélectionné</string>
     <string name="no_current_account_selected_exception_action">Documentation</string>
 
     <string name="token_mismatch_title">Erreur d\'authentification</string>
     <string name="token_mismatch_message">Le jeton d\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files n\'est pas installé</string>
     <string name="nextcloud_files_app_not_installed_action">Installer</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Compte introuvable</string>
     <string name="nextcloud_http_request_failed_title">La requête a échoué</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">La requête HTTP a échoué avec le statut HTTP :%1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_action">Instructions</string>
 
     <string name="nextcloud_unsupported_method_action">Contact</string>
 
