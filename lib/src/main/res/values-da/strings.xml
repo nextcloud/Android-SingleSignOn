@@ -1,38 +1,47 @@
 <resources>
-    <string name="unknown_error">Ukendt fejl</string>
+    <string name="close">Luk</string>
 
-    <string name="no_current_account_selected_exception_title">Advarsel</string>
-    <string name="no_current_account_selected_exception_message">Der er ikke valgt en konto</string>
+    <string name="unknown_error_title">Ukendt fejl</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Fejl</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">For at kunne benytte Nextcloud Single-Sign-On på denne device skal du tildele rettigheder for adgangen til din konto</string>
+    <string name="no_current_account_selected_exception_title">Der er ikke valgt en konto</string>
+    <string name="no_current_account_selected_exception_message">Du skal indstille den aktive konto, før du kan udføre denne handling. Tjek dokumentationen for korrekt brug.</string>
+    <string name="no_current_account_selected_exception_action">Dokumentation</string>
 
-    <string name="current_account_not_found_exception_title">Advarsel</string>
-    <string name="current_account_not_found_exception_message">Den valgte konto blev ikke fundet. Noget gik galt.</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">Tilladelse ikke givet</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">For at kunne benytte Nextcloud Single Sign On på denne enhed, skal du tildele adgang til dine konti</string>
 
-    <string name="token_mismatch_title">Fejl</string>
+    <string name="token_mismatch_title">Adgangsfejl</string>
     <string name="token_mismatch_message">Den afleverede godkendelsestoken stemmer ikke overens eller pakkenavnet er ikke tilladt for denne handling</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Fejl</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files-appen er ikke installeret. Installer det venligst: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Filer ikke installeret</string>
+    <string name="nextcloud_files_app_not_installed_message">Denne app kræver Nextcloud Filer. Installér appen for at bruge denne app.</string>
+    <string name="nextcloud_files_app_not_installed_action">Installer</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Fejl</string>
-    <string name="nextcloud_files_app_account_not_found_message">Konto ikke fundet i Nextcloud Files-appen</string>
+    <string name="nextcloud_files_app_account_not_found_title">Konto blev ikke fundet</string>
+    <string name="nextcloud_files_app_account_not_found_message">Den anmodede konto findes ikke i Nextcloud Filer appen</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Kontoen %1$s findes ikke i Nextcloud Filer appen</string>
 
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Fejl</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Du skal accepterer de anmodede tilladelser for at bruge enkel sign-on funktion.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Tilladelse ikke givet</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Du skal accepterer de anmodede tilladelser for at bruge Single Sign On.</string>
 
-    <string name="nextcloud_http_request_failed_title">Fejl</string>
+    <string name="nextcloud_http_request_failed_title">Anmodning fejlede</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP anmodning fejlede med HTTP status-kode: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Fejl</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Din Nextcloud Files-app understøtter i øjeblikket ikke single sign-on-funktionen. Opdater det venligst: %1$s</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Filer påkrævet</string>
+    <string name="nextcloud_files_app_no_store_installed_message">For at fortsætte, skal du installerer Nextcloud Files appen på din enhed først.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instruktioner</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Fejl</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files app API svarer ikke. Dette skyldes højst sandsynligt batterioptimeringer på din telefon. Prøv at deaktivere batterioptimeringen for begge apps (Nextcloud Android og denne app). I alle andre tilfælde prøv venligst at rydde lagringen af begge apps.</string>
+    <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Batteriopt. Indstillinger</string>
+    <string name="nextcloud_files_app_not_supported_title">Opdatér Nextcloud Filer appen</string>
+    <string name="nextcloud_files_app_not_supported_message">Nextcloud Filer appen er en ældre version, der ikke understøtter Single Sign On endnu.</string>
+    <string name="nextcloud_files_app_not_supported_action">Opdatér</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API svarer ikke</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Filer appens API svarer ikke. Dette skyldes højst sandsynligt batterioptimeringer på din telefon. Prøv at deaktivere batterioptimeringen for begge apps (Nextcloud Filer og denne app). I alle andre tilfælde prøv at rydde lagrede filer i begge apps.</string>
+    <string name="nextcloud_files_api_not_responding_action">Indstillinger</string>
 
     <string name="sso_canceled">SSO-import annulleret</string>
     <string name="sso_canceled_message">SSO-import blev annulleret af bruger</string>
-</resources>
+
+    </resources>
