@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
 
     implementation project(path: ':lib')
