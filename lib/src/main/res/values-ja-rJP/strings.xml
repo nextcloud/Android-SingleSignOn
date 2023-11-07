@@ -3,6 +3,7 @@
 
     <string name="unknown_error_title">不明なエラー</string>
 
+    <string name="no_current_account_selected_exception_title">アカウントが選択されていません</string>
     <string name="no_current_account_selected_exception_action">ドキュメント</string>
 
     <string name="token_mismatch_title">認証エラー</string>
