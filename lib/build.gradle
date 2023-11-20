@@ -104,8 +104,8 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.9.0'
 
-    compileOnly "org.projectlombok:lombok:1.18.28"
-    annotationProcessor "org.projectlombok:lombok:1.18.28"
+    compileOnly "org.projectlombok:lombok:1.18.30"
+    annotationProcessor "org.projectlombok:lombok:1.18.30"
 
     api 'com.google.code.gson:gson:2.10.1'
 
