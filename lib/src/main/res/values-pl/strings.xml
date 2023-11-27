@@ -3,21 +3,42 @@
 
     <string name="unknown_error_title">Nieznany błąd</string>
 
+    <string name="no_current_account_selected_exception_title">Nie wybrano konta</string>
+    <string name="no_current_account_selected_exception_message">Przed wykonaniem tej operacji należy ustawić bieżące konto. Aby zapoznać się z prawidłowym użytkowaniem, zapoznaj się z dokumentacją.</string>
     <string name="no_current_account_selected_exception_action">Dokumentacja</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Pozwolenie nie zostało udzielone</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Aby korzystać z jednokrotnego logowania Nextcloud (SSO) na tym urządzeniu, musisz udzielić zezwolenia na dostęp do swoich kont</string>
 
     <string name="token_mismatch_title">Błąd uwierzytelniania</string>
     <string name="token_mismatch_message">Podany token uwierzytelniania nie pasuje lub nazwa pakietu nie może wykonać tej akcji</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Pliki Nextcloud nie zostały zainstalowane</string>
+    <string name="nextcloud_files_app_not_installed_message">Aplikacja ta zależna jest od aplikacji Pliki Nextcloud. Zainstaluj ją, aby móc korzystać z tej aplikacji.</string>
     <string name="nextcloud_files_app_not_installed_action">Zainstaluj</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Nie znaleziono konta</string>
+    <string name="nextcloud_files_app_account_not_found_message">Żądane konto nie zostało znalezione w aplikacji Pliki Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Konto %1$s nie zostało znalezione w aplikacji Pliki Nextcloud</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Pozwolenie nie zostało udzielone</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Musisz zaakceptować wymagane uprawnienia do korzystania z funkcji pojedynczego logowania (SSO).</string>
+
     <string name="nextcloud_http_request_failed_title">Żądanie nie powiodło się</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Zapytanie HTTP nie powiodło się z kodem: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Wymagane Pliki Nextcloud</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Aby kontynuować, zainstaluj najpierw aplikację Pliki Nextcloud na swoim urządzeniu.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instrukcje:</string>
+
     <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Zaktualizuj aplikację Pliki Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_message">Twoja aplikacja Pliki Nextcloud jest starszą wersją, która nie obsługuje jeszcze funkcji jednokrotnego logowania.</string>
     <string name="nextcloud_files_app_not_supported_action">Aktualizuj</string>
 
+    <string name="nextcloud_files_api_not_responding_title">API nie odpowiada</string>
+    <string name="nextcloud_files_api_not_responding_message">Interfejs API aplikacji Pliki Nextcloud nie odpowiada. Jest to najprawdopodobniej spowodowane optymalizacją baterii w telefonie. Spróbuj wyłączyć optymalizację baterii dla obu aplikacji (Pliki Nextcloud i tej aplikacji). We wszystkich pozostałych przypadkach spróbuj wyczyścić pamięć obu aplikacji.</string>
     <string name="nextcloud_files_api_not_responding_action">Ustawienia</string>
 
     <string name="sso_canceled">Anulowano import SSO</string>
