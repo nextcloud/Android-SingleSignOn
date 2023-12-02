@@ -48,19 +48,6 @@ public class NextcloudAPI implements AutoCloseable {
 
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
 
-    private static final Void NOTHING = getVoidInstance();
-
-    private static Void getVoidInstance() {
-        //noinspection unchecked
-        final Constructor<Void> constructor = (Constructor<Void>) Void.class.getDeclaredConstructors()[0];
-        constructor.setAccessible(true);
-        try {
-            return constructor.newInstance();
-        } catch (Exception e) {
-            throw new IllegalStateException("Should never happen, but did: unable to instantiate Void");
-        }
-    }
-
     private final NetworkRequest networkRequest;
     private Gson gson;
 
@@ -154,16 +141,14 @@ public class NextcloudAPI implements AutoCloseable {
                 result = gson.fromJson(targetReader, targetEntity);
                 if (result == null) {
                     if (targetEntity == Object.class) {
-                        //noinspection unchecked
-                        return (T) NOTHING;
+                        return null;
                     } else {
                         throw new IllegalStateException("Could not instantiate \"" +
                                 targetEntity.toString() + "\", because response was null.");
                     }
                 }
             } else {
-                //noinspection unchecked
-                result = (T) NOTHING;
+                result = null;
             }
         }
         return result;
