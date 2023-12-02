@@ -47,8 +47,14 @@ android {
 
     compileOptions {
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
     }
 
     productFlavors { }
@@ -132,10 +138,12 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
+                components.getByName('release')
 
                 groupId = 'com.nextcloud.android.sso'
                 artifactId = 'master'
+
+                from components.release
             }
         }
     }
