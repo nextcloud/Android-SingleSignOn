@@ -5,7 +5,7 @@ name: tests
 
 steps:
   - name: gplay
-    image: ghcr.io/nextcloud/continuous-integration-androidandroidbase:5
+    image: ghcr.io/nextcloud/continuous-integration-androidbase:3
     environment:
       LOG_USERNAME:
         from_secret: LOG_USERNAME
