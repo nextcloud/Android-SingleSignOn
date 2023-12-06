@@ -17,6 +17,7 @@ steps:
         from_secret: GIT_TOKEN
       ORG_GRADLE_PROJECT_coverage: ''
     commands:
+      - echo 'hello'
       - ./gradlew assemble
       - ./gradlew test
   - name: notify
