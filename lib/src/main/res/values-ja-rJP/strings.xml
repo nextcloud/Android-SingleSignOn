@@ -1,38 +1,29 @@
 <resources>
-    <string name="unknown_error">不明なエラー</string>
+    <string name="close">閉じる</string>
 
-    <string name="no_current_account_selected_exception_title">警告</string>
-    <string name="no_current_account_selected_exception_message">選択されたアカウントはありません</string>
+    <string name="unknown_error_title">不明なエラー</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">エラー</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">このデバイスでNextcloudシングルサインオンを使用するには、アカウントへのアクセス許可をする必要があります</string>
+    <string name="no_current_account_selected_exception_title">アカウントが選択されていません</string>
+    <string name="no_current_account_selected_exception_action">ドキュメント</string>
 
-    <string name="current_account_not_found_exception_title">警告</string>
-    <string name="current_account_not_found_exception_message">選択されたアカウントが見つかりませんでした。何か問題が発生しました。</string>
-
-    <string name="token_mismatch_title">エラー</string>
+    <string name="token_mismatch_title">認証エラー</string>
     <string name="token_mismatch_message">提供された認証トークンが一致しないか、パッケージ名がこの操作を実行できません</string>
 
-    <string name="nextcloud_files_app_not_installed_title">エラー</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloudファイルアプリがインストールされていません。 インストールしてください：%1$s</string>
+    <string name="nextcloud_files_app_not_installed_action">インストール</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">エラー</string>
-    <string name="nextcloud_files_app_account_not_found_message">Nextcloud ファイルアプリでアカウントが見つかりません</string>
-
-    <string name="nextcloud_files_app_account_permission_not_granted_title">エラー</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">シングルサインオン機能を使用するには、要求されたアクセス許可を受け入れる必要があります。</string>
-
-    <string name="nextcloud_http_request_failed_title">エラー</string>
+    <string name="nextcloud_files_app_account_not_found_title">アカウントが見つかりません</string>
+    <string name="nextcloud_http_request_failed_title">リクエストに失敗しました</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTPステータスコード：%1$d でHTTP要求が失敗しました</string>
 
-    <string name="nextcloud_files_app_not_supported_title">エラー</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">このNextcloudファイルアプリはシングルサインオン機能をサポートしていません。更新してください：%1$s</string>
+    <string name="nextcloud_files_app_no_store_installed_action">手順</string>
 
-    <string name="nextcloud_files_api_not_responding_title">エラー</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud ファイルアプリAPIが応答しません。これは、お使いのデバイスのバッテリー最適化によるものと考えられます。Nextcloud Androidとこのアプリのバッテリー最適化を無効にしてください。その他の場合は、両アプリのストレージの削除を実施してください。</string>
+    <string name="nextcloud_unsupported_method_action">連絡先</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">バッテリーオプション設定</string>
+    <string name="nextcloud_files_app_not_supported_action">更新</string>
+
+    <string name="nextcloud_files_api_not_responding_action">設定</string>
 
     <string name="sso_canceled">SSOインポートをキャンセルしました</string>
     <string name="sso_canceled_message">SSOインポートがユーザーによりキャンセルされました</string>
-</resources>
+
+    </resources>

@@ -12,7 +12,7 @@ import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.InputStream;
 
-public abstract class NetworkRequest {
+public abstract class NetworkRequest implements AutoCloseable {
 
     private static final String TAG = NetworkRequest.class.getCanonicalName();
 
@@ -43,14 +43,23 @@ public abstract class NetworkRequest {
             connect(mAccount.type);
         }, () -> {
             Log.e(TAG, "Unable to recover API");
-            stop();
+            close();
         }).start();
     }
 
-    protected void stop() {
+    @Override
+    public void close() {
         mCallback = null;
         mAccount = null;
         mDestroyed = true;
+    }
+
+    /**
+     * @deprecated Use {@link #close()}
+     */
+    @Deprecated(forRemoval = true)
+    protected void stop() {
+        close();
     }
 
     protected String getAccountName() {

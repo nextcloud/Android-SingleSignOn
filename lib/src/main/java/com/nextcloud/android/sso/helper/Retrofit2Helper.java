@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.EmptyResponse;
+import com.nextcloud.android.sso.api.AidlNetworkRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Request;
@@ -54,8 +59,17 @@ public final class Retrofit2Helper {
             @Override
             public Response<T> execute() {
                 try {
-                    T body = nextcloudAPI.performRequestV2(resType, nextcloudRequest);
-                    return Response.success(body);
+                    com.nextcloud.android.sso.api.Response response = nextcloudAPI.performNetworkRequestV2(nextcloudRequest);
+
+                    T body = nextcloudAPI.convertStreamToTargetEntity(response.getBody(), resType);
+                    Map<String, String> headerMap = new HashMap<>();
+                    ArrayList<AidlNetworkRequest.PlainHeader> plainHeaders = response.getPlainHeaders();
+                    if (plainHeaders != null) {
+                        for (AidlNetworkRequest.PlainHeader header : plainHeaders) {
+                            headerMap.put(header.getName(), header.getValue());
+                        }
+                    }
+                    return Response.success(body, Headers.of(headerMap));
                 } catch (NextcloudHttpRequestFailedException e) {
                     final Throwable cause = e.getCause();
                     return convertExceptionToResponse(e.getStatusCode(), cause == null ? e.getMessage() : cause.getMessage());

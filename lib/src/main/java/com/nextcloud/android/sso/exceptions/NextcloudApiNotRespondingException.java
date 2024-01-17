@@ -20,19 +20,34 @@
 package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudApiNotRespondingException extends SSOException {
 
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_files_api_not_responding_title),
-                context.getString(R.string.nextcloud_files_api_not_responding_message)
+    /**
+     * @deprecated Use {@link #NextcloudApiNotRespondingException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudApiNotRespondingException() {
+        this(getContext());
+    }
+
+    public NextcloudApiNotRespondingException(@NonNull Context context) {
+        super(
+                context.getString(R.string.nextcloud_files_api_not_responding_message),
+                R.string.nextcloud_files_api_not_responding_title,
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        ? R.string.nextcloud_files_api_not_responding_action
+                        : null,
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        ? new Intent().setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
+                        : null
         );
     }
 

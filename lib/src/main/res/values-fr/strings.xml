@@ -1,39 +1,47 @@
 <resources>
-    <string name="unknown_error">Erreur inconnue</string>
+    <string name="close">Fermer</string>
 
-    <string name="no_current_account_selected_exception_title">Avertissement</string>
-    <string name="no_current_account_selected_exception_message">Aucun compte sélectionné pour le moment</string>
+    <string name="unknown_error_title">Erreur inconnue</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Erreur</string>
+    <string name="no_current_account_selected_exception_title">Aucun compte sélectionné</string>
+    <string name="no_current_account_selected_exception_message">Vous devez configurer l\'actuel compte avant d\'effectuer cette opération. Veuillez consulter la documentation pour une utilisation appropriée</string>
+    <string name="no_current_account_selected_exception_action">Documentation</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Permission non accordée</string>
     <string name="android_get_accounts_permission_not_granted_exception_message">Afin d\'utiliser l\'authentification unique de Nextcloud sur cet appareil, vous devez en autoriser l\'accès dans vos comptes utilisateur</string>
 
-    <string name="current_account_not_found_exception_title">Avertissement</string>
-    <string name="current_account_not_found_exception_message">Le compte sélectionné n\'a pas été trouvé. Quelque chose s\'est mal passé.</string>
-
-    <string name="token_mismatch_title">Erreur</string>
+    <string name="token_mismatch_title">Erreur d\'authentification</string>
     <string name="token_mismatch_message">Le jeton d\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Erreur</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">L\'application Nextcloud Files n\'est pas installée. Veuillez l\'installer : %1$s
- </string>
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files n\'est pas installé</string>
+    <string name="nextcloud_files_app_not_installed_message">Cette application dépend de l\'application Fichiers de Nextcloud. Veuillez l\'installer pour pouvoir utiliser cette application.</string>
+    <string name="nextcloud_files_app_not_installed_action">Installer</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Erreur</string>
-    <string name="nextcloud_files_app_account_not_found_message">Compte non trouvé dans l\'application Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_title">Compte introuvable</string>
+    <string name="nextcloud_files_app_account_not_found_message">Le compte demandé n\'a pas été trouvé dans l\'application Fichiers de Nextcloud.</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Le compte %1$s n\'a pas été trouvé dans l\'application Fichiers de Nextcloud</string>
 
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Erreur</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Permission non accordée</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Vous devez accepter les demandes d\'autorisations pour utiliser l\'authentification unique.</string>
 
-    <string name="nextcloud_http_request_failed_title">Erreur</string>
+    <string name="nextcloud_http_request_failed_title">La requête a échoué</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">La requête HTTP a échoué avec le statut HTTP :%1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Erreur</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Votre application Nextcloud Files ne prend actuellement pas en charge l\'authentification unique. Veuillez la mettre à jour 1%1$s</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Fichiers Nextcloud est exigé</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Pour pouvoir continuer, merci de d\'abord installer l\'application Fichiers Nextcloud sur votre appareil.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instructions</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Erreur</string>
-    <string name="nextcloud_files_api_not_responding_message">Pas de réponse de l\'API de l\'application Nextcloud Files. Cela est probablement dû à des optimalisations de la batterie de votre téléphone. Essayez de désactiver l\'optimalisation de la batterie pour les 2 applications (Nextcloud Android et cette application). Sinon, essayez de remettre à zero le stockage de ces 2 applications</string>
+    <string name="nextcloud_unsupported_method_action">Contact</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Paramètres d\'optimalisation de la batterie</string>
+    <string name="nextcloud_files_app_not_supported_title">Mettre à jour l\'application Fichiers Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_message">Votre application Fichiers Nextcloud est une ancienne version qui n\'est pas compatible avec la fonctionnalité d\'authentification unique.</string>
+    <string name="nextcloud_files_app_not_supported_action">Mise à jour</string>
+
+    <string name="nextcloud_files_api_not_responding_title">L\'API ne répond pas</string>
+    <string name="nextcloud_files_api_not_responding_message">Pas de réponse de l\'API de l\'application Nextcloud Files. Cela est probablement dû à des optimalisations de la batterie de votre téléphone. Essayez de désactiver l\'optimalisation de la batterie pour les 2 applications (Nextcloud Files et cette application). Sinon, essayez de remettre à zéro le stockage de ces 2 applications.</string>
+    <string name="nextcloud_files_api_not_responding_action">Paramètres</string>
 
     <string name="sso_canceled">Import SSO annulé</string>
     <string name="sso_canceled_message">L\'import SSO a été annulé par un utilisateur</string>
-</resources>
+
+    </resources>

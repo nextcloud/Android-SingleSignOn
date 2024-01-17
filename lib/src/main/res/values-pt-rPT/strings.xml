@@ -1,24 +1,10 @@
 <resources>
-    <string name="unknown_error">Erro desconhecido</string>
+    <string name="no_current_account_selected_exception_action">Documentação</string>
 
-    <string name="no_current_account_selected_exception_title">Aviso</string>
-    <string name="no_current_account_selected_exception_message">Ainda nenhuma conta selecionada</string>
-
-    <string name="android_get_accounts_permission_not_granted_exception_title">Erro</string>
-    <string name="current_account_not_found_exception_title">Aviso</string>
-    <string name="current_account_not_found_exception_message">Conta selecionada não foi encontrada. Algo correu mal</string>
-
-    <string name="token_mismatch_title">Erro</string>
     <string name="token_mismatch_message">O token de autenticação não corresponde ao  esperado ou o nome da package não permite a realização desta acção</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Erro</string>
-    <string name="nextcloud_files_app_account_not_found_title">Erro</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Erro</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Tem de aceitar as permissões requeridas de forma a poder usar a funcionalidade de início de sessão único.</string>
-
-    <string name="nextcloud_http_request_failed_title">Erro</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">o pedido HTTP falhou com código de estado HTTP: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Erro</string>
-    <string name="nextcloud_files_api_not_responding_title">Erro</string>
+    <string name="nextcloud_files_api_not_responding_action">Definições</string>
+
     </resources>

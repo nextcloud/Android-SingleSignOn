@@ -113,7 +113,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<List<String>>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -199,7 +200,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<List<String>>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -260,7 +262,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -319,7 +322,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -350,7 +354,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -377,7 +382,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -401,7 +407,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<ResponseBody>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -426,7 +433,8 @@ public class TestRetrofitAPI {
 
         Type type = new TypeToken<ResponseBody>() {}.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -454,7 +462,8 @@ public class TestRetrofitAPI {
         Type type = new TypeToken<ResponseBody>() {
         }.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -482,7 +491,8 @@ public class TestRetrofitAPI {
         Type type = new TypeToken<ResponseBody>() {
         }.getType();
         try {
-            verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
+            verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
+            verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
         } catch (Exception e) {
             fail(e.getMessage());
         }

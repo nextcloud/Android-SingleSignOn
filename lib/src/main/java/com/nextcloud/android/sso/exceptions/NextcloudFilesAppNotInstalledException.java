@@ -20,21 +20,41 @@
 package com.nextcloud.android.sso.exceptions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.R;
-import com.nextcloud.android.sso.model.ExceptionMessage;
 
 public class NextcloudFilesAppNotInstalledException extends SSOException {
 
-    @Override
-    public void loadExceptionMessage(@NonNull Context context) {
-        this.em = new ExceptionMessage(
-                context.getString(R.string.nextcloud_files_app_not_installed_title),
-                context.getString(
-                        R.string.nextcloud_files_app_not_installed_message,
-                        "https://play.google.com/store/apps/details?id=com.nextcloud.client")
+    /**
+     * @deprecated Use {@link #NextcloudFilesAppNotInstalledException(Context)}
+     */
+    @Deprecated(forRemoval = true)
+    public NextcloudFilesAppNotInstalledException() {
+        this(getContext());
+    }
+
+
+    public NextcloudFilesAppNotInstalledException(@NonNull Context context) {
+        this(context, new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace))));
+    }
+
+    private NextcloudFilesAppNotInstalledException(@NonNull Context context,
+                                                   @NonNull Intent launchStoreIntent) {
+        this(context, launchStoreIntent, launchStoreIntent.resolveActivity(context.getPackageManager()) != null);
+    }
+
+    private NextcloudFilesAppNotInstalledException(@NonNull Context context,
+                                                   @NonNull Intent launchStoreIntent,
+                                                   boolean storeAvailable) {
+        super(
+                storeAvailable ? context.getString(R.string.nextcloud_files_app_not_installed_message) : context.getString(R.string.nextcloud_files_app_no_store_installed_message),
+                storeAvailable ? R.string.nextcloud_files_app_not_installed_title : R.string.nextcloud_files_app_no_store_installed_title,
+                storeAvailable ? R.string.nextcloud_files_app_not_installed_action : R.string.nextcloud_files_app_no_store_installed_action,
+                storeAvailable ? launchStoreIntent : new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_install_nextcloud_client)))
         );
     }
 }

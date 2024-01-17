@@ -43,7 +43,7 @@ import java.lang.reflect.Type;
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 
-public class NextcloudAPI {
+public class NextcloudAPI implements AutoCloseable {
 
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
 
@@ -91,10 +91,19 @@ public class NextcloudAPI {
      *
      * <p>A good place <em>depending on your actual implementation</em> might be {@link Activity#onStop()}.</p>
      */
+    @Override
     @SuppressWarnings("JavadocReference")
-    public void stop() {
+    public void close() {
         gson = null;
-        networkRequest.stop();
+        networkRequest.close();
+    }
+
+    /**
+     * @deprecated Use {@link #close()}
+     */
+    @Deprecated(forRemoval = true)
+    public void stop() {
+        close();
     }
 
     public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
@@ -130,7 +139,7 @@ public class NextcloudAPI {
         return convertStreamToTargetEntity(response.getBody(), type);
     }
 
-    private <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
+    public <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
         final T result;
         try (InputStream os = inputStream;
              Reader targetReader = new InputStreamReader(os)) {

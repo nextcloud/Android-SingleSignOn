@@ -1,26 +1,13 @@
 <resources>
-    <string name="unknown_error">Nepoznata greška</string>
+    <string name="no_current_account_selected_exception_action">Dokumentacija</string>
 
-    <string name="no_current_account_selected_exception_title">Upozorenje</string>
-    <string name="no_current_account_selected_exception_message">Još nije odabran nalog</string>
-
-    <string name="android_get_accounts_permission_not_granted_exception_title">Greška</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Da biste koristili Nekstklaud jednokratnu prijavu na ovom uređaju, morate dati dozvole za pristup nalozima</string>
-
-    <string name="current_account_not_found_exception_title">Upozorenje</string>
-    <string name="token_mismatch_title">Greška</string>
     <string name="token_mismatch_message">Token za proveru identiteta se ne poklapa ili imenu ovog paketa nije dozvoljeno da izvrši ovu radnju</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Greška</string>
-    <string name="nextcloud_files_app_account_not_found_title">Greška</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Greška</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Morate da prihvatite zahtevane dozvole da biste mogli da koristite mogućnost jednokratne prijave.</string>
-
-    <string name="nextcloud_http_request_failed_title">Error</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP zahtev nije uspeo sa statusom greške: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="nextcloud_files_api_not_responding_title">Error</string>
+    <string name="nextcloud_files_api_not_responding_action">Поставке</string>
+
     <string name="sso_canceled">SSO uvoz je prekinut</string>
     <string name="sso_canceled_message">SSO pristup je prekinut od strane korisnika</string>
-</resources>
+
+    </resources>

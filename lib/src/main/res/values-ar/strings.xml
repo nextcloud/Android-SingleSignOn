@@ -1,26 +1,47 @@
 <resources>
-    <string name="unknown_error">خطأ غير معروف</string>
+    <string name="close">إغلاق</string>
 
-    <string name="no_current_account_selected_exception_title">تحذير</string>
-    <string name="no_current_account_selected_exception_message">لم يتم تحديد حساب حتى الآن</string>
+    <string name="unknown_error_title">خطأ غير مُحدّدٍ</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">خطأ</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">من أجل استخدام تسجيل الدخول الأحادي Nextcloud على هذا الجهاز ، تحتاج إلى منح الإذن للوصول إلى حساباتك</string>
+    <string name="no_current_account_selected_exception_title">لم يتم اختيار أي حسابٍ</string>
+    <string name="no_current_account_selected_exception_message">يجب تعيين الحساب الحالي قبل تنفيذ هذه العملية. رجاءً، راجع توثيق النظام حول كيفية الاستخدام الصحيح.</string>
+    <string name="no_current_account_selected_exception_action">التوثيق</string>
 
-    <string name="current_account_not_found_exception_title">تحذير</string>
-    <string name="token_mismatch_title">خطأ</string>
-    <string name="token_mismatch_message">رمز المصادقة المقدم غير مطابق أو لا يُسمح لاسم الحزمة بتنفيذ هذا الإجراء</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">لم يتم إعطاءُ الإذن</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">من أجل النفاذ المُوحّد Single-Sign-On لنكست كلاود على هذا الجهاز، تحتاج إلى منح الإذن للوصول إلى حساباتك.</string>
 
-    <string name="nextcloud_files_app_not_installed_title">خطأ</string>
-    <string name="nextcloud_files_app_account_not_found_title">خطأ</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_title">خطأ</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">يجب عليك قبول الأذونات المطلوبة لاستخدام ميزة تسجيل الدخول الأحادي.</string>
+    <string name="token_mismatch_title">خطأ في التحقّق من الهويّة</string>
+    <string name="token_mismatch_message">رمز المصادقة authentication token المقدم غير مطابق، أو لا يُسمح لاسم الحزمة بتنفيذ هذا الإجراء.</string>
 
-    <string name="nextcloud_http_request_failed_title">خطأ</string>
+    <string name="nextcloud_files_app_not_installed_title">تطبيق نكست كلاود للملفات Files لم يسبق تنصيبه</string>
+    <string name="nextcloud_files_app_not_installed_message">يعتمد هذا التطبيق على تطبيق Nextcloud Files. يرجى تثبيته من أجل استخدام هذا التطبيق.</string>
+    <string name="nextcloud_files_app_not_installed_action">تثبيت</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">الحساب غير موجود </string>
+    <string name="nextcloud_files_app_account_not_found_message">الحساب المطلوب لم يُمكن إيجاده في تطبيق ملفات نكست كلاود Files.</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">الحساب %1$s لم يُمكن إيحاده في تطبيق ملفات نكست كلاود</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">لم يتم منح الإذن</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">يجب عليك قبول الأذونات المطلوبة لاستخدام ميزة النفاذ المُوحّد SSO.</string>
+
+    <string name="nextcloud_http_request_failed_title">فشل الطلب</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">فشل طلب HTTP مع رمز حالة HTTP: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">خطأ</string>
-    <string name="nextcloud_files_api_not_responding_title">خطأ</string>
-    <string name="sso_canceled">تم إلغاء استيراد SSO</string>
-    <string name="sso_canceled_message">تم إلغاء استيراد SSO من قبل المستخدم</string>
-</resources>
+    <string name="nextcloud_files_app_no_store_installed_title">ملفات نكست كلاود Nextcloud Files لازمةٌ</string>
+    <string name="nextcloud_files_app_no_store_installed_message">للاستمرار يُرجى القيام بتنصيب تطبيق ملفات نكست كلاود Flies على جهازك أوّلاً.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">تعليمات</string>
+
+    <string name="nextcloud_unsupported_method_action">جهة الاتصال</string>
+
+    <string name="nextcloud_files_app_not_supported_title">تحديث ملفات نكست كلاود Files.</string>
+    <string name="nextcloud_files_app_not_supported_message">تطبيق ملفات نكست كلاود Files لديك من إصدار قديم لا يدعم خاصية النفاذ المُوحّد SSO.</string>
+    <string name="nextcloud_files_app_not_supported_action">تحديث</string>
+
+    <string name="nextcloud_files_api_not_responding_title">واجهة برمجة التطبيقات API لا تستجيب</string>
+    <string name="nextcloud_files_api_not_responding_message">واجهة برمجة تطبيقات تطبيق \"ملفات نكست كلاود\" Nextcloud Files لا تستجيب. هذا على الأرجح بسبب تحسينات البطارية على هاتفك. حاول تعطيل تحسين البطارية لكلا التطبيقين (ملفات Nextcloud وهذا التطبيق). في جميع الحالات الأخرى، يرجى محاولة مسح تخزين كلا التطبيقين.</string>
+    <string name="nextcloud_files_api_not_responding_action">الإعدادات</string>
+
+    <string name="sso_canceled">تمّ إلغاء استيراد SSO</string>
+    <string name="sso_canceled_message">تم إلغاء استيراد SSO من قِبَل المستخدم</string>
+
+    </resources>

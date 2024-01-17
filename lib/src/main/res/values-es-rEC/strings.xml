@@ -1,0 +1,47 @@
+<resources>
+    <string name="close">Cerrar</string>
+
+    <string name="unknown_error_title">Error desconocido</string>
+
+    <string name="no_current_account_selected_exception_title">No se ha seleccionado ninguna cuenta</string>
+    <string name="no_current_account_selected_exception_message">Debes establecer la cuenta actual antes de realizar esta operación. Consulta la documentación para obtener el uso adecuado.</string>
+    <string name="no_current_account_selected_exception_action">Documentación</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Permiso no concedido</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Para utilizar el inicio de sesión único de Nextcloud en este dispositivo, debes otorgar permiso para acceder a tus cuentas</string>
+
+    <string name="token_mismatch_title">Error de autenticación</string>
+    <string name="token_mismatch_message">El token de autenticación proporcionado no coincide o el nombre del paquete no tiene permiso para realizar esta acción</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files no está instalado</string>
+    <string name="nextcloud_files_app_not_installed_message">Esta aplicación depende de la aplicación Nextcloud Files. Por favor, instálala para poder usar esta aplicación.</string>
+    <string name="nextcloud_files_app_not_installed_action">Instalar</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Cuenta no encontrada</string>
+    <string name="nextcloud_files_app_account_not_found_message">No se encontró la cuenta solicitada en la aplicación Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">No se encontró la cuenta %1$s en la aplicación Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Permiso no concedido</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Debes aceptar los permisos solicitados para utilizar la función de inicio de sesión único.</string>
+
+    <string name="nextcloud_http_request_failed_title">Error en la solicitud</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Error en la solicitud HTTP con código de estado HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">Se requiere Nextcloud Files</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Por favor, instala primero la aplicación Nextcloud Files en tu dispositivo para continuar.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instrucciones</string>
+
+    <string name="nextcloud_unsupported_method_action">Contacto</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Actualizar la aplicación Nextcloud Files</string>
+    <string name="nextcloud_files_app_not_supported_message">Tu aplicación Nextcloud Files es una versión anterior que aún no admite la función de inicio de sesión único.</string>
+    <string name="nextcloud_files_app_not_supported_action">Actualizar</string>
+
+    <string name="nextcloud_files_api_not_responding_title">La API no responde</string>
+    <string name="nextcloud_files_api_not_responding_message">La API de la aplicación Nextcloud Files no responde. Esto se debe probablemente a las optimizaciones de batería en tu teléfono. Intenta desactivar la optimización de batería para ambas aplicaciones (Nextcloud Files y esta aplicación). En todos los demás casos, intenta borrar el almacenamiento de ambas aplicaciones.</string>
+    <string name="nextcloud_files_api_not_responding_action">Ajustes</string>
+
+    <string name="sso_canceled">Importación de SSO cancelada</string>
+    <string name="sso_canceled_message">La importación de SSO fue cancelada por el usuario</string>
+
+    </resources>

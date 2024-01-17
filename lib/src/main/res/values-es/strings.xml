@@ -1,38 +1,47 @@
 <resources>
-    <string name="unknown_error">Error desconocido</string>
+    <string name="close">Cerrar</string>
 
-    <string name="no_current_account_selected_exception_title">Advertencia</string>
-    <string name="no_current_account_selected_exception_message">Todavía no hay ninguna cuenta seleccionada</string>
+    <string name="unknown_error_title">Error desconocido</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Error</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Para poder usar el Single-Sign-On de Nextcloud en ese aparato, debes dar el permiso de acceso en tus cuentas.</string>
+    <string name="no_current_account_selected_exception_title">No se seleccionó ninguna cuenta</string>
+    <string name="no_current_account_selected_exception_message">Debe establecer la cuenta actual antes de realizar esta operación. Por favor, consulte la documentación para el uso adecuado.</string>
+    <string name="no_current_account_selected_exception_action">Documentación</string>
 
-    <string name="current_account_not_found_exception_title">Advertencia</string>
-    <string name="current_account_not_found_exception_message">No se ha encontrado la cuenta seleccionada. Algo salió mal.</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">El permiso no fue concedido</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">De manera de poder usar Nextcloud Single Sign On en este dispositivo, debe concederle permiso para el acceso a sus cuentas</string>
 
-    <string name="token_mismatch_title">Error</string>
+    <string name="token_mismatch_title">Error de autenticación</string>
     <string name="token_mismatch_message">El token de autenticación proporcionado no coincide o no se permite para realizar esta acción el nombre del paquete</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Error</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">La aplicación Archivos de Nextcloud no está instalada. Por favor, instálela: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Archivos no está instalado</string>
+    <string name="nextcloud_files_app_not_installed_message">Esta app depende de la app Archivos de Nextcloud. Por favor, instale la misma para utilizar esta app.</string>
+    <string name="nextcloud_files_app_not_installed_action">Instalar</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Error</string>
-    <string name="nextcloud_files_app_account_not_found_message">La cuenta no se ha encontrado en la aplicación Archivos de Nextcloud.</string>
+    <string name="nextcloud_files_app_account_not_found_title">Cuenta no encontrada</string>
+    <string name="nextcloud_files_app_account_not_found_message">La cuenta solicitada no fue encontrada en la app Archivos de Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">La cuenta %1$s no se encontró en la app Archivos de Nextcloud</string>
 
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Error</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Tienes que aceptar los permisos solicitados para usar la característica single-sign-on.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">El permiso no fue concedido</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Debe aceptar los permisos solicitados para utilizar la característica de Single Sign On</string>
 
-    <string name="nextcloud_http_request_failed_title">Error</string>
+    <string name="nextcloud_http_request_failed_title">La solicitud ha fallado</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">La petición HTTP ha fallado con un código de estado: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Error</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Su aplicación Archivos de Nextcloud no soporta la característica de \"single sign on\" actualmente. Por favor, actualícela: %1$s</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Se requiere Archivos de Nextcloud</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Para poder continuar, por favor instale primero la app de Archivos de Nextcloud en su dispositivo.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instrucciones</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Error</string>
-    <string name="nextcloud_files_api_not_responding_message">El API de la aplicación Archivos de Nextcloud no responde. Esto suele ser debido a optimizaciones de batería en su teléfono. Intente deshabilitar la optimización de batería en ambas aplicaciones (Nextcloud Android y esta aplicación). En otro caso, por favor, intente limpiar los datos de almacenamiento de ambas aplicaciones.</string>
+    <string name="nextcloud_unsupported_method_action">Contacto</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Ajustes de optimización de batería.</string>
+    <string name="nextcloud_files_app_not_supported_title">Actualizar la app de Archivos de Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_message">Su app Archivos de Nextcloud es una versión antigüa que no soporta todavía la característica de Single Sign On.</string>
+    <string name="nextcloud_files_app_not_supported_action">Actualizar</string>
+
+    <string name="nextcloud_files_api_not_responding_title">El API no responde</string>
+    <string name="nextcloud_files_api_not_responding_message">El API de la aplicación Archivos de Nextcloud no responde. Esto suele ser debido a las optimizaciones de batería en su teléfono. Intente deshabilitar la optimización de batería en ambas aplicaciones (Archivos de Nextcloud y esta app). En cualquiera de los otros casos, por favor, intente limpiar los datos de almacenamiento de ambas aplicaciones.</string>
+    <string name="nextcloud_files_api_not_responding_action">Ajustes</string>
 
     <string name="sso_canceled">Importación SSO cancelada</string>
     <string name="sso_canceled_message">La importación SSO fue cancelada por el usuario</string>
-</resources>
+
+    </resources>

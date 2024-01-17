@@ -1,32 +1,28 @@
 <resources>
-    <string name="unknown_error">Tuntematon virhe</string>
+    <string name="close">Sulje</string>
 
-    <string name="no_current_account_selected_exception_title">Varoitus</string>
-    <string name="no_current_account_selected_exception_message">Tiliä ei ole vielä valittu</string>
+    <string name="unknown_error_title">Tuntematon virhe</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Virhe</string>
-    <string name="current_account_not_found_exception_title">Varoitus</string>
-    <string name="current_account_not_found_exception_message">Valittua tiliä ei löytynyt. Jokin meni pieleen.</string>
+    <string name="no_current_account_selected_exception_action">Dokumentaatio</string>
 
-    <string name="token_mismatch_title">Virhe</string>
+    <string name="token_mismatch_title">Tunnistautumisvirhe</string>
     <string name="token_mismatch_message">Annettu todennusavain ei vastaa tai paketin ei ole sallittua suorittaa tätä toimintoa</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Virhe</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud Files -sovellusta ei ole asennettu. Asenna se: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_action">Asenna</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Virhe</string>
-    <string name="nextcloud_files_app_account_not_found_message">Tiliä ei löydy Nextcloud Files -sovelluksesta</string>
-
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Virhe</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Sinun tulee hyväksyä esitetyt käyttöoikeudet käyttääksesi kertakirjautumisominaisuutta.</string>
-
-    <string name="nextcloud_http_request_failed_title">Virhe</string>
+    <string name="nextcloud_files_app_account_not_found_title">Tiliä ei löydy</string>
+    <string name="nextcloud_http_request_failed_title">Pyyntö epäonnistui</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-pyyntö epäonnistui HTTP-tilakoodilla: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Virhe</string>
-    <string name="nextcloud_files_api_not_responding_title">Virhe</string>
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Akun optimoinnin asetukset</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Ohjeet</string>
+
+    <string name="nextcloud_unsupported_method_action">Yhteystieto</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Päivitä</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Asetukset</string>
 
     <string name="sso_canceled">SSO-tuonti peruttu</string>
     <string name="sso_canceled_message">SSO-tuonti peruttiin käyttäjän toimesta</string>
-</resources>
+
+    </resources>
