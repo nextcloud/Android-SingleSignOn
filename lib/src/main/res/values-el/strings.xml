@@ -1,38 +1,33 @@
 <resources>
-    <string name="unknown_error">Άγνωστο σφάλμα</string>
+    <string name="close">Κλείσιμο</string>
 
-    <string name="no_current_account_selected_exception_title">Προειδοποίηση</string>
-    <string name="no_current_account_selected_exception_message">Δεν επιλέχθηκε λογαριασμός ακόμα</string>
+    <string name="unknown_error_title">Άγνωστο σφάλμα</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Σφάλμα</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Για την χρήση του Nextcloud Single-Sign-On χρειάζεται να επιτρέψετε την πρόσβαση στους λογαριασμούς σας</string>
+    <string name="no_current_account_selected_exception_title">Δεν έχει επιλεγεί λογαριασμός</string>
+    <string name="no_current_account_selected_exception_action">Τεκμηρίωση</string>
 
-    <string name="current_account_not_found_exception_title">Προειδοποίηση</string>
-    <string name="current_account_not_found_exception_message">Ο επιλεγμένος λογαριασμός δεν βρέθηκε. Κάτι πήγε στραβά.</string>
-
-    <string name="token_mismatch_title">Σφάλμα</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">Η άδεια δεν έχει εγκριθεί</string>
+    <string name="token_mismatch_title">Σφάλμα πιστοποίησης</string>
     <string name="token_mismatch_message">Το αναγνωριστικό πιστοποίησης που παρείχατε δεν είναι σωστό ή το όνομα πακέτου δεν επιτρέπεται για αυτή την ενέργεια</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Σφάλμα</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Η εφαρμογή Αρχεία Nextcloud δεν είναι εγκατεστημένη. Παρακαλούμε εγκαταστήστε την: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_title">Το Nextcloud Files δεν έχει εγκατασταθεί</string>
+    <string name="nextcloud_files_app_not_installed_action">Εγκατάσταση</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Σφάλμα</string>
-    <string name="nextcloud_files_app_account_not_found_message">Ο λογαριασμός δεν βρέθηκε στην εφαρμογή Αρχεία Nextcloud</string>
-
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Σφάλμα</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Πρέπει να χορηγήσετε τα απαραίτητα δικαιώματα για χρήση της απλής εισόδου χρήστη.</string>
-
-    <string name="nextcloud_http_request_failed_title">Σφάλμα</string>
+    <string name="nextcloud_files_app_account_not_found_title">Δεν βρέθηκε λογαριασμός</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Η άδεια δεν έχει εγκριθεί</string>
+    <string name="nextcloud_http_request_failed_title">Το αίτημα απέτυχε</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Απέτυχε το αίτημα HTTP με κατάσταση-κώδικα HTTP: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Σφάλμα</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Η εφαρμογή Αρχεία Nextcloud δεν υποστηρίζει προς το παρόν τη δυνατότητα απλής σύνδεσης. Παρακαλούμε ενημερώστε την: %1$s</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Οδηγίες</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Σφάλμα</string>
-    <string name="nextcloud_files_api_not_responding_message">Το API της εφαρμογής Αρχεία Nextcloud δεν αποκρίνεται. Αυτό πιθανότατα οφείλεται στις βελτιστοποιήσεις της μπαταρίας στο τηλέφωνό σας. Προσπαθήστε να απενεργοποιήσετε τη βελτιστοποίηση της μπαταρίας και για τις δύο εφαρμογές (Nextcloud Android και αυτήν την εφαρμογή). Σε όλες τις άλλες περιπτώσεις, προσπαθήστε να καθαρίσετε τον αποθηκευτικό χώρο και των δύο εφαρμογών.</string>
+    <string name="nextcloud_unsupported_method_action">Επικοινωνία</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Ρυθμίσεις μπαταρίας</string>
+    <string name="nextcloud_files_app_not_supported_title">Ενημέρωση εφαρμογής Nextcloud Files</string>
+    <string name="nextcloud_files_app_not_supported_action">Ενημέρωση</string>
+
+    <string name="nextcloud_files_api_not_responding_action">Ρυθμίσεις</string>
 
     <string name="sso_canceled">Ακυρώθηκε η εισαγωγή SSO</string>
     <string name="sso_canceled_message">Η εισαγωγή SSO ακυρώθηκε από τον χρήστη</string>
-</resources>
+
+    </resources>

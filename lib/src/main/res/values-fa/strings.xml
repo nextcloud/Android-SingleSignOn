@@ -1,26 +1,47 @@
 <resources>
-    <string name="unknown_error">خطای ناشناخته</string>
+    <string name="close">بسته</string>
 
-    <string name="no_current_account_selected_exception_title">هشدار</string>
-    <string name="no_current_account_selected_exception_message">هنوز حساب کاربری انتخاب نشده است</string>
+    <string name="unknown_error_title">خطای ناشناخته</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">خطا</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">برای استفاده از Single-Sign-On نکست کلود در این دستگاه ، باید دسترسی داشته باشید تا به حساب های خود دسترسی پیدا کنید</string>
+    <string name="no_current_account_selected_exception_title">No account selected</string>
+    <string name="no_current_account_selected_exception_message">You need to set the current account before performing this operation. Please consult the documentation for proper usage.</string>
+    <string name="no_current_account_selected_exception_action">مستندسازی</string>
 
-    <string name="current_account_not_found_exception_title">هشدار</string>
-    <string name="token_mismatch_title">خطا</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">Permission not granted</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">In order to use the Nextcloud Single Sign On on this device, you need to grant permission to access your accounts</string>
+
+    <string name="token_mismatch_title">خطا در اعتبار سنجی</string>
     <string name="token_mismatch_message">مشروط به تأیید اعتبار ، مطابقت ندارد یا نام بسته برای انجام این کار مجاز نیست</string>
 
-    <string name="nextcloud_files_app_not_installed_title">خطا</string>
-    <string name="nextcloud_files_app_account_not_found_title">خطا</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_title">خطا</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">برای استفاده از ویژگی ورود به سیستم مجبورید مجوزهای درخواستی را بپذیرید.</string>
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files not installed</string>
+    <string name="nextcloud_files_app_not_installed_message">This app depends on the Nextcloud Files app. Please install it in order to use this app.</string>
+    <string name="nextcloud_files_app_not_installed_action">نصب</string>
 
-    <string name="nextcloud_http_request_failed_title">خطا</string>
+    <string name="nextcloud_files_app_account_not_found_title">Account not found</string>
+    <string name="nextcloud_files_app_account_not_found_message">The requested account was not found in Nextcloud Files app</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">The account %1$s was not found in Nextcloud Files app</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Permission not granted</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">You have to accept the requested permissions to use the Single Sign On feature.</string>
+
+    <string name="nextcloud_http_request_failed_title">درخواست شکست خورد</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">درخواست HTTP با کد وضعیت HTTP انجام نشد: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">خطا</string>
-    <string name="nextcloud_files_api_not_responding_title">خطا</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Files required</string>
+    <string name="nextcloud_files_app_no_store_installed_message">In order to continue please install the Nextcloud Files app on your device first.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">دستورالعمل ها</string>
+
+    <string name="nextcloud_unsupported_method_action">مخاطب</string>
+
+    <string name="nextcloud_files_app_not_supported_title">به‌روزرسانی برنامه پرونده‌های نکست‌کلود</string>
+    <string name="nextcloud_files_app_not_supported_message">Your Nextcloud Files app is an older version which does not yet support the Single Sign On feature.</string>
+    <string name="nextcloud_files_app_not_supported_action">به‌روز رسانی</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API is not responding</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files app API is not responding. This is most likely due to battery optimizations on your phone. Try to disable the battery optimization for both apps (Nextcloud Files and this app). In all other cases please try to clear the storage of both apps.</string>
+    <string name="nextcloud_files_api_not_responding_action">تنظیمات</string>
+
     <string name="sso_canceled">واردکردن SSO لغو شد</string>
     <string name="sso_canceled_message">واردکردن SSO توسط کاربر لغو شد</string>
-</resources>
+
+    </resources>

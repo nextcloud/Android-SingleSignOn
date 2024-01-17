@@ -1,38 +1,26 @@
 <resources>
-    <string name="unknown_error">Okänt fel</string>
+    <string name="close">Stäng</string>
 
-    <string name="no_current_account_selected_exception_title">Varning</string>
-    <string name="no_current_account_selected_exception_message">Inget konto valt än</string>
+    <string name="unknown_error_title">Okänt fel</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Fel</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">För att kunna använda Nextcloud Single-Sign-On på den här enheten måste du ge tillstånd för att få åtkomst till dina konton</string>
+    <string name="no_current_account_selected_exception_action">Dokumentation</string>
 
-    <string name="current_account_not_found_exception_title">Varning</string>
-    <string name="current_account_not_found_exception_message">Det valda kontot finns inte. Något gick fel.</string>
-
-    <string name="token_mismatch_title">Fel</string>
+    <string name="token_mismatch_title">Fel vid autentisering</string>
     <string name="token_mismatch_message">Förutsatt att autentiserings-token inte matchar eller paketnamnet inte är tillåtet att utföra denna åtgärd</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Fel</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextclouds filapplikation är inte installerad. Vänligen installera den: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_action">Installera</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Fel</string>
-    <string name="nextcloud_files_app_account_not_found_message">Kontot hittades inte i Nextclouds filapplikation</string>
-
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Fel</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Du måste acceptera de begärda behörigheterna för att använda single sign-on funktionen.</string>
-
-    <string name="nextcloud_http_request_failed_title">Fel</string>
+    <string name="nextcloud_files_app_account_not_found_title">Kontot hittades inte</string>
+    <string name="nextcloud_http_request_failed_title">Förfrågan misslyckades</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-förfrågan misslyckades med HTTP-statuskod: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Fel</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Din filapplikation i Nextcloud stöder inte enkel inloggningsfunktion. Vänligen uppdatera den: %1$s</string>
+    <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Fel</string>
-    <string name="nextcloud_files_api_not_responding_message">API:n i Nextclouds filapplikation svara inte. Det beror antagligen på batterioptimering i din telefon. Prova med att avaktivera batterioptimeringen för båda applikationerna (Android Nextcloud och den här appen). I annat fall kan du prova med att rensa lagringen in båda apparna.</string>
+    <string name="nextcloud_files_app_not_supported_action">Uppdatera</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Inställningar för batterioptimering</string>
+    <string name="nextcloud_files_api_not_responding_action">Inställningar</string>
 
     <string name="sso_canceled">SSO-import avbruten</string>
     <string name="sso_canceled_message">SSO-import avbruten av användaren</string>
-</resources>
+
+    </resources>

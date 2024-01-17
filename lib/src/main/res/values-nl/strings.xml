@@ -1,38 +1,45 @@
 <resources>
-    <string name="unknown_error">Onbekende fout</string>
+    <string name="close">Sluit</string>
 
-    <string name="no_current_account_selected_exception_title">Waarschuwing</string>
-    <string name="no_current_account_selected_exception_message">Geen account geselecteerd</string>
+    <string name="unknown_error_title">Onbekende fout</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Fout</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Om Nextcloud Single-Sign-On op dit apparaat te gebruiken moet je toestemming geven om je accounts toegang te geven.</string>
+    <string name="no_current_account_selected_exception_title">Geen account geselecteerd</string>
+    <string name="no_current_account_selected_exception_message">Vooraleer deze bewerking uit te voeren moet het huidige account ingesteld zijn. Consulteer de documentatie voor het juiste gebruik.</string>
+    <string name="no_current_account_selected_exception_action">Documentatie</string>
 
-    <string name="current_account_not_found_exception_title">Waarschuwing</string>
-    <string name="current_account_not_found_exception_message">Geselecteerde account niet gevonden. Er is iets misgegaan.</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">Geen toelating</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Om Nextcloud Single-Sign-On op dit apparaat te gebruiken moet je toestemming geven om je accounts te benaderen</string>
 
-    <string name="token_mismatch_title">Fout</string>
+    <string name="token_mismatch_title">Authenticatiefout</string>
     <string name="token_mismatch_message">Het opgegeven authenticatie token komt niet overeen of de packagenaam is niet toegestaan om deze actie uit te voeren</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Fout</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Nextcloud bestandenapp is niet geïnstalleerd. Installeer de app: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud bestanden niet geïnstalleerd</string>
+    <string name="nextcloud_files_app_not_installed_message">Deze app is afhankelijk van de Nextcloud Files app. Installeer deze om deze app te gebruiken.</string>
+    <string name="nextcloud_files_app_not_installed_action">Installeren</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Fout</string>
-    <string name="nextcloud_files_app_account_not_found_message">Account niet gevonden in nextcloud bestanden app</string>
+    <string name="nextcloud_files_app_account_not_found_title">Account niet gevonden</string>
+    <string name="nextcloud_files_app_account_not_found_message">Geselecteerde account niet gevonden in Nextcloud Files app</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Het account %1$s werd niet gevonden in Nextcloud Files app</string>
 
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Fout</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Je moet de gevraagde machtigingen accepteren om single sign-on te kunnen gebruiken.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Geen toelating</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Je moet de gevraagde machtigingen accepteren om de Single Sign On functie te kunnen gebruiken.</string>
 
-    <string name="nextcloud_http_request_failed_title">Fout</string>
+    <string name="nextcloud_http_request_failed_title">Aanvraag mislukt</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP aanvraag mislukt met HTTP status-code: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Fout</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Je nextcloud bestandenapp ondersteunt de single sign-on faciliteit momenteel niet. Graag updaten: %1$s</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instructies</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Fout</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files-app-API reageert niet. Dit komt waarschijnlijk door batterij-optimalisaties op je toestel. Probeer de batterij-optimalisatie voor beide apps (Nextcloud Android en deze app) uit te schakelen. Probeer in alle andere gevallen de opslag van beide apps op te schonen.</string>
+    <string name="nextcloud_unsupported_method_action">Contact</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Instellingen voor batterijoptimalisatie</string>
+    <string name="nextcloud_files_app_not_supported_title">Update Nextcloud Files app</string>
+    <string name="nextcloud_files_app_not_supported_message">Je Nextcloud Files app is een oudere versie die de Single Sign On functie nog niet ondersteunt.</string>
+    <string name="nextcloud_files_app_not_supported_action">Update</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API reageert niet</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files app API reageert niet. Dit komt waarschijnlijk door batterij-optimalisaties op je toestel. Probeer de batterij-optimalisatie voor beide apps (Nextcloud Files en deze app) uit te schakelen. Probeer in alle andere gevallen de opslag van beide apps op te schonen.</string>
+    <string name="nextcloud_files_api_not_responding_action">Instellingen</string>
 
     <string name="sso_canceled">SSO import geannuleerd</string>
     <string name="sso_canceled_message">SSO import was geannuleerd door de gebruiker</string>
-</resources>
+
+    </resources>

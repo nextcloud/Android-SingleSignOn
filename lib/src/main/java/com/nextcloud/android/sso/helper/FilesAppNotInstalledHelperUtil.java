@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
+import com.nextcloud.android.sso.R;
+
 /**
  *  Nextcloud SingleSignOn
  *
@@ -27,16 +31,16 @@ public final class FilesAppNotInstalledHelperUtil {
 
     private FilesAppNotInstalledHelperUtil() { }
 
-    public static void requestInstallNextcloudFilesApp(Context context) {
+    public static void requestInstallNextcloudFilesApp(@NonNull Context context) {
         // Nextcloud app not installed
-        final Intent installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.nextcloud.client"));
+        final var installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace)));
 
         // launch market(s)
         if (installIntent.resolveActivity(context.getPackageManager()) != null) {
             context.startActivity(installIntent);
         } else {
-            // no F-Droid market app or Play store installed --> launch browser for f-droid url
-            final Intent downloadIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://f-droid.org/repository/browse/?fdid=com.nextcloud.client"));
+            // no F-Droid market app or Play store installed → launch browser for f-droid url
+            final var downloadIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_fdroid)));
             context.startActivity(downloadIntent);
         }
     }

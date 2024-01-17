@@ -1,38 +1,47 @@
 <resources>
-    <string name="unknown_error">Непозната грешка</string>
+    <string name="close">Затвори</string>
 
-    <string name="no_current_account_selected_exception_title">Упозорење</string>
-    <string name="no_current_account_selected_exception_message">Још није одабран налог</string>
+    <string name="unknown_error_title">Непозната грешка</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Грешка</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Да бисте користили једнократну Некстклауд пријаву на овом уређају, морате дати дозволе за приступ налозима</string>
+    <string name="no_current_account_selected_exception_title">Није изабран ниједан налог</string>
+    <string name="no_current_account_selected_exception_message">Пре извођења ове операције потребно је да поставите налог. Молимо вас да погледате документацију у вези са исправном употребом.</string>
+    <string name="no_current_account_selected_exception_action">Документација</string>
 
-    <string name="current_account_not_found_exception_title">Упозорење</string>
-    <string name="current_account_not_found_exception_message">Није пронађен изабрани налог. Нешто је није у реду.</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">Није дата дозвола</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Да бисте користили једнократну Nextcloud пријаву на овом уређају, морате дати дозволу за приступ вашим налозима</string>
 
-    <string name="token_mismatch_title">Грешка</string>
+    <string name="token_mismatch_title">Грешка при провери идентитета</string>
     <string name="token_mismatch_message">Токен за проверу идентитета се не поклапа или имену овог пакета није дозвољено да изврши ову радњу</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Грешка</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Апликација Nextcloud Фајлови није инсталирана. Молимо вас да је инсталирате: %1$s</string>
+    <string name="nextcloud_files_app_not_installed_title">Није инсталирана апликација Nextcloud Фајлови</string>
+    <string name="nextcloud_files_app_not_installed_message">Ова апликација зависи од апликације Nextcloud Фајлови. Да бисте је користили, молимо вас да инсталирате апликацију Фајлови.</string>
+    <string name="nextcloud_files_app_not_installed_action">Инсталирај</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Грешка</string>
-    <string name="nextcloud_files_app_account_not_found_message">У апликацији Nextcloud Фајлови није пронађен налог</string>
+    <string name="nextcloud_files_app_account_not_found_title">Налог није нађен</string>
+    <string name="nextcloud_files_app_account_not_found_message">У апликацији Nextcloud Фајлови није пронађен тражени налог</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">У апликацији Nextcloud Фајлови није пронађен налог %1$s</string>
 
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Грешка</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Морате да прихватите захтеване дозволе да бисте могли да користите могућност једнократне пријаве.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Није дата дозвола</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Морате прихватити тражене дозволе да бисте могли да користите могућност једнократне пријаве.</string>
 
-    <string name="nextcloud_http_request_failed_title">Грешка</string>
+    <string name="nextcloud_http_request_failed_title">Није успео захтев</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">ХТТП захтев није успео са статусом грешке: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Грешка</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Ваша апликација Nextcloud Фајлови тренутно не подржава могућност јединствене пријаве. Молимо вас да је ажурирате: %1$s</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Потребна је апликација Nextcloud Фајлови</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Да бисте наставили, молимо вас да најпре на свој уређај инсталирате апликацију Nextcloud Фајлови.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Упутства</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Грешка</string>
-    <string name="nextcloud_files_api_not_responding_message">API апликације Nextcloud Фајлови се не одазива. Ово је најчешће последица оптимизације батерије на вашем телефону. Покушајте да за обе апликације искључите оптимизацију батерије (Nextcloud Андроид и ову апликацију). У свим осталим случајевима, молимо вас да покушате са брисањем складишта обе апликације.</string>
+    <string name="nextcloud_unsupported_method_action">Контакт</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Поставке оптим. батерије</string>
+    <string name="nextcloud_files_app_not_supported_title">Ажурирај апликацију Nextcloud Фајлови</string>
+    <string name="nextcloud_files_app_not_supported_message">Ваша апликација Nextcloud Фајлови је старије верзије која још увек не подржава могућност једократне пријаве.</string>
+    <string name="nextcloud_files_app_not_supported_action">Ажурирај</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API се не одзива</string>
+    <string name="nextcloud_files_api_not_responding_message">API апликације Nextcloud Фајлови се не одазива. Ово је најчешће последица оптимизације батерије на вашем телефону. Покушајте да за обе апликације искључите оптимизацију батерије (Nextcloud Фајлови и ову апликацију). У свим осталим случајевима, молимо вас да покушате са брисањем складишта обе апликације.</string>
+    <string name="nextcloud_files_api_not_responding_action">Поставке</string>
 
     <string name="sso_canceled">ССО увоз је отказан</string>
     <string name="sso_canceled_message">ССО увоз је прекинуо корисник</string>
-</resources>
+
+    </resources>

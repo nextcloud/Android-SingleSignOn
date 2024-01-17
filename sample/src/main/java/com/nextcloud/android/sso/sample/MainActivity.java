@@ -33,6 +33,8 @@ import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
+import com.nextcloud.android.sso.helper.SingleAccountHelper;
+import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -58,7 +60,18 @@ public class MainActivity extends AppCompatActivity {
                  */
                 AccountImporter.pickNewAccount(this);
             } catch (NextcloudFilesAppNotInstalledException | AndroidGetAccountsPermissionNotGranted e) {
-                e.printStackTrace();
+                UiExceptionManager.showDialogForException(this, e);
+            }
+        });
+
+        /*
+         * We can also observe the current SingleSignOnAccount (set via SingleAccountHelper) with LiveData
+         */
+        SingleAccountHelper.getCurrentSingleSignOnAccount$(this).observe(this, ssoAccount -> {
+            if (ssoAccount == null) {
+                Log.i(TAG, "Currently no SingleSignOnAccount selected.");
+            } else {
+                Log.i(TAG, "New SingleSignOnAccount set: " + ssoAccount.name);
             }
         });
     }
@@ -70,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             AccountImporter.onActivityResult(requestCode, resultCode, data, this, ssoAccount -> {
                 Log.i(TAG, "Imported account: " + ssoAccount.name);
+
+                /*
+                 * A little helper to store the currently selected account.
+                 * We can query this later if we want to keep working with it.
+                 */
+                SingleAccountHelper.commitCurrentAccount(this, ssoAccount.name);
 
                 /* Network requests need to be performed on a background thread */
                 executor.submit(() -> {
@@ -106,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                      *
                      * @see https://github.com/nextcloud/Android-SingleSignOn/issues/120#issuecomment-540069990
                      */
-                    nextcloudAPI.stop();
+                    nextcloudAPI.close();
                 });
             });
         } catch (AccountImportCancelledException e) {

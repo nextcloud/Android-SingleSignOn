@@ -1,26 +1,9 @@
 <resources>
-    <string name="unknown_error">Fazi dizanv</string>
-
-    <string name="no_current_account_selected_exception_title">Kemenadenn</string>
-    <string name="no_current_account_selected_exception_message">Kont ebet choazet c\'hoaz</string>
-
-    <string name="android_get_accounts_permission_not_granted_exception_title">Fazi</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Evit implijout Nextcloud Single-Sign-On war ho ardivink, red eo deoc\'h reiñ an aotre tizhout ho kont</string>
-
-    <string name="current_account_not_found_exception_title">Kemenadenn</string>
-    <string name="token_mismatch_title">Fazi</string>
     <string name="token_mismatch_message">Ar jedouer dilesa roet na glot ket pe anv ar bakat n\'eo ket aotreet d\'ober an oberenn-mañ</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Fazi</string>
-    <string name="nextcloud_files_app_account_not_found_title">Fazi</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Fazi</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Ret eo deoc\'h aotreañ ar goulenn aotre evit implij ar perzh enskrivañ e unan.</string>
-
-    <string name="nextcloud_http_request_failed_title">Fazi</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">C\'hwitet ar goulenn HTTP gant ar c\'hod-stad HTTP : %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Fazi</string>
-    <string name="nextcloud_files_api_not_responding_title">Fazi</string>
     <string name="sso_canceled">Emporzhiañ SSO arested</string>
     <string name="sso_canceled_message">Emporzhiañ SSO a zo bet arested gant an implijer</string>
-</resources>
+
+    </resources>

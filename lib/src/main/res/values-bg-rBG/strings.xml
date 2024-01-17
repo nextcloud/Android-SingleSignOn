@@ -1,38 +1,26 @@
 <resources>
-    <string name="unknown_error">Неизвестна грешка</string>
+    <string name="close">Затваряне</string>
 
-    <string name="no_current_account_selected_exception_title">Внимание</string>
-    <string name="no_current_account_selected_exception_message">Няма избран профил</string>
+    <string name="unknown_error_title">Неизвестна грешка</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Грешка</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">За да използвате  Еднократна идентификация Nextcloud на това устройство, трябва да дадете право на достъп до вашите профили</string>
+    <string name="no_current_account_selected_exception_action">Документация</string>
 
-    <string name="current_account_not_found_exception_title">Внимание</string>
-    <string name="current_account_not_found_exception_message">Избраният профил не е намерен. Нещо се обърка.</string>
-
-    <string name="token_mismatch_title">Грешка</string>
+    <string name="token_mismatch_title">Грешка при удостоверяването</string>
     <string name="token_mismatch_message">Предоставеният маркер за удостоверяване не съвпада или името на пакета не може да изпълнява това действие</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Грешка</string>
-    <string name="nextcloud_files_app_not_installed_message" formatted="true">Приложението Nextcloud Файлове не е инсталирано. Моля, инсталирайте го:%1$s</string>
+    <string name="nextcloud_files_app_not_installed_action">Инсталиране</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Грешка</string>
-    <string name="nextcloud_files_app_account_not_found_message">Профилът не е намерен в приложението Nextcloud Файлове</string>
-
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Грешка</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">Трябва да приемете исканите права, за да използвате функцията за Еднократна идентификация.</string>
-
-    <string name="nextcloud_http_request_failed_title">Грешка</string>
+    <string name="nextcloud_files_app_account_not_found_title">Няма намерен профил</string>
+    <string name="nextcloud_http_request_failed_title">Неуспешна заявка</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP заявката беше неуспешна с HTTP статус-код: %1$d</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Грешка</string>
-    <string name="nextcloud_files_app_not_supported_message" formatted="true">Вашето приложение Nextcloud Файлове понастоящем не поддържа функцията за Еднократна идентификация. Моля, актуализирайте го: %1$s</string>
+    <string name="nextcloud_unsupported_method_action">Контакт</string>
 
-    <string name="nextcloud_files_api_not_responding_title">Грешка</string>
-    <string name="nextcloud_files_api_not_responding_message">API на приложението Nextcloud FilesФайлове не отговаря. Това най -вероятно се дължи на оптимизациите на батерията на телефона ви. Опитайте се да деактивирате оптимизирането на батерията и за двете приложения (Nextcloud Android и това приложение). Във всички останали случаи, моля, опитайте да изчистите хранилището на двете приложения.</string>
+    <string name="nextcloud_files_app_not_supported_action">Обновяване</string>
 
-    <string name="nextcloud_files_api_not_responding_open_battery_optimization_settings">Настройки за оптимизиране на батерия</string>
+    <string name="nextcloud_files_api_not_responding_action">Настройки</string>
 
     <string name="sso_canceled">Импортирането на SSO е отказано</string>
     <string name="sso_canceled_message">Импортирането на SSO е отказано от потребител</string>
-</resources>
+
+    </resources>
