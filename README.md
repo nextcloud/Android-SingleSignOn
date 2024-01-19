@@ -1,6 +1,6 @@
 # Nextcloud Single Sign On
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8aa66fac0af94ef2836d386fad69f199)](https://www.codacy.com/app/Nextcloud/Android-SingleSignOn?utm_source=github.com&utm_medium=referral&utm_content=nextcloud/Android-SingleSignOn&utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3fe63bb2932243f08dc362fa49c5275b)](https://app.codacy.com/gh/nextcloud/Android-SingleSignOn/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Last release](https://jitpack.io/v/nextcloud/Android-SingleSignOn.svg)](https://jitpack.io/#nextcloud/Android-SingleSignOn)
 [![GitHub issues](https://img.shields.io/github/issues/nextcloud/Android-SingleSignOn.svg)](https://github.com/nextcloud/Android-SingleSignOn/issues)
 [![GitHub stars](https://img.shields.io/github/stars/nextcloud/Android-SingleSignOn.svg)](https://github.com/nextcloud/Android-SingleSignOn/stargazers)
