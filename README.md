@@ -44,8 +44,8 @@ repositories {
 }
 
 dependencies {
-    // Note: Android Gradle Plugin (AGP) version ≥ 7.0.0 is required.
-    implementation "com.github.nextcloud:Android-SingleSignOn:0.8.1"
+    // Note: Android Gradle Plugin (AGP) version ≥ 8.2.0 is required.
+    implementation "com.github.nextcloud:Android-SingleSignOn:1.0.0"
 }
 ```
 
