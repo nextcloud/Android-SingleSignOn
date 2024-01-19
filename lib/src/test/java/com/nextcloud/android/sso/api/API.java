@@ -63,24 +63,24 @@ public interface API {
     );
 
     @PUT("items/read/multiple")
-    Call<Void> putMarkItemsRead(@Body String items);
+    Call<EmptyResponse> putMarkItemsRead(@Body String items);
 
     @PATCH("test")
-    Call<Void> invalidPATCH();
+    Call<EmptyResponse> invalidPATCH();
 
     @Headers({
         "X-Foo: Bar",
         "X-Ping: Pong"
     })
     @GET("test")
-    Call<Void> getWithHeader();
+    Call<EmptyResponse> getWithHeader();
 
     @GET("/test")
-    Call<Void> getDynamicHeader(@Header("Content-Range") String contentRange);
+    Call<EmptyResponse> getDynamicHeader(@Header("Content-Range") String contentRange);
 
     @NextcloudAPI.FollowRedirects
     @GET("/test")
-    Call<Void> getFollowRedirects();
+    Call<EmptyResponse> getFollowRedirects();
 
     @FormUrlEncoded
     @POST("/test")

@@ -3,6 +3,7 @@ package com.nextcloud.android.sso.helper;
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
+import com.nextcloud.android.sso.api.EmptyResponse;
 import com.nextcloud.android.sso.api.AidlNetworkRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
@@ -134,17 +135,16 @@ public final class Retrofit2Helper {
         };
     }
 
-
     /**
      *
      * @param success if <code>true</code>, a Response.success will be returned, otherwise Response.error(520)
      */
-    public static Call<Void> wrapVoidCall(final boolean success) {
-        return new Call<Void>() {
+    public static Call<EmptyResponse> wrapEmptyResponseCall(final boolean success) {
+        return new Call<>() {
             @NonNull
             @Override
-            public Response<Void> execute() {
-                if(success) {
+            public Response<EmptyResponse> execute() {
+                if (success) {
                     return Response.success(null);
                 } else {
                     return Response.error(520, emptyResponseBody);
@@ -152,8 +152,8 @@ public final class Retrofit2Helper {
             }
 
             @Override
-            public void enqueue(@NonNull Callback<Void> callback) {
-                if(success) {
+            public void enqueue(@NonNull Callback<EmptyResponse> callback) {
+                if (success) {
                     callback.onResponse(this, Response.success(null));
                 } else {
                     callback.onResponse(this, Response.error(520, emptyResponseBody));
@@ -177,7 +177,7 @@ public final class Retrofit2Helper {
 
             @NonNull
             @Override
-            public Call<Void> clone() {
+            public Call<EmptyResponse> clone() {
                 throw new UnsupportedOperationException("Not implemented");
             }
 

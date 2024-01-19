@@ -137,7 +137,7 @@ public class TestRetrofitAPI {
                 .setRequestBody(expectedBody)
                 .build();
 
-        Type type = new TypeToken<Void>(){}.getType();
+        Type type = new TypeToken<EmptyResponse>(){}.getType();
         try {
             verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
@@ -157,7 +157,7 @@ public class TestRetrofitAPI {
                 .setUrl(mApiEndpoint + "feeds/1")
                 .build();
 
-        Type type = new TypeToken<Void>() {}.getType();
+        Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
             verify(nextcloudApiMock).performRequestV2(eq(type), eq(request));
         } catch (Exception e) {
@@ -245,7 +245,7 @@ public class TestRetrofitAPI {
     @Test
     public void putMarkItemsRead() {
         //@PUT("items/read/multiple")
-        //Call<Void> putMarkItemsRead(@Body String items);
+        //Call<EmptyResponse> putMarkItemsRead(@Body String items);
 
         try {
             mApi.putMarkItemsRead("[2, 3]").execute();
@@ -260,7 +260,7 @@ public class TestRetrofitAPI {
                 .setRequestBody(expectedBody)
                 .build();
 
-        Type type = new TypeToken<Void>() {}.getType();
+        Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
             verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
             verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
@@ -273,7 +273,7 @@ public class TestRetrofitAPI {
     @Test(expected = UnsupportedOperationException.class)
     public void testPatch() throws IOException {
         //@PATCH("test")
-        //Call<Void> invalidPATCH();
+        //Call<EmptyResponse> invalidPATCH();
 
 
         mApi.invalidPATCH().execute();
@@ -284,7 +284,7 @@ public class TestRetrofitAPI {
                 .setUrl(mApiEndpoint + "test")
                 .build();
 
-        Type type = new TypeToken<Void>() {}.getType();
+        Type type = new TypeToken<EmptyResponse>() {}.getType();
         verify(nextcloudApiMock).performRequest(eq(type), eq(request));
         */
     }
@@ -296,7 +296,7 @@ public class TestRetrofitAPI {
         //    "X-Ping: Pong"
         //})
         //@GET("test")
-        //Call<Void> getWithHeader();
+        //Call<EmptyResponse> getWithHeader();
 
         try {
             mApi.getWithHeader().execute();
@@ -320,7 +320,7 @@ public class TestRetrofitAPI {
                 .setHeader(expectedHeader)
                 .build();
 
-        Type type = new TypeToken<Void>() {}.getType();
+        Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
             verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
             verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
@@ -332,7 +332,7 @@ public class TestRetrofitAPI {
     @Test
     public void testDynamicHeaders() {
         //@GET("/test")
-        //Call<Void> getDynamicHeader(@Header("Content-Range") String contentRange);
+        //Call<EmptyResponse> getDynamicHeader(@Header("Content-Range") String contentRange);
 
         try {
             mApi.getDynamicHeader("1").execute();
@@ -352,7 +352,7 @@ public class TestRetrofitAPI {
                 .setHeader(expectedHeader)
                 .build();
 
-        Type type = new TypeToken<Void>() {}.getType();
+        Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
             verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
             verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
@@ -366,7 +366,7 @@ public class TestRetrofitAPI {
     public void testFollowRedirects() {
         //@NextcloudAPI.FollowRedirects
         //@GET("/test")
-        //Call<Void> getFollowRedirects();
+        //Call<EmptyResponse> getFollowRedirects();
 
         try {
             mApi.getFollowRedirects().execute();
@@ -380,7 +380,7 @@ public class TestRetrofitAPI {
                 .setFollowRedirects(true)
                 .build();
 
-        Type type = new TypeToken<Void>() {}.getType();
+        Type type = new TypeToken<EmptyResponse>() {}.getType();
         try {
             verify(nextcloudApiMock).performNetworkRequestV2(eq(request));
             verify(nextcloudApiMock).convertStreamToTargetEntity(any(), eq(type));
