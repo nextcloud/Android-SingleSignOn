@@ -136,14 +136,6 @@ public class AidlNetworkRequest extends NetworkRequest {
         mContext = null;
     }
 
-    /**
-     * @deprecated Use {@link #close()}
-     */
-    @Deprecated(forRemoval = true)
-    public void stop() {
-        close();
-    }
-
     private void unbindService() {
         // Unbind from the service
         if (mBound.get()) {

@@ -111,14 +111,6 @@ public class ExponentialBackoff implements AutoCloseable {
         mHandlerAdapter.removeCallbacks(mRunnable);
     }
 
-    /**
-     * @deprecated Use {@link #close()}.
-     */
-    @Deprecated(forRemoval = true)
-    public void stop() {
-        close();
-    }
-
     /** Should call when the retry action has failed and we want to retry after a longer delay. */
     private void notifyFailed(Exception ex) {
         Log.d(TAG, "[notifyFailed] Error: [" + ex.getMessage() + "]");

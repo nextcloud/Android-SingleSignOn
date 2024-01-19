@@ -27,14 +27,6 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudFilesAppAccountPermissionNotGrantedException extends SSOException {
 
-    /**
-     * @deprecated Use {@link #NextcloudFilesAppAccountPermissionNotGrantedException(Context)}
-     */
-    @Deprecated(forRemoval = true)
-    public NextcloudFilesAppAccountPermissionNotGrantedException() {
-        this(getContext());
-    }
-
     public NextcloudFilesAppAccountPermissionNotGrantedException(@NonNull Context context) {
         super(
                 context.getString(R.string.nextcloud_files_app_account_permission_not_granted_message),

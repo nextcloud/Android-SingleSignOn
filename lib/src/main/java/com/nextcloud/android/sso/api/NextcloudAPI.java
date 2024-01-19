@@ -98,14 +98,6 @@ public class NextcloudAPI implements AutoCloseable {
         networkRequest.close();
     }
 
-    /**
-     * @deprecated Use {@link #close()}
-     */
-    @Deprecated(forRemoval = true)
-    public void stop() {
-        close();
-    }
-
     public <T> Observable<ParsedResponse<T>> performRequestObservableV2(final Type type, final NextcloudRequest request) {
         ensureTypeNotVoid(type);
         return Observable.fromPublisher(s -> {

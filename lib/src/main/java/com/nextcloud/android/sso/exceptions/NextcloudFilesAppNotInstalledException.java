@@ -29,15 +29,6 @@ import com.nextcloud.android.sso.R;
 
 public class NextcloudFilesAppNotInstalledException extends SSOException {
 
-    /**
-     * @deprecated Use {@link #NextcloudFilesAppNotInstalledException(Context)}
-     */
-    @Deprecated(forRemoval = true)
-    public NextcloudFilesAppNotInstalledException() {
-        this(getContext());
-    }
-
-
     public NextcloudFilesAppNotInstalledException(@NonNull Context context) {
         this(context, new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace))));
     }
