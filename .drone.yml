@@ -5,7 +5,7 @@ name: tests
 
 steps:
   - name: gplay
-    image: ghcr.io/nextcloud/continuous-integration-androidandroidbase:3
+    image: ghcr.io/nextcloud/continuous-integration-android8:3
     environment:
       LOG_USERNAME:
         from_secret: LOG_USERNAME
@@ -46,7 +46,7 @@ name: analysis
 
 steps:
   - name: analysis
-    image: ghcr.io/nextcloud/continuous-integration-androidandroidbase:3
+    image: ghcr.io/nextcloud/continuous-integration-android8:3
     environment:
       GIT_USERNAME:
         from_secret: GIT_USERNAME
