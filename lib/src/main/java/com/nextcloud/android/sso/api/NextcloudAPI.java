@@ -141,7 +141,10 @@ public class NextcloudAPI implements AutoCloseable {
             } else {
                 result = gson.fromJson(targetReader, targetEntity);
                 if (result == null) {
-                    if (targetEntity == Object.class) {
+                    if(targetEntity == Void.class) {
+                        throw new IllegalStateException("Detect Void return type - please " +
+                                "switch to the new return type \"EmptyResponse\" instead.");
+                    } else if (targetEntity == Object.class) {
                         //noinspection unchecked
                         return (T) EMPTY_RESPONSE;
                     } else {
