@@ -132,6 +132,8 @@ public class NextcloudAPI implements AutoCloseable {
     }
 
     public <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
+        ensureTypeNotVoid(targetEntity);
+
         final T result;
         try (InputStream os = inputStream;
              Reader targetReader = new InputStreamReader(os)) {
@@ -141,7 +143,6 @@ public class NextcloudAPI implements AutoCloseable {
             } else {
                 result = gson.fromJson(targetReader, targetEntity);
                 if (result == null) {
-                    ensureTypeNotVoid(targetEntity);
                     if (targetEntity == Object.class) {
                         //noinspection unchecked
                         return (T) EMPTY_RESPONSE;
