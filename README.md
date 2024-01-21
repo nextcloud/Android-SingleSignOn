@@ -1,4 +1,4 @@
-# Nextcloud Single Sign On
+# <img src="https://github.com/nextcloud/Android-SingleSignOn/raw/main/.idea/icon.svg" width="24" height="24" alt="Nextcloud Single Sign On Logo"/> Nextcloud Single Sign On
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3fe63bb2932243f08dc362fa49c5275b)](https://app.codacy.com/gh/nextcloud/Android-SingleSignOn/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Last release](https://jitpack.io/v/nextcloud/Android-SingleSignOn.svg)](https://jitpack.io/#nextcloud/Android-SingleSignOn)
