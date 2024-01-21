@@ -50,7 +50,7 @@ public final class Retrofit2Helper {
 
     public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI, final NextcloudRequest nextcloudRequest, 
                                          final Type resType) {
-        return new Call<T>() {
+        return new Call<>() {
 
             /**
              * Execute synchronous
@@ -134,83 +134,4 @@ public final class Retrofit2Helper {
             }
         };
     }
-
-    /**
-     *
-     * @param success if <code>true</code>, a Response.success will be returned, otherwise Response.error(520)
-     */
-    public static Call<EmptyResponse> wrapEmptyResponseCall(final boolean success) {
-        return new Call<>() {
-            @NonNull
-            @Override
-            public Response<EmptyResponse> execute() {
-                if (success) {
-                    return Response.success(null);
-                } else {
-                    return Response.error(520, emptyResponseBody);
-                }
-            }
-
-            @Override
-            public void enqueue(@NonNull Callback<EmptyResponse> callback) {
-                if (success) {
-                    callback.onResponse(this, Response.success(null));
-                } else {
-                    callback.onResponse(this, Response.error(520, emptyResponseBody));
-                }
-            }
-
-            @Override
-            public boolean isExecuted() {
-                return true;
-            }
-
-            @Override
-            public void cancel() {
-                throw new UnsupportedOperationException("Not implemented");
-            }
-
-            @Override
-            public boolean isCanceled() {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Call<EmptyResponse> clone() {
-                throw new UnsupportedOperationException("Not implemented");
-            }
-
-            @NonNull
-            @Override
-            public Request request() {
-                throw new UnsupportedOperationException("Not implemented");
-            }
-
-            @NonNull
-            @Override
-            public Timeout timeout() {
-                throw new UnsupportedOperationException("Not implemented");
-            }
-        };
-
-    }
-
-    private final static ResponseBody emptyResponseBody = new ResponseBody() {
-        @Override
-        public MediaType contentType() {
-            return null;
-        }
-
-        @Override
-        public long contentLength() {
-            return 0;
-        }
-
-        @Override
-        public BufferedSource source() {
-            return null;
-        }
-    };
-
 }
