@@ -132,6 +132,8 @@ public class NextcloudAPI implements AutoCloseable {
     }
 
     public <T> T convertStreamToTargetEntity(InputStream inputStream, Type targetEntity) throws IOException {
+        ensureTypeNotVoid(targetEntity);
+
         final T result;
         try (InputStream os = inputStream;
              Reader targetReader = new InputStreamReader(os)) {
