@@ -159,8 +159,7 @@ public interface API {
 }
 ```
 
-ℹ️ If your REST endpoint returns an empty body, you need to specify `Observable<EmptyResponse>` as return value rather than `Observable<Void>` because ["Nulls are not allowed in \[RxJava\] 2.x."](https://github.com/ReactiveX/RxJava/issues/5775#issuecomment-353544736).
-ℹ️ If you are working with `Call`s you can safely use `Call<Void>` (or `Call<EmptyResponse>`) if you want.
+ℹ️ If your REST endpoint returns an empty body, you need to specify `Observable<EmptyResponse>` / `Call<EmptyResponse>` as return value rather than `Observable<Void>` / `Call<Void>` because ["Nulls are not allowed in \[RxJava\] 2.x."](https://github.com/ReactiveX/RxJava/issues/5775#issuecomment-353544736).
 
 You might instantiate your Retrofit `API` by using something like this:
 
