@@ -1,4 +1,6 @@
 import com.github.spotbugs.snom.SpotBugsTask
+import com.github.spotbugs.snom.Confidence
+import com.github.spotbugs.snom.Effort
 
 repositories {
     google()
@@ -15,8 +17,9 @@ apply plugin: 'maven-publish' // needed for JitPack.io
 group = 'com.github.nextcloud'
 
 spotbugs {
-    toolVersion = '4.8.3'
-    ignoreFailures = true
+    ignoreFailures = true // should continue checking
+    effort = Effort.MAX
+    reportLevel = Confidence.valueOf('MEDIUM')
 }
 
 configurations {
@@ -65,20 +68,23 @@ android {
         htmlOutput file("$project.layout.buildDirectory/reports/lint/lint.html")
         htmlReport true
     }
+}
 
-    tasks.register("spotbugsDebugReport", SpotBugsTask) {
-        ignoreFailures = true
-        effort = "max"
-        reportLevel = "medium"
-        classes = fileTree("$project.layout.buildDirectory/intermediates/javac/debug/classes/")
-        excludeFilter = file("${project.rootDir}/spotbugs-filter.xml")
+tasks.withType(SpotBugsTask).configureEach { task ->
+    String variantNameCap = task.name.replace("spotbugs", "")
 
-        reports {
-            xml.enabled = false
-            html {
-                enabled = true
-                destination = file("$project.layout.buildDirectory/reports/spotbugs/spotbugs.html")
-            }
+    dependsOn "compile${variantNameCap}Sources"
+
+    excludeFilter.set(file("${project.rootDir}/spotbugs-filter.xml"))
+    classes = fileTree("$project.layout.buildDirectory/intermediates/javac/debug/classes/")
+    reports {
+        xml {
+            required = true
+        }
+        html {
+            required = true
+            outputLocation = file("$project.layout.buildDirectory/reports/spotbugs/spotbugs.html")
+            stylesheet = 'fancy.xsl'
         }
     }
 }
