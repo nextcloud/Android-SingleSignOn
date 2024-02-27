@@ -1,13 +1,24 @@
 <resources>
     <string name="close">Закрити</string>
 
+    <string name="unknown_error_title">Невідома помилка</string>
+
+    <string name="no_current_account_selected_exception_title">Не вибрано обліковий запис</string>
     <string name="no_current_account_selected_exception_action">Документація</string>
 
-    <string name="token_mismatch_title">Помилка автентифікації</string>
-    <string name="token_mismatch_message">Наданий токен аутентифікації не співпадає або даному пакету не дозволено виконувати дану дію</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">Дозвіл не надано</string>
+    <string name="token_mismatch_title">Помилка авторизації</string>
+    <string name="token_mismatch_message">Наданий токен авторизації не збігається або пакунку не дозволено виконувати цю дію</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Не встановлено застосунок Nextcloud Файли</string>
+    <string name="nextcloud_files_app_not_installed_action">Встановити</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Акаунт не знайдено</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Дозвіл не надано</string>
+    <string name="nextcloud_http_request_failed_title">Запит не вдався</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Помилка HTTP запиту з таким статус-кодом HTTP: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Потрібно мати встановлений застосунок Nextcloud Файли</string>
     <string name="nextcloud_unsupported_method_action">Контакт</string>
 
     <string name="nextcloud_files_app_not_supported_action">Оновлення</string>
