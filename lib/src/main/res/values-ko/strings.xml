@@ -7,6 +7,8 @@
     <string name="no_current_account_selected_exception_message">이 작업을 수행하려면 현재 계정을 설정해야 합니다. 올바른 사용법은 설명서를 참고하세요.</string>
     <string name="no_current_account_selected_exception_action">문서</string>
 
+    <string name="android_get_accounts_permission_not_granted_exception_message">이 기기에 Nextcloud 통합 인증을 사용하려면 계정에 접근권한을 부여해야합니다.</string>
+
     <string name="token_mismatch_title">인증 오류</string>
     <string name="token_mismatch_message">제공된 인증 토큰이 일치하지 않거나 작동하기에 충분한 권한이 없습니다.</string>
 
@@ -16,6 +18,8 @@
 
     <string name="nextcloud_files_app_account_not_found_title">계정을 찾을 수 없습니다.</string>
     <string name="nextcloud_files_app_account_not_found_message">요청한 계정을 Nextcloud 파일 앱에서 찾을 수 없음</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">%1$s 계정을 Nextcloud Files 앱에서 찾을 수 없음</string>
+
     <string name="nextcloud_http_request_failed_title">요청 실패</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP status-code: %1$d 의 HTTP 요청이 실패하였습니다.</string>
 
