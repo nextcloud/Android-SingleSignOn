@@ -1,3 +1,7 @@
+<!--
+ ~ SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
+ ~ SPDX-License-Identifier: GPL-3.0-or-later
+-->
 # <img src="https://github.com/nextcloud/Android-SingleSignOn/raw/main/.idea/icon.svg" width="24" height="24" alt="Nextcloud Single Sign On Logo"/> Nextcloud Single Sign On
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3fe63bb2932243f08dc362fa49c5275b)](https://app.codacy.com/gh/nextcloud/Android-SingleSignOn/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
