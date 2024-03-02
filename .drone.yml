@@ -3,6 +3,10 @@ kind: pipeline
 type: docker
 name: tests
 
+# SPDX-FileCopyrightText: 2019-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-FileCopyrightText: 2019 Tobias Kaminsky <tobias@kaminsky.me>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 steps:
   - name: gplay
     image: ghcr.io/nextcloud/continuous-integration-android8:3
@@ -91,4 +95,4 @@ trigger:
     - pull_request
 ---
 kind: signature
-hmac: 2bc767f5a9ed22cabbe2bcfd29d4ee70d094ea977f96ebc58137e9b3f5aa40dd
+hmac: 09732f0273e5fb95297aee738fc9bb6d15eaeecb5c1379773468583ef4ecf65a
