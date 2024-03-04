@@ -1,3 +1,8 @@
+# Nextcloud Android Single-Sign-On Library
+# 
+# SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # from https://www.guardsquare.com/manual/configuration/examples#serializable
 -keepnames class * implements java.io.Serializable
 
