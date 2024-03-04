@@ -1,3 +1,11 @@
+/*
+ * Nextcloud Android SingleSignOn Library
+ *
+ * SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2023 Stefan Niedermann <info@niedermann.it>
+ * SPDX-FileCopyrightText: 2018-2019 David Luhmer <david-dev@live.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 package com.nextcloud.android.sso.ui;
 
 import android.app.NotificationChannel;
@@ -13,25 +21,6 @@ import androidx.core.app.NotificationCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.exceptions.SSOException;
-
-/**
- * Nextcloud SingleSignOn
- *
- * @author David Luhmer
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 public final class UiExceptionManager {
 

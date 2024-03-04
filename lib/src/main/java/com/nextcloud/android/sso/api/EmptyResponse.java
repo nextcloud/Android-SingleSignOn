@@ -1,3 +1,11 @@
+/*
+ * Nextcloud Android SingleSignOn Library
+ *
+ * SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2023 Stefan Niedermann <info@niedermann.it>
+ * SPDX-FileCopyrightText: 2013 David Luhmer <david-dev@live.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 package com.nextcloud.android.sso.api;
 
 import java.io.Serializable;

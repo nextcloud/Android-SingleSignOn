@@ -1,3 +1,12 @@
+/*
+ * Nextcloud Android SingleSignOn Library
+ *
+ * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2021 Stefan Niedermann <info@niedermann.it>
+ * SPDX-FileCopyrightText: 2019 Tobias Kaminsky <tobias@kaminsky.me>
+ * SPDX-FileCopyrightText: 2017-2019 David Luhmer <david-dev@live.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 package com.nextcloud.android.sso.model;
 
 import android.util.Base64;
@@ -8,26 +17,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
-/**
- *  Nextcloud SingleSignOn
- *
- *  @author David Luhmer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
- */
 
 public class SingleSignOnAccount implements Serializable {
 
