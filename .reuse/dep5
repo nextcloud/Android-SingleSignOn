@@ -11,6 +11,6 @@ Files: gradle/verification-keyring.keys gradle/verification-metadata.xml
 Copyright: none
 License: GPL-3.0-or-later
 
-Files: renovate.json5 */.gitignore .idea/* scripts/analysis/findbugs-results.txt scripts/analysis/lint-results.txt
+Files: renovate.json5 */.gitignore .idea/* scripts/analysis/findbugs-results.txt scripts/analysis/lint-results.txt lib/src/main/res/values-*
 Copyright: 2024 Nextcloud GmbH and Nextcloud contributors
 License: GPL-3.0-or-later
