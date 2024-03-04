@@ -1,3 +1,11 @@
+/*
+ * Nextcloud Android SingleSignOn Library
+ *
+ * SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2020 Desperate Coder <echotodevnull@gmail.com>
+ * SPDX-FileCopyrightText: 2018 David Luhmer <david-dev@live.de>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 package retrofit2;
 
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -7,7 +15,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 
 public class NextcloudRetrofitApiBuilder {
 

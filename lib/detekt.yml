@@ -1,3 +1,8 @@
+# Nextcloud Android Single-Sign-On Library
+# SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-FileCopyrightText: 2023 Stefan Niedermann <info@niedermann.it>
+# SPDX-FileCopyrightText: 2021 Tobias Kaminsky <tobias@kaminsky.me>
+# SPDX-License-Identifier: GPL-3.0-or-later
 autoCorrect: true
 
 test-pattern: # Configure exclusions for test sources

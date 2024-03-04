@@ -1,3 +1,10 @@
+/*
+ * Nextcloud Android SingleSignOn Library
+ *
+ * SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2021 Stefan Niedermann <info@niedermann.it>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 package com.nextcloud.android.sso.model.ocs;
 
 import com.google.gson.annotations.SerializedName;
