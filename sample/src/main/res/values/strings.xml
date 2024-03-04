@@ -1,4 +1,11 @@
 <resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-FileCopyrightText: 2021 Stefan Niedermann <info@niedermann.it>
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
     <string name="app_name">Nextcloud SSO Sample</string>
     <string name="choose_account">Choose account</string>
     <string name="no_account_chosen_yet">No account chosen yet.</string>

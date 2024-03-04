@@ -1,3 +1,11 @@
+<!--
+  ~ Nextcloud Android SingleSignOn Library
+  ~
+  ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+  ~ SPDX-FileCopyrightText: 2022 Álvaro Brey <alvaro@alvarobrey.com>
+  ~ SPDX-FileCopyrightText: 2021 Stefan Niedermann <info@niedermann.it>
+  ~ SPDX-License-Identifier: GPL-3.0-or-later
+-->
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.AndroidSingleSignOn" parent="Theme.Material3.DayNight.NoActionBar">
