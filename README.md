@@ -9,6 +9,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/nextcloud/Android-SingleSignOn.svg)](https://github.com/nextcloud/Android-SingleSignOn/issues)
 [![GitHub stars](https://img.shields.io/github/stars/nextcloud/Android-SingleSignOn.svg)](https://github.com/nextcloud/Android-SingleSignOn/stargazers)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![REUSE status](https://api.reuse.software/badge/github.com/nextcloud/Android-SingleSignOn)](https://api.reuse.software/info/github.com/nextcloud/Android-SingleSignOn)
 
 This library allows you to use accounts as well as the network stack provided by the [Nextcloud Files app](https://play.google.com/store/apps/details?id=com.nextcloud.client). Therefore you as a developer don't need to worry about asking the user for credentials as well as you don't need to worry about self-signed ssl certificates, two factor authentication, save credential storage etc.
 
