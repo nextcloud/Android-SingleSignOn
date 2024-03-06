@@ -1,25 +1,54 @@
 <resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-FileCopyrightText: 2023 Stefan Niedermann <info@niedermann.it>
+      ~ SPDX-FileCopyrightText: 2018-2023 David Luhmer <david-dev@live.de>
+      ~ SPDX-FileCopyrightText: 2019 Tobias Kaminsky <tobias@kaminsky.me>
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+
     <string name="close">Zatvoriť</string>
 
     <string name="unknown_error_title">Neznáma chyba</string>
 
+    <string name="no_current_account_selected_exception_title">Žiadny účet nebol vybratý.</string>
+    <string name="no_current_account_selected_exception_message">Musíte nastaviť aktuálny účet pred vykonaním tejto operácie. Prosím, pre správne použitie sa obráťte na dokumentáciu.</string>
     <string name="no_current_account_selected_exception_action">Dokumentácia</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Prístup nebol udelený</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Ak chcete na tomto zariadení používať Nextcloud Single-Sign-On, je potrebné prideliť oprávnenie pre prístup k vašim účtom</string>
 
     <string name="token_mismatch_title">Chyba autentifikácie</string>
     <string name="token_mismatch_message">Poskytnutý overovací token sa nezhoduje alebo nie je tomuto balíčku umožnené túto akciu uskutočniť</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Súbory nie sú nainštalované</string>
+    <string name="nextcloud_files_app_not_installed_message">Táto aplikácia závisí na aplikácii Nextcloud Files. Prosím, nainštalujte ju, aby ste mohli používať túto aplikáciu.</string>
     <string name="nextcloud_files_app_not_installed_action">Inštalovať</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Účet sa nenašiel</string>
+    <string name="nextcloud_files_app_account_not_found_message">Požadovaný účet nebol nájdený v aplikácii Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Účet %1$s nebol nájdený v aplikácii Nextcloud Files.</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Prístup nebol udelený</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Musíte prijať požadované právomoci, aby ste mohli používať funkciu Single Sign On.</string>
+
     <string name="nextcloud_http_request_failed_title">Požiadavka zlyhala</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Chyba pri HTTP požiadavke, HTTP status kód: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Súbory sú potrebné.</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Na pokračovanie, prosím, najprv nainštalujte aplikáciu Nextcloud Files na svoje zariadenie.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Postup</string>
 
     <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Aktualizujte aplikáciu Nextcloud Files.</string>
+    <string name="nextcloud_files_app_not_supported_message">Váš Nextcloud Files app je staršia verzia, ktorá ešte nepodporuje funkciu Single Sign On.</string>
     <string name="nextcloud_files_app_not_supported_action">Aktualizovať</string>
 
+    <string name="nextcloud_files_api_not_responding_title">API neodpovedá</string>
+    <string name="nextcloud_files_api_not_responding_message">Rozhranie API aplikácie Nextcloud Files nereaguje. Je to pravdepodobne kvôli optimalizácii batérie v telefóne. Skúste vypnúť optimalizáciu batérie pre obe aplikácie (Nextcloud Files a túto aplikáciu). Vo všetkých ostatných prípadoch skúste vymazať ukladací priestor oboch aplikácií.</string>
     <string name="nextcloud_files_api_not_responding_action">Nastavenia</string>
 
     <string name="sso_canceled">SSO import zrušený</string>
