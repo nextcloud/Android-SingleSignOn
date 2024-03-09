@@ -1,4 +1,10 @@
 <resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
     <string name="nextcloud_files_api_not_responding_action">සැකසුම්</string>
 
-    </resources>
+</resources>
