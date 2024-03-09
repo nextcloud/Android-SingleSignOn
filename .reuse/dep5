@@ -3,7 +3,7 @@ Upstream-Name: Android-SingleSignOn
 Upstream-Contact: Nextcloud Android team <android@nextcloud.com>
 Source: https://github.com/nextcloud/Android-SingleSignOn
 
-Files: gradlew gradlew.bat gradle/wrapper/gradle-wrapper.jar sample_client/gradle/wrapper/gradle-wrapper.jar
+Files: gradle/wrapper/gradle-wrapper.jar sample_client/gradle/wrapper/gradle-wrapper.jar
 Copyright: 2015-2021 the original authors
 License: Apache-2.0
 
