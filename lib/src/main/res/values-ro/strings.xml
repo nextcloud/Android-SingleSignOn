@@ -1,4 +1,10 @@
 <resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
     <string name="no_current_account_selected_exception_action">Documentație</string>
 
     <string name="token_mismatch_message">Token-ul de autentificare primit nu se potrivește sau numele pachetului nu are permisiunea să îndeplinească acțiunea asta</string>
