@@ -131,7 +131,10 @@
          <trusted-key id="CA491704D613780D2BEE00F2C6FC46EB51CF569C" group="jaxen"/>
          <trusted-key id="CE8075A251547BEE249BC151A2115AE15F6B8B72" group="org.apache.commons"/>
          <trusted-key id="CFC10B69382CBCF5387E51484ECE492B63E38ACF" group="com.h3xstream.findsecbugs"/>
-         <trusted-key id="D421D1DF4570BFB13E485D0BF95ADD0A28D2F139" group="org.projectlombok" name="lombok" version="1.18.30"/>
+         <trusted-key id="D421D1DF4570BFB13E485D0BF95ADD0A28D2F139">
+            <trusting group="org.projectlombok" name="lombok" version="1.18.30"/>
+            <trusting group="org.projectlombok" name="lombok" version="1.18.32"/>
+         </trusted-key>
          <trusted-key id="D6F1BC78607808EC8E9F69437A8860944FAD5F62" group="org.apache.commons" name="commons-parent"/>
          <trusted-key id="DBD744ACE7ADE6AA50DD591F66B50994442D2D40" group="^com[.]squareup($|([.].*))" regex="true"/>
          <trusted-key id="E62231331BCA7E1F292C9B88C1B12A5D99C0729D" group="org.jetbrains"/>
