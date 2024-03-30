@@ -1,0 +1,33 @@
+<resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+    <string name="close">Zarrar</string>
+
+    <string name="unknown_error_title">Error desconocíu</string>
+
+    <string name="no_current_account_selected_exception_title">Nun se seleicionó nenguna cuenta</string>
+    <string name="no_current_account_selected_exception_action">Documentación</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_message">Pa usar l\'aniciu de sesión únicu de Nextcloud nesti preséu, tienes de conceder el permisu p\'acceder a les cuentes</string>
+
+    <string name="token_mismatch_title">Error de l\'autenticación</string>
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud File nun ta instaláu</string>
+    <string name="nextcloud_files_app_not_installed_message">Esta aplicación depende de l\'aplicación Nextcloud Files. Instálala pa usar esta aplicación.</string>
+    <string name="nextcloud_files_app_not_installed_action">Instalar</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Nun s\'atopó la cuenta</string>
+    <string name="nextcloud_http_request_failed_title">La solicitú falló</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instrucciones</string>
+
+    <string name="nextcloud_unsupported_method_action">Contautu</string>
+
+    <string name="nextcloud_files_app_not_supported_action">Anovar</string>
+
+    <string name="nextcloud_files_api_not_responding_title">L\'API nun respuende</string>
+    <string name="nextcloud_files_api_not_responding_action">Configuración</string>
+
+    </resources>
