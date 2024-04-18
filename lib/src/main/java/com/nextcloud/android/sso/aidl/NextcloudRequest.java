@@ -11,6 +11,7 @@
  */
 package com.nextcloud.android.sso.aidl;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.ObjectsCompat;
 import androidx.core.util.Pair;
 
@@ -25,9 +26,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import lombok.ToString;
-
-@ToString
+/**
+ * This class represents a request to the Nextcloud server.
+ * It contains all necessary information to perform a request.
+ */
 public class NextcloudRequest implements Serializable {
 
     private static final long serialVersionUID = 215521212534240L; //assign a long value
@@ -288,4 +290,21 @@ public class NextcloudRequest implements Serializable {
         return equal;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "NextcloudRequest{" +
+            "method='" + method + '\'' +
+            ", header=" + header +
+            ", parameter=" + parameter +
+            ", requestBody='" + requestBody + '\'' +
+            ", url='" + url + '\'' +
+            ", token='" + token + '\'' +
+            ", packageName='" + packageName + '\'' +
+            ", accountName='" + accountName + '\'' +
+            ", bodyAsStream=" + bodyAsStream +
+            ", followRedirects=" + followRedirects +
+            ", parameterV2=" + parameterV2 +
+            '}';
+    }
 }
