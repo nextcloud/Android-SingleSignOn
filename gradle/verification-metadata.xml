@@ -122,6 +122,7 @@
          <trusted-key id="A42FEF087AF29AE864684EAEE6039456D5BBD4F8" group="io.fabric8" name="kubernetes-client-bom" version="5.12.4"/>
          <trusted-key id="A5BD02B93E7A40482EB1D66A5F69AD087600B22C" group="org.ow2.asm"/>
          <trusted-key id="A5F483CD733A4EBAEA378B2AE88979FB9B30ACF2">
+            <trusting group="androidx.annotation"/>
             <trusting group="androidx.core"/>
             <trusting group="androidx.fragment" name="fragment" version="1.7.1"/>
             <trusting group="androidx.transition" name="transition" version="1.5.0"/>
