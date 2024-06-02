@@ -1,0 +1,53 @@
+<resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+    <string name="close">Dún</string>
+
+    <string name="unknown_error_title">Earráid anaithnid</string>
+
+    <string name="no_current_account_selected_exception_title">Níl aon chuntas roghnaithe</string>
+    <string name="no_current_account_selected_exception_message">Ní mór duit an cuntas reatha a shocrú sula ndéanfaidh tú an oibríocht seo. Féach ar na doiciméid le haghaidh úsáide cuí le do thoil.</string>
+    <string name="no_current_account_selected_exception_action">Doiciméadúchán</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Ní thugtar cead</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Chun síniú Amháin Nextcloud ar an ngléas seo a úsáid, ní mór duit cead a thabhairt do chuntais a rochtain</string>
+
+    <string name="token_mismatch_title">Earráid fhíordheimhnithe</string>
+    <string name="token_mismatch_message">Ar choinníoll nach ionann an comhartha fíordheimhnithe nó nach bhfuil cead ag ainm an phacáiste an gníomh seo a dhéanamh</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Comhaid Nextcloud gan a bheith suiteáilte</string>
+    <string name="nextcloud_files_app_not_installed_message">Braitheann an aip seo ar an aip Nextcloud Files. Suiteáil é le do thoil chun an aip seo a úsáid.</string>
+    <string name="nextcloud_files_app_not_installed_action">Suiteáil</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Cuntas gan aimsiú</string>
+    <string name="nextcloud_files_app_account_not_found_message">Ní bhfuarthas an cuntas iarrtha san aip Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Níor aimsíodh an cuntas %1$s san aip Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Ní thugtar cead</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Caithfidh tú glacadh leis na ceadanna iarrtha chun an ghné Síniú Aonair a úsáid.</string>
+
+    <string name="nextcloud_http_request_failed_title">Theip ar an iarratas</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Theip ar iarratas HTTP le cód stádais HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">Comhaid Nextcloud ag teastáil</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Chun leanúint ar aghaidh, suiteáil an aip Nextcloud Files ar do ghléas ar dtús.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Comhaid Nextcloud ag teastáil</string>
+
+    <string name="nextcloud_unsupported_method_action">Teagmháil</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Nuashonraigh an aip Comhaid Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_message">Is leagan níos sine é d’aip Nextcloud Files nach dtacaíonn leis an ngné Síniú Aonair fós.</string>
+    <string name="nextcloud_files_app_not_supported_action">Nuashonrú</string>
+
+    <string name="nextcloud_files_api_not_responding_title">Níl API ag freagairt</string>
+    <string name="nextcloud_files_api_not_responding_message">Níl Nextcloud Files app ag freagairt. Is dócha go bhfuil sé seo mar gheall ar leas iomlán a bhaint as ceallraí ar do ghuthán. Déan iarracht an leas iomlán a bhaint as ceallraí a dhíchumasú don dá aip (Comhaid Nextcloud agus an aip seo). I ngach cás eile déan iarracht stóráil an dá aip a ghlanadh le do thoil.</string>
+    <string name="nextcloud_files_api_not_responding_action">Socruithe</string>
+
+    <string name="sso_canceled">Cealaíodh iompórtáil SSO</string>
+    <string name="sso_canceled_message">Chealaigh an t-úsáideoir iompórtáil SSO</string>
+
+    </resources>
