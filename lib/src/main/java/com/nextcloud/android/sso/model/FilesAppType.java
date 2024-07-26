@@ -8,33 +8,19 @@
 package com.nextcloud.android.sso.model;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-public enum FilesAppType {
-
-    PROD("com.nextcloud.client", "nextcloud"),
-    QA("com.nextcloud.android.qa", "nextcloud.qa"),
-    DEV("com.nextcloud.android.beta", "nextcloud.beta");
-
+public class FilesAppType {
     public final String packageId;
     public final String accountType;
+    public final Type type;
 
-    FilesAppType(@NonNull String packageId, @NonNull String accountType) {
+    public FilesAppType(@NonNull String packageId, @NonNull String accountType, Type type) {
         this.packageId = packageId;
         this.accountType = accountType;
+        this.type = type;
     }
 
-    /**
-     * @return {@link #PROD}, {@link #QA} or {@link #DEV} depending on {@param accountType}.
-     * Uses {@link #PROD} as fallback.
-     */
-    @NonNull
-    public static FilesAppType findByAccountType(@Nullable String accountType) {
-        for (final var appType : FilesAppType.values()) {
-            if (appType.accountType.equalsIgnoreCase(accountType)) {
-                return appType;
-            }
-        }
-        return PROD;
+    public enum Type {
+        PROD, QA, DEV
     }
 }

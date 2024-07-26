@@ -9,9 +9,6 @@
  */
 package com.nextcloud.android.sso.api;
 
-import static com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil.pipeFrom;
-import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,15 +20,12 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
+import com.nextcloud.android.sso.FilesAppTypeRegistry;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.exceptions.NextcloudApiNotRespondingException;
-import com.nextcloud.android.sso.model.FilesAppType;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
 import java.io.ByteArrayInputStream;
@@ -43,6 +37,12 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import static com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil.pipeFrom;
+import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
 
 public class AidlNetworkRequest extends NetworkRequest {
     private static final String TAG = AidlNetworkRequest.class.getCanonicalName();
@@ -91,7 +91,7 @@ public class AidlNetworkRequest extends NetworkRequest {
         Log.d(TAG, "[connect] Binding to AccountManagerService for type [" + type + "]");
         super.connect(type);
 
-        final String componentName = FilesAppType.findByAccountType(type).packageId;
+        final String componentName = FilesAppTypeRegistry.getInstance().findByAccountType(type).packageId;
 
         Log.d(TAG, "[connect] Component name is: [" + componentName + "]");
 

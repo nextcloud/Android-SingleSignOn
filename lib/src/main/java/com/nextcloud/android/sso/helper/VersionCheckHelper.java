@@ -12,12 +12,15 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
+import com.nextcloud.android.sso.FilesAppTypeRegistry;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledException;
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.model.FilesAppType;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
+
+import java.util.Optional;
+
+import androidx.annotation.NonNull;
 
 public final class VersionCheckHelper {
 
@@ -38,12 +41,22 @@ public final class VersionCheckHelper {
 
             // Stable Files App is not installed at all. Therefore we need to run the test on the dev app
             try {
-                final int verCode = getNextcloudFilesVersionCode(context, FilesAppType.DEV);
-                // The dev app follows a different versioning schema.. therefore we can't do our normal checks
+                Optional<FilesAppType> dev = FilesAppTypeRegistry
+                    .getInstance()
+                    .getTypes()
+                    .stream()
+                    .filter(t -> t.type == FilesAppType.Type.DEV)
+                    .findFirst();
+                if (dev.isPresent()) {
+                    final int verCode = getNextcloudFilesVersionCode(context, dev.get());
+                    // The dev app follows a different versioning schema.. therefore we can't do our normal checks
 
-                // However beta users are probably always up to date so we will just ignore it for now
-                Log.d(TAG, "Dev files app version is: " + verCode);
-                return true;
+                    // However beta users are probably always up to date so we will just ignore it for now
+                    Log.d(TAG, "Dev files app version is: " + verCode);
+                    return true;
+                } else {
+                    UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotInstalledException(context));
+                }
             } catch (PackageManager.NameNotFoundException ex) {
                 Log.e(TAG, "PackageManager.NameNotFoundException (dev files app not found): " + e.getMessage());
                 UiExceptionManager.showDialogForException(context, new NextcloudFilesAppNotInstalledException(context));
