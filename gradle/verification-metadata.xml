@@ -178,7 +178,10 @@
          <trusted-key id="E7DC75FC24FB3C8DFE8086AD3D5839A2262CBBFB" group="org.jetbrains.kotlinx"/>
          <trusted-key id="E82D2EAF2E83830CE1F7F6BE571A5291E827E1C7" group="net.java" name="jvnet-parent" version="3"/>
          <trusted-key id="E85AED155021AF8A6C6B7A4A7C7D8456294423BA" group="org.objenesis"/>
-         <trusted-key id="E9CC3CD1AE59E851E4DB3FA350FFD7487D34B5B9" group="io.reactivex.rxjava3" name="rxjava" version="3.1.8"/>
+         <trusted-key id="E9CC3CD1AE59E851E4DB3FA350FFD7487D34B5B9">
+            <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.8"/>
+            <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.9"/>
+         </trusted-key>
          <trusted-key id="EB1B3DE71713C9EC2E87CC26EE92349AD86DE446" group="com.google.j2objc" name="j2objc-annotations" version="2.8"/>
          <trusted-key id="EE0CA873074092F806F59B65D364ABAA39A47320" group="com.google.errorprone"/>
          <trusted-key id="F1A51E051F527E0C8E24D54D4B1E11D5A4B91E89" group="com.google.protobuf"/>
