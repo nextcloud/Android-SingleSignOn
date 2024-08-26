@@ -33,6 +33,8 @@
     <string name="nextcloud_http_request_failed_title">Aanvraag mislukt</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP aanvraag mislukt met HTTP status-code: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Bestanden vereist</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Installeer eerst de Nextcloud Bestanden app op je apparaat om door te kunnen gaan.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instructies</string>
 
     <string name="nextcloud_unsupported_method_action">Contact</string>
