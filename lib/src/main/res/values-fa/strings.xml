@@ -14,8 +14,6 @@
     <string name="no_current_account_selected_exception_action">مستندسازی</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Permission not granted</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">In order to use the Nextcloud Single Sign On on this device, you need to grant permission to access your accounts</string>
-
     <string name="token_mismatch_title">خطا در اعتبار سنجی</string>
     <string name="token_mismatch_message">مشروط به تأیید اعتبار ، مطابقت ندارد یا نام بسته برای انجام این کار مجاز نیست</string>
 
