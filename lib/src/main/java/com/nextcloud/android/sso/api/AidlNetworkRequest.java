@@ -98,7 +98,7 @@ public class AidlNetworkRequest extends NetworkRequest {
         try {
             final Intent intentService = new Intent();
             intentService.setComponent(new ComponentName(componentName,
-                    "com.owncloud.android.services.AccountManagerService"));
+                "com.owncloud.android.services.AccountManagerService"));
             // https://developer.android.com/reference/android/content/Context#BIND_ABOVE_CLIENT
             if (!mContext.bindService(intentService, mConnection, Context.BIND_AUTO_CREATE | Context.BIND_ABOVE_CLIENT)) {
                 Log.d(TAG, "[connect] Binding to AccountManagerService returned false");
@@ -171,14 +171,14 @@ public class AidlNetworkRequest extends NetworkRequest {
         final ParcelFileDescriptor output = performAidlNetworkRequestV2(request, requestBodyInputStream);
         final InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
         try {
-            final ExceptionResponse response = deserializeObjectV2(os);
+            final var response = deserializeObjectV2(os);
 
             // Handle Remote Exceptions
-            if (response.getException() != null) {
-                if (response.getException().getMessage() != null) {
-                    throw parseNextcloudCustomException(mContext, response.getException());
+            if (response.exception() != null) {
+                if (response.exception().getMessage() != null) {
+                    throw parseNextcloudCustomException(mContext, response.exception());
                 }
-                throw response.getException();
+                throw response.exception();
             }
             // os stream needs to stay open to be able to read response
             return new Response(os, response.headers);
@@ -192,9 +192,8 @@ public class AidlNetworkRequest extends NetworkRequest {
     /**
      * <strong>DO NOT CALL THIS METHOD DIRECTLY</strong> - use {@link #performNetworkRequestV2} instead
      *
-     * @param request
-     * @return
-     * @throws IOException
+     * @param request, requestBodyInputStream
+     * @throws IOException, RemoteException, NextcloudApiNotRespondingException
      */
     private ParcelFileDescriptor performAidlNetworkRequestV2(@NonNull NextcloudRequest request,
                                                              @Nullable InputStream requestBodyInputStream)
@@ -245,7 +244,7 @@ public class AidlNetworkRequest extends NetworkRequest {
             }
         }
 
-        return new ExceptionResponse(exception, headerList);
+        return new ExceptionResponse(headerList, exception);
     }
 
     public static class PlainHeader implements Serializable {
@@ -276,17 +275,9 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
     }
 
-    private static class ExceptionResponse {
-        private final Exception exception;
-        private final ArrayList<PlainHeader> headers;
-
-        public ExceptionResponse(Exception exception, ArrayList<PlainHeader> headers) {
-            this.exception = exception;
-            this.headers = headers;
-        }
-
-        public Exception getException() {
-            return exception;
-        }
+    private record ExceptionResponse(
+        @NonNull ArrayList<PlainHeader> headers,
+        @Nullable Exception exception
+    ) {
     }
 }
