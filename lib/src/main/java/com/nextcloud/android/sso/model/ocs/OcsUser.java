@@ -16,32 +16,33 @@ import com.google.gson.annotations.SerializedName;
  * <pre>
  * {@code
  * @GET("/ocs/v2.php/cloud/users/{search}?format=json")
- * Call<OcsResponse<OcsUser>> getUser(@Path("search") String userId);
+ * Call<OcsResponse < OcsUser>> getUser(@Path("search") String userId);
  * }
  * </pre>
  * @see <a href="https://docs.nextcloud.com/server/latest/developer_manual/client_apis/OCS/ocs-api-overview.html#user-metadata">User API</a>
  */
 @SuppressWarnings("SpellCheckingInspection")
-public class OcsUser {
-    public boolean enabled;
+public record OcsUser(
+    boolean enabled,
     @SerializedName("id")
-    public String userId;
-    public long lastLogin;
-    public OcsQuota quota;
-    public String email;
+    String userId,
+    long lastLogin,
+    OcsQuota quota,
+    String email,
     @SerializedName("displayname")
-    public String displayName;
-    public String phone;
-    public String address;
-    public String website;
-    public String twitter;
-    public String[] groups;
-    public String language;
-    public String locale;
-
-    public static class OcsQuota {
-        public long free;
-        public long used;
-        public long total;
+    String displayName,
+    String phone,
+    String address,
+    String website,
+    String twitter,
+    String[] groups,
+    String language,
+    String locale
+) {
+    public record OcsQuota(
+        long free,
+        long used,
+        long total
+    ) {
     }
 }

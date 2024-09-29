@@ -9,6 +9,13 @@
  */
 package com.nextcloud.android.sso;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+import static com.nextcloud.android.sso.Constants.NEXTCLOUD_FILES_ACCOUNT;
+import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO;
+import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO_EXCEPTION;
+import static com.nextcloud.android.sso.Constants.SSO_SHARED_PREFERENCE;
+
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -23,6 +30,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
 import com.nextcloud.android.sso.exceptions.AndroidGetAccountsPermissionNotGranted;
@@ -39,18 +50,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
-
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
-import static com.nextcloud.android.sso.Constants.NEXTCLOUD_FILES_ACCOUNT;
-import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO;
-import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO_EXCEPTION;
-import static com.nextcloud.android.sso.Constants.SSO_SHARED_PREFERENCE;
 
 public class AccountImporter {
 
@@ -120,7 +121,7 @@ public class AccountImporter {
         PackageManager pm = context.getPackageManager();
         for (final var appType : FilesAppTypeRegistry.getInstance().getTypes()) {
             try {
-                pm.getPackageInfo(appType.packageId, PackageManager.GET_ACTIVITIES);
+                pm.getPackageInfo(appType.packageId(), PackageManager.GET_ACTIVITIES);
                 returnValue = true;
                 break;
             } catch (PackageManager.NameNotFoundException e) {
@@ -365,7 +366,7 @@ public class AccountImporter {
             throw new NextcloudFilesAppAccountPermissionNotGrantedException(context);
         }
 
-        String componentName = FilesAppTypeRegistry.getInstance().findByAccountType(account.type).packageId;
+        String componentName = FilesAppTypeRegistry.getInstance().findByAccountType(account.type).packageId();
 
         Intent authIntent = new Intent();
         authIntent.setComponent(new ComponentName(componentName,

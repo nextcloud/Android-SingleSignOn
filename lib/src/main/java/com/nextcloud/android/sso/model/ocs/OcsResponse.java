@@ -17,25 +17,26 @@ import com.google.gson.annotations.SerializedName;
  * <pre>
  * {@code
  * @GET("/ocs/v2.php/cloud/capabilities?format=json")
- * Call<OcsResponse<OcsCapabilitiesResponse>> getCapabilities();
+ * Call<OcsResponse < OcsCapabilitiesResponse>> getCapabilities();
  * }
  * </pre>
  *
  * @param <T> defines the payload type of this {@link OcsResponse}.
  */
 @SuppressWarnings("unused, SpellCheckingInspection")
-public class OcsResponse<T> {
-    public OcsWrapper<T> ocs;
-
-    public static class OcsWrapper<T> {
-        public OcsMeta meta;
-        public T data;
-
-        public static class OcsMeta {
-            public String status;
+public record OcsResponse<T>(
+    OcsWrapper<T> ocs
+) {
+    public record OcsWrapper<T>(
+        OcsMeta meta,
+        T data
+    ) {
+        public record OcsMeta(
+            String status,
             @SerializedName("statuscode")
-            public int statusCode;
-            public String message;
+            int statusCode,
+            String message
+        ) {
         }
     }
 }
