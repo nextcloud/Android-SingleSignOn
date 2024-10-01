@@ -133,6 +133,7 @@
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.21"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.22"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.23"/>
+            <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.24"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.7"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.8"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.9"/>
