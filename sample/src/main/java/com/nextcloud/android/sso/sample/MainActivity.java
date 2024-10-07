@@ -90,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
                         /* Perform actual requests */
-                        final var user = ocsAPI.getUser(ssoAccount.userId).execute().body().ocs.data;
+                        final var user = ocsAPI.getUser(ssoAccount.userId).execute().body().ocs().data();
                         final var serverInfo = ocsAPI.getServerInfo().execute().body().ocs.data;
 
                         /* Show result on the UI thread */
                         runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(
                                 getString(R.string.account_info,
-                                        user.displayName,
+                                        user.displayName(),
                                         serverInfo.capabilities.theming.name,
                                         serverInfo.version.semanticVersion))
                         );

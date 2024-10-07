@@ -40,14 +40,14 @@ public interface OcsAPI {
     class CustomResponse {
         public OcsNode ocs;
 
-        static class OcsNode {
+        public static class OcsNode {
             public DataNode data;
 
-            static class DataNode {
+            public static class DataNode {
                 public VersionNode version;
                 public CapabilitiesNode capabilities;
 
-                static class VersionNode {
+                public static class VersionNode {
                     /**
                      * You can map the <code>JSON</code> attributes to other variable names using {@link SerializedName}.
                      * See <a href="https://github.com/google/gson"><code>Gson</code></a>- and <a href="https://square.github.io/retrofit/"><code>Retrofit</code></a>-Documentation for all possibilities.
@@ -56,10 +56,10 @@ public interface OcsAPI {
                     public String semanticVersion;
                 }
 
-                static class CapabilitiesNode {
+                public static class CapabilitiesNode {
                     public ThemingNode theming;
 
-                    static class ThemingNode {
+                    public static class ThemingNode {
                         public String name;
                     }
                 }

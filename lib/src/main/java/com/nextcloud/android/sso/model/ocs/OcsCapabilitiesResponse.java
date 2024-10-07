@@ -16,51 +16,53 @@ import com.google.gson.annotations.SerializedName;
  * <pre>
  * {@code
  * @GET("/ocs/v2.php/cloud/capabilities?format=json")
- * Call<OcsResponse<OcsCapabilities>> getCapabilities();
+ * Call<OcsResponse < OcsCapabilities>> getCapabilities();
  * }
  * </pre>
  *
  * @see <a href="https://docs.nextcloud.com/server/latest/developer_manual/client_apis/OCS/ocs-api-overview.html#capabilities-api">Capabilities API</a>
  */
 @SuppressWarnings("unused, SpellCheckingInspection")
-public class OcsCapabilitiesResponse {
-    public OcsVersion version;
-    public OcsCapabilities capabilities;
-
-    public static class OcsVersion {
-        public int major;
-        public int minor;
-        public int macro;
-        public String string;
-        public String edition;
-        public boolean extendedSupport;
+public record OcsCapabilitiesResponse(
+    OcsVersion version,
+    OcsCapabilities capabilities
+) {
+    public record OcsVersion(
+        int major,
+        int minor,
+        int macro,
+        String string,
+        String edition,
+        boolean extendedSupport
+    ) {
     }
 
-    public static class OcsCapabilities {
-        public OcsTheming theming;
-
-        public static class OcsTheming {
-            public String name;
-            public String url;
-            public String slogan;
-            public String color;
+    public record OcsCapabilities(
+        OcsTheming theming
+    ) {
+        public record OcsTheming(
+            String name,
+            String url,
+            String slogan,
+            String color,
             @SerializedName("color-text")
-            public String colorText;
+            String colorText,
             @SerializedName("color-element")
-            public String colorElement;
+            String colorElement,
             @SerializedName("color-element-bright")
-            public String colorElementBright;
+            String colorElementBright,
             @SerializedName("color-element-dark")
-            public String colorElementDark;
-            public String logo;
-            public String background;
+            String colorElementDark,
+            String logo,
+            String background,
             @SerializedName("background-plain")
-            public boolean backgroundPlain;
+            boolean backgroundPlain,
             @SerializedName("background-default")
-            public boolean backgroundDefault;
+            boolean backgroundDefault,
             @SerializedName("logoheader")
-            public String logoHeader;
-            public String favicon;
+            String logoHeader,
+            String favicon
+        ) {
         }
     }
 }
