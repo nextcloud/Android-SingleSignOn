@@ -88,23 +88,20 @@ public class SSOException extends Exception {
             return new UnknownErrorException("Exception message is null");
         }
 
-        switch (message) {
-            case Constants.EXCEPTION_INVALID_TOKEN:
-                return new TokenMismatchException(context);
-            case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
-                return new NextcloudFilesAppAccountNotFoundException(context);
-            case Constants.EXCEPTION_UNSUPPORTED_METHOD:
-                return new NextcloudUnsupportedMethodException(context);
-            case Constants.EXCEPTION_INVALID_REQUEST_URL:
-                return new NextcloudInvalidRequestUrlException(context, exception.getCause());
-            case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
+        return switch (message) {
+            case Constants.EXCEPTION_INVALID_TOKEN -> new TokenMismatchException(context);
+            case Constants.EXCEPTION_ACCOUNT_NOT_FOUND -> new NextcloudFilesAppAccountNotFoundException(context);
+            case Constants.EXCEPTION_UNSUPPORTED_METHOD -> new NextcloudUnsupportedMethodException(context);
+            case Constants.EXCEPTION_INVALID_REQUEST_URL ->
+                new NextcloudInvalidRequestUrlException(context, exception.getCause());
+            case Constants.EXCEPTION_HTTP_REQUEST_FAILED -> {
                 final int statusCode = Integer.parseInt(exception.getCause().getMessage());
                 final var cause = exception.getCause().getCause();
-                return new NextcloudHttpRequestFailedException(context, statusCode, cause);
-            case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED:
-                return new NextcloudFilesAppAccountPermissionNotGrantedException(context);
-            default:
-                return new UnknownErrorException(exception.getMessage());
-        }
+                yield new NextcloudHttpRequestFailedException(context, statusCode, cause);
+            }
+            case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED ->
+                new NextcloudFilesAppAccountPermissionNotGrantedException(context);
+            default -> new UnknownErrorException(exception.getMessage());
+        };
     }
 }

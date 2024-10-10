@@ -13,22 +13,20 @@ package com.nextcloud.android.sso.helper;
 import androidx.annotation.NonNull;
 
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
-import com.nextcloud.android.sso.api.EmptyResponse;
 import com.nextcloud.android.sso.api.AidlNetworkRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import okhttp3.Headers;
-import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
-import okio.BufferedSource;
 import okio.Timeout;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,9 +34,11 @@ import retrofit2.Response;
 
 public final class Retrofit2Helper {
 
-    private Retrofit2Helper() { }
+    private Retrofit2Helper() {
+    }
 
-    public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI, final NextcloudRequest nextcloudRequest, 
+    public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI,
+                                         final NextcloudRequest nextcloudRequest,
                                          final Type resType) {
         return new Call<>() {
 
@@ -49,22 +49,23 @@ public final class Retrofit2Helper {
             @Override
             public Response<T> execute() {
                 try {
-                    com.nextcloud.android.sso.api.Response response = nextcloudAPI.performNetworkRequestV2(nextcloudRequest);
+                    final var response = nextcloudAPI.performNetworkRequestV2(nextcloudRequest);
+                    final T body = nextcloudAPI.convertStreamToTargetEntity(response.getBody(), resType);
+                    final var headerMap = Optional.ofNullable(response.getPlainHeaders())
+                        .map(headers -> headers
+                            .stream()
+                            .collect(Collectors.toMap(
+                                AidlNetworkRequest.PlainHeader::getName,
+                                AidlNetworkRequest.PlainHeader::getValue)))
+                        .orElse(Collections.emptyMap());
 
-                    T body = nextcloudAPI.convertStreamToTargetEntity(response.getBody(), resType);
-                    Map<String, String> headerMap = new HashMap<>();
-                    ArrayList<AidlNetworkRequest.PlainHeader> plainHeaders = response.getPlainHeaders();
-                    if (plainHeaders != null) {
-                        for (AidlNetworkRequest.PlainHeader header : plainHeaders) {
-                            headerMap.put(header.getName(), header.getValue());
-                        }
-                    }
                     return Response.success(body, Headers.of(headerMap));
+
                 } catch (NextcloudHttpRequestFailedException e) {
-                    final Throwable cause = e.getCause();
-                    return convertExceptionToResponse(e.getStatusCode(), cause == null ? e.getMessage() : cause.getMessage());
+                    return convertExceptionToResponse(e.getStatusCode(), Optional.ofNullable(e.getCause()).orElse(e));
+
                 } catch (Exception e) {
-                    return convertExceptionToResponse(520, e.toString());
+                    return convertExceptionToResponse(900, e);
                 }
             }
 
@@ -73,8 +74,7 @@ public final class Retrofit2Helper {
              */
             @Override
             public void enqueue(@NonNull final Callback<T> callback) {
-                final Call<T> call = this;
-                new Thread(() -> callback.onResponse(call, execute())).start();
+                new Thread(() -> callback.onResponse(this, execute())).start();
             }
 
             @Override
@@ -110,17 +110,19 @@ public final class Retrofit2Helper {
                 throw new UnsupportedOperationException("Not implemented");
             }
 
-            private Response<T> convertExceptionToResponse(int statusCode, String errorMessage) {
-                ResponseBody body = ResponseBody.create(null, errorMessage);
+            private Response<T> convertExceptionToResponse(int statusCode, @NonNull Throwable throwable) {
+                final var body = ResponseBody.create(null, throwable.toString());
+                final var path = Optional.ofNullable(nextcloudRequest.getUrl()).orElse("");
+
                 return Response.error(
-                        body,
-                        new okhttp3.Response.Builder()
-                                .body(body)
-                                .code(statusCode)
-                                .message(errorMessage)
-                                .protocol(Protocol.HTTP_1_1)
-                                .request(new Request.Builder().url("http://localhost/" + nextcloudRequest.getUrl()).build())
-                                .build());
+                    body,
+                    new okhttp3.Response.Builder()
+                        .body(body)
+                        .code(statusCode)
+                        .message(throwable.getMessage() + Arrays.toString(throwable.getStackTrace()))
+                        .protocol(Protocol.HTTP_1_1)
+                        .request(new Request.Builder().url("http://example.com" + (path.startsWith("/") ? path : "/" + path)).build())
+                        .build());
             }
         };
     }
