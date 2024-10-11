@@ -33,7 +33,7 @@
     <string name="nextcloud_http_request_failed_title">فشل الطلب</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">فشل طلب HTTP مع رمز حالة HTTP: %1$d</string>
 
-    <string name="nextcloud_files_app_no_store_installed_title">ملفات نكست كلاود Nextcloud Files لازمةٌ</string>
+    <string name="nextcloud_files_app_no_store_installed_title">تطبيق ملفات نكست كلاود Nextcloud Files مطلوب</string>
     <string name="nextcloud_files_app_no_store_installed_message">للاستمرار يُرجى القيام بتنصيب تطبيق ملفات نكست كلاود Flies على جهازك أوّلاً.</string>
     <string name="nextcloud_files_app_no_store_installed_action">تعليمات</string>
 
