@@ -9,8 +9,8 @@
 
     <string name="unknown_error_title">未知错误</string>
 
-    <string name="no_current_account_selected_exception_title">未选择账户</string>
-    <string name="no_current_account_selected_exception_message">执行此操作前，您需要先设置当前账户。 请参阅文档以了解正确使用方法。</string>
+    <string name="no_current_account_selected_exception_title">未选择账号</string>
+    <string name="no_current_account_selected_exception_message">执行此操作前，你需要先设置当前账号。 请参阅文档以了解正确使用方法。</string>
     <string name="no_current_account_selected_exception_action">文档</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">未授予权限</string>
@@ -23,7 +23,7 @@
     <string name="nextcloud_files_app_not_installed_message">此应用程序依赖于 Nextcloud Files 应用程序。 请先安装Files 后才能使用此应用程序。</string>
     <string name="nextcloud_files_app_not_installed_action">安装</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">未找到账户</string>
+    <string name="nextcloud_files_app_account_not_found_title">未找到账号</string>
     <string name="nextcloud_files_app_account_not_found_message">在 Nextcloud 文件应用程序Files中找不到请求的帐户</string>
     <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">在 Nextcloud 文件应用程序Files中找不到帐户 %1$s</string>
 
