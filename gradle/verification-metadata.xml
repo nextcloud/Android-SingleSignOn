@@ -144,6 +144,7 @@
          <trusted-key id="A5F483CD733A4EBAEA378B2AE88979FB9B30ACF2">
             <trusting group="androidx.annotation"/>
             <trusting group="androidx.appcompat"/>
+            <trusting group="androidx.constraintlayout"/>
             <trusting group="androidx.core"/>
             <trusting group="androidx.databinding"/>
             <trusting group="androidx.fragment" name="fragment" version="1.7.1"/>
@@ -152,6 +153,7 @@
             <trusting group="androidx.fragment" name="fragment" version="1.8.2"/>
             <trusting group="androidx.fragment" name="fragment" version="1.8.3"/>
             <trusting group="androidx.fragment" name="fragment" version="1.8.4"/>
+            <trusting group="androidx.profileinstaller"/>
             <trusting group="androidx.transition" name="transition" version="1.5.0"/>
             <trusting group="^androidx[.]test($|([.].*))" regex="true"/>
             <trusting group="^com[.]android($|([.].*))" regex="true"/>
