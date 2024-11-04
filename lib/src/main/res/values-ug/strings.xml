@@ -1,0 +1,53 @@
+<resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+    <string name="close">تاقاش</string>
+
+    <string name="unknown_error_title">نامەلۇم خاتالىق</string>
+
+    <string name="no_current_account_selected_exception_title">ھېسابات تاللانمىدى</string>
+    <string name="no_current_account_selected_exception_message">بۇ مەشغۇلاتنى قىلىشتىن بۇرۇن نۆۋەتتىكى ھېساباتنى تەڭشىشىڭىز كېرەك. مۇۋاپىق ئىشلىتىش ئۈچۈن ھۆججەتلەرنى كۆرۈڭ.</string>
+    <string name="no_current_account_selected_exception_action">پۈتۈك</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">ئىجازەت بېرىلمەيدۇ</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">بۇ ئۈسكۈنىدە Nextcloud يەككە تىزىملىكىنى ئىشلىتىش ئۈچۈن ، ھېساباتىڭىزنى زىيارەت قىلىشقا ئىجازەت بېرىشىڭىز كېرەك</string>
+
+    <string name="token_mismatch_title">دەلىللەش خاتالىقى</string>
+    <string name="token_mismatch_message">تەمىنلەنگەن دەلىللەش بەلگىسى ماس كەلمەيدۇ ياكى بوغچا ئىسمى بۇ ھەرىكەتنى قىلىشقا بولمايدۇ</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud ھۆججەتلىرى ئورنىتىلمىدى</string>
+    <string name="nextcloud_files_app_not_installed_message">بۇ ئەپ Nextcloud ھۆججەتلىرى دېتالىغا باغلىق. بۇ ئەپنى ئىشلىتىش ئۈچۈن قاچىلاڭ.</string>
+    <string name="nextcloud_files_app_not_installed_action">قاچىلاش</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">ھېسابات تېپىلمىدى</string>
+    <string name="nextcloud_files_app_account_not_found_message">تەلەپ قىلىنغان ھېسابات Nextcloud Files ئەپىدە تېپىلمىدى</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Nextcloud Files ئەپىدە% 1 $ s ھېسابات تېپىلمىدى</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">ئىجازەت بېرىلمەيدۇ</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">يەككە ئىمزا قويۇش ئىقتىدارىنى ئىشلىتىش ئۈچۈن تەلەپ قىلىنغان ئىجازەتلەرنى قوبۇل قىلىشىڭىز كېرەك.</string>
+
+    <string name="nextcloud_http_request_failed_title">تەلەپ مەغلۇپ بولدى</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP تەلىپى HTTP ھالەت كودى بىلەن مەغلۇپ بولدى:% 1 $ d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud ھۆججەتلىرى تەلەپ قىلىنىدۇ</string>
+    <string name="nextcloud_files_app_no_store_installed_message">داۋاملاشتۇرۇش ئۈچۈن ئالدى بىلەن Nextcloud Files دېتالىنى ئۈسكۈنىڭىزگە قاچىلاڭ.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">كۆرسەتمە</string>
+
+    <string name="nextcloud_unsupported_method_action">ئالاقىلىشىڭ</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Nextcloud ھۆججەت دېتالىنى يېڭىلاڭ</string>
+    <string name="nextcloud_files_app_not_supported_message">Nextcloud Files دېتالىڭىز كونا نەشرى بولۇپ ، تېخى تاق كىرىش ئىقتىدارىنى قوللىمايدۇ.</string>
+    <string name="nextcloud_files_app_not_supported_action">يېڭىلاش</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API ئىنكاس قايتۇرمىدى</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files ئەپى API ئىنكاس قايتۇرمىدى. بۇ بەلكىم تېلېفونىڭىزدىكى باتارېيەنىڭ ئەلالاشتۇرۇشىدىن بولۇشى مۇمكىن. ھەر ئىككى ئەپنىڭ (Nextcloud ھۆججەتلىرى ۋە بۇ دېتال) باتارېيەنى ئەلالاشتۇرۇشنى چەكلەڭ. باشقا بارلىق ئەھۋاللاردا ھەر ئىككى ئەپنىڭ ساقلىنىشىنى تازىلاپ بېقىڭ.</string>
+    <string name="nextcloud_files_api_not_responding_action">تەڭشەك</string>
+
+    <string name="sso_canceled">SSO ئىمپورت ئەمەلدىن قالدۇرۇلدى</string>
+    <string name="sso_canceled_message">SSO ئىمپورت قىلىش ئىشلەتكۈچى تەرىپىدىن ئەمەلدىن قالدۇرۇلدى</string>
+
+    </resources>

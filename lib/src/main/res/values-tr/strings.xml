@@ -44,7 +44,7 @@
     <string name="nextcloud_files_app_not_supported_action">Güncelle</string>
 
     <string name="nextcloud_files_api_not_responding_title">API yanıt vermiyor</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud Dosyalar uygulamasının API arayüzü yanıt vermiyor. Bu durum büyük olasılıkla telefonunuzdaki pil kullanımını iyileştirme ayarlarından kaynaklanır. İki uygulama için de pil kullanımını iyileştirme seçeneğini devre dışı bırakmayı deneyin (Nextcloud Dosyalar ve bu uygulama). Bunun dışında, her iki uygulamanın da depolama alanını temizlemeyi deneyebilirsiniz.</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Dosyalar uygulamasının API arayüzü yanıt vermiyor. Bu durum büyük olasılıkla telefonunuzdaki pil kullanımını iyileştirme ayarlarından kaynaklanır. İki uygulama için de pil kullanımını iyileştirme seçeneğini kapatmayı deneyin (Nextcloud Dosyalar ve bu uygulama). Bunun dışında, her iki uygulamanın da depolama alanını temizlemeyi deneyebilirsiniz.</string>
     <string name="nextcloud_files_api_not_responding_action">Ayarlar</string>
 
     <string name="sso_canceled">Tek oturum açma içe aktarma işlemi iptal edildi</string>
