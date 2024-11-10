@@ -23,46 +23,79 @@ import com.google.gson.annotations.SerializedName;
  * @see <a href="https://docs.nextcloud.com/server/latest/developer_manual/client_apis/OCS/ocs-api-overview.html#capabilities-api">Capabilities API</a>
  */
 @SuppressWarnings("unused, SpellCheckingInspection")
-public record OcsCapabilitiesResponse(
-    OcsVersion version,
-    OcsCapabilities capabilities
-) {
-    public record OcsVersion(
-        int major,
-        int minor,
-        int macro,
-        String string,
-        String edition,
-        boolean extendedSupport
-    ) {
+public class OcsCapabilitiesResponse {
+    public final OcsVersion version;
+    public final OcsCapabilities capabilities;
+
+    public OcsCapabilitiesResponse(OcsVersion version, OcsCapabilities capabilities) {
+        this.version = version;
+        this.capabilities = capabilities;
     }
 
-    public record OcsCapabilities(
-        OcsTheming theming
-    ) {
-        public record OcsTheming(
-            String name,
-            String url,
-            String slogan,
-            String color,
+    public class OcsVersion {
+        public final int major;
+        public final int minor;
+        public final int macro;
+        public final String string;
+        public final String edition;
+        public final boolean extendedSupport;
+
+        public OcsVersion(int major, int minor, int macro, String string, String edition, boolean extendedSupport) {
+            this.major = major;
+            this.minor = minor;
+            this.macro = macro;
+            this.string = string;
+            this.edition = edition;
+            this.extendedSupport = extendedSupport;
+        }
+    }
+
+    public class OcsCapabilities {
+        public final OcsTheming theming;
+
+        public OcsCapabilities(OcsTheming theming) {
+            this.theming = theming;
+        }
+
+        public class OcsTheming {
+            public final String name;
+            public final String url;
+            public final String slogan;
+            public final String color;
             @SerializedName("color-text")
-            String colorText,
+            public final String colorText;
             @SerializedName("color-element")
-            String colorElement,
+            public final String colorElement;
             @SerializedName("color-element-bright")
-            String colorElementBright,
+            public final String colorElementBright;
             @SerializedName("color-element-dark")
-            String colorElementDark,
-            String logo,
-            String background,
+            public final String colorElementDark;
+            public final String logo;
+            public final String background;
             @SerializedName("background-plain")
-            boolean backgroundPlain,
+            public final boolean backgroundPlain;
             @SerializedName("background-default")
-            boolean backgroundDefault,
+            public final boolean backgroundDefault;
             @SerializedName("logoheader")
-            String logoHeader,
-            String favicon
-        ) {
+            public final String logoHeader;
+            public final String favicon;
+
+            public OcsTheming(String name, String url, String slogan, String color, String colorText, String colorElement, String colorElementBright, String colorElementDark, String logo, String background, boolean backgroundPlain, boolean backgroundDefault, String logoHeader, String favicon) {
+                this.name = name;
+                this.url = url;
+                this.slogan = slogan;
+                this.color = color;
+                this.colorText = colorText;
+                this.colorElement = colorElement;
+                this.colorElementBright = colorElementBright;
+                this.colorElementDark = colorElementDark;
+                this.logo = logo;
+                this.background = background;
+                this.backgroundPlain = backgroundPlain;
+                this.backgroundDefault = backgroundDefault;
+                this.logoHeader = logoHeader;
+                this.favicon = favicon;
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import androidx.core.app.NotificationCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.exceptions.SSOException;
+import com.nextcloud.android.sso.helper.InternalOption;
 
 public final class UiExceptionManager {
 
@@ -33,7 +35,7 @@ public final class UiExceptionManager {
     public static void showDialogForException(@NonNull Context context,
                                               @NonNull SSOException exception) {
         final int actionText = exception.getPrimaryActionTextRes().orElse(android.R.string.yes);
-        final var optionalAction = exception.getPrimaryAction();
+        final InternalOption<Intent> optionalAction = exception.getPrimaryAction();
 
         if (optionalAction.isPresent()) {
             showDialogForException(context, exception, actionText, (dialog, which) -> context.startActivity(optionalAction.get()));
@@ -49,7 +51,7 @@ public final class UiExceptionManager {
                                               @NonNull SSOException exception,
                                               @StringRes int actionText,
                                               @Nullable DialogInterface.OnClickListener callback) {
-        final var builder = new MaterialAlertDialogBuilder(context)
+        final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
                 .setMessage(exception.getMessage());
 
         exception.getTitleRes().ifPresent(builder::setTitle);
@@ -68,7 +70,7 @@ public final class UiExceptionManager {
                                                     @NonNull SSOException exception) {
         final String message = exception.getMessage();
 
-        final var builder = new NotificationCompat.Builder(context, "")
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "")
                 .setSmallIcon(android.R.drawable.ic_dialog_alert)
                 .setTicker(message)
                 //.setDefaults(Notification.DEFAULT_ALL)
@@ -85,11 +87,11 @@ public final class UiExceptionManager {
         //builder.setContentIntent(contentIntent);
 
         // Add as notification
-        final var notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_LOW;
-            final var channel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
+            final NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, importance);
             //mChannel.enableLights(true);
             notificationManager.createNotificationChannel(channel);
             builder.setChannelId(CHANNEL_ID);

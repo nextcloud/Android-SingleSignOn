@@ -20,8 +20,7 @@ import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import okhttp3.Headers;
 import okhttp3.Protocol;
@@ -49,20 +48,21 @@ public final class Retrofit2Helper {
             @Override
             public Response<T> execute() {
                 try {
-                    final var response = nextcloudAPI.performNetworkRequestV2(nextcloudRequest);
+                    final com.nextcloud.android.sso.api.Response response = nextcloudAPI.performNetworkRequestV2(nextcloudRequest);
                     final T body = nextcloudAPI.convertStreamToTargetEntity(response.getBody(), resType);
-                    final var headerMap = Optional.ofNullable(response.getPlainHeaders())
-                        .map(headers -> headers
-                            .stream()
-                            .collect(Collectors.toMap(
+                    final Map<String, String> headerMap = new InternalOption<>(response.getPlainHeaders())
+                        .map(headers -> new InternalStream<>(headers)
+                            .collectMap(
                                 AidlNetworkRequest.PlainHeader::getName,
-                                AidlNetworkRequest.PlainHeader::getValue)))
+                                AidlNetworkRequest.PlainHeader::getValue
+                            )
+                        )
                         .orElse(Collections.emptyMap());
 
                     return Response.success(body, Headers.of(headerMap));
 
                 } catch (NextcloudHttpRequestFailedException e) {
-                    return convertExceptionToResponse(e.getStatusCode(), Optional.ofNullable(e.getCause()).orElse(e));
+                    return convertExceptionToResponse(e.getStatusCode(), new InternalOption<>(e.getCause()).orElse(e));
 
                 } catch (Exception e) {
                     return convertExceptionToResponse(900, e);
@@ -111,8 +111,8 @@ public final class Retrofit2Helper {
             }
 
             private Response<T> convertExceptionToResponse(int statusCode, @NonNull Throwable throwable) {
-                final var body = ResponseBody.create(null, throwable.toString());
-                final var path = Optional.ofNullable(nextcloudRequest.getUrl()).orElse("");
+                final ResponseBody body = ResponseBody.create(null, throwable.toString());
+                final String path = new InternalOption<>(nextcloudRequest.getUrl()).orElse("");
 
                 return Response.error(
                     body,

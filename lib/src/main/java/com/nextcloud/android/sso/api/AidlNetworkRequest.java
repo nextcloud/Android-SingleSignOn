@@ -91,7 +91,7 @@ public class AidlNetworkRequest extends NetworkRequest {
         Log.d(TAG, "[connect] Binding to AccountManagerService for type [" + type + "]");
         super.connect(type);
 
-        final String componentName = FilesAppTypeRegistry.getInstance().findByAccountType(type).packageId();
+        final String componentName = FilesAppTypeRegistry.getInstance().findByAccountType(type).packageId;
 
         Log.d(TAG, "[connect] Component name is: [" + componentName + "]");
 
@@ -171,14 +171,14 @@ public class AidlNetworkRequest extends NetworkRequest {
         final ParcelFileDescriptor output = performAidlNetworkRequestV2(request, requestBodyInputStream);
         final InputStream os = new ParcelFileDescriptor.AutoCloseInputStream(output);
         try {
-            final var response = deserializeObjectV2(os);
+            final ExceptionResponse response = deserializeObjectV2(os);
 
             // Handle Remote Exceptions
-            if (response.exception() != null) {
-                if (response.exception().getMessage() != null) {
-                    throw parseNextcloudCustomException(mContext, response.exception());
+            if (response.exception != null) {
+                if (response.exception.getMessage() != null) {
+                    throw parseNextcloudCustomException(mContext, response.exception);
                 }
-                throw response.exception();
+                throw response.exception;
             }
             // os stream needs to stay open to be able to read response
             return new Response(os, response.headers);
@@ -275,9 +275,14 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
     }
 
-    private record ExceptionResponse(
-        @NonNull ArrayList<PlainHeader> headers,
-        @Nullable Exception exception
-    ) {
+
+    private class ExceptionResponse {
+        @NonNull public final ArrayList<PlainHeader> headers;
+        @Nullable public final Exception exception;
+
+        private ExceptionResponse(@NonNull ArrayList<PlainHeader> headers, @Nullable Exception exception) {
+            this.headers = headers;
+            this.exception = exception;
+        }
     }
 }

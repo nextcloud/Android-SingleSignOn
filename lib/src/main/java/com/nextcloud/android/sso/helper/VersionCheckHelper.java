@@ -9,6 +9,7 @@
 package com.nextcloud.android.sso.helper;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
@@ -19,8 +20,6 @@ import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledExcepti
 import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotSupportedException;
 import com.nextcloud.android.sso.model.FilesAppType;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
-
-import java.util.Optional;
 
 public final class VersionCheckHelper {
 
@@ -41,11 +40,10 @@ public final class VersionCheckHelper {
 
             // Stable Files App is not installed at all. Therefore we need to run the test on the dev app
             try {
-                Optional<FilesAppType> dev = FilesAppTypeRegistry
+                InternalOption<FilesAppType> dev = new InternalStream<>(FilesAppTypeRegistry
                     .getInstance()
-                    .getTypes()
-                    .stream()
-                    .filter(t -> t.stage() == FilesAppType.Stage.DEV)
+                    .getTypes())
+                    .filter(t -> t.stage == FilesAppType.Stage.DEV)
                     .findFirst();
                 if (dev.isPresent()) {
                     final int verCode = getNextcloudFilesVersionCode(context, dev.get());
@@ -66,7 +64,7 @@ public final class VersionCheckHelper {
     }
 
     public static int getNextcloudFilesVersionCode(@NonNull Context context, @NonNull FilesAppType appType) throws PackageManager.NameNotFoundException {
-        final var packageInfo = context.getPackageManager().getPackageInfo(appType.packageId(), 0);
+        final PackageInfo packageInfo = context.getPackageManager().getPackageInfo(appType.packageId, 0);
         final int verCode = packageInfo.versionCode;
         Log.d("VersionCheckHelper", "Version Code: " + verCode);
         return verCode;

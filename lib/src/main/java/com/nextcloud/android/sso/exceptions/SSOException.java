@@ -16,8 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.nextcloud.android.sso.Constants;
-
-import java.util.Optional;
+import com.nextcloud.android.sso.helper.InternalOption;
 
 public class SSOException extends Exception {
 
@@ -66,19 +65,19 @@ public class SSOException extends Exception {
         this.actionIntent = actionIntent;
     }
 
-    public Optional<Integer> getTitleRes() {
-        return Optional.ofNullable(titleRes);
+    public InternalOption<Integer> getTitleRes() {
+        return new InternalOption<>(titleRes);
     }
 
-    public Optional<Integer> getPrimaryActionTextRes() {
-        return Optional.ofNullable(actionTextRes);
+    public InternalOption<Integer> getPrimaryActionTextRes() {
+        return new InternalOption<>(actionTextRes);
     }
 
-    public Optional<Intent> getPrimaryAction() {
-        return Optional.ofNullable(actionIntent);
+    public InternalOption<Intent> getPrimaryAction() {
+        return new InternalOption<>(actionIntent);
     }
 
-    public static SSOException parseNextcloudCustomException(@NonNull Context context, @Nullable Exception exception) {
+    public static SSOException parseNextcloudCustomException(@NonNull Context context, @Nullable Exception exception) throws NextcloudHttpRequestFailedException {
         if (exception == null) {
             return new UnknownErrorException("Parsed exception is null");
         }
@@ -88,20 +87,23 @@ public class SSOException extends Exception {
             return new UnknownErrorException("Exception message is null");
         }
 
-        return switch (message) {
-            case Constants.EXCEPTION_INVALID_TOKEN -> new TokenMismatchException(context);
-            case Constants.EXCEPTION_ACCOUNT_NOT_FOUND -> new NextcloudFilesAppAccountNotFoundException(context);
-            case Constants.EXCEPTION_UNSUPPORTED_METHOD -> new NextcloudUnsupportedMethodException(context);
-            case Constants.EXCEPTION_INVALID_REQUEST_URL ->
-                new NextcloudInvalidRequestUrlException(context, exception.getCause());
-            case Constants.EXCEPTION_HTTP_REQUEST_FAILED -> {
+        switch (message) {
+            case Constants.EXCEPTION_INVALID_TOKEN:
+                return new TokenMismatchException(context);
+            case Constants.EXCEPTION_ACCOUNT_NOT_FOUND:
+                return new NextcloudFilesAppAccountNotFoundException(context);
+            case Constants.EXCEPTION_UNSUPPORTED_METHOD:
+                return new NextcloudUnsupportedMethodException(context);
+            case Constants.EXCEPTION_INVALID_REQUEST_URL:
+                return new NextcloudInvalidRequestUrlException(context, exception.getCause());
+            case Constants.EXCEPTION_HTTP_REQUEST_FAILED:
                 final int statusCode = Integer.parseInt(exception.getCause().getMessage());
-                final var cause = exception.getCause().getCause();
-                yield new NextcloudHttpRequestFailedException(context, statusCode, cause);
-            }
-            case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED ->
-                new NextcloudFilesAppAccountPermissionNotGrantedException(context);
-            default -> new UnknownErrorException(exception.getMessage());
-        };
+                final Throwable cause = exception.getCause().getCause();
+                throw new NextcloudHttpRequestFailedException(context, statusCode, cause);
+            case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED:
+                return new NextcloudFilesAppAccountPermissionNotGrantedException(context);
+            default:
+                return new UnknownErrorException(exception.getMessage());
+        }
     }
 }

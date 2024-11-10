@@ -45,6 +45,7 @@ import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.exceptions.UnknownErrorException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
+import com.nextcloud.android.sso.model.FilesAppType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -119,9 +120,9 @@ public class AccountImporter {
     private static boolean appInstalledOrNot(Context context) {
         boolean returnValue = false;
         PackageManager pm = context.getPackageManager();
-        for (final var appType : FilesAppTypeRegistry.getInstance().getTypes()) {
+        for (final FilesAppType appType : FilesAppTypeRegistry.getInstance().getTypes()) {
             try {
-                pm.getPackageInfo(appType.packageId(), PackageManager.GET_ACTIVITIES);
+                pm.getPackageInfo(appType.packageId, PackageManager.GET_ACTIVITIES);
                 returnValue = true;
                 break;
             } catch (PackageManager.NameNotFoundException e) {
@@ -366,7 +367,7 @@ public class AccountImporter {
             throw new NextcloudFilesAppAccountPermissionNotGrantedException(context);
         }
 
-        String componentName = FilesAppTypeRegistry.getInstance().findByAccountType(account.type).packageId();
+        String componentName = FilesAppTypeRegistry.getInstance().findByAccountType(account.type).packageId;
 
         Intent authIntent = new Intent();
         authIntent.setComponent(new ComponentName(componentName,

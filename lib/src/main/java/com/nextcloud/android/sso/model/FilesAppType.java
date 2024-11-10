@@ -9,12 +9,19 @@ package com.nextcloud.android.sso.model;
 
 import androidx.annotation.NonNull;
 
-public record FilesAppType(@NonNull String packageId,
-                           @NonNull String accountType,
-                           @NonNull Stage stage) {
+public class FilesAppType {
+    @NonNull public final String packageId;
+    @NonNull public final String accountType;
+    @NonNull public final Stage stage;
 
     public FilesAppType(@NonNull String accountType, @NonNull String packageId) {
         this(packageId, accountType, Stage.PROD);
+    }
+
+    public FilesAppType(@NonNull String packageId, @NonNull String accountType, @NonNull Stage stage) {
+        this.packageId = packageId;
+        this.accountType = accountType;
+        this.stage = stage;
     }
 
     public enum Stage {

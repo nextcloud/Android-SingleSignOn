@@ -22,14 +22,14 @@ public final class FilesAppNotInstalledHelperUtil {
 
     public static void requestInstallNextcloudFilesApp(@NonNull Context context) {
         // Nextcloud app not installed
-        final var installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace)));
+        final Intent installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_marketplace)));
 
         // launch market(s)
         if (installIntent.resolveActivity(context.getPackageManager()) != null) {
             context.startActivity(installIntent);
         } else {
             // no F-Droid market app or Play store installed → launch browser for f-droid url
-            final var downloadIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_fdroid)));
+            final Intent downloadIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.url_files_app_fdroid)));
             context.startActivity(downloadIntent);
         }
     }

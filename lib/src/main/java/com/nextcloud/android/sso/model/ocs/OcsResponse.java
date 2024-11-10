@@ -24,19 +24,33 @@ import com.google.gson.annotations.SerializedName;
  * @param <T> defines the payload type of this {@link OcsResponse}.
  */
 @SuppressWarnings("unused, SpellCheckingInspection")
-public record OcsResponse<T>(
-    OcsWrapper<T> ocs
-) {
-    public record OcsWrapper<T>(
-        OcsMeta meta,
-        T data
-    ) {
-        public record OcsMeta(
-            String status,
+public class OcsResponse<T> {
+    public final OcsWrapper<T> ocs;
+
+    public OcsResponse(OcsWrapper<T> ocs) {
+        this.ocs = ocs;
+    }
+
+    public class OcsWrapper<T> {
+        public final OcsMeta meta;
+        public final T data;
+
+        public OcsWrapper(OcsMeta meta, T data) {
+            this.meta = meta;
+            this.data = data;
+        }
+
+        public class OcsMeta {
+            public final String status;
             @SerializedName("statuscode")
-            int statusCode,
-            String message
-        ) {
+            public final int statusCode;
+            public final String message;
+
+            public OcsMeta(String status, int statusCode, String message) {
+                this.status = status;
+                this.statusCode = statusCode;
+                this.message = message;
+            }
         }
     }
 }

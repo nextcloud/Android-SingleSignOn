@@ -10,6 +10,7 @@ package com.nextcloud.android.sso;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.nextcloud.android.sso.helper.InternalStream;
 import com.nextcloud.android.sso.model.FilesAppType;
 
 import java.util.Collection;
@@ -30,7 +31,7 @@ public class FilesAppTypeRegistry {
     }
 
     public synchronized void init(@NonNull FilesAppType type) {
-        if (type.stage() != FilesAppType.Stage.PROD) {
+        if (type.stage != FilesAppType.Stage.PROD) {
             throw new IllegalArgumentException("If only one " + FilesAppType.class.getSimpleName() + " added, this must be " + FilesAppType.Stage.PROD.name() + "!");
         }
 
@@ -39,7 +40,7 @@ public class FilesAppTypeRegistry {
     }
 
     public synchronized void init(@NonNull Collection<FilesAppType> types) {
-        if (!types.stream().anyMatch(t -> t.stage() == FilesAppType.Stage.PROD)) {
+        if (!new InternalStream<>(types).anyMatch(t -> t.stage == FilesAppType.Stage.PROD)) {
             throw new IllegalArgumentException("At least one provided " + FilesAppType.class.getSimpleName() + " must be " + FilesAppType.Stage.PROD.name() + "!");
         }
 
@@ -54,9 +55,8 @@ public class FilesAppTypeRegistry {
 
     @NonNull
     public String[] getAccountTypes() {
-        return types
-            .stream()
-            .map(FilesAppType::accountType)
+        return new InternalStream<>(types)
+            .map(t -> t.accountType)
             .toArray(String[]::new);
     }
 
@@ -68,15 +68,14 @@ public class FilesAppTypeRegistry {
      */
     @NonNull
     public FilesAppType findByAccountType(@Nullable String accountType) {
-        for (final var type : types) {
-            if (type.accountType().equalsIgnoreCase(accountType)) {
+        for (final FilesAppType type : types) {
+            if (type.accountType.equalsIgnoreCase(accountType)) {
                 return type;
             }
         }
 
-        return types
-            .stream()
-            .filter(t -> t.stage() == FilesAppType.Stage.PROD)
+        return new InternalStream<>(types)
+            .filter(t -> t.stage == FilesAppType.Stage.PROD)
             .findFirst()
             .get();
     }
