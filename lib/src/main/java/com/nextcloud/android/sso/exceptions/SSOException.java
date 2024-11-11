@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.nextcloud.android.sso.Constants;
-import com.nextcloud.android.sso.helper.InternalOption;
 
 public class SSOException extends Exception {
 
@@ -65,16 +64,16 @@ public class SSOException extends Exception {
         this.actionIntent = actionIntent;
     }
 
-    public InternalOption<Integer> getTitleRes() {
-        return new InternalOption<>(titleRes);
+    public @Nullable Integer getTitleRes() {
+        return titleRes;
     }
 
-    public InternalOption<Integer> getPrimaryActionTextRes() {
-        return new InternalOption<>(actionTextRes);
+    public @Nullable Integer getPrimaryActionTextRes() {
+        return actionTextRes;
     }
 
-    public InternalOption<Intent> getPrimaryAction() {
-        return new InternalOption<>(actionIntent);
+    public @Nullable Intent getPrimaryAction() {
+        return actionIntent;
     }
 
     public static SSOException parseNextcloudCustomException(@NonNull Context context, @Nullable Exception exception) throws NextcloudHttpRequestFailedException {

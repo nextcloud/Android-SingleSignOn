@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+@androidx.annotation.Discouraged(message = "Do not publish this class.\n" +
+    "This must not be returned or a parameter of a published function.")
 public class InternalStream<T> {
     private final Collection<T> collection;
 

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Function;
 
+@androidx.annotation.Discouraged(message = "Do not publish this class.\n" +
+        "This must not be returned or a parameter of a published function.")
 public class InternalOption<T> {
     @Nullable private final T val;
 

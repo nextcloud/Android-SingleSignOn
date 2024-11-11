@@ -34,8 +34,8 @@ public final class UiExceptionManager {
 
     public static void showDialogForException(@NonNull Context context,
                                               @NonNull SSOException exception) {
-        final int actionText = exception.getPrimaryActionTextRes().orElse(android.R.string.yes);
-        final InternalOption<Intent> optionalAction = exception.getPrimaryAction();
+        final int actionText = new InternalOption<>(exception.getPrimaryActionTextRes()).orElse(android.R.string.yes);
+        final InternalOption<Intent> optionalAction = new InternalOption<>(exception.getPrimaryAction());
 
         if (optionalAction.isPresent()) {
             showDialogForException(context, exception, actionText, (dialog, which) -> context.startActivity(optionalAction.get()));
@@ -54,7 +54,7 @@ public final class UiExceptionManager {
         final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
                 .setMessage(exception.getMessage());
 
-        exception.getTitleRes().ifPresent(builder::setTitle);
+        new InternalOption<>(exception.getTitleRes()).ifPresent(builder::setTitle);
 
         if (callback == null) {
             builder.setPositiveButton(R.string.close, null);
@@ -77,7 +77,7 @@ public final class UiExceptionManager {
                 .setAutoCancel(true)
                 .setContentText(message);
 
-        exception.getTitleRes()
+        new InternalOption<>(exception.getTitleRes())
                 .map(context::getString)
                 .ifPresent(builder::setContentTitle);
 
