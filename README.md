@@ -285,11 +285,9 @@ if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION
 
 ## R8/ProGuard
 
-R8 and ProGuard rules are bundled into [SSO](lib/consumer-proguard-rules.pro).
-The bundled rules do **not** cover enabled obfuscation.
-Therefore it is **recommended** to add `-dontobfuscate` to your app-specific proguard rules.
+R8 and ProGuard rules are bundled into [SSO](lib/consumer-proguard-rules.pro) so it will automatically work without additional app level rules.
 
-With [R8 full mode](https://r8.googlesource.com/r8/+/refs/heads/master/compatibility-faq.md#r8-full-mode) being enabled by default since [AGP 8.0](https://developer.android.com/build/releases/gradle-plugin#default-changes), you will probably need to handle following app-specific rules yourself (or disable full mode):
+Keep in mind that you will still need custom rules for your classes used with Retrofit, Gson or similar tools.
 
 ### Gson
 According to [Gson's sample rules](https://github.com/google/gson/blob/master/examples/android-proguard-example/proguard.cfg#L14), you still need to configure rules for your gson-handled classes.
