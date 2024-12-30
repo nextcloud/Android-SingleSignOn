@@ -11,12 +11,10 @@ package com.nextcloud.android.sso.api;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ParsedResponse<T> {
     private final T response;
-    private final Map<String, String> headers = new HashMap<>();
+    private final Headers headers = new Headers();
 
     public ParsedResponse(T response, @Nullable ArrayList<AidlNetworkRequest.PlainHeader> headers) {
         this.response = response;
@@ -39,7 +37,7 @@ public class ParsedResponse<T> {
         return response;
     }
 
-    public Map<String, String> getHeaders() {
+    public Headers getHeaders() {
         return headers;
     }
 }
