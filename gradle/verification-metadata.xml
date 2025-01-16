@@ -49,7 +49,10 @@
          </trusted-key>
          <trusted-key id="31BAE2E51D95E0F8AD9B7BCC40A3C4432BD7308C" group="com.googlecode.juniversalchardet" name="juniversalchardet" version="1.0.3"/>
          <trusted-key id="33FD4BFD33554634053D73C0C2148900BCD3C2AF" group="org.jetbrains" name="annotations" version="23.0.0"/>
-         <trusted-key id="34441E504A937F43EB0DAEF96A65176A0FB1CD0B" group="org.codehaus.groovy"/>
+         <trusted-key id="34441E504A937F43EB0DAEF96A65176A0FB1CD0B">
+            <trusting group="org.apache.groovy" name="groovy-bom" version="4.0.22"/>
+            <trusting group="org.codehaus.groovy"/>
+         </trusted-key>
          <trusted-key id="44FBDBBC1A00FE414F1C1873586654072EAD6677" group="org.sonatype.oss" name="oss-parent" version="9"/>
          <trusted-key id="47504B76CF89C15C0512D9AFE16AB52D79FD224F">
             <trusting group="com.google.api.grpc" name="proto-google-common-protos" version="2.0.1"/>
@@ -60,6 +63,7 @@
          <trusted-key id="48B086A7D843CFA258E83286928FBF39003C0425">
             <trusting group="org.springframework" name="spring-framework-bom" version="5.3.31"/>
             <trusting group="org.springframework" name="spring-framework-bom" version="5.3.32"/>
+            <trusting group="org.springframework" name="spring-framework-bom" version="5.3.39"/>
          </trusted-key>
          <trusted-key id="4BF79B8259007B566D2FCE82296CD27F60EED12C" group="com.google.crypto.tink" name="tink" version="1.7.0"/>
          <trusted-key id="4C5F68D09D42BA7FAC888DF9A929EA2321FDBF8F">
@@ -145,6 +149,7 @@
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.8"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.0.9"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.1.0"/>
+            <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.1.1"/>
          </trusted-key>
          <trusted-key id="A413F67D71BEEC23ADD0CE0ACB43338E060CF9FA" group="com.google.code.findbugs" name="jsr305" version="2.0.2"/>
          <trusted-key id="A42FEF087AF29AE864684EAEE6039456D5BBD4F8" group="io.fabric8" name="kubernetes-client-bom" version="5.12.4"/>
