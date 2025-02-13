@@ -9,21 +9,42 @@
 
     <string name="unknown_error_title">Óþekkt villa</string>
 
-    <string name="no_current_account_selected_exception_action">Hjálparskjöl</string>
+    <string name="no_current_account_selected_exception_title">Enginn aðgangur valinn</string>
+    <string name="no_current_account_selected_exception_message">Þú þarft að stilla núverandi aðgang áður en þessi aðgerð er framkvæmd. Skoðaðu leiðbeiningarnar fyrir nánari lýsingu.</string>
+    <string name="no_current_account_selected_exception_action">Leiðbeiningar</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Heimild ekki veitt</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Til að geta notað eins-skiptis-innskráningu Nextcloud (SSO - Single Sign On) á þessu tæki, verður þú að gefa aðgangsheimildir til að nota aðganginn þinn</string>
 
     <string name="token_mismatch_title">Villa við auðkenningu</string>
     <string name="token_mismatch_message">Uppgefið auðkenningarteikn samsvarar ekki eða að pakkaheiti er ekki leyfilegt að framkvæma þessa aðgerð</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files er ekki uppsett</string>
+    <string name="nextcloud_files_app_not_installed_message">Þetta forrit reiðir sig á Nextcloud Files forritið. Settu það upp til að geta notað þetta forrit.</string>
     <string name="nextcloud_files_app_not_installed_action">Setja upp</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Notandaaðgangur fannst ekki</string>
+    <string name="nextcloud_files_app_account_not_found_message">Umbeðinn aðgangur fannst ekki í Nextcloud Files forritinu</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Aðgangurinn %1$s fannst ekki í Nextcloud Files forritinu</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Heimild ekki veitt</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Þú þarft að samþykkja umbeðnar heimildir til að geta notað eins-skiptis-innskráningu (SSO - Single Sign On).</string>
+
     <string name="nextcloud_http_request_failed_title">Beiðni mistókst</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-beiðni brást með HTTP-stöðukóðanum: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Files er nauðsynlegt</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Til að halda áfram skaltu setja upp Nextcloud Files snjallsímaforritið á tækinu þínu.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Leiðbeiningar</string>
+
     <string name="nextcloud_unsupported_method_action">Tengiliður</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Uppfærðu Nextcloud Files forritið</string>
+    <string name="nextcloud_files_app_not_supported_message">Nextcloud Files forritið þitt er af eldri útgáfu sem styður ekki ennþá eins-skiptis-innskráningu (SSO - Single Sign On).</string>
     <string name="nextcloud_files_app_not_supported_action">Uppfæra</string>
 
+    <string name="nextcloud_files_api_not_responding_title">API-forritsviðmótið svarar ekki</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files API-forritsviðmótið svarar ekki. Það kemur líklegast til vegna rafhlöðusparnaðaraðgerða á símanum þínum. Prófaðu að gera rafhlöðusparnað óvirkan fyrir bæði forritin (Nextcloud Files og þetta forrit). Sé ekki um þetta að ræða ættirðu að reyna að hreinsa geymslurými beggja forritanna.</string>
     <string name="nextcloud_files_api_not_responding_action">Stillingar</string>
 
     <string name="sso_canceled">Hætt við innflutning á SSO</string>
