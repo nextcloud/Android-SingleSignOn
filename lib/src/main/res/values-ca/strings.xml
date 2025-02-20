@@ -19,13 +19,13 @@
     <string name="token_mismatch_title">Error d\'autenticació</string>
     <string name="token_mismatch_message">L\'identificador (token) d\'autentificació que heu proporcionat no coincideix o el nom del paquet no té permís per realitzar aquesta acció</string>
 
-    <string name="nextcloud_files_app_not_installed_title">L\'aplicació Nextcloud Files no està instal·lada</string>
-    <string name="nextcloud_files_app_not_installed_message">Aquesta aplicació depèn de l\'aplicació Nextcloud Files. Instal·leu-la per utilitzar aquesta aplicació.</string>
+    <string name="nextcloud_files_app_not_installed_title">L\'aplicació Fitxers del Nextcloud no està instal·lada</string>
+    <string name="nextcloud_files_app_not_installed_message">Aquesta aplicació depèn de l\'aplicació Fitxers del Nextcloud. Instal·leu-la per utilitzar aquesta aplicació.</string>
     <string name="nextcloud_files_app_not_installed_action">Instal·la</string>
 
     <string name="nextcloud_files_app_account_not_found_title">No s\'ha trobat el compte</string>
-    <string name="nextcloud_files_app_account_not_found_message">No s\'ha trobat el compte sol·licitat a l\'aplicació Nextcloud Files</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">No s\'ha trobat el compte %1$s a l\'aplicació Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_message">No s\'ha trobat el compte sol·licitat a l\'aplicació Fitxers del Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">No s\'ha trobat el compte %1$s a l\'aplicació Fitxers del Nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">No s\'ha concedit el permís</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Heu d\'acceptar els permisos sol·licitats per utilitzar la funció d\'inici de sessió únic.</string>
@@ -33,15 +33,18 @@
     <string name="nextcloud_http_request_failed_title">La petició ha fallat</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Ha fallat la petició HTTP amb el codi d\'estat HTTP: %1$d</string>
 
-    <string name="nextcloud_files_app_no_store_installed_title">Cal tenir Nextcloud Files</string>
-    <string name="nextcloud_files_app_no_store_installed_message">Per continuar, instal·leu l\'aplicació Nextcloud Files al vostre dispositiu.</string>
+    <string name="nextcloud_files_app_no_store_installed_title">És necessari tenir Fitxers del Nextcloud</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Per continuar, instal·leu l\'aplicació Fitxers del Nextcloud al vostre dispositiu.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instruccions</string>
 
     <string name="nextcloud_unsupported_method_action">Contacte</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Actualitza l\'aplicació Nextcloud Files</string>
+    <string name="nextcloud_files_app_not_supported_title">Actualitza l\'aplicació Fitxers del Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_message">Teniu una versió antiga de l\'aplicació  Fitxers del Nextcloud que   encara no admet la funció de l\'inici de sessió únic.</string>
     <string name="nextcloud_files_app_not_supported_action">Actualització</string>
 
+    <string name="nextcloud_files_api_not_responding_title">L\'API no respon</string>
+    <string name="nextcloud_files_api_not_responding_message">L\'API de l\'aplicació Fitxers del Nexcloud no respon. És molt probable les optimitzacions de la bateria del telèfon siguin la causa d\'aquest error. Intenteu desactivar l\'optimització de la bateria per a ambdues aplicacions (Fitxers del Nextcloud i aquesta aplicació). En tots els altres casos, intenteu netejar l\'emmagatzematge d\'ambdues aplicacions.</string>
     <string name="nextcloud_files_api_not_responding_action">Paràmetres</string>
 
     <string name="sso_canceled">S\'ha cancel·lat la importació SSO</string>
