@@ -137,7 +137,7 @@ dependencies {
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0'
     spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.6.9'
 
-    ktlint "com.pinterest:ktlint:0.51.0-FINAL"
+    ktlint "com.pinterest.ktlint:ktlint-cli:1.0.1"
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:5.15.2'
