@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Default github action approve
-      - uses: hmarr/auto-approve-action@v4.0.0
+        -   uses: hmarr/auto-approve-action@f0939ea97e9205ef24d872e76833fa908a770363 # v 4.0.0
         if: github.ref == 'refs/heads/master' &&
           (github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]')
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # Nextcloud bot approve and merge request
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+        -   uses: ahmadnassri/action-dependabot-auto-merge@action-dependabot-auto-merge # v 2.0.0
         if: github.ref == 'refs/heads/master' &&
           (github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]')
         with:
