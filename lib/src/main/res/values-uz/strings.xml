@@ -1,0 +1,53 @@
+<resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+    <string name="close">Yopish</string>
+
+    <string name="unknown_error_title">Noma\'lum xato</string>
+
+    <string name="no_current_account_selected_exception_title">Hech qanday hisob tanlanmagan</string>
+    <string name="no_current_account_selected_exception_message">Ushbu operatsiyani bajarishdan oldin joriy hisobni o\'rnatishingiz kerak. To\'g\'ri foydalanish uchun hujjatlarga murojaat qiling.</string>
+    <string name="no_current_account_selected_exception_action">Hujjatlar</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Ruxsat berilmagan</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Bu qurilmada Nextcloud yagona kirish funksiyasidan foydalanish uchun hisoblaringizga kirishga ruxsat berishingiz kerak.</string>
+
+    <string name="token_mismatch_title">Autentifikatsiyada xatolik</string>
+    <string name="token_mismatch_message">Taqdim etilgan autentifikatsiya tokeni mos kelmasa yoki paket nomi bu amalni bajarishga ruxsat berilmagan</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud fayllari oʻrnatilmagan</string>
+    <string name="nextcloud_files_app_not_installed_message">Bu ilova Nextcloud Files ilovasiga bogʻliq. Iltimos, ushbu ilovadan foydalanish uchun uni oʻrnating.</string>
+    <string name="nextcloud_files_app_not_installed_action">O\'rnatish</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Akkaunt topilmadi</string>
+    <string name="nextcloud_files_app_account_not_found_message">So‘ralgan hisob Nextcloud Files ilovasida topilmadi</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true"> %1$s akkaunt Nextcloud Files ilovasida topilmadi</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Ruxsat berilmagan</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Yagona tizimga kirish funksiyasidan foydalanish uchun soʻralgan ruxsatlarni qabul qilishingiz kerak.</string>
+
+    <string name="nextcloud_http_request_failed_title">So‘rov bajarilmadi</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP holat kodi bilan HTTP soʻrovi bajarilmadi: %1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloud fayllari talab qilinadi</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Davom etish uchun avval qurilmangizga Nextcloud Files ilovasini oʻrnating.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Ko\'rsatmalar</string>
+
+    <string name="nextcloud_unsupported_method_action">Aloqa</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Nextcloud Files ilovasini yangilang</string>
+    <string name="nextcloud_files_app_not_supported_message">Sizning Nextcloud Files ilovangiz eski versiya bo‘lib, hali Yagona tizimga kirish funksiyasini qo‘llab-quvvatlamaydi.</string>
+    <string name="nextcloud_files_app_not_supported_action">Yangilash</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API javob bermayapti</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Files ilovasi API javob bermayapti. Bu, ehtimol, telefoningiz batareyasini optimallashtirish bilan bog\'liq. Ikkala ilova uchun ham batareyani optimallashtirishni o\'chirib ko\'ring (Nextcloud Files va ushbu ilova). Boshqa barcha holatlarda ikkala ilovaning xotirasini tozalashga harakat qiling.</string>
+    <string name="nextcloud_files_api_not_responding_action">Sozlamalar</string>
+
+    <string name="sso_canceled">SSO importi bekor qilindi</string>
+    <string name="sso_canceled_message">SSO importi foydalanuvchi tomonidan bekor qilindi</string>
+
+    </resources>
