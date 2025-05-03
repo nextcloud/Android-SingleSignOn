@@ -25,6 +25,8 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Помилка HTTP запиту з таким статус-кодом HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">Потрібно мати встановлений застосунок Nextcloud Файли</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Інструкції</string>
+
     <string name="nextcloud_unsupported_method_action">Контакт</string>
 
     <string name="nextcloud_files_app_not_supported_action">Оновлення</string>
