@@ -1,0 +1,53 @@
+<resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+    <string name="close">Sulge</string>
+
+    <string name="unknown_error_title">Tundmatu viga</string>
+
+    <string name="no_current_account_selected_exception_title">Sa pole ühtegi kontot valinud</string>
+    <string name="no_current_account_selected_exception_message">Enne seda toimingut pead lisama ühe kasutajakonto. Õige kasutuse kohta leiad teavet juhenditest.</string>
+    <string name="no_current_account_selected_exception_action">Dokumentatsioon ja juhendid</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Õigused on puudu</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Et Nextcloudi ühekordne sisselogimine (SSO) toimiks selles seadmes, siis palun anna luba sinu kontode kasutamiseks</string>
+
+    <string name="token_mismatch_title">Autentimisviga</string>
+    <string name="token_mismatch_message">Lisatud autentimise tunnusluba ei vasta tarkvarapaketi nimele või sellel paketil pole luba antud toimingu jaoks</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Nextcloudi Failirakendus on paigaldamata</string>
+    <string name="nextcloud_files_app_not_installed_message">See rakendus sõltub Nextcloudi Failirakendusest. Et saaksi soovitud rakendust kasutada, palun paigalda ka Nextcloudi Failirakendus.</string>
+    <string name="nextcloud_files_app_not_installed_action">Paigalda</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Kasutajakontot ei leidu</string>
+    <string name="nextcloud_files_app_account_not_found_message">Soovitud kasutajakontot ei leidu Nextcloudi Failirakenduses</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">%1$s kasutajakontot ei leidu Nextcloudi Failirakenduses</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Õigused on puudu</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Kui soovid kasutada ühekordse sisselogimise funktsionaalsust, siis pead nõustuma antud õiguste jagamisega.</string>
+
+    <string name="nextcloud_http_request_failed_title">Päring ei õnnestunud</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-päring lõppes HTTP olekukoodiga: %1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">Nextcloudi Failirakendus on vajalik</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Jätkamiseks palun esmalt paigalda oma nutiseadmesse Nextcloudi Failirakendus.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Juhend</string>
+
+    <string name="nextcloud_unsupported_method_action">Kontakt</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Uuenda Nextcloudi Failirakendust</string>
+    <string name="nextcloud_files_app_not_supported_message">Kasutad Nextcloudi Failirakenduse vanemat versiooni, mis veel ei toeta ühekordse sisselogimise (SSO) funktsionaalsust.</string>
+    <string name="nextcloud_files_app_not_supported_action">Uuenda</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API liidestus ei vasta päringutele</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloudi Failirakenduse API liidestus ei vasta päringutele. Suure tõenäosusega on põhjuseks, et sinu nutiseadmes on kasutusel akukasutuse optimeerimine. Proovi mõlema rakenduse jaoks (Nextcloudi Failirakendus ja see rakendus) see välja lülitada. Muudel juhtudel proovi, kas mõlema rakenduse andmeruumi kustutamine võiks olukorda parandada.</string>
+    <string name="nextcloud_files_api_not_responding_action">Seadistused</string>
+
+    <string name="sso_canceled">Ühekordse sisselogimise import on katkestatud</string>
+    <string name="sso_canceled_message">Kasutaja katkestas ühekordse sisselogimise impordi</string>
+
+    </resources>
