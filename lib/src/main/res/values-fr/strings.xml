@@ -19,7 +19,7 @@
     <string name="token_mismatch_title">Erreur d\'authentification</string>
     <string name="token_mismatch_message">Le jeton d\'authentification fourni ne correspond pas ou le nom du paquet n\'est pas autorisé à effectuer cette action</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files n\'est pas installé</string>
+    <string name="nextcloud_files_app_not_installed_title">L\'application Fichiers Nextcloud n\'est pas installé</string>
     <string name="nextcloud_files_app_not_installed_message">Cette application dépend de l\'application Fichiers de Nextcloud. Veuillez l\'installer pour pouvoir utiliser cette application.</string>
     <string name="nextcloud_files_app_not_installed_action">Installer</string>
 
