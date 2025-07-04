@@ -1,0 +1,53 @@
+<resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+    <string name="close">Funga</string>
+
+    <string name="unknown_error_title">Hitilafu isiyojulikana</string>
+
+    <string name="no_current_account_selected_exception_title">Hakuna akaunti iliyochaguliwa</string>
+    <string name="no_current_account_selected_exception_message">Unahitaji kupangilia akaunti ya sasa kabla ya kufanya operesheni hii. Tafadhali angalia hati kwa matumizi sahihi.</string>
+    <string name="no_current_account_selected_exception_action">Uhifadhi wa nyaraka</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">Ruhusa haijatolewa</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Ili kutumia kipengele cha Kuingia Moja kwa Moja cha Nextcloud kwenye kifaa hiki, unahitaji kutoa ruhusa ya kufikia akaunti zako</string>
+
+    <string name="token_mismatch_title">Hitilafu ya uthibitishaji</string>
+    <string name="token_mismatch_message">Tokeni ya uthibitishaji iliyotolewa hailingani au jina la kifurushi haliruhusiwi kutekeleza kitendo hiki</string>
+
+    <string name="nextcloud_files_app_not_installed_title">Faili za Nextcloud hazikusakinishwa</string>
+    <string name="nextcloud_files_app_not_installed_message">This app depends on the Nextcloud Files app. Please install it in order to use this app.</string>
+    <string name="nextcloud_files_app_not_installed_action">Sakinisha</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Akaunti haipatikani</string>
+    <string name="nextcloud_files_app_account_not_found_message">Akaunti iliyoombwa haikupatikana katika faili za programu ya Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Akaunti %1$s haikupatikana katika faili za programu ya Nextcloud </string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Ruhusa haijatolewa</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Inabidi ukubali ruhusa zilizoombwa ili kutumia kipengele cha Kuingia Mara Moja.</string>
+
+    <string name="nextcloud_http_request_failed_title">Ombi limeshindikana</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Ombi la HTTP limeshindikana kwa simbo wa hali ya HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">Faili za Nextcloud zinahitajika</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Ili kuendelea, tafadhali sakinisha faili za programu ya Nextcloud  kwenye kifaa chako kwanza.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Maelekezo</string>
+
+    <string name="nextcloud_unsupported_method_action">Mawasiliano</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Sasisha faili za programu ya Nextcloud</string>
+    <string name="nextcloud_files_app_not_supported_message">Faili za programu yako ya Nextcloud  ni toleo la zamani ambalo bado halitumii kipengele cha Kuingia Mara Moja.</string>
+    <string name="nextcloud_files_app_not_supported_action">Sasisha</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API haijibu</string>
+    <string name="nextcloud_files_api_not_responding_message">Faili za API ya programu ya Nextcloud  hazifanyi kazi. Hii ina uwezekano mkubwa kutokana na uboreshaji wa betri kwenye simu yako. Jaribu kuzima uboreshaji wa betri kwa programu zote mbili (Faili za Nextcloud na programu hii). Katika visa vingine vyote tafadhali jaribu kufuta uhifadhi wa programu zote mbili.</string>
+    <string name="nextcloud_files_api_not_responding_action">Mipangilio</string>
+
+    <string name="sso_canceled">Uingizaji wa SSO umesitishwa</string>
+    <string name="sso_canceled_message">Uingizaji wa SSO ulisitishwa na mtumiaji</string>
+
+    </resources>
