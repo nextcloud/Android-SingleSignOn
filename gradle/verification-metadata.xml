@@ -259,6 +259,7 @@
          <trusted-key id="E85AED155021AF8A6C6B7A4A7C7D8456294423BA" group="org.objenesis"/>
          <trusted-key id="E9CC3CD1AE59E851E4DB3FA350FFD7487D34B5B9">
             <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.10"/>
+            <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.11"/>
             <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.8"/>
             <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.9"/>
          </trusted-key>
