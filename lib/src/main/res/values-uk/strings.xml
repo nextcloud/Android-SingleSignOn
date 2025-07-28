@@ -10,27 +10,41 @@
     <string name="unknown_error_title">Невідома помилка</string>
 
     <string name="no_current_account_selected_exception_title">Не вибрано обліковий запис</string>
+    <string name="no_current_account_selected_exception_message">Перед виконанням цієї операції необхідно встановити поточний рахунок. Будь ласка, зверніться до документації для правильного використання.</string>
     <string name="no_current_account_selected_exception_action">Документація</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Дозвіл не надано</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Щоб використовувати Nextcloud Single Sign On на цьому пристрої, вам потрібно надати дозвіл на доступ до своїх облікових записів</string>
+
     <string name="token_mismatch_title">Помилка авторизації</string>
     <string name="token_mismatch_message">Наданий токен авторизації не збігається або пакунку не дозволено виконувати цю дію</string>
 
     <string name="nextcloud_files_app_not_installed_title">Не встановлено застосунок Nextcloud Файли</string>
+    <string name="nextcloud_files_app_not_installed_message">Ця програма залежить від програми Nextcloud Files. Будь ласка, встановіть його, щоб використовувати цю програму.</string>
     <string name="nextcloud_files_app_not_installed_action">Встановити</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Акаунт не знайдено</string>
+    <string name="nextcloud_files_app_account_not_found_message">Запитуваний обліковий запис не знайдено в додатку Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Обліковий запис %1$s не знайдено в додатку Nextcloud Files</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Дозвіл не надано</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Для використання функції Єдиного входу вам необхідно прийняти запропоновані дозволи.</string>
+
     <string name="nextcloud_http_request_failed_title">Запит не вдався</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">Помилка HTTP запиту з таким статус-кодом HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">Потрібно мати встановлений застосунок Nextcloud Файли</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Щоб продовжити, будь ласка, спочатку встановіть додаток Nextcloud Files на свій пристрій.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Інструкції</string>
 
     <string name="nextcloud_unsupported_method_action">Контакт</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Оновлення програми Nextcloud Files</string>
+    <string name="nextcloud_files_app_not_supported_message">Ваш додаток Nextcloud Files є старою версією, яка ще не підтримує функцію єдиного входу.</string>
     <string name="nextcloud_files_app_not_supported_action">Оновлення</string>
 
+    <string name="nextcloud_files_api_not_responding_title">API не відповідає</string>
+    <string name="nextcloud_files_api_not_responding_message">API програми Nextcloud Files не відповідає. Найімовірніше, це пов\'язано з оптимізацією батареї на вашому телефоні. Спробуйте вимкнути оптимізацію батареї для обох програм (Nextcloud Files і цієї програми). У всіх інших випадках спробуйте очистити пам\'ять обох програм.</string>
     <string name="nextcloud_files_api_not_responding_action">Налаштування</string>
 
     <string name="sso_canceled">Імпорт служби єдиного входу скасовано</string>
