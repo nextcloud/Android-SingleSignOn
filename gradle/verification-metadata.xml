@@ -70,6 +70,7 @@
          <trusted-key id="33FD4BFD33554634053D73C0C2148900BCD3C2AF" group="org.jetbrains" name="annotations" version="23.0.0"/>
          <trusted-key id="34441E504A937F43EB0DAEF96A65176A0FB1CD0B">
             <trusting group="org.apache.groovy" name="groovy-bom" version="4.0.22"/>
+            <trusting group="org.apache.groovy" name="groovy-bom" version="4.0.27"/>
             <trusting group="org.codehaus.groovy"/>
          </trusted-key>
          <trusted-key id="41CD49B4EF5876F9E9F691DABAC30622339994C4" group="org.jspecify" name="jspecify" version="1.0.0"/>
@@ -254,6 +255,7 @@
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.2.1"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.2.2"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.2.3"/>
+            <trusting group="^com[.]github[.]spotbugs($|([.].*))" regex="true"/>
          </trusted-key>
          <trusted-key id="DB0597E3144342256BC81E3EC727D053C4481CF5" group="org.tensorflow" name="tensorflow-lite-metadata" version="0.1.0-rc2"/>
          <trusted-key id="DBD744ACE7ADE6AA50DD591F66B50994442D2D40" group="^com[.]squareup($|([.].*))" regex="true"/>
