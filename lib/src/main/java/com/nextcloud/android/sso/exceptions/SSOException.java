@@ -95,13 +95,39 @@ public class SSOException extends Exception {
             case Constants.EXCEPTION_INVALID_REQUEST_URL ->
                 new NextcloudInvalidRequestUrlException(context, exception.getCause());
             case Constants.EXCEPTION_HTTP_REQUEST_FAILED -> {
-                final int statusCode = Integer.parseInt(exception.getCause().getMessage());
-                final var cause = exception.getCause().getCause();
-                yield new NextcloudHttpRequestFailedException(context, statusCode, cause);
+                Throwable rootCause = exception.getCause();
+                if (rootCause != null && rootCause.getMessage() != null) {
+                    int statusCode = Integer.parseInt(rootCause.getMessage());
+                    Throwable cause = (rootCause.getCause() != null) ? rootCause.getCause() : null;
+                    yield new NextcloudHttpRequestFailedException(context, statusCode, cause);
+                } else {
+                    yield new UnknownErrorException(message);
+                }
             }
             case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED ->
                 new NextcloudFilesAppAccountPermissionNotGrantedException(context);
-            default -> new UnknownErrorException(exception.getMessage());
+            default -> {
+                if (isNetworkConnectivityError(exception)) {
+                    yield new NextcloudNetworkException(exception);
+                } else {
+                    yield new UnknownErrorException(exception.getMessage());
+                }
+            }
         };
+    }
+
+    private static boolean isNetworkConnectivityError(Exception exception) {
+        Throwable current = exception;
+        while (current != null) {
+            if (current instanceof java.net.UnknownHostException ||
+                current instanceof javax.net.ssl.SSLException ||
+                current instanceof java.net.SocketException ||
+                current instanceof java.io.InterruptedIOException ||
+                current instanceof java.net.HttpRetryException) {
+                return true;
+            }
+            current = current.getCause();
+        }
+        return false;
     }
 }

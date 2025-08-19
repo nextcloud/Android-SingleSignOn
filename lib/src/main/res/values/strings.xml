@@ -7,6 +7,9 @@
     -->
     <string name="close">Close</string>
 
+    <string name="network_error_title">Network Error</string>
+    <string name="retry_action">Retry</string>
+
     <string name="unknown_error_title">Unknown error</string>
 
     <string name="no_current_account_selected_exception_title">No account selected</string>
