@@ -7,6 +7,8 @@
     -->
     <string name="close">Затвори</string>
 
+    <string name="retry_action">Покушај поново</string>
+
     <string name="unknown_error_title">Непозната грешка</string>
 
     <string name="no_current_account_selected_exception_title">Није изабран ниједан налог</string>

@@ -7,6 +7,8 @@
     -->
     <string name="close">Κλείσιμο</string>
 
+    <string name="retry_action">Δοκιμή ξανά</string>
+
     <string name="unknown_error_title">Άγνωστο σφάλμα</string>
 
     <string name="no_current_account_selected_exception_title">Δεν έχει επιλεγεί λογαριασμός</string>

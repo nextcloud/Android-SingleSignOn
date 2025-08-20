@@ -7,6 +7,8 @@
     -->
     <string name="close">تاقاش</string>
 
+    <string name="retry_action">قايتا سىناڭ</string>
+
     <string name="unknown_error_title">نامەلۇم خاتالىق</string>
 
     <string name="no_current_account_selected_exception_title">ھېسابات تاللانمىدى</string>

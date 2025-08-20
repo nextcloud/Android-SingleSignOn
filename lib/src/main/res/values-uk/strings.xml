@@ -7,6 +7,8 @@
     -->
     <string name="close">Закрити</string>
 
+    <string name="retry_action">Ще раз</string>
+
     <string name="unknown_error_title">Невідома помилка</string>
 
     <string name="no_current_account_selected_exception_title">Не вибрано обліковий запис</string>

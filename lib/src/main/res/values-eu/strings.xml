@@ -7,6 +7,8 @@
     -->
     <string name="close">Itxi</string>
 
+    <string name="retry_action">saiatu berriro</string>
+
     <string name="unknown_error_title">Errore ezezaguna</string>
 
     <string name="no_current_account_selected_exception_title">Ez dago konturik hautatuta</string>

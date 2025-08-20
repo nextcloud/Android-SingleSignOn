@@ -7,6 +7,8 @@
     -->
     <string name="close">Funga</string>
 
+    <string name="retry_action">Jaribu tena</string>
+
     <string name="unknown_error_title">Hitilafu isiyojulikana</string>
 
     <string name="no_current_account_selected_exception_title">Hakuna akaunti iliyochaguliwa</string>

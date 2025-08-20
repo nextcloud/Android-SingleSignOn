@@ -7,6 +7,8 @@
     -->
     <string name="close">Cerrar</string>
 
+    <string name="retry_action">Reintentar</string>
+
     <string name="unknown_error_title">Error desconocido</string>
 
     <string name="no_current_account_selected_exception_title">No se seleccionó ninguna cuenta</string>

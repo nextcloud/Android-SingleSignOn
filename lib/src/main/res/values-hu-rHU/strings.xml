@@ -7,6 +7,8 @@
     -->
     <string name="close">Bezárás</string>
 
+    <string name="retry_action">Újra</string>
+
     <string name="unknown_error_title">Ismeretlen hiba</string>
 
     <string name="no_current_account_selected_exception_title">Nincs fiók kiválasztva</string>

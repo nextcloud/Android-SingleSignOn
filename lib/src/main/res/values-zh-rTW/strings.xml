@@ -7,6 +7,8 @@
     -->
     <string name="close">關閉</string>
 
+    <string name="retry_action">重試</string>
+
     <string name="unknown_error_title">未知的錯誤</string>
 
     <string name="no_current_account_selected_exception_title">未選取帳號</string>
