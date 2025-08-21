@@ -7,6 +7,9 @@
     -->
     <string name="close">Schließen</string>
 
+    <string name="network_error_title">Netzwerkfehler</string>
+    <string name="retry_action">Wiederholen</string>
+
     <string name="unknown_error_title">Unbekannter Fehler</string>
 
     <string name="no_current_account_selected_exception_title">Kein Konto ausgewählt</string>

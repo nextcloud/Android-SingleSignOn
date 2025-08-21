@@ -7,6 +7,8 @@
     -->
     <string name="close">إغلاق</string>
 
+    <string name="retry_action">أعِدِ المحاولة</string>
+
     <string name="unknown_error_title">خطأ غير مُحدّدٍ</string>
 
     <string name="no_current_account_selected_exception_title">لم يتم اختيار أي حسابٍ</string>

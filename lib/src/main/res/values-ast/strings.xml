@@ -7,6 +7,8 @@
     -->
     <string name="close">Zarrar</string>
 
+    <string name="retry_action">Retentar</string>
+
     <string name="unknown_error_title">Error desconocíu</string>
 
     <string name="no_current_account_selected_exception_title">Nun se seleicionó nenguna cuenta</string>

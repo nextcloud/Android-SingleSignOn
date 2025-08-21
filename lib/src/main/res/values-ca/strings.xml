@@ -7,6 +7,8 @@
     -->
     <string name="close">Tanca</string>
 
+    <string name="retry_action">Torna-ho a provar</string>
+
     <string name="unknown_error_title">Error desconegut</string>
 
     <string name="no_current_account_selected_exception_title">No s\'ha seleccionat cap compte</string>

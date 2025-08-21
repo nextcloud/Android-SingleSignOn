@@ -7,6 +7,8 @@
     -->
     <string name="close">Zavřít</string>
 
+    <string name="retry_action">Zkusit znovu</string>
+
     <string name="unknown_error_title">Neznámá chyba</string>
 
     <string name="no_current_account_selected_exception_title">Nevybrán žádný účet</string>
