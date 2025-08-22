@@ -17,4 +17,12 @@ public class NextcloudNetworkException extends SSOException {
             null,
             cause);
     }
+
+    public NextcloudNetworkException(String message) {
+        super(message, null);
+    }
+
+    public NextcloudNetworkException() {
+        super(null);
+    }
 }

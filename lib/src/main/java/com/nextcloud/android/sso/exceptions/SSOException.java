@@ -116,7 +116,7 @@ public class SSOException extends Exception {
         };
     }
 
-    private static boolean isNetworkConnectivityError(Exception exception) {
+    public static boolean isNetworkConnectivityError(Exception exception) {
         Throwable current = exception;
         while (current != null) {
             if (current instanceof java.net.UnknownHostException ||
