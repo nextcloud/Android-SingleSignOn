@@ -7,6 +7,7 @@
     -->
     <string name="close">Затвори</string>
 
+    <string name="network_error_title">Мрежна грешка</string>
     <string name="retry_action">Покушај поново</string>
 
     <string name="unknown_error_title">Непозната грешка</string>
