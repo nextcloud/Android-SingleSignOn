@@ -7,6 +7,7 @@
     -->
     <string name="close">Zavřít</string>
 
+    <string name="network_error_title">Chyba sítě</string>
     <string name="retry_action">Zkusit znovu</string>
 
     <string name="unknown_error_title">Neznámá chyba</string>
