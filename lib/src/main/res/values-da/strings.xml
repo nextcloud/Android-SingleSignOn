@@ -41,9 +41,9 @@
 
     <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Opdater Nextcloud Filer appen</string>
+    <string name="nextcloud_files_app_not_supported_title">Opdatér Nextcloud Filer appen</string>
     <string name="nextcloud_files_app_not_supported_message">Nextcloud Filer appen er en ældre version, der ikke understøtter Single Sign On endnu.</string>
-    <string name="nextcloud_files_app_not_supported_action">Opdater</string>
+    <string name="nextcloud_files_app_not_supported_action">Opdatér</string>
 
     <string name="nextcloud_files_api_not_responding_title">API svarer ikke</string>
     <string name="nextcloud_files_api_not_responding_message">Nextcloud Filer appens API svarer ikke. Dette skyldes højst sandsynligt batterioptimeringer på din telefon. Prøv at deaktivere batterioptimeringen for begge apps (Nextcloud Filer og denne app). I alle andre tilfælde prøv at rydde lagrede filer i begge apps.</string>
