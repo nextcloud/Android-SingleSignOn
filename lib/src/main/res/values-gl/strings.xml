@@ -7,6 +7,7 @@
     -->
     <string name="close">Pechar</string>
 
+    <string name="network_error_title">Produciuse un erro na rede</string>
     <string name="retry_action">Volver tentar</string>
 
     <string name="unknown_error_title">Produciuse un erro descoñecido</string>
