@@ -7,6 +7,9 @@
     -->
     <string name="close">Yopish</string>
 
+    <string name="network_error_title">Tarmoq xatosi</string>
+    <string name="retry_action">Qayta urinish</string>
+
     <string name="unknown_error_title">Noma\'lum xato</string>
 
     <string name="no_current_account_selected_exception_title">Hech qanday hisob tanlanmagan</string>
