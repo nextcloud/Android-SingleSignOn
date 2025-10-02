@@ -7,6 +7,7 @@
     -->
     <string name="close">Loka</string>
 
+    <string name="network_error_title">Villa í netkerfi</string>
     <string name="retry_action">Reyna aftur</string>
 
     <string name="unknown_error_title">Óþekkt villa</string>
