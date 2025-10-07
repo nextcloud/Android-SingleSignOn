@@ -272,6 +272,7 @@
          <trusted-key id="E9CC3CD1AE59E851E4DB3FA350FFD7487D34B5B9">
             <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.10"/>
             <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.11"/>
+            <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.12"/>
             <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.8"/>
             <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.9"/>
          </trusted-key>
