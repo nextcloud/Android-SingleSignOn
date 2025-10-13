@@ -56,7 +56,8 @@ public final class Retrofit2Helper {
                             .stream()
                             .collect(Collectors.toMap(
                                 AidlNetworkRequest.PlainHeader::getName,
-                                AidlNetworkRequest.PlainHeader::getValue)))
+                                AidlNetworkRequest.PlainHeader::getValue,
+                                (existingValue, newValue) -> existingValue + ", " + newValue)))
                         .orElse(Collections.emptyMap());
 
                     return Response.success(body, Headers.of(headerMap));
