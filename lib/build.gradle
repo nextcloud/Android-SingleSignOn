@@ -9,6 +9,7 @@
 import com.github.spotbugs.snom.Confidence
 import com.github.spotbugs.snom.Effort
 import com.github.spotbugs.snom.SpotBugsTask
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 repositories {
     google()
@@ -17,6 +18,7 @@ repositories {
     maven { url = 'https://plugins.gradle.org/m2/' }
 }
 
+apply plugin: "kotlin-android"
 apply plugin: 'com.android.library'
 apply plugin: "com.github.spotbugs"
 apply plugin: "io.gitlab.arturbosch.detekt"
@@ -59,6 +61,12 @@ android {
         coreLibraryDesugaringEnabled = true
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
     }
 
     publishing {

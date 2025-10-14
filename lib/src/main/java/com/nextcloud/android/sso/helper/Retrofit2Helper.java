@@ -19,9 +19,10 @@ import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import okhttp3.Headers;
 import okhttp3.Protocol;
@@ -51,16 +52,8 @@ public final class Retrofit2Helper {
                 try {
                     final var response = nextcloudAPI.performNetworkRequestV2(nextcloudRequest);
                     final T body = nextcloudAPI.convertStreamToTargetEntity(response.getBody(), resType);
-                    final var headerMap = Optional.ofNullable(response.getPlainHeaders())
-                        .map(headers -> headers
-                            .stream()
-                            .collect(Collectors.toMap(
-                                AidlNetworkRequest.PlainHeader::getName,
-                                AidlNetworkRequest.PlainHeader::getValue,
-                                (existingValue, newValue) -> existingValue + ", " + newValue)))
-                        .orElse(Collections.emptyMap());
-
-                    return Response.success(body, Headers.of(headerMap));
+                    final var headers = buildHeaders(response.getPlainHeaders());
+                    return Response.success(body, headers);
 
                 } catch (NextcloudHttpRequestFailedException e) {
                     return convertExceptionToResponse(e.getStatusCode(), Optional.ofNullable(e.getCause()).orElse(e));
@@ -126,5 +119,36 @@ public final class Retrofit2Helper {
                         .build());
             }
         };
+    }
+
+    /**
+     * This preserves all distinct header values without combining them.
+     *
+     * @param plainHeaders List of headers from the response
+     * @return Headers object
+     */
+    public static Headers buildHeaders(List<AidlNetworkRequest.PlainHeader> plainHeaders) {
+        if (plainHeaders == null || plainHeaders.isEmpty()) {
+            return new Headers.Builder().build();
+        }
+
+        final Headers.Builder builder = new Headers.Builder();
+        final Set<String> seen = new HashSet<>();
+
+        for (var header : plainHeaders) {
+            final String name = header.getName();
+            final String value = header.getValue();
+
+            // Create a unique key for name:value combination
+            final String key = name.toLowerCase() + ":" + value;
+
+            // Only add if we haven't seen this exact name:value combination before
+            if (!seen.contains(key)) {
+                builder.add(name, value);
+                seen.add(key);
+            }
+        }
+
+        return builder.build();
     }
 }

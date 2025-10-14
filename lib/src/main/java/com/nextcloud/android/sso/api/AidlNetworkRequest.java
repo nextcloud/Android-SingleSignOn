@@ -251,7 +251,7 @@ public class AidlNetworkRequest extends NetworkRequest {
         private String name;
         private String value;
 
-        PlainHeader(String name, String value) {
+        public PlainHeader(String name, String value) {
             this.name = name;
             this.value = value;
         }
