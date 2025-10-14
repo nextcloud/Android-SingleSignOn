@@ -1,3 +1,10 @@
+/*
+ * Nextcloud Android SingleSignOn Library
+ *
+ * SPDX-FileCopyrightText: 2017-2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2025 Alper Ozturk <alper.ozturk@nextcloud.com>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 package com.nextcloud.android.sso.helper
 
 import com.nextcloud.android.sso.api.AidlNetworkRequest
