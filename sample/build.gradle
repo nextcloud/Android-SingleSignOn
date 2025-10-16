@@ -9,12 +9,12 @@ apply plugin: 'com.android.application'
 
 android {
     namespace = 'com.nextcloud.android.sso.sample'
-    compileSdk 35
 
     defaultConfig {
         applicationId "com.nextcloud.android.sso.sample"
         minSdk 22
-        targetSdk 35
+        targetSdk = 36
+        compileSdk = 36
         versionCode 1
         versionName "1.0"
 
