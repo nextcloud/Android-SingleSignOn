@@ -23,6 +23,7 @@ import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -37,8 +38,8 @@ import io.reactivex.annotations.NonNull;
 
 public class NextcloudAPI implements AutoCloseable {
 
+    private static final int PEEK_LIMIT = 64;
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
-
     private static final EmptyResponse EMPTY_RESPONSE = new EmptyResponse();
 
     private final NetworkRequest networkRequest;
@@ -127,25 +128,53 @@ public class NextcloudAPI implements AutoCloseable {
         ensureTypeNotVoid(targetEntity);
 
         final T result;
-        try (InputStream os = inputStream;
-             Reader targetReader = new InputStreamReader(os)) {
-            if (targetEntity == EmptyResponse.class) {
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            reader.mark(PEEK_LIMIT);
+            boolean empty = isReaderContainsEmptyResponse(reader);
+            reader.reset();
+
+            if (targetEntity == EmptyResponse.class || empty) {
                 //noinspection unchecked
-                result = (T) EMPTY_RESPONSE;
-            } else {
-                result = gson.fromJson(targetReader, targetEntity);
-                if (result == null) {
-                    if (targetEntity == Object.class) {
-                        //noinspection unchecked
-                        return (T) EMPTY_RESPONSE;
-                    } else {
-                        throw new IllegalStateException("Could not instantiate \"" +
-                                targetEntity + "\", because response was null.");
-                    }
+                return (T) EMPTY_RESPONSE;
+            }
+
+            result = gson.fromJson(reader, targetEntity);
+
+            if (result == null) {
+                if (targetEntity == Object.class) {
+                    //noinspection unchecked
+                    return (T) EMPTY_RESPONSE;
+                } else {
+                    throw new IllegalStateException("Could not instantiate \"" +
+                        targetEntity + "\", because response was null.");
                 }
             }
         }
+
         return result;
+    }
+
+    public boolean isReaderContainsEmptyResponse(Reader reader) throws IOException {
+        reader.mark(PEEK_LIMIT);
+        try {
+            int c;
+            int count = 0;
+            while ((c = reader.read()) != -1 && count < PEEK_LIMIT) {
+                if (c != '\u0000' && !Character.isWhitespace(c)) {
+                    // Found meaningful character
+                    return false;
+                }
+                count++;
+            }
+            return true;
+        } finally {
+            try {
+                reader.reset();
+            } catch (Exception e) {
+                // Ignored
+            }
+        }
     }
 
     /**

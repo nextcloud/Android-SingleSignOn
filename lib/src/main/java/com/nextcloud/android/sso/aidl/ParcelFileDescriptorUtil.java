@@ -16,6 +16,8 @@ import java.io.OutputStream;
 
 public class ParcelFileDescriptorUtil {
 
+    private static final int BUFFER_SIZE = 1024;
+
     private ParcelFileDescriptorUtil() { }
 
     public static ParcelFileDescriptor pipeFrom(InputStream inputStream, IThreadListener listener)
@@ -61,7 +63,7 @@ public class ParcelFileDescriptorUtil {
 
         @Override
         public void run() {
-            byte[] buf = new byte[1024];
+            byte[] buf = new byte[BUFFER_SIZE];
             int len;
 
             try {
