@@ -11,10 +11,10 @@
  */
 package com.nextcloud.android.sso.api;
 
-import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
@@ -78,6 +78,8 @@ public class TestRetrofitAPI {
         lenient().when(nextcloudApiMock.getGson()).thenReturn(new GsonBuilder().create());
         lenient().when(nextcloudApiMock.performRequestObservableV2(any(), any())).thenReturn(Observable.empty());
         lenient().when(nextcloudApiMock.performNetworkRequestV2(any())).thenReturn(new com.nextcloud.android.sso.api.Response(null, null));
+        lenient().when(nextcloudApiMock.isReaderContainsEmptyResponse(any()))
+            .thenCallRealMethod();
         mApi = new NextcloudRetrofitApiBuilder(nextcloudApiMock, mApiEndpoint).create(API.class);
     }
 

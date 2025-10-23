@@ -150,16 +150,14 @@ public class NextcloudAPI implements AutoCloseable {
     }
 
     public boolean isReaderContainsEmptyResponse(Reader reader) throws IOException {
-        if (!(reader instanceof BufferedReader)) {
-            reader = new BufferedReader(reader);
-        }
-        reader.mark(PEEK_LIMIT);
+        Reader r = reader instanceof BufferedReader ? reader : new BufferedReader(reader);
+        r.mark(PEEK_LIMIT);
 
         try {
             int c;
             int count = 0;
 
-            while ((c = reader.read()) != -1 && count < PEEK_LIMIT) {
+            while ((c = r.read()) != -1 && count < PEEK_LIMIT) {
                 if (c != '\u0000' && !Character.isWhitespace(c)) {
                     // Found a non-null, non-whitespace character (e.g., '{', '[', '"', 'a', '<'...)
                     return false;
@@ -169,9 +167,12 @@ public class NextcloudAPI implements AutoCloseable {
 
             // all characters seen were '\u0000' or whitespace.
             return true;
-
         } finally {
-            reader.reset();
+            try {
+                r.reset();
+            } catch (IOException e) {
+                // Ignore
+            }
         }
     }
 
