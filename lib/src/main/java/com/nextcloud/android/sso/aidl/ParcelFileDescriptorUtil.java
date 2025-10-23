@@ -16,9 +16,9 @@ import java.io.OutputStream;
 
 public class ParcelFileDescriptorUtil {
 
-    private ParcelFileDescriptorUtil() { }
+    private static final int BUFFER_SIZE = 1024;
 
-    public static final int BUFFER_SIZE = 1024;
+    private ParcelFileDescriptorUtil() { }
 
     public static ParcelFileDescriptor pipeFrom(InputStream inputStream, IThreadListener listener)
             throws IOException {

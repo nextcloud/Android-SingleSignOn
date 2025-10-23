@@ -38,8 +38,8 @@ import io.reactivex.annotations.NonNull;
 
 public class NextcloudAPI implements AutoCloseable {
 
+    private static final int PEEK_LIMIT = 64;
     private static final String TAG = NextcloudAPI.class.getCanonicalName();
-
     private static final EmptyResponse EMPTY_RESPONSE = new EmptyResponse();
 
     private final NetworkRequest networkRequest;
@@ -149,7 +149,6 @@ public class NextcloudAPI implements AutoCloseable {
         return result;
     }
 
-    private static final int PEEK_LIMIT = 64;
     public boolean isReaderContainsEmptyResponse(Reader reader) throws IOException {
         if (!(reader instanceof BufferedReader)) {
             reader = new BufferedReader(reader);
