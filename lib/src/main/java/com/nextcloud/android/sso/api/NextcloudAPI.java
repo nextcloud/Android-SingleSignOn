@@ -128,50 +128,51 @@ public class NextcloudAPI implements AutoCloseable {
         ensureTypeNotVoid(targetEntity);
 
         final T result;
-        try (InputStream os = inputStream;
-             Reader targetReader = new InputStreamReader(os)) {
-            if (targetEntity == EmptyResponse.class || isReaderContainsEmptyResponse(targetReader)) {
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            reader.mark(PEEK_LIMIT);
+            boolean empty = isReaderContainsEmptyResponse(reader);
+            reader.reset();
+
+            if (targetEntity == EmptyResponse.class || empty) {
                 //noinspection unchecked
-                result = (T) EMPTY_RESPONSE;
-            } else {
-                result = gson.fromJson(targetReader, targetEntity);
-                if (result == null) {
-                    if (targetEntity == Object.class) {
-                        //noinspection unchecked
-                        return (T) EMPTY_RESPONSE;
-                    } else {
-                        throw new IllegalStateException("Could not instantiate \"" +
-                                targetEntity + "\", because response was null.");
-                    }
+                return (T) EMPTY_RESPONSE;
+            }
+
+            result = gson.fromJson(reader, targetEntity);
+
+            if (result == null) {
+                if (targetEntity == Object.class) {
+                    //noinspection unchecked
+                    return (T) EMPTY_RESPONSE;
+                } else {
+                    throw new IllegalStateException("Could not instantiate \"" +
+                        targetEntity + "\", because response was null.");
                 }
             }
         }
+
         return result;
     }
 
     public boolean isReaderContainsEmptyResponse(Reader reader) throws IOException {
-        Reader r = reader instanceof BufferedReader ? reader : new BufferedReader(reader);
-        r.mark(PEEK_LIMIT);
-
+        reader.mark(PEEK_LIMIT);
         try {
             int c;
             int count = 0;
-
-            while ((c = r.read()) != -1 && count < PEEK_LIMIT) {
+            while ((c = reader.read()) != -1 && count < PEEK_LIMIT) {
                 if (c != '\u0000' && !Character.isWhitespace(c)) {
-                    // Found a non-null, non-whitespace character (e.g., '{', '[', '"', 'a', '<'...)
+                    // Found meaningful character
                     return false;
                 }
                 count++;
             }
-
-            // all characters seen were '\u0000' or whitespace.
             return true;
         } finally {
             try {
-                r.reset();
-            } catch (IOException e) {
-                // Ignore
+                reader.reset();
+            } catch (Exception e) {
+                // Ignored
             }
         }
     }
