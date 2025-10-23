@@ -13,6 +13,7 @@ package com.nextcloud.android.sso.api;
 
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -34,6 +35,8 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -538,4 +541,31 @@ public class TestRetrofitAPI {
         assertTrue(successful);
     }
 
+    @Test
+    public void testValidJson() throws IOException {
+        String json = "{\"name\": \"value\", \"type\": \"value_2\"}";
+        Reader reader = new StringReader(json);
+        assertFalse(nextcloudApiMock.isReaderContainsEmptyResponse(reader));
+    }
+
+    @Test
+    public void testValidXml() throws IOException {
+        String xml = "<note><to>User</to><from>User2</from></note>";
+        Reader reader = new StringReader(xml);
+        assertFalse(nextcloudApiMock.isReaderContainsEmptyResponse(reader));
+    }
+
+    @Test
+    public void testOnlyNulls() throws IOException {
+        String nulls = "\u0000\u0000\u0000\u0000\u0000   \n\t"; // nulls + whitespace
+        Reader reader = new StringReader(nulls);
+        assertTrue(nextcloudApiMock.isReaderContainsEmptyResponse(reader));
+    }
+
+    @Test
+    public void testWhitespaceOnly() throws IOException {
+        String whitespace = "   \n\t  ";
+        Reader reader = new StringReader(whitespace);
+        assertTrue(nextcloudApiMock.isReaderContainsEmptyResponse(reader));
+    }
 }

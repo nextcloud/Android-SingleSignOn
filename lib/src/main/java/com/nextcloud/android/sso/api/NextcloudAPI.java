@@ -23,6 +23,7 @@ import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -129,7 +130,7 @@ public class NextcloudAPI implements AutoCloseable {
         final T result;
         try (InputStream os = inputStream;
              Reader targetReader = new InputStreamReader(os)) {
-            if (targetEntity == EmptyResponse.class) {
+            if (targetEntity == EmptyResponse.class || isReaderContainsEmptyResponse(targetReader)) {
                 //noinspection unchecked
                 result = (T) EMPTY_RESPONSE;
             } else {
@@ -146,6 +147,33 @@ public class NextcloudAPI implements AutoCloseable {
             }
         }
         return result;
+    }
+
+    private static final int PEEK_LIMIT = 64;
+    public boolean isReaderContainsEmptyResponse(Reader reader) throws IOException {
+        if (!(reader instanceof BufferedReader)) {
+            reader = new BufferedReader(reader);
+        }
+        reader.mark(PEEK_LIMIT);
+
+        try {
+            int c;
+            int count = 0;
+
+            while ((c = reader.read()) != -1 && count < PEEK_LIMIT) {
+                if (c != '\u0000' && !Character.isWhitespace(c)) {
+                    // Found a non-null, non-whitespace character (e.g., '{', '[', '"', 'a', '<'...)
+                    return false;
+                }
+                count++;
+            }
+
+            // all characters seen were '\u0000' or whitespace.
+            return true;
+
+        } finally {
+            reader.reset();
+        }
     }
 
     /**

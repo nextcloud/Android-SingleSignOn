@@ -18,6 +18,8 @@ public class ParcelFileDescriptorUtil {
 
     private ParcelFileDescriptorUtil() { }
 
+    public static final int BUFFER_SIZE = 1024;
+
     public static ParcelFileDescriptor pipeFrom(InputStream inputStream, IThreadListener listener)
             throws IOException {
         ParcelFileDescriptor[] pipe = ParcelFileDescriptor.createPipe();
@@ -61,7 +63,7 @@ public class ParcelFileDescriptorUtil {
 
         @Override
         public void run() {
-            byte[] buf = new byte[1024];
+            byte[] buf = new byte[BUFFER_SIZE];
             int len;
 
             try {
