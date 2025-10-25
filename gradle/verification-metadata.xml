@@ -125,6 +125,7 @@
             <trusting group="org.codehaus.woodstox"/>
             <trusting group="^com[.]fasterxml($|([.].*))" regex="true"/>
          </trusted-key>
+         <trusted-key id="635EE627345F3C1DD422B2E207D3516820BCF6B1" group="com.github.ben-manes.caffeine" name="caffeine" version="2.9.3"/>
          <trusted-key id="694621A7227D8D5289699830ABE9F3126BB741C1" group="^com[.]google($|([.].*))" regex="true"/>
          <trusted-key id="696B6199A2A9D8C29CE78CC0D041CAD2E452550F" group="com.google.protobuf"/>
          <trusted-key id="6A814B1F869C2BBEAB7CB7271A2A1C94BDE89688" group="org.apache.httpcomponents" name="httpcomponents-parent" version="12"/>
@@ -255,6 +256,7 @@
             <trusting group="org.projectlombok" name="lombok" version="1.18.30"/>
             <trusting group="org.projectlombok" name="lombok" version="1.18.32"/>
          </trusted-key>
+         <trusted-key id="D477D51812E692011DB11E66A6EA2E2BF22E0543" group="io.github.java-diff-utils"/>
          <trusted-key id="D6F1BC78607808EC8E9F69437A8860944FAD5F62" group="org.apache.commons" name="commons-parent"/>
          <trusted-key id="D878D4A823EAE731B729D1A8D2151178A123C97F">
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.1.10"/>
