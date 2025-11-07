@@ -137,7 +137,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.12'
 
-    implementation 'commons-io:commons-io:2.20.0'
+    implementation 'commons-io:commons-io:2.21.0'
 
     implementation 'com.squareup.retrofit2:retrofit:3.0.0'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
