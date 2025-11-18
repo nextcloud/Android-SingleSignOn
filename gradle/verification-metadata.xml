@@ -55,6 +55,7 @@
          <trusted-key id="1D217F8475EEE9F19AB8DD6B793FD5751A0F0780">
             <trusting group="com.squareup.retrofit2" name="retrofit" version="2.12.0"/>
             <trusting group="com.squareup.retrofit2" name="retrofit" version="3.0.0"/>
+            <trusting group="^com[.]squareup($|([.].*))" regex="true"/>
          </trusted-key>
          <trusted-key id="1D85469D8559C2E1DF5F925131D2D79DF7E85DD3" group="org.jcommander" name="jcommander" version="1.85"/>
          <trusted-key id="1D9AA7F9E1E2824728B8CD1794B291AEF984A085" group="io.reactivex.rxjava2" name="rxjava" version="2.2.21"/>
@@ -218,6 +219,7 @@
             <trusting group="androidx.fragment" name="fragment" version="1.8.5"/>
             <trusting group="androidx.graphics"/>
             <trusting group="androidx.profileinstaller"/>
+            <trusting group="androidx.startup" name="startup-runtime" version="1.2.0"/>
             <trusting group="androidx.transition" name="transition" version="1.5.0"/>
             <trusting group="^androidx[.]test($|([.].*))" regex="true"/>
             <trusting group="^com[.]android($|([.].*))" regex="true"/>
