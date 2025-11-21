@@ -1,0 +1,56 @@
+<resources>
+    <!--
+      ~ Nextcloud Android SingleSignOn Library
+      ~
+      ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
+      ~ SPDX-License-Identifier: GPL-3.0-or-later
+    -->
+    <string name="close">ປິດ</string>
+
+    <string name="network_error_title">ຂໍ້ຜິດພາດເຄືອຂ່າຍ</string>
+    <string name="retry_action">ລອງໃໝ່</string>
+
+    <string name="unknown_error_title">ຜິດພາດທີ່ບໍ່ຮູ້ຈັກ</string>
+
+    <string name="no_current_account_selected_exception_title">ບໍ່ໄດ້ເລືອກບັນຊີ</string>
+    <string name="no_current_account_selected_exception_message">ກະລຸນາເລືອກບັນຊີເພື່ອດຳເນີນການຕໍ່.</string>
+    <string name="no_current_account_selected_exception_action">ເອກະສານ</string>
+
+    <string name="android_get_accounts_permission_not_granted_exception_title">ບໍ່ໄດ້ຮັບການອະນຸຍາດ</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">ແອັບຕ້ອງການການອະນຸຍາດເຂົ້າເຖິງບັນຊີຂອງທ່ານ.</string>
+
+    <string name="token_mismatch_title">ຂໍ້ຜິດພາດໃນການຢືນຢັນຕົວຕົນ</string>
+    <string name="token_mismatch_message">ມີບັນຫາໃນການຢືນຢັນບັນຊີຂອງທ່ານ. ກະລຸນາລອງໃໝ່ອີກຄັ້ງ.</string>
+
+    <string name="nextcloud_files_app_not_installed_title">ບໍ່ໄດ້ຕິດຕັ້ງແອັບ Nextcloud Files</string>
+    <string name="nextcloud_files_app_not_installed_message">ກະລຸນາຕິດຕັ້ງແອັບ Nextcloud Files ເພື່ອໃຊ້ຄຸນສົມບັດນີ້.</string>
+    <string name="nextcloud_files_app_not_installed_action">ຕິດຕັ້ງ</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">ບໍ່ພົບບັນຊີ</string>
+    <string name="nextcloud_files_app_account_not_found_message">ບໍ່ສາມາດຊອກຫາບັນຊີທີ່ຮ້ອງຂໍໃນແອັບ Nextcloud Files ໄດ້.</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">ບໍ່ສາມາດຊອກຫາບັນຊີ '%1$s' ໃນແອັບ Nextcloud Files ໄດ້.</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">ບໍ່ໄດ້ຮັບອະນຸຍາດເຂົ້າເຖິງບັນຊີ</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">ແອັບນີ້ບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງບັນຊີ. ກະລຸນາກວດສອບການຕັ້ງຄ່າການອະນຸຍາດ.</string>
+
+    <string name="nextcloud_http_request_failed_title">ການຮ້ອງຂໍ HTTP ລົ້ມເຫຼວ</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">ການຮ້ອງຂໍໄປຍັງ '%1$s' ລົ້ມເຫຼວ.</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">ບໍ່ມີຮ້ານຄ້າແອັບຕິດຕັ້ງຢູ່</string>
+    <string name="nextcloud_files_app_no_store_installed_message">ບໍ່ພົບຮ້ານຄ້າແອັບທີ່ສາມາດໃຊ້ຕິດຕັ້ງແອັບ Nextcloud Files ໄດ້.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">ຄຳແນະນຳ</string>
+
+    <string name="nextcloud_unsupported_method_action">ລາຍຊື່ຜູ້ຕິດຕໍ່</string>
+
+    <string name="nextcloud_files_app_not_supported_title">ແອັບ Nextcloud Files ບໍ່ຮອງຮັບ</string>
+    <string name="nextcloud_files_app_not_supported_message">ເວີຊັນຂອງແອັບ Nextcloud Files ທີ່ທ່ານຕິດຕັ້ງຢູ່ນັ້ນເກົ່າເກີນໄປ ແລະ ບໍ່ຮອງຮັບ. ກະລຸນາອັບເດດແອັບ.</string>
+    <string name="nextcloud_files_app_not_supported_action">ອັບເດດ</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API ຂອງ Nextcloud Files ບໍ່ຕອບສະໜອງ</string>
+    <string name="nextcloud_files_api_not_responding_message">ບໍ່ສາມາດສື່ສານກັບແອັບ Nextcloud Files ໄດ້. ກະລຸນາລອງເປີດແອັບແລ້ວລອງໃໝ່ອີກຄັ້ງ.</string>
+    <string name="nextcloud_files_api_not_responding_action">ການຕັ້ງຄ່າ</string>
+
+    <string name="sso_canceled">ການລົງຊື່ເຂົ້າໃຊ້ຖືກຍົກເລີກ</string>
+    <string name="sso_canceled_message">ຂະບວນການລົງຊື່ເຂົ້າໃຊ້ໄດ້ຖືກຍົກເລີກ.</string>
+
+    </resources>
