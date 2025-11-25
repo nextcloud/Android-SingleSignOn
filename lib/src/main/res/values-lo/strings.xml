@@ -34,7 +34,7 @@
     <string name="nextcloud_files_app_account_permission_not_granted_message">ແອັບນີ້ບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງບັນຊີ. ກະລຸນາກວດສອບການຕັ້ງຄ່າການອະນຸຍາດ.</string>
 
     <string name="nextcloud_http_request_failed_title">ການຮ້ອງຂໍ HTTP ລົ້ມເຫຼວ</string>
-    <string name="nextcloud_http_request_failed_message" formatted="true">ການຮ້ອງຂໍໄປຍັງ '%1$s' ລົ້ມເຫຼວ.</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">ການຮ້ອງຂໍໄປຍັງ %1$d ລົ້ມເຫຼວ.</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">ບໍ່ມີຮ້ານຄ້າແອັບຕິດຕັ້ງຢູ່</string>
     <string name="nextcloud_files_app_no_store_installed_message">ບໍ່ພົບຮ້ານຄ້າແອັບທີ່ສາມາດໃຊ້ຕິດຕັ້ງແອັບ Nextcloud Files ໄດ້.</string>
