@@ -28,7 +28,7 @@
 
     <string name="nextcloud_files_app_account_not_found_title">ບໍ່ພົບບັນຊີ</string>
     <string name="nextcloud_files_app_account_not_found_message">ບໍ່ສາມາດຊອກຫາບັນຊີທີ່ຮ້ອງຂໍໃນແອັບ Nextcloud Files ໄດ້.</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">ບໍ່ສາມາດຊອກຫາບັນຊີ '%1$s' ໃນແອັບ Nextcloud Files ໄດ້.</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">ບໍ່ສາມາດຊອກຫາບັນຊີ %1$s ໃນແອັບ Nextcloud Files ໄດ້.</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">ບໍ່ໄດ້ຮັບອະນຸຍາດເຂົ້າເຖິງບັນຊີ</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">ແອັບນີ້ບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງບັນຊີ. ກະລຸນາກວດສອບການຕັ້ງຄ່າການອະນຸຍາດ.</string>
