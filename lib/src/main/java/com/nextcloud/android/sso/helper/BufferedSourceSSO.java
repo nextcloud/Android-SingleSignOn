@@ -10,19 +10,20 @@
  */
 package com.nextcloud.android.sso.helper;
 
-import androidx.annotation.Nullable;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.ByteString;
 import okio.Options;
 import okio.Sink;
 import okio.Timeout;
+import okio.TypedOptions;
 
 public class BufferedSourceSSO implements BufferedSource {
 
@@ -32,23 +33,25 @@ public class BufferedSourceSSO implements BufferedSource {
         this.mInputStream = inputStream;
     }
 
+    @NonNull
     @Override
     public Buffer buffer() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
+    @NonNull
     @Override
     public Buffer getBuffer() {
         return buffer();
     }
 
     @Override
-    public boolean exhausted() throws IOException {
+    public boolean exhausted() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public void require(long byteCount) throws IOException {
+    public void require(long byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
@@ -58,206 +61,217 @@ public class BufferedSourceSSO implements BufferedSource {
     }
 
     @Override
-    public byte readByte() throws IOException {
+    public byte readByte() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public short readShort() throws IOException {
+    public short readShort() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public short readShortLe() throws IOException {
+    public short readShortLe() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int readInt() throws IOException {
+    public int readInt() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int readIntLe() throws IOException {
+    public int readIntLe() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long readLong() throws IOException {
+    public long readLong() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long readLongLe() throws IOException {
+    public long readLongLe() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long readDecimalLong() throws IOException {
+    public long readDecimalLong() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long readHexadecimalUnsignedLong() throws IOException {
+    public long readHexadecimalUnsignedLong() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public void skip(long byteCount) throws IOException {
+    public void skip(long byteCount) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NonNull
+    @Override
+    public ByteString readByteString() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NonNull
+    @Override
+    public ByteString readByteString(long byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public ByteString readByteString() throws IOException {
+    public int select(@NonNull Options options) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public ByteString readByteString(long byteCount) throws IOException {
+    public byte[] readByteArray() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int select(Options options) throws IOException {
+    public byte[] readByteArray(long byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public byte[] readByteArray() throws IOException {
+    public int read(byte[] sink) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public byte[] readByteArray(long byteCount) throws IOException {
+    public void readFully(byte[] sink) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int read(byte[] sink) throws IOException {
+    public int read(byte[] sink, int offset, int byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public void readFully(byte[] sink) throws IOException {
+    public void readFully(@NonNull Buffer sink, long byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int read(byte[] sink, int offset, int byteCount) throws IOException {
+    public long readAll(@NonNull Sink sink) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
+    @NonNull
     @Override
-    public void readFully(Buffer sink, long byteCount) throws IOException {
+    public String readUtf8() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
+    @NonNull
     @Override
-    public long readAll(Sink sink) throws IOException {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
-    public String readUtf8() throws IOException {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
-    public String readUtf8(long byteCount) throws IOException {
+    public String readUtf8(long byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Nullable
     @Override
-    public String readUtf8Line() throws IOException {
+    public String readUtf8Line() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NonNull
+    @Override
+    public String readUtf8LineStrict() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NonNull
+    @Override
+    public String readUtf8LineStrict(long limit) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public String readUtf8LineStrict() throws IOException {
+    public int readUtf8CodePoint() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NonNull
+    @Override
+    public String readString(@NonNull Charset charset) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @NonNull
+    @Override
+    public String readString(long byteCount, @NonNull Charset charset) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public String readUtf8LineStrict(long limit) throws IOException {
+    public long indexOf(byte b) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public int readUtf8CodePoint() throws IOException {
+    public long indexOf(byte b, long fromIndex) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public String readString(Charset charset) throws IOException {
+    public long indexOf(byte b, long fromIndex, long toIndex) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public String readString(long byteCount, Charset charset) throws IOException {
+    public long indexOf(@NonNull ByteString bytes) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long indexOf(byte b) throws IOException {
+    public long indexOf(@NonNull ByteString bytes, long fromIndex) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long indexOf(byte b, long fromIndex) throws IOException {
+    public long indexOfElement(@NonNull ByteString targetBytes) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long indexOf(byte b, long fromIndex, long toIndex) throws IOException {
+    public long indexOfElement(@NonNull ByteString targetBytes, long fromIndex) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long indexOf(ByteString bytes) throws IOException {
+    public boolean rangeEquals(long offset, @NonNull ByteString bytes) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public long indexOf(ByteString bytes, long fromIndex) throws IOException {
+    public boolean rangeEquals(long offset, @NonNull ByteString bytes, int bytesOffset, int byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
-    @Override
-    public long indexOfElement(ByteString targetBytes) throws IOException {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
-    public long indexOfElement(ByteString targetBytes, long fromIndex) throws IOException {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
-    public boolean rangeEquals(long offset, ByteString bytes) throws IOException {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
-    public boolean rangeEquals(long offset, ByteString bytes, int bytesOffset, int byteCount) throws IOException {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
+    @NonNull
     @Override
     public BufferedSource peek() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
+    @NonNull
     @Override
     public InputStream inputStream() {
         return mInputStream;
     }
 
     @Override
-    public long read(Buffer sink, long byteCount) throws IOException {
+    public long read(@NonNull Buffer sink, long byteCount) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
+    @NonNull
     @Override
     public Timeout timeout() {
         throw new UnsupportedOperationException("Not implemented");
@@ -274,7 +288,18 @@ public class BufferedSourceSSO implements BufferedSource {
     }
 
     @Override
-    public int read(ByteBuffer dst) throws IOException {
+    public int read(ByteBuffer dst) {
         throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Nullable
+    @Override
+    public <T> T select(@NonNull TypedOptions<T> typedOptions) {
+        return null;
+    }
+
+    @Override
+    public long indexOf(@NonNull ByteString byteString, long l, long l1) {
+        return 0;
     }
 }
