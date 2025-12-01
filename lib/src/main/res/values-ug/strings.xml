@@ -7,6 +7,7 @@
     -->
     <string name="close">تاقاش</string>
 
+    <string name="network_error_title">تور خاتالىقى</string>
     <string name="retry_action">قايتا سىناڭ</string>
 
     <string name="unknown_error_title">نامەلۇم خاتالىق</string>
@@ -27,13 +28,13 @@
 
     <string name="nextcloud_files_app_account_not_found_title">ھېسابات تېپىلمىدى</string>
     <string name="nextcloud_files_app_account_not_found_message">تەلەپ قىلىنغان ھېسابات Nextcloud Files ئەپىدە تېپىلمىدى</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Nextcloud Files ئەپىدە% 1 $ s ھېسابات تېپىلمىدى</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Nextcloud Files ئەپىدە %1$s ھېسابات تېپىلمىدى</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">ئىجازەت بېرىلمەيدۇ</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">يەككە ئىمزا قويۇش ئىقتىدارىنى ئىشلىتىش ئۈچۈن تەلەپ قىلىنغان ئىجازەتلەرنى قوبۇل قىلىشىڭىز كېرەك.</string>
 
     <string name="nextcloud_http_request_failed_title">تەلەپ مەغلۇپ بولدى</string>
-    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP تەلىپى HTTP ھالەت كودى بىلەن مەغلۇپ بولدى:% 1 $ d</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">HTTP تەلىپى HTTP ھالەت كودى بىلەن مەغلۇپ بولدى: %1$d</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">Nextcloud ھۆججەتلىرى تەلەپ قىلىنىدۇ</string>
     <string name="nextcloud_files_app_no_store_installed_message">داۋاملاشتۇرۇش ئۈچۈن ئالدى بىلەن Nextcloud Files دېتالىنى ئۈسكۈنىڭىزگە قاچىلاڭ.</string>
