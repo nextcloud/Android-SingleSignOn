@@ -47,7 +47,7 @@
     <string name="nextcloud_files_app_not_supported_action">Actualizar</string>
 
     <string name="nextcloud_files_api_not_responding_title">A API non responde</string>
-    <string name="nextcloud_files_api_not_responding_message">A API da aplicación Ficheiros de Nextcloud non responde. É probábel que isto se deba ás optimizacións da batería do seu teléfono. Tente desactivar a optimización da batería para ambas as aplicacións (Nextcloud Android máis esta). No resto dos casos, tente borrar o almacenamento de ambas as aplicacións.</string>
+    <string name="nextcloud_files_api_not_responding_message">A API da aplicación Ficheiros de Nextcloud non responde. É probábel que isto se deba ás optimizacións da batería do seu teléfono. Tente desactivar a optimización da batería para ámbalas dúas aplicacións (Nextcloud Android máis esta). No resto dos casos, tente borrar o almacenamento de ámbalas aplicacións.</string>
     <string name="nextcloud_files_api_not_responding_action">Axustes</string>
 
     <string name="sso_canceled">Importación SSO cancelada</string>
