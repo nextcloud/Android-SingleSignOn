@@ -7,6 +7,7 @@
     -->
     <string name="close">Sluit</string>
 
+    <string name="network_error_title">Netwerkfout</string>
     <string name="retry_action">Opnieuw</string>
 
     <string name="unknown_error_title">Onbekende fout</string>
