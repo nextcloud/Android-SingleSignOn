@@ -12,7 +12,7 @@
 #6: DRONE_BUILD_NUMBER
 #7: PULL_REQUEST_NUMBER
 
-stableBranch="master"
+stableBranch="main"
 repository="android-singleSignOn"
 codacyProject=160903
 
