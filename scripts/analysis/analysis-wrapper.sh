@@ -14,76 +14,72 @@ stableBranch="main"
 repository="android-singleSignOn"
 codacyProject=160903
 
-ruby scripts/analysis/findbugs-up.rb $1 $2 $3
-findbugsValue=$?
+curl "https://www.kaminsky.me/nc-dev/$repository-findbugs/$stableBranch.xml" -o "/tmp/$stableBranch.xml"
+ruby scripts/analysis/spotbugs-up.rb "$stableBranch"
+spotbugsValue=$?
 
 # exit codes:
 # 0: count was reduced
 # 1: count was increased
 # 2: count stayed the same
 
-echo "Branch: $1"
+source scripts/lib.sh
 
-if [ $1 = $stableBranch ]; then
-    echo "New findbugs result for $stableBranch at: https://www.kaminsky.me/nc-dev/$repository-findbugs/$stableBranch.html"
-    curl -u "${LOG_USERNAME}:${LOG_PASSWORD}" -X PUT https://nextcloud.kaminsky.me/remote.php/webdav/$repository-findbugs/$stableBranch.html --upload-file lib/build/reports/spotbugs/spotbugs.html
+echo "Branch: $BRANCH"
 
-    summary=$(sed -n "/<h1>Summary<\/h1>/,/<h1>Warnings<\/h1>/p" lib/build/reports/spotbugs/spotbugs.html | head -n-1 | sed s'/<\/a>//'g | sed s'/<a.*>//'g | sed s"/Summary/SpotBugs ($stableBranch)/" | tr "\"" "\'" | tr -d "\r\n")
-    curl -u "${LOG_USERNAME}:${LOG_PASSWORD}" -X PUT -d "$summary" https://nextcloud.kaminsky.me/remote.php/webdav/$repository-findbugs/findbugs-summary-$stableBranch.html
+if [ "$BRANCH" = $stableBranch ]; then
+    echo "New spotbugs result for $stableBranch at: https://www.kaminsky.me/nc-dev/$repository-findbugs/$stableBranch.html"
+    curl -u "${LOG_USERNAME}:${LOG_PASSWORD}" -X PUT https://nextcloud.kaminsky.me/remote.php/webdav/$repository-findbugs/$stableBranch.html --upload-file library/build/reports/spotbugs/spotbugs.html
+    curl 2>/dev/null -u "${LOG_USERNAME}:${LOG_PASSWORD}" -X PUT "https://nextcloud.kaminsky.me/remote.php/webdav/$repository-findbugs/$stableBranch.xml" --upload-file library/build/reports/spotbugs/debug.xml
 else
-    if [ -e $6 ]; then
-        name=$stableBranch"-"$(date +%F)
-    else 
-        name=$6;
+    if [ -e "${BUILD_NUMBER}" ]; then
+        6=$stableBranch"-"$(date +%F)
     fi
 
-    echo "New findbugs results at https://www.kaminsky.me/nc-dev/$repository-findbugs/$name.html"
-    curl 2>/dev/null -u "${LOG_USERNAME}:${LOG_PASSWORD}" -X PUT https://nextcloud.kaminsky.me/remote.php/webdav/$repository-findbugs/$name.html --upload-file lib/build/reports/spotbugs/spotbugs.html
+    echo "New spotbugs results at https://www.kaminsky.me/nc-dev/$repository-findbugs/${BUILD_NUMBER}.html"
+    curl 2>/dev/null -u "${LOG_USERNAME}:${LOG_PASSWORD}" -X PUT "https://nextcloud.kaminsky.me/remote.php/webdav/$repository-findbugs/${BUILD_NUMBER}.html" --upload-file library/build/reports/spotbugs/spotbugs.html
 
     # delete all old comments, starting with Codacy
-    oldComments=$(curl 2>/dev/null -u $1:$2 -X GET https://api.github.com/repos/nextcloud/$repository/issues/$7/comments | jq '.[] | (.id |tostring) + "|" + (.user.login | test("nextcloud-android-bot") | tostring) + "|" + (.body | test("<h1>Codacy.*") | tostring)'  | grep "true|true" | tr -d "\"" | cut -f1 -d"|")
+    oldComments=$(curl_gh -X GET "https://api.github.com/repos/nextcloud/$repository/issues/${PR_NUMBER}/comments" | jq '.[] | select((.user.login | contains("github-actions")) and  (.body | test("<h1>Codacy.*"))) | .id')
 
-    echo $oldComments | while read comment ; do
-        curl 2>/dev/null -u "${LOG_USERNAME}:${LOG_PASSWORD}" -X DELETE https://api.github.com/repos/nextcloud/$repository/issues/comments/$comment
+    echo "$oldComments" | while read -r comment ; do
+        curl_gh -X DELETE "https://api.github.com/repos/nextcloud/$repository/issues/comments/$comment"
     done
 
-    # findbugs file must exist
-    if [ ! -s lib/build/reports/spotbugs/spotbugs.html ] ; then
+    # spotbugs file must exist
+    if [ ! -s library/build/reports/spotbugs/spotbugs.html ] ; then
         echo "spotbugs.html file is missing!"
         exit 1
     fi
 
     # add comment with results
-    if [ $stableBranch = "master" ] ; then
-        codacyValue=$(curl 2>/dev/null https://app.codacy.com/dashboards/breakdown\?projectId\=$codacyProject | grep "total issues" | cut -d">" -f3 | cut -d"<" -f1)
-        codacyResult="<h1>Codacy</h1>$codacyValue"
-    else
-        codacyResult=""
+    spotbugsResult="<h1>SpotBugs</h1>$(scripts/analysis/spotbugsComparison.py "/tmp/$stableBranch.xml" library/build/reports/spotbugs/debug.xml --link-new "https://www.kaminsky.me/nc-dev/$repository-findbugs/${BUILD_NUMBER}.html" --link-base "https://www.kaminsky.me/nc-dev/$repository-findbugs/$stableBranch.html")"
+
+    if ( [ $spotbugsValue -eq 1 ] ) ; then
+        spotbugsMessage="<h1>SpotBugs increased!</h1>"
+    fi
+    
+    # check for NotNull
+    if [[ $(grep org.jetbrains.annotations library/src/main/* -irl | wc -l) -gt 0 ]] ; then
+        notNull="org.jetbrains.annotations.* is used. Please use androidx.annotation.* instead.<br><br>"
     fi
 
-    findbugsResultNew=$(sed -n "/<h1>Summary<\/h1>/,/<h1>Warnings<\/h1>/p" lib/build/reports/spotbugs/spotbugs.html |head -n-1 | sed s'/<\/a>//'g | sed s'/<a.*>//'g | sed s"#Summary#<a href=\"https://www.kaminsky.me/nc-dev/$repository-findbugs/$name.html\">SpotBugs</a> (new)#" | tr "\"" "\'" | tr -d "\n")
-    findbugsResultOld=$(curl 2>/dev/null https://www.kaminsky.me/nc-dev/$repository-findbugs/findbugs-summary-$stableBranch.html | tr "\"" "\'" | tr -d "\r\n" | sed s"#SpotBugs#<a href=\"https://www.kaminsky.me/nc-dev/$repository-findbugs/$stableBranch.html\">SpotBugs</a>#" | tr "\"" "\'" | tr -d "\n")
-
-    if ( [ $findbugsValue -eq 1 ] ) ; then
-        findbugsMessage="<h1>SpotBugs increased!</h1>"
-    fi
-
-    # check gplay limitation: all changelog files must only have 500 chars
-    gplayLimitation=$(scripts/checkGplayLimitation.sh)
-
-    if [ ! -z "$gplayLimitation" ]; then
-        gplayLimitation="<h1>Following files are beyond 500 char limit:</h1><br><br>"$gplayLimitation
-    fi
-
-    curl -u $1:$2 -X POST https://api.github.com/repos/nextcloud/$repository/issues/$7/comments -d "{ \"body\" : \"$codacyResult $findbugsResultNew $findbugsResultOld $findbugsMessage $gplayLimitation \" }"
+    bodyContent="$spotbugsResult $spotbugsMessage $gplayLimitation $notNull"
+    echo "$bodyContent" >> "$GITHUB_STEP_SUMMARY"
+    payload="{ \"body\" : \"$bodyContent\" }"
+    curl_gh -X POST "https://api.github.com/repos/nextcloud/$repository/issues/${PR_NUMBER}/comments" -d "$payload"
 
     if [ ! -z "$gplayLimitation" ]; then
         exit 1
     fi
 
-    if [ $findbugsValue -eq 2 ]; then
+    if [ -n "$notNull" ]; then
+        exit 1
+    fi
+
+    if [ $spotbugsValue -eq 2 ]; then
         exit 0
     else
-        exit $findbugsValue
+        exit $spotbugsValue
     fi
 fi

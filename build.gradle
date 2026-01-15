@@ -17,7 +17,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.13.2'
-        classpath 'com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.8"
     }
@@ -31,6 +30,5 @@ allprojects {
     }
 }
 
-apply plugin: "com.github.spotbugs"
 apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: 'maven-publish' // needed for JitPack.io
