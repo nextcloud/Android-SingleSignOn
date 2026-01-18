@@ -7,6 +7,7 @@
     -->
     <string name="close">Itxi</string>
 
+    <string name="network_error_title">Sare errorea</string>
     <string name="retry_action">saiatu berriro</string>
 
     <string name="unknown_error_title">Errore ezezaguna</string>
