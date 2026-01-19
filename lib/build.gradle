@@ -105,7 +105,7 @@ tasks.withType(SpotBugsTask) { task ->
         }
         html {
             required = true
-            outputLocation = file("$project.layout.buildDirectory/reports/spotbugs/spotbugs.html")
+            outputLocation = file("$project.buildDir/reports/spotbugs/spotbugs.html")
             stylesheet = 'fancy.xsl'
         }
     }
