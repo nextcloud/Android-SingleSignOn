@@ -143,7 +143,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:5.3.2'
 
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.14.0'
-    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.7.3'
+    spotbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.7.4'
 
     ktlint "com.pinterest.ktlint:ktlint-cli:1.8.0"
 
