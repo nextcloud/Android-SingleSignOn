@@ -10,8 +10,6 @@
  */
 package com.nextcloud.android.sso.helper;
 
-import androidx.annotation.NonNull;
-
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
 import com.nextcloud.android.sso.api.AidlNetworkRequest;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -21,9 +19,11 @@ import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import okhttp3.Headers;
 import okhttp3.Protocol;
 import okhttp3.Request;
@@ -140,7 +140,7 @@ public final class Retrofit2Helper {
             final String value = header.getValue();
 
             // Create a unique key for name:value combination
-            final String key = name.toLowerCase() + ":" + value;
+            final String key = name.toLowerCase(Locale.US) + ":" + value;
 
             // Only add if we haven't seen this exact name:value combination before
             if (!seen.contains(key)) {

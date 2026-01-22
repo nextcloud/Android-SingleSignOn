@@ -11,11 +11,17 @@ import com.github.spotbugs.snom.Effort
 import com.github.spotbugs.snom.SpotBugsTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-repositories {
-    google()
-    maven { url = "https://jitpack.io" }
-    mavenCentral()
-    maven { url = 'https://plugins.gradle.org/m2/' }
+buildscript {
+    ext {
+        junit_version = '4.13.2'
+    }
+    dependencies {
+        classpath 'com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.8'
+    }
+}
+
+plugins {
+    id "com.diffplug.spotless" version "8.1.0"
 }
 
 apply plugin: "kotlin-android"
@@ -86,20 +92,20 @@ android {
     }
 }
 
-tasks.withType(SpotBugsTask).configureEach { task ->
+tasks.withType(SpotBugsTask) { task ->
     String variantNameCap = task.name.replace("spotbugs", "")
-
+    String variantName = variantNameCap.substring(0, 1).toLowerCase() + variantNameCap.substring(1)
     dependsOn "compile${variantNameCap}Sources"
 
-    excludeFilter.set(file("${project.rootDir}/spotbugs-filter.xml"))
-    classes = fileTree("$project.layout.buildDirectory/intermediates/javac/debug/classes/")
+    classes = files("$project.buildDir/intermediates/javac/${variantName}")
+    excludeFilter = file("${project.rootDir}/spotbugs-filter.xml")
     reports {
         xml {
             required = true
         }
         html {
             required = true
-            outputLocation = file("$project.layout.buildDirectory/reports/spotbugs/spotbugs.html")
+            outputLocation = file("$project.buildDir/reports/spotbugs/spotbugs.html")
             stylesheet = 'fancy.xsl'
         }
     }
@@ -161,5 +167,12 @@ afterEvaluate {
                 artifactId = 'master'
             }
         }
+    }
+}
+
+spotless {
+    kotlin {
+        target "**/*.kt"
+        ktlint()
     }
 }

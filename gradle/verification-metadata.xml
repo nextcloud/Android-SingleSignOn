@@ -11,10 +11,15 @@
       <ignored-keys>
          <ignored-key id="07D3516820BCF6B1" reason="Key couldn't be downloaded from any key server"/>
          <ignored-key id="17A27CE7A60FF5F0" reason="Key couldn't be downloaded from any key server"/>
+          <ignored-key id="436902AF59EDF60E" reason="Key couldn't be downloaded from any key server" />
+          <ignored-key id="5B05CCDE140C2876" reason="Key couldn't be downloaded from any key server" />
+          <ignored-key id="700E4F39BC05364B" reason="Key couldn't be downloaded from any key server" />
          <ignored-key id="A6EA2E2BF22E0543" reason="Key couldn't be downloaded from any key server"/>
          <ignored-key id="AE094C852B4EE5DC" reason="Key couldn't be downloaded from any key server"/>
       </ignored-keys>
       <trusted-keys>
+          <trusted-key id="015479E1055341431B4545AB72475FD306B9CAB7" group="com.googlecode.javaewah" name="JavaEWAH"
+              version="1.2.3" />
          <trusted-key id="03C123038C20AAE9E286C857479D601F3A7B5C1A" group="^com[.]github[.]ajalt($|([.].*))" regex="true"/>
          <trusted-key id="042B29E928995B9DB963C636C7CA19B7B620D787" group="com.github.stephenc.jcip" name="jcip-annotations" version="1.0-1"/>
          <trusted-key id="04543577D6A9CC626239C50C7ECBD740FF06AEB5">
@@ -57,6 +62,8 @@
             <trusting group="com.squareup.retrofit2" name="retrofit" version="3.0.0"/>
             <trusting group="^com[.]squareup($|([.].*))" regex="true"/>
          </trusted-key>
+          <trusted-key id="1D2C7EF8ADA0F794B58C7C63436902AF59EDF60E" group="dev.equo.ide" name="solstice"
+              version="1.8.1" />
          <trusted-key id="1D85469D8559C2E1DF5F925131D2D79DF7E85DD3" group="org.jcommander" name="jcommander" version="1.85"/>
          <trusted-key id="1D9AA7F9E1E2824728B8CD1794B291AEF984A085" group="io.reactivex.rxjava2" name="rxjava" version="2.2.21"/>
          <trusted-key id="28118C070CB22A0175A2E8D43D12CA2AC19F3181" group="^com[.]fasterxml($|([.].*))" regex="true"/>
@@ -82,6 +89,7 @@
             <trusting group="org.apache.groovy" name="groovy-bom" version="4.0.27"/>
             <trusting group="org.codehaus.groovy"/>
          </trusted-key>
+          <trusted-key id="3690C240CE51B4670D30AD1C38EE757D69184620" group="org.tukaani" name="xz" version="1.9" />
          <trusted-key id="3F05DDA9F317301E927136D417A27CE7A60FF5F0" group="io.opentelemetry"/>
          <trusted-key id="4161A24D2E7F660FCFDB6AAFAE094C852B4EE5DC">
             <trusting group="com.mebigfatguy.fb-contrib" name="fb-contrib" version="7.7.0"/>
@@ -97,6 +105,8 @@
             <trusting group="com.google.api.grpc" name="proto-google-common-protos" version="2.48.0"/>
          </trusted-key>
          <trusted-key id="475F3B8E59E6E63AA78067482C7B12F2A511E325" group="org.slf4j"/>
+          <trusted-key id="4797B4F5DCC46CEA61059071A1AE06236CA2BA62" group="com.diffplug.durian" name="durian-swt.os"
+              version="4.3.0" />
          <trusted-key id="47EB6836245D2D40E89DFB4136D4E9618F3ADAB5">
             <trusting group="io.github.oshai" name="kotlin-logging-jvm" version="5.1.0"/>
             <trusting group="io.github.oshai" name="kotlin-logging-jvm" version="7.0.13"/>
@@ -165,6 +175,7 @@
          </trusted-key>
          <trusted-key id="8569C95CADC508B09FE90F3002216ED811210DAA" group="io.github.detekt.sarif4k"/>
          <trusted-key id="8756C4F765C9AC3CB6B85D62379CE192D401AB61">
+             <trusting group="com.diffplug.durian" />
             <trusting group="org.jetbrains.intellij.deps" name="trove4j" version="1.0.20200330"/>
             <trusting group="org.jetbrains.kotlinx"/>
          </trusted-key>
@@ -204,6 +215,9 @@
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.1.6"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.1.7"/>
          </trusted-key>
+          <trusted-key id="9E3044071B758EBCB7E45673700E4F39BC05364B" group="org.eclipse.platform"
+              name="org.eclipse.osgi" version="3.23.200" />
+          <trusted-key id="A31DDE881C3E3C4C985BD0D02C7F998F4272C851" group="com.diffplug.spotless" />
          <trusted-key id="A413F67D71BEEC23ADD0CE0ACB43338E060CF9FA" group="com.google.code.findbugs" name="jsr305" version="2.0.2"/>
          <trusted-key id="A42FEF087AF29AE864684EAEE6039456D5BBD4F8" group="io.fabric8" name="kubernetes-client-bom" version="5.12.4"/>
          <trusted-key id="A5BD02B93E7A40482EB1D66A5F69AD087600B22C" group="org.ow2.asm"/>
@@ -231,6 +245,8 @@
          </trusted-key>
          <trusted-key id="A6D6C97108B8585F91B158748671A8DF71296252" group="^com[.]squareup($|([.].*))" regex="true"/>
          <trusted-key id="A7892505CF1A58076453E52D7999BEFBA1039E8B" group="net.bytebuddy"/>
+          <trusted-key id="A9789342F598AD5B1175EF357EB97D110DFADD60" group="com.googlecode.concurrent-trees"
+              name="concurrent-trees" version="2.6.1" />
          <trusted-key id="AA417737BD805456DB3CBDDE6601E5C08DCCBB96" group="info.picocli" name="picocli" version="4.7.5"/>
          <trusted-key id="AA70C7C433D501636392EC02153E7A3C2B4E5118" group="org.eclipse.ee4j" name="project"/>
          <trusted-key id="ADBC987D1A7B91DB6B0AAA81995EFBF4A3D20BEB" group="^com[.]pinterest($|([.].*))" regex="true"/>
@@ -7527,6 +7543,12 @@
             <sha256 value="936a2d8bce0f84da18500f4e119488b93106dbaa83b8462fe996bcd0e1c38b16" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
          </artifact>
       </component>
+       <component group="com.diffplug.spotless" name="com.diffplug.spotless.gradle.plugin" version="8.1.0">
+           <artifact name="com.diffplug.spotless.gradle.plugin-8.1.0.pom">
+               <sha256 value="58b0b4ed49b3b19072b55c7111c0991a07f9b6d20709af8aa470c714114afbfb"
+                   origin="Generated by Gradle" reason="Artifact is not signed" />
+         </artifact>
+      </component>
       <component group="com.fasterxml" name="oss-parent" version="56">
          <artifact name="oss-parent-56.pom">
             <sha256 value="fd491f78857424106d2e3d605bcd799b53d31a565cdc868463ca7e875db45a50" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
@@ -9443,6 +9465,16 @@
          </artifact>
          <artifact name="poko-annotations-jvm-0.19.1.module">
             <sha256 value="26430b6ed8524043691bce0f4a4ea46d8f54127e396e4ed7d35e0e01d19ea3f4" origin="Generated by Gradle"/>
+         </artifact>
+      </component>
+       <component group="dev.equo.ide" name="solstice" version="1.8.1">
+           <artifact name="solstice-1.8.1.jar">
+               <sha256 value="6e5ba2cce813be1d71ccdc2ecf3e49271b14e691bfbbb1a114cf3a30e773b10d"
+                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+           </artifact>
+           <artifact name="solstice-1.8.1.module">
+               <sha256 value="a676039ea6af08f257b46e07c2bf1571a46a4d4b5b9ccb86c3fc98d07fafea1b"
+                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
          </artifact>
       </component>
       <component group="gradle.plugin.com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="4.7.5">
@@ -11622,6 +11654,32 @@
             <sha256 value="d344104a6ee619da6598403c25d03aaaaaf0f54e9646fd3512458df57c9aaeb8" origin="Generated by Gradle"/>
          </artifact>
       </component>
+       <component group="org.eclipse.jgit" name="org.eclipse.jgit" version="7.4.0.202509020913-r">
+           <artifact name="org.eclipse.jgit-7.4.0.202509020913-r.jar">
+               <sha256 value="9bc7cf2d0400a130e3405e4ae9c78775d9bdb1037098d00b2d8ea79436f3a7f3"
+                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+           </artifact>
+           <artifact name="org.eclipse.jgit-7.4.0.202509020913-r.pom">
+               <sha256 value="5f0c0e2cdbd6d788302fa84b28d0c538a06334ba0812fc64252050907222d30b"
+                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+           </artifact>
+       </component>
+       <component group="org.eclipse.jgit" name="org.eclipse.jgit-parent" version="7.4.0.202509020913-r">
+           <artifact name="org.eclipse.jgit-parent-7.4.0.202509020913-r.pom">
+               <sha256 value="d53714ed2649b8173288f65405e54fbef751656b91480c5459f4dc0192002472"
+                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+           </artifact>
+       </component>
+       <component group="org.eclipse.platform" name="org.eclipse.osgi" version="3.23.200">
+           <artifact name="org.eclipse.osgi-3.23.200.jar">
+               <sha256 value="8d94058ead3f4651900166924a677c3beb6e996f072fabf385ffdd70510bc493"
+                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+           </artifact>
+           <artifact name="org.eclipse.osgi-3.23.200.pom">
+               <sha256 value="a72da35afde481cda10e9d94b31a54c1b90a7b6850aade4c9ad9e956d7485ad0"
+                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+         </artifact>
+      </component>
       <component group="org.glassfish.jaxb" name="jaxb-bom" version="2.3.2">
          <artifact name="jaxb-bom-2.3.2.pom">
             <sha256 value="a1018bb54678ed9f5acb2f7a4084e385ff510201f4e9dbf5f75dc6a675f66be7" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
@@ -13498,6 +13556,11 @@
          </artifact>
          <artifact name="snakeyaml-engine-2.7.pom">
             <sha256 value="a52a6243f8615856791d1297f97374076bf81348061af714ad0963d375ae5cb7" origin="Generated by Gradle"/>
+         </artifact>
+      </component>
+       <component group="org.sonatype.oss" name="oss-parent" version="5">
+           <artifact name="oss-parent-5.pom">
+               <pgp value="2BCBDD0F23EA1CAFCC11D4860374CF2E8DD1BDFD" />
          </artifact>
       </component>
       <component group="org.sonatype.oss" name="oss-parent" version="7">
