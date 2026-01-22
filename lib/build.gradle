@@ -47,7 +47,6 @@ android {
 
     defaultConfig {
         minSdk 21
-        targetSdk = 36
         compileSdk = 36
         consumerProguardFiles 'consumer-proguard-rules.pro'
     }
@@ -59,7 +58,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -89,6 +88,10 @@ android {
         disable 'MissingTranslation', 'ExtraTranslation', 'MissingQuantity', 'InconsistentArrays', 'TypographyEllipsis', 'GradleDependency', 'VectorPath', 'IconMissingDensityFolder', 'IconDensities'
         htmlOutput = file("$project.layout.buildDirectory/reports/lint/lint.html")
         htmlReport = true
+        targetSdk 36
+    }
+    testOptions {
+        targetSdk 36
     }
 }
 
