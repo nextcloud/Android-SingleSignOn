@@ -11,15 +11,14 @@
       <ignored-keys>
          <ignored-key id="07D3516820BCF6B1" reason="Key couldn't be downloaded from any key server"/>
          <ignored-key id="17A27CE7A60FF5F0" reason="Key couldn't be downloaded from any key server"/>
-          <ignored-key id="436902AF59EDF60E" reason="Key couldn't be downloaded from any key server" />
-          <ignored-key id="5B05CCDE140C2876" reason="Key couldn't be downloaded from any key server" />
-          <ignored-key id="700E4F39BC05364B" reason="Key couldn't be downloaded from any key server" />
+         <ignored-key id="436902AF59EDF60E" reason="Key couldn't be downloaded from any key server"/>
+         <ignored-key id="5B05CCDE140C2876" reason="Key couldn't be downloaded from any key server"/>
+         <ignored-key id="700E4F39BC05364B" reason="Key couldn't be downloaded from any key server"/>
          <ignored-key id="A6EA2E2BF22E0543" reason="Key couldn't be downloaded from any key server"/>
          <ignored-key id="AE094C852B4EE5DC" reason="Key couldn't be downloaded from any key server"/>
       </ignored-keys>
       <trusted-keys>
-          <trusted-key id="015479E1055341431B4545AB72475FD306B9CAB7" group="com.googlecode.javaewah" name="JavaEWAH"
-              version="1.2.3" />
+         <trusted-key id="015479E1055341431B4545AB72475FD306B9CAB7" group="com.googlecode.javaewah" name="JavaEWAH" version="1.2.3"/>
          <trusted-key id="03C123038C20AAE9E286C857479D601F3A7B5C1A" group="^com[.]github[.]ajalt($|([.].*))" regex="true"/>
          <trusted-key id="042B29E928995B9DB963C636C7CA19B7B620D787" group="com.github.stephenc.jcip" name="jcip-annotations" version="1.0-1"/>
          <trusted-key id="04543577D6A9CC626239C50C7ECBD740FF06AEB5">
@@ -57,13 +56,13 @@
          <trusted-key id="19BEAB2D799C020F17C69126B16698A4ADF4D638" group="org.checkerframework" name="checker-qual"/>
          <trusted-key id="1A55F091AD28C07F831FA44D7905DE25C78AD456" group="com.google.protobuf"/>
          <trusted-key id="1BE2DD4B1FCF252FE4F0A1D103281AA0289FF53A" group="com.soywiz.korlibs.korte" name="korte-jvm" version="2.0.7"/>
+         <trusted-key id="1D0A8B5E77C678A7C724445ABF984B4145EA13F7" group="com.squareup" name="javapoet" version="1.13.0"/>
          <trusted-key id="1D217F8475EEE9F19AB8DD6B793FD5751A0F0780">
             <trusting group="com.squareup.retrofit2" name="retrofit" version="2.12.0"/>
             <trusting group="com.squareup.retrofit2" name="retrofit" version="3.0.0"/>
             <trusting group="^com[.]squareup($|([.].*))" regex="true"/>
          </trusted-key>
-          <trusted-key id="1D2C7EF8ADA0F794B58C7C63436902AF59EDF60E" group="dev.equo.ide" name="solstice"
-              version="1.8.1" />
+         <trusted-key id="1D2C7EF8ADA0F794B58C7C63436902AF59EDF60E" group="dev.equo.ide" name="solstice" version="1.8.1"/>
          <trusted-key id="1D85469D8559C2E1DF5F925131D2D79DF7E85DD3" group="org.jcommander" name="jcommander" version="1.85"/>
          <trusted-key id="1D9AA7F9E1E2824728B8CD1794B291AEF984A085" group="io.reactivex.rxjava2" name="rxjava" version="2.2.21"/>
          <trusted-key id="28118C070CB22A0175A2E8D43D12CA2AC19F3181" group="^com[.]fasterxml($|([.].*))" regex="true"/>
@@ -89,7 +88,7 @@
             <trusting group="org.apache.groovy" name="groovy-bom" version="4.0.27"/>
             <trusting group="org.codehaus.groovy"/>
          </trusted-key>
-          <trusted-key id="3690C240CE51B4670D30AD1C38EE757D69184620" group="org.tukaani" name="xz" version="1.9" />
+         <trusted-key id="3690C240CE51B4670D30AD1C38EE757D69184620" group="org.tukaani" name="xz" version="1.9"/>
          <trusted-key id="3F05DDA9F317301E927136D417A27CE7A60FF5F0" group="io.opentelemetry"/>
          <trusted-key id="4161A24D2E7F660FCFDB6AAFAE094C852B4EE5DC">
             <trusting group="com.mebigfatguy.fb-contrib" name="fb-contrib" version="7.7.0"/>
@@ -105,8 +104,7 @@
             <trusting group="com.google.api.grpc" name="proto-google-common-protos" version="2.48.0"/>
          </trusted-key>
          <trusted-key id="475F3B8E59E6E63AA78067482C7B12F2A511E325" group="org.slf4j"/>
-          <trusted-key id="4797B4F5DCC46CEA61059071A1AE06236CA2BA62" group="com.diffplug.durian" name="durian-swt.os"
-              version="4.3.0" />
+         <trusted-key id="4797B4F5DCC46CEA61059071A1AE06236CA2BA62" group="com.diffplug.durian" name="durian-swt.os" version="4.3.0"/>
          <trusted-key id="47EB6836245D2D40E89DFB4136D4E9618F3ADAB5">
             <trusting group="io.github.oshai" name="kotlin-logging-jvm" version="5.1.0"/>
             <trusting group="io.github.oshai" name="kotlin-logging-jvm" version="7.0.13"/>
@@ -175,7 +173,7 @@
          </trusted-key>
          <trusted-key id="8569C95CADC508B09FE90F3002216ED811210DAA" group="io.github.detekt.sarif4k"/>
          <trusted-key id="8756C4F765C9AC3CB6B85D62379CE192D401AB61">
-             <trusting group="com.diffplug.durian" />
+            <trusting group="com.diffplug.durian"/>
             <trusting group="org.jetbrains.intellij.deps" name="trove4j" version="1.0.20200330"/>
             <trusting group="org.jetbrains.kotlinx"/>
          </trusted-key>
@@ -215,9 +213,8 @@
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.1.6"/>
             <trusting group="com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="6.1.7"/>
          </trusted-key>
-          <trusted-key id="9E3044071B758EBCB7E45673700E4F39BC05364B" group="org.eclipse.platform"
-              name="org.eclipse.osgi" version="3.23.200" />
-          <trusted-key id="A31DDE881C3E3C4C985BD0D02C7F998F4272C851" group="com.diffplug.spotless" />
+         <trusted-key id="9E3044071B758EBCB7E45673700E4F39BC05364B" group="org.eclipse.platform" name="org.eclipse.osgi" version="3.23.200"/>
+         <trusted-key id="A31DDE881C3E3C4C985BD0D02C7F998F4272C851" group="com.diffplug.spotless"/>
          <trusted-key id="A413F67D71BEEC23ADD0CE0ACB43338E060CF9FA" group="com.google.code.findbugs" name="jsr305" version="2.0.2"/>
          <trusted-key id="A42FEF087AF29AE864684EAEE6039456D5BBD4F8" group="io.fabric8" name="kubernetes-client-bom" version="5.12.4"/>
          <trusted-key id="A5BD02B93E7A40482EB1D66A5F69AD087600B22C" group="org.ow2.asm"/>
@@ -225,6 +222,7 @@
             <trusting group="androidx.annotation"/>
             <trusting group="androidx.appcompat"/>
             <trusting group="androidx.collection"/>
+            <trusting group="androidx.concurrent" name="concurrent-futures" version="1.2.0"/>
             <trusting group="androidx.concurrent" name="concurrent-futures-ktx" version="1.2.0"/>
             <trusting group="androidx.constraintlayout"/>
             <trusting group="androidx.core"/>
@@ -245,8 +243,7 @@
          </trusted-key>
          <trusted-key id="A6D6C97108B8585F91B158748671A8DF71296252" group="^com[.]squareup($|([.].*))" regex="true"/>
          <trusted-key id="A7892505CF1A58076453E52D7999BEFBA1039E8B" group="net.bytebuddy"/>
-          <trusted-key id="A9789342F598AD5B1175EF357EB97D110DFADD60" group="com.googlecode.concurrent-trees"
-              name="concurrent-trees" version="2.6.1" />
+         <trusted-key id="A9789342F598AD5B1175EF357EB97D110DFADD60" group="com.googlecode.concurrent-trees" name="concurrent-trees" version="2.6.1"/>
          <trusted-key id="AA417737BD805456DB3CBDDE6601E5C08DCCBB96" group="info.picocli" name="picocli" version="4.7.5"/>
          <trusted-key id="AA70C7C433D501636392EC02153E7A3C2B4E5118" group="org.eclipse.ee4j" name="project"/>
          <trusted-key id="ADBC987D1A7B91DB6B0AAA81995EFBF4A3D20BEB" group="^com[.]pinterest($|([.].*))" regex="true"/>
@@ -1111,6 +1108,11 @@
             <sha256 value="8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
+      <component group="androidx.lifecycle" name="lifecycle-common" version="2.3.1">
+         <artifact name="lifecycle-common-2.3.1.module">
+            <sha256 value="5fb7c8514d8c56cada5e29ef89dc0289e71942ab4cb0b2e6dca137b9dcb8fdd4" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
       <component group="androidx.lifecycle" name="lifecycle-common" version="2.6.1">
          <artifact name="lifecycle-common-2.6.1.jar">
             <sha256 value="f34831b6c71cd844e1d35d1be49d5e79447c5ab856346531b1e8676fda7374b1" origin="Generated by Gradle" reason="Artifact is not signed"/>
@@ -1558,6 +1560,11 @@
          </artifact>
          <artifact name="tracing-1.0.0.module">
             <sha256 value="fc8b21ebe5fa3a7c96ee098bcdcd00f077ebce73f243fa858e2b0671615f75d8" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="androidx.tracing" name="tracing" version="1.1.0">
+         <artifact name="tracing-1.1.0.module">
+            <sha256 value="b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="androidx.tracing" name="tracing" version="1.2.0">
@@ -4069,6 +4076,14 @@
          </artifact>
          <artifact name="bundletool-1.18.1.pom">
             <sha256 value="5c4df7b2e31f17f20e4b8dbd62a2b7865a09a49a1fd2931a359fd394ecb9b5a5" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="com.android.tools.build" name="bundletool" version="1.18.3">
+         <artifact name="bundletool-1.18.3.jar">
+            <sha256 value="ccad18514fd97db010856b2bbed40f481f8ba9349368c97ae54d72e3567d0171" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+         <artifact name="bundletool-1.18.3.pom">
+            <sha256 value="fa674b39b96cae98015f3850f366cfeb00fe6c7aea2d90b20c017b90e0996dae" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="com.android.tools.build" name="gradle" version="8.10.1">
@@ -7543,10 +7558,9 @@
             <sha256 value="936a2d8bce0f84da18500f4e119488b93106dbaa83b8462fe996bcd0e1c38b16" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
          </artifact>
       </component>
-       <component group="com.diffplug.spotless" name="com.diffplug.spotless.gradle.plugin" version="8.1.0">
-           <artifact name="com.diffplug.spotless.gradle.plugin-8.1.0.pom">
-               <sha256 value="58b0b4ed49b3b19072b55c7111c0991a07f9b6d20709af8aa470c714114afbfb"
-                   origin="Generated by Gradle" reason="Artifact is not signed" />
+      <component group="com.diffplug.spotless" name="com.diffplug.spotless.gradle.plugin" version="8.1.0">
+         <artifact name="com.diffplug.spotless.gradle.plugin-8.1.0.pom">
+            <sha256 value="58b0b4ed49b3b19072b55c7111c0991a07f9b6d20709af8aa470c714114afbfb" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="com.fasterxml" name="oss-parent" version="56">
@@ -9467,14 +9481,12 @@
             <sha256 value="26430b6ed8524043691bce0f4a4ea46d8f54127e396e4ed7d35e0e01d19ea3f4" origin="Generated by Gradle"/>
          </artifact>
       </component>
-       <component group="dev.equo.ide" name="solstice" version="1.8.1">
-           <artifact name="solstice-1.8.1.jar">
-               <sha256 value="6e5ba2cce813be1d71ccdc2ecf3e49271b14e691bfbbb1a114cf3a30e773b10d"
-                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
-           </artifact>
-           <artifact name="solstice-1.8.1.module">
-               <sha256 value="a676039ea6af08f257b46e07c2bf1571a46a4d4b5b9ccb86c3fc98d07fafea1b"
-                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+      <component group="dev.equo.ide" name="solstice" version="1.8.1">
+         <artifact name="solstice-1.8.1.jar">
+            <sha256 value="6e5ba2cce813be1d71ccdc2ecf3e49271b14e691bfbbb1a114cf3a30e773b10d" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
+         </artifact>
+         <artifact name="solstice-1.8.1.module">
+            <sha256 value="a676039ea6af08f257b46e07c2bf1571a46a4d4b5b9ccb86c3fc98d07fafea1b" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
          </artifact>
       </component>
       <component group="gradle.plugin.com.github.spotbugs.snom" name="spotbugs-gradle-plugin" version="4.7.5">
@@ -11654,30 +11666,25 @@
             <sha256 value="d344104a6ee619da6598403c25d03aaaaaf0f54e9646fd3512458df57c9aaeb8" origin="Generated by Gradle"/>
          </artifact>
       </component>
-       <component group="org.eclipse.jgit" name="org.eclipse.jgit" version="7.4.0.202509020913-r">
-           <artifact name="org.eclipse.jgit-7.4.0.202509020913-r.jar">
-               <sha256 value="9bc7cf2d0400a130e3405e4ae9c78775d9bdb1037098d00b2d8ea79436f3a7f3"
-                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
-           </artifact>
-           <artifact name="org.eclipse.jgit-7.4.0.202509020913-r.pom">
-               <sha256 value="5f0c0e2cdbd6d788302fa84b28d0c538a06334ba0812fc64252050907222d30b"
-                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
-           </artifact>
-       </component>
-       <component group="org.eclipse.jgit" name="org.eclipse.jgit-parent" version="7.4.0.202509020913-r">
-           <artifact name="org.eclipse.jgit-parent-7.4.0.202509020913-r.pom">
-               <sha256 value="d53714ed2649b8173288f65405e54fbef751656b91480c5459f4dc0192002472"
-                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
-           </artifact>
-       </component>
-       <component group="org.eclipse.platform" name="org.eclipse.osgi" version="3.23.200">
-           <artifact name="org.eclipse.osgi-3.23.200.jar">
-               <sha256 value="8d94058ead3f4651900166924a677c3beb6e996f072fabf385ffdd70510bc493"
-                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
-           </artifact>
-           <artifact name="org.eclipse.osgi-3.23.200.pom">
-               <sha256 value="a72da35afde481cda10e9d94b31a54c1b90a7b6850aade4c9ad9e956d7485ad0"
-                   origin="Generated by Gradle" reason="A key couldn't be downloaded" />
+      <component group="org.eclipse.jgit" name="org.eclipse.jgit" version="7.4.0.202509020913-r">
+         <artifact name="org.eclipse.jgit-7.4.0.202509020913-r.jar">
+            <sha256 value="9bc7cf2d0400a130e3405e4ae9c78775d9bdb1037098d00b2d8ea79436f3a7f3" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
+         </artifact>
+         <artifact name="org.eclipse.jgit-7.4.0.202509020913-r.pom">
+            <sha256 value="5f0c0e2cdbd6d788302fa84b28d0c538a06334ba0812fc64252050907222d30b" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
+         </artifact>
+      </component>
+      <component group="org.eclipse.jgit" name="org.eclipse.jgit-parent" version="7.4.0.202509020913-r">
+         <artifact name="org.eclipse.jgit-parent-7.4.0.202509020913-r.pom">
+            <sha256 value="d53714ed2649b8173288f65405e54fbef751656b91480c5459f4dc0192002472" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
+         </artifact>
+      </component>
+      <component group="org.eclipse.platform" name="org.eclipse.osgi" version="3.23.200">
+         <artifact name="org.eclipse.osgi-3.23.200.jar">
+            <sha256 value="8d94058ead3f4651900166924a677c3beb6e996f072fabf385ffdd70510bc493" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
+         </artifact>
+         <artifact name="org.eclipse.osgi-3.23.200.pom">
+            <sha256 value="a72da35afde481cda10e9d94b31a54c1b90a7b6850aade4c9ad9e956d7485ad0" origin="Generated by Gradle" reason="A key couldn't be downloaded"/>
          </artifact>
       </component>
       <component group="org.glassfish.jaxb" name="jaxb-bom" version="2.3.2">
@@ -13558,9 +13565,9 @@
             <sha256 value="a52a6243f8615856791d1297f97374076bf81348061af714ad0963d375ae5cb7" origin="Generated by Gradle"/>
          </artifact>
       </component>
-       <component group="org.sonatype.oss" name="oss-parent" version="5">
-           <artifact name="oss-parent-5.pom">
-               <pgp value="2BCBDD0F23EA1CAFCC11D4860374CF2E8DD1BDFD" />
+      <component group="org.sonatype.oss" name="oss-parent" version="5">
+         <artifact name="oss-parent-5.pom">
+            <pgp value="2BCBDD0F23EA1CAFCC11D4860374CF2E8DD1BDFD"/>
          </artifact>
       </component>
       <component group="org.sonatype.oss" name="oss-parent" version="7">
