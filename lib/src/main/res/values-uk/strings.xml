@@ -19,8 +19,8 @@
     <string name="android_get_accounts_permission_not_granted_exception_title">Дозвіл не надано</string>
     <string name="android_get_accounts_permission_not_granted_exception_message">Щоб використовувати Nextcloud Single Sign On на цьому пристрої, вам потрібно надати дозвіл на доступ до своїх облікових записів</string>
 
-    <string name="token_mismatch_title">Помилка авторизації</string>
-    <string name="token_mismatch_message">Наданий токен авторизації не збігається або пакунку не дозволено виконувати цю дію</string>
+    <string name="token_mismatch_title">Помилка автентифікації</string>
+    <string name="token_mismatch_message">Наданий токен автентифікації не збігається або пакунку не дозволено виконувати цю дію</string>
 
     <string name="nextcloud_files_app_not_installed_title">Не встановлено застосунок Nextcloud Файли</string>
     <string name="nextcloud_files_app_not_installed_message">Ця програма залежить від програми Nextcloud Files. Будь ласка, встановіть його, щоб використовувати цю програму.</string>
