@@ -15,7 +15,6 @@ import org.junit.Test
 
 @Suppress("MagicNumber", "TooManyFunctions")
 class Retrofit2HelperTest {
-
     @Test
     fun testBuildHeadersWhenGivenNullHeadersShouldReturnEmptyHeaders() {
         val headers = buildHeaders(null)
@@ -30,9 +29,10 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenSingleHeaderShouldReturnThatHeader() {
-        val plainHeaders = listOf(
-            createPlainHeader("Content-Type", "application/json")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Content-Type", "application/json")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -42,11 +42,12 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenDuplicateHeadersShouldRemoveDuplicates() {
-        val plainHeaders = listOf(
-            createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
-            createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
-            createPlainHeader("X-Robots-Tag", "noindex, nofollow")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
+                createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
+                createPlainHeader("X-Robots-Tag", "noindex, nofollow")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -56,11 +57,12 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenMultipleDistinctValuesShouldKeepAllValues() {
-        val plainHeaders = listOf(
-            createPlainHeader("Set-Cookie", "session=abc123"),
-            createPlainHeader("Set-Cookie", "token=xyz789"),
-            createPlainHeader("Set-Cookie", "user=john")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Set-Cookie", "session=abc123"),
+                createPlainHeader("Set-Cookie", "token=xyz789"),
+                createPlainHeader("Set-Cookie", "user=john")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -74,13 +76,14 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenMixedDuplicateAndDistinctValuesShouldHandleCorrectly() {
-        val plainHeaders = listOf(
-            createPlainHeader("Set-Cookie", "session=abc"),
-            createPlainHeader("Set-Cookie", "session=abc"),
-            createPlainHeader("Set-Cookie", "token=xyz"),
-            createPlainHeader("X-Robots-Tag", "noindex"),
-            createPlainHeader("X-Robots-Tag", "noindex")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Set-Cookie", "session=abc"),
+                createPlainHeader("Set-Cookie", "session=abc"),
+                createPlainHeader("Set-Cookie", "token=xyz"),
+                createPlainHeader("X-Robots-Tag", "noindex"),
+                createPlainHeader("X-Robots-Tag", "noindex")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -96,11 +99,12 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenCaseInsensitiveHeaderNamesShouldTreatAsSame() {
-        val plainHeaders = listOf(
-            createPlainHeader("Content-Type", "application/json"),
-            createPlainHeader("content-type", "application/json"),
-            createPlainHeader("CONTENT-TYPE", "application/json")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Content-Type", "application/json"),
+                createPlainHeader("content-type", "application/json"),
+                createPlainHeader("CONTENT-TYPE", "application/json")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -110,11 +114,12 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenCaseInsensitiveHeaderNamesWithDifferentValuesShouldKeepAll() {
-        val plainHeaders = listOf(
-            createPlainHeader("Content-Type", "application/json"),
-            createPlainHeader("content-type", "text/html"),
-            createPlainHeader("CONTENT-TYPE", "application/xml")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Content-Type", "application/json"),
+                createPlainHeader("content-type", "text/html"),
+                createPlainHeader("CONTENT-TYPE", "application/xml")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -127,11 +132,12 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenSameNameDifferentValuesShouldKeepAll() {
-        val plainHeaders = listOf(
-            createPlainHeader("Accept", "text/html"),
-            createPlainHeader("Accept", "application/json"),
-            createPlainHeader("Accept", "text/plain")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Accept", "text/html"),
+                createPlainHeader("Accept", "application/json"),
+                createPlainHeader("Accept", "text/plain")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -145,18 +151,19 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenComplexScenarioShouldHandleAllCasesCorrectly() {
-        val plainHeaders = listOf(
-            createPlainHeader("Content-Type", "application/json"),
-            createPlainHeader("Set-Cookie", "session=abc"),
-            createPlainHeader("Set-Cookie", "token=xyz"),
-            createPlainHeader("Set-Cookie", "session=abc"),
-            createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
-            createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
-            createPlainHeader("Cache-Control", "no-cache"),
-            createPlainHeader("cache-control", "no-cache"),
-            createPlainHeader("Accept", "text/html"),
-            createPlainHeader("Accept", "application/json")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Content-Type", "application/json"),
+                createPlainHeader("Set-Cookie", "session=abc"),
+                createPlainHeader("Set-Cookie", "token=xyz"),
+                createPlainHeader("Set-Cookie", "session=abc"),
+                createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
+                createPlainHeader("X-Robots-Tag", "noindex, nofollow"),
+                createPlainHeader("Cache-Control", "no-cache"),
+                createPlainHeader("cache-control", "no-cache"),
+                createPlainHeader("Accept", "text/html"),
+                createPlainHeader("Accept", "application/json")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -180,10 +187,11 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenHeadersWithWhitespaceShouldPreserveExactValue() {
-        val plainHeaders = listOf(
-            createPlainHeader("X-Custom", "value with spaces"),
-            createPlainHeader("X-Custom", "value with spaces")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("X-Custom", "value with spaces"),
+                createPlainHeader("X-Custom", "value with spaces")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -193,10 +201,11 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenHeadersWithSpecialCharactersShouldPreserveExactValue() {
-        val plainHeaders = listOf(
-            createPlainHeader("Authorization", "Bearer eyJhbGc..."),
-            createPlainHeader("X-Special", "value=test;path=/;secure")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("Authorization", "Bearer eyJhbGc..."),
+                createPlainHeader("X-Special", "value=test;path=/;secure")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -207,10 +216,11 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenEmptyHeaderValueShouldHandleCorrectly() {
-        val plainHeaders = listOf(
-            createPlainHeader("X-Empty", ""),
-            createPlainHeader("X-Empty", "")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("X-Empty", ""),
+                createPlainHeader("X-Empty", "")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -220,12 +230,13 @@ class Retrofit2HelperTest {
 
     @Test
     fun testBuildHeadersWhenGivenMultipleHeadersWithSomeEmptyValuesShouldHandleCorrectly() {
-        val plainHeaders = listOf(
-            createPlainHeader("X-Test", "value1"),
-            createPlainHeader("X-Test", ""),
-            createPlainHeader("X-Test", "value2"),
-            createPlainHeader("X-Test", "")
-        )
+        val plainHeaders =
+            listOf(
+                createPlainHeader("X-Test", "value1"),
+                createPlainHeader("X-Test", ""),
+                createPlainHeader("X-Test", "value2"),
+                createPlainHeader("X-Test", "")
+            )
 
         val headers = buildHeaders(plainHeaders)
 
@@ -237,5 +248,8 @@ class Retrofit2HelperTest {
         assertTrue(values.contains("value2"))
     }
 
-    private fun createPlainHeader(name: String, value: String) = AidlNetworkRequest.PlainHeader(name, value)
+    private fun createPlainHeader(
+        name: String,
+        value: String
+    ) = AidlNetworkRequest.PlainHeader(name, value)
 }
