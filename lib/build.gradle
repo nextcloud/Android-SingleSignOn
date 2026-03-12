@@ -157,7 +157,7 @@ dependencies {
     ktlint "com.pinterest.ktlint:ktlint-cli:1.8.0"
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:5.22.0'
+    testImplementation 'org.mockito:mockito-core:5.23.0'
 }
 
 afterEvaluate {
