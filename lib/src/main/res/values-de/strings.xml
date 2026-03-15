@@ -23,7 +23,7 @@
     <string name="token_mismatch_message">Der Authentifizierungs-Token stimmt nicht überein oder dem Paketnamen fehlt die Berechtigung für diese Aktion</string>
 
     <string name="nextcloud_files_app_not_installed_title">Nextcloud-Files ist nicht installiert</string>
-    <string name="nextcloud_files_app_not_installed_message">Diese App benötigt die Nextcloud Files-App. Bitte installieren Sie diese, um dies App nutzen zu können.</string>
+    <string name="nextcloud_files_app_not_installed_message">Diese App benötigt die Nextcloud Files-App. Bitte installieren Sie diese, um diese App nutzen zu können.</string>
     <string name="nextcloud_files_app_not_installed_action">Installieren</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Konto nicht gefunden</string>
