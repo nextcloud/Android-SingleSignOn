@@ -23,7 +23,7 @@ puts "running Spotbugs..."
 system './gradlew spotbugsDebug'
 
 # find number of warnings
-current_warning_count = `./scripts/analysis/spotbugsSummary.py --file library/build/reports/spotbugs/debug.xml --total`.to_i
+current_warning_count = `./scripts/analysis/spotbugsSummary.py --file lib/build/reports/spotbugs/debug.xml --total`.to_i
 puts "found warnings: " + current_warning_count.to_s
 
 # get warning counts from target branch
