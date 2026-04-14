@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.nextcloud.android.sso.sample"
-        minSdk 22
+        minSdk 23
         targetSdk = 36
         compileSdk = 36
         versionCode 1
