@@ -23,12 +23,12 @@
     <string name="token_mismatch_message">Naudojamas prieigos raktas nesutampa arba įskiepiui su šiuo pavadinimu nėra leidžiama atlikti šį veiksmą</string>
 
     <string name="nextcloud_files_app_not_installed_title">Nextcloud „Failai“ neįdiegti</string>
-    <string name="nextcloud_files_app_not_installed_message">Ši programėlė veikia tik kartu su programėle Nextcloud „Failai“. Norėdami naudotis šia programėle, ją įdiekite.</string>
+    <string name="nextcloud_files_app_not_installed_message">Ši programėlė veikia tik kartu su programėle Nextcloud Failai. Norėdami naudotis šia programėle, ją įdiekite.</string>
     <string name="nextcloud_files_app_not_installed_action">Įdiegti</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Paskyra nerasta</string>
-    <string name="nextcloud_files_app_account_not_found_message">Nextcloud „Files“ programėlėje nepavyko rasti nurodytos paskyros</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Nextcloud „Files“ programėlėje nepavyko rasti %1$s paskyros</string>
+    <string name="nextcloud_files_app_account_not_found_message">Nextcloud Failai programėlėje nepavyko rasti nurodytos paskyros</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Nextcloud Failai programėlėje nepavyko rasti %1$s paskyros</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Leidimas nesuteiktas</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Norėdami naudotis vienkartinio prisijungimo (angl. Single Sign On) funkcija, turite sutikti su prašomais leidimais.</string>
@@ -36,18 +36,18 @@
     <string name="nextcloud_http_request_failed_title">Užklausa nepavyko</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP užklausa nepavyko su HTTP būsenos kodu: %1$d</string>
 
-    <string name="nextcloud_files_app_no_store_installed_title">Reikalingi Nextcloud „Failai“</string>
-    <string name="nextcloud_files_app_no_store_installed_message">Norėdami tęsti, pirmiausia įdiekite programėlę Nextcloud „Files“ į savo įrenginį.</string>
+    <string name="nextcloud_files_app_no_store_installed_title">Reikalingi Nextcloud Failai</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Norėdami tęsti, pirmiausia įdiekite programėlę Nextcloud Failai į savo įrenginį.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instrukcijos</string>
 
     <string name="nextcloud_unsupported_method_action">Kontaktas</string>
 
-    <string name="nextcloud_files_app_not_supported_title">Atnaujinti programėlę Nextcloud „Files“</string>
-    <string name="nextcloud_files_app_not_supported_message">Jūsų Nextcloud „Files“ programa yra senesnė versija, kuri dar nepalaiko vienkartinio prisijungimo funkcijos.</string>
+    <string name="nextcloud_files_app_not_supported_title">Atnaujinti programėlę Nextcloud Filai</string>
+    <string name="nextcloud_files_app_not_supported_message">Jūsų Nextcloud Failai programa yra senesnė versija, kuri dar nepalaiko vienkartinio prisijungimo funkcijos.</string>
     <string name="nextcloud_files_app_not_supported_action">Atnaujinti</string>
 
     <string name="nextcloud_files_api_not_responding_title">API neatsako</string>
-    <string name="nextcloud_files_api_not_responding_message">Nextcloud „Files“ programėlės API neatsako. Greičiausiai taip yra dėl telefono akumuliatoriaus optimizavimo. Pabandykite išjungti abiejų programėlių (Nextcloud „Files“ ir šios programėlės) akumuliatoriaus optimizavimą. Visais kitais atvejais pabandykite išvalyti abiejų programėlių saugyklą.</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud Failai programėlės API neatsako. Greičiausiai taip yra dėl telefono akumuliatoriaus optimizavimo. Pabandykite išjungti abiejų programėlių (Nextcloud Failai ir šios programėlės) akumuliatoriaus optimizavimą. Visais kitais atvejais pabandykite išvalyti abiejų programėlių saugyklą.</string>
     <string name="nextcloud_files_api_not_responding_action">Nustatymai</string>
 
     <string name="sso_canceled">SSO įkėlimas nutrauktas</string>
