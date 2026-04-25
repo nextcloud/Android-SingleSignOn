@@ -7,6 +7,7 @@
     -->
     <string name="close">关闭</string>
 
+    <string name="network_error_title">网络错误</string>
     <string name="retry_action">重试</string>
 
     <string name="unknown_error_title">未知错误</string>
