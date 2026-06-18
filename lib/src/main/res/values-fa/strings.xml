@@ -7,31 +7,31 @@
     -->
     <string name="close">بسته</string>
 
-    <string name="network_error_title">Network Error</string>
+    <string name="network_error_title">خطای شبکه</string>
     <string name="retry_action">تلاش دوباره</string>
 
     <string name="unknown_error_title">خطای ناشناخته</string>
 
-    <string name="no_current_account_selected_exception_title">No account selected</string>
-    <string name="no_current_account_selected_exception_message">You need to set the current account before performing this operation. Please consult the documentation for proper usage.</string>
+    <string name="no_current_account_selected_exception_title">هیچ حسابی انتخاب نشده</string>
+    <string name="no_current_account_selected_exception_message">برای انجام این عملیات باید حساب جاری را تنظیم کنید. لطفاً برای استفاده صحیح به مستندات مراجعه کنید.</string>
     <string name="no_current_account_selected_exception_action">مستندسازی</string>
 
-    <string name="android_get_accounts_permission_not_granted_exception_title">Permission not granted</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">In order to use the Nextcloud Single Sign On on this device, you need to grant permission to access your accounts</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">مجوز داده نشده</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">برای استفاده از Single Sign On نکست‌کلود در این دستگاه، باید اجازه دسترسی به حساب‌های خود را بدهید.</string>
 
-    <string name="token_mismatch_title">خطا در اعتبار سنجی</string>
-    <string name="token_mismatch_message">مشروط به تأیید اعتبار ، مطابقت ندارد یا نام بسته برای انجام این کار مجاز نیست</string>
+    <string name="token_mismatch_title">خطا در اعتبارسنجی</string>
+    <string name="token_mismatch_message">مشروط به تأیید اعتبار، مطابقت ندارد یا نام بسته برای انجام این کار مجاز نیست</string>
 
-    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files not installed</string>
-    <string name="nextcloud_files_app_not_installed_message">This app depends on the Nextcloud Files app. Please install it in order to use this app.</string>
+    <string name="nextcloud_files_app_not_installed_title">فایل‌های نکست‌کلود نصب نشده</string>
+    <string name="nextcloud_files_app_not_installed_message">این برنامه به برنامه فایل‌های نکست‌کلود وابسته است. لطفاً آن را برای استفاده از این برنامه نصب کنید.</string>
     <string name="nextcloud_files_app_not_installed_action">نصب</string>
 
-    <string name="nextcloud_files_app_account_not_found_title">Account not found</string>
-    <string name="nextcloud_files_app_account_not_found_message">The requested account was not found in Nextcloud Files app</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">The account %1$s was not found in Nextcloud Files app</string>
+    <string name="nextcloud_files_app_account_not_found_title">حساب پیدا نشد</string>
+    <string name="nextcloud_files_app_account_not_found_message">حساب درخواستی در برنامه فایل‌های نکست‌کلود یافت نشد</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">حساب %1$s در برنامه فایل‌های نکست‌کلود یافت نشد</string>
 
-    <string name="nextcloud_files_app_account_permission_not_granted_title">Permission not granted</string>
-    <string name="nextcloud_files_app_account_permission_not_granted_message">You have to accept the requested permissions to use the Single Sign On feature.</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_title">مجوز داده نشده</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">برای استفاده از ویژگی Single Sign On باید مجوزهای درخواستی را بپذیرید.</string>
 
     <string name="nextcloud_http_request_failed_title">درخواست شکست خورد</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">درخواست HTTP با کد وضعیت HTTP انجام نشد: %1$d</string>
