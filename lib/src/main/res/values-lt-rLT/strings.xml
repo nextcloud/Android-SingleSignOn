@@ -20,7 +20,7 @@
     <string name="android_get_accounts_permission_not_granted_exception_message">Norėdami naudoti „Nextcloud“ vienkartinį prisijungimą šiame įrenginyje, turite suteikti leidimą pasiekti savo paskyras.</string>
 
     <string name="token_mismatch_title">Tapatybės nustatymo klaida</string>
-    <string name="token_mismatch_message">Naudojamas prieigos raktas nesutampa arba įskiepiui su šiuo pavadinimu nėra leidžiama atlikti šį veiksmą</string>
+    <string name="token_mismatch_message">Naudojamas autentifikavimo žymuo nesutampa arba įskiepiui su šiuo pavadinimu nėra leidžiama atlikti šį veiksmą</string>
 
     <string name="nextcloud_files_app_not_installed_title">Nextcloud „Failai“ neįdiegti</string>
     <string name="nextcloud_files_app_not_installed_message">Ši programėlė veikia tik kartu su programėle Nextcloud Failai. Norėdami naudotis šia programėle, ją įdiekite.</string>
