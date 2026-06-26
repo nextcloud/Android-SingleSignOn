@@ -23,7 +23,7 @@
     <string name="token_mismatch_message">Lisatud autentimise tunnusluba ei vasta tarkvarapaketi nimele või sellel paketil pole luba antud toimingu jaoks</string>
 
     <string name="nextcloud_files_app_not_installed_title">Nextcloudi Failirakendus on paigaldamata</string>
-    <string name="nextcloud_files_app_not_installed_message">See rakendus sõltub Nextcloudi Failirakendusest. Et saaksi soovitud rakendust kasutada, palun paigalda ka Nextcloudi Failirakendus.</string>
+    <string name="nextcloud_files_app_not_installed_message">See rakendus sõltub Nextcloudi Failirakendusest. Et saaksid soovitud rakendust kasutada, palun paigalda ka Nextcloudi Failirakendus.</string>
     <string name="nextcloud_files_app_not_installed_action">Paigalda</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Kasutajakontot ei leidu</string>
