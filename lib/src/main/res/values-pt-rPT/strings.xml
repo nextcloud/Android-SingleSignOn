@@ -7,6 +7,7 @@
     -->
     <string name="close">Fechar</string>
 
+    <string name="network_error_title">Erro de Rede</string>
     <string name="retry_action">Repetir</string>
 
     <string name="unknown_error_title">Erro desconhecido</string>
@@ -21,6 +22,7 @@
     <string name="token_mismatch_title">Erro na autenticação</string>
     <string name="token_mismatch_message">O token de autenticação não corresponde ao  esperado ou o nome da package não permite a realização desta ação</string>
 
+    <string name="nextcloud_files_app_not_installed_message">Este aplicativo depende do aplicativo Nextcloud Arquivos. Por favor, instale-o para usar este aplicativo.</string>
     <string name="nextcloud_files_app_not_installed_action">Instalar</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Conta não encontrada</string>
@@ -40,6 +42,7 @@
     <string name="nextcloud_unsupported_method_action">Contacto</string>
 
     <string name="nextcloud_files_app_not_supported_title">Atualize o aplicativo Nextcloud Arquivos</string>
+    <string name="nextcloud_files_app_not_supported_message">Seu aplicativo Nextcloud Arquivos é uma versão mais antiga que ainda não oferece suporte ao recurso Single Sign On.</string>
     <string name="nextcloud_files_app_not_supported_action">Atualizar</string>
 
     <string name="nextcloud_files_api_not_responding_title">API não está respondendo</string>
