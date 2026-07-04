@@ -49,6 +49,7 @@
     <string name="nextcloud_files_api_not_responding_message">A API do aplicativo Nextcloud Arquivos não está respondendo. Isso provavelmente ocorre devido a otimizações de bateria em seu telefone. Tente desativar a otimização da bateria para ambos os aplicativos (Nextcloud Arquivos e este aplicativo). Em todos os outros casos, tente limpar o armazenamento de ambos os aplicativos.</string>
     <string name="nextcloud_files_api_not_responding_action">Definições</string>
 
+    <string name="sso_canceled">Importação SSO cancelada</string>
     <string name="sso_canceled_message">Importação SSO cancelada pelo usuário</string>
 
     </resources>
