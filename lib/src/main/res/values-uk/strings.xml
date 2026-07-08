@@ -37,13 +37,13 @@
     <string name="nextcloud_http_request_failed_message" formatted="true">Помилка HTTP запиту з таким статус-кодом HTTP: %1$d</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">Потрібно мати встановлений застосунок Nextcloud Файли</string>
-    <string name="nextcloud_files_app_no_store_installed_message">Щоб продовжити, будь ласка, спочатку встановіть додаток Nextcloud Files на свій пристрій.</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Щоб продовжити, будь ласка, спочатку встановіть застосунок Файли для Nextcloud на ваш пристрій.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Інструкції</string>
 
     <string name="nextcloud_unsupported_method_action">Контакт</string>
 
     <string name="nextcloud_files_app_not_supported_title">Оновлення програми Nextcloud Files</string>
-    <string name="nextcloud_files_app_not_supported_message">Ваш додаток Nextcloud Files є старою версією, яка ще не підтримує функцію єдиного входу.</string>
+    <string name="nextcloud_files_app_not_supported_message">Ваш застосунок Файли для Nextcloud застарілої версієї, яка ще не підтримує функцію єдиного входу.</string>
     <string name="nextcloud_files_app_not_supported_action">Оновлення</string>
 
     <string name="nextcloud_files_api_not_responding_title">API не відповідає</string>
