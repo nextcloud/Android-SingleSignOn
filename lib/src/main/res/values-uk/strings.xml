@@ -27,8 +27,8 @@
     <string name="nextcloud_files_app_not_installed_action">Встановити</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Акаунт не знайдено</string>
-    <string name="nextcloud_files_app_account_not_found_message">Запитуваний обліковий запис не знайдено в додатку Nextcloud Files</string>
-    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Обліковий запис %1$s не знайдено в додатку Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_message">Запитуваний обліковий запис не знайдено у застосунку Файли для Nextcloud</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Обліковий запис %1$s не знайдено в застосунку Файли для Nextcloud</string>
 
     <string name="nextcloud_files_app_account_permission_not_granted_title">Дозвіл не надано</string>
     <string name="nextcloud_files_app_account_permission_not_granted_message">Для використання функції Єдиного входу вам необхідно прийняти запропоновані дозволи.</string>
