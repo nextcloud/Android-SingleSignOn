@@ -18,4 +18,11 @@
         <package android:name="com.nextcloud.android.beta" />
     </queries>
 
+    <application>
+        <activity
+            android:name=".ImportSsoAccountActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Sso.Translucent" />
+    </application>
+
 </manifest>
