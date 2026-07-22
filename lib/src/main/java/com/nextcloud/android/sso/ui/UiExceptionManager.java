@@ -15,12 +15,15 @@ import android.content.DialogInterface;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.nextcloud.android.sso.R;
 import com.nextcloud.android.sso.exceptions.SSOException;
+
+import java.util.function.Consumer;
 
 public final class UiExceptionManager {
 
@@ -32,13 +35,20 @@ public final class UiExceptionManager {
 
     public static void showDialogForException(@NonNull Context context,
                                               @NonNull SSOException exception) {
+        showDialogForException(context, exception, null);
+    }
+
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
+    public static void showDialogForException(@NonNull Context context,
+                                              @NonNull SSOException exception,
+                                              @Nullable Consumer<SSOException> onDismiss) {
         final int actionText = exception.getPrimaryActionTextRes().orElse(android.R.string.yes);
         final var optionalAction = exception.getPrimaryAction();
 
         if (optionalAction.isPresent()) {
-            showDialogForException(context, exception, actionText, (dialog, which) -> context.startActivity(optionalAction.get()));
+            showDialogForException(context, exception, actionText, (dialog, which) -> context.startActivity(optionalAction.get()), onDismiss);
         } else {
-            showDialogForException(context, exception, actionText, null);
+            showDialogForException(context, exception, actionText, null, onDismiss);
         }
     }
 
@@ -49,8 +59,22 @@ public final class UiExceptionManager {
                                               @NonNull SSOException exception,
                                               @StringRes int actionText,
                                               @Nullable DialogInterface.OnClickListener callback) {
+        showDialogForException(context, exception, actionText, callback, null);
+    }
+
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
+    public static void showDialogForException(@NonNull Context context,
+                                              @NonNull SSOException exception,
+                                              @StringRes int actionText,
+                                              @Nullable DialogInterface.OnClickListener callback,
+                                              @Nullable Consumer<SSOException> onDismiss) {
         final var builder = new MaterialAlertDialogBuilder(context)
-                .setMessage(exception.getMessage());
+            .setMessage(exception.getMessage())
+            .setOnDismissListener(d -> {
+                if (onDismiss != null) {
+                    onDismiss.accept(exception);
+                }
+            });
 
         exception.getTitleRes().ifPresent(builder::setTitle);
 
