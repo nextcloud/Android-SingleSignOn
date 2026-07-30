@@ -1,7 +1,7 @@
 /*
  * Nextcloud Android SingleSignOn Library
  *
- * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 package com.nextcloud.android.sso;
@@ -29,43 +29,39 @@ public class ImportSsoAccountActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState != null) {
+            return;
+        }
 
-            try {
-                try {
-                    AccountImporter.checkAndroidAccountPermissions(this);
-                    //noinspection removal
-                    AccountImporter.pickNewAccount(this);
+        try {
+            AccountImporter.checkAndroidAccountPermissions(this);
+            //noinspection removal
+            AccountImporter.pickNewAccount(this);
 
-                } catch (AndroidGetAccountsPermissionNotGranted e) {
-                    //noinspection removal
-                    AccountImporter.requestAndroidAccountPermissionsAndPickAccount(this);
-                }
+        } catch (AndroidGetAccountsPermissionNotGranted e) {
+            //noinspection removal
+            AccountImporter.requestAndroidAccountPermissionsAndPickAccount(this);
 
-            } catch (Throwable throwable) {
-                if (throwable instanceof SSOException ssoException) {
-                    UiExceptionManager.showDialogForException(this, ssoException, t -> finish());
-                } else {
-                    throwable.printStackTrace();
-                    finish();
-                }
-            }
+        } catch (SSOException ssoException) {
+            UiExceptionManager.showDialogForException(this, ssoException, t -> finish());
 
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            finish();
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         try {
             AccountImporter.onRequestPermissionsResult(requestCode, permissions, grantResults, this, null, t -> finish());
+
         } catch (Throwable throwable) {
-            if (throwable instanceof SSOException ssoException) {
-                UiExceptionManager.showDialogForException(this, ssoException, t -> finish());
-            } else {
-                throwable.printStackTrace();
-                finish();
-            }
+            throwable.printStackTrace();
+            finish();
         }
     }
 
@@ -85,13 +81,10 @@ public class ImportSsoAccountActivity extends AppCompatActivity {
             Log.i(TAG, "Account import cancelled.");
             setResult(RESULT_CANCELED);
             finish();
+
         } catch (Throwable t) {
-            if (t instanceof SSOException ssoException) {
-                UiExceptionManager.showDialogForException(this, ssoException, t1 -> finish());
-            } else {
-                t.printStackTrace();
-                finish();
-            }
+            t.printStackTrace();
+            finish();
         }
     }
 }
