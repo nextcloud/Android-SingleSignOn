@@ -13,6 +13,7 @@
     <string name="unknown_error_title">Okänt fel</string>
 
     <string name="no_current_account_selected_exception_title">Inget konto valt</string>
+    <string name="no_current_account_selected_exception_message">Välj ett konto och försök igen.</string>
     <string name="no_current_account_selected_exception_action">Dokumentation</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">Behörighet har inte beviljats</string>
@@ -26,16 +27,27 @@
     <string name="nextcloud_files_app_not_installed_action">Installera</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Kontot hittades inte</string>
+    <string name="nextcloud_files_app_account_not_found_message">Det gick inte att hitta något konto i Nextcloud-appen. Lägg till ett konto och försök igen.</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Kontot %1$s hittades inte i Nextcloud-appen.</string>
+
     <string name="nextcloud_files_app_account_permission_not_granted_title">Behörighet har inte beviljats</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Den här appen har inte fått åtkomst till kontot i Nextcloud-appen. Välj kontot igen och bevilja åtkomst.</string>
+
     <string name="nextcloud_http_request_failed_title">Förfrågan misslyckades</string>
     <string name="nextcloud_http_request_failed_message" formatted="true">HTTP-förfrågan misslyckades med HTTP-statuskod: %1$d</string>
 
+    <string name="nextcloud_files_app_no_store_installed_title">Ingen appbutik installerad</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Ingen appbutik hittades. Installera Nextcloud-appen manuellt.</string>
     <string name="nextcloud_files_app_no_store_installed_action">Instruktioner</string>
 
     <string name="nextcloud_unsupported_method_action">Kontakt</string>
 
+    <string name="nextcloud_files_app_not_supported_title">Nextcloud-appen stöds inte</string>
+    <string name="nextcloud_files_app_not_supported_message">Den installerade versionen av Nextcloud-appen stöds inte. Uppdatera appen och försök igen.</string>
     <string name="nextcloud_files_app_not_supported_action">Uppdatera</string>
 
+    <string name="nextcloud_files_api_not_responding_title">Nextcloud-appen svarar inte</string>
+    <string name="nextcloud_files_api_not_responding_message">Nextcloud-appen svarar inte. Kontrollera appens inställningar och försök igen.</string>
     <string name="nextcloud_files_api_not_responding_action">Inställningar</string>
 
     <string name="sso_canceled">SSO-import avbruten</string>
