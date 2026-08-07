@@ -17,8 +17,8 @@ This library allows you to use accounts as well as the network stack provided by
 
 - [How to use this library](#how-to-use-this-library)
   - [1) Add this library to your project](#1-add-this-library-to-your-project)
-  - [2) To choose an account, include the following code in your login dialog](#2-to-choose-an-account-include-the-following-code-in-your-login-dialog)
-  - [3) To handle the result of the Account Chooser, include the following](#3-to-handle-the-result-of-the-account-chooser-include-the-following)
+  - [2) To choose an account, register an `ActivityResultContract` in your `Activity` or `Fragment`](#2-to-choose-an-account-register-an-activityresultcontract-in-your-activity-or-fragment)
+  - [3) Handle the result of the `ActivityResultContract`](#3-handle-the-result-of-the-activityresultcontract)
   - [4) How to get account information?](#4-how-to-get-account-information)
   - [5) How to make a network request?](#5-how-to-make-a-network-request)
     - [5.1) Using Retrofit](#51-using-retrofit)
@@ -54,58 +54,38 @@ dependencies {
 }
 ```
 
-### 2) To choose an account, include the following code in your login dialog
+### 2) To choose an account, register an [`ActivityResultContract`](https://developer.android.com/training/basics/intents/result) in your `Activity` or `Fragment`
 
 ```java
-private void openAccountChooser() {
-    try {
-        AccountImporter.pickNewAccount(activityOrFragment);
-    } catch (NextcloudFilesAppNotInstalledException | AndroidGetAccountsPermissionNotGranted e) {
-        UiExceptionManager.showDialogForException(this, e);
-    }
-}
+private final ActivityResultLauncher<Void> mImportAccountLauncher = registerForActivityResult(new ImportSsoAccount(), this::handleResult);
 ```
 
-### 3) To handle the result of the Account Chooser, include the following
+### 3) Handle the result of the [`ActivityResultContract`](https://developer.android.com/training/basics/intents/result)
 
 ```java
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    AccountImporter.onActivityResult(requestCode, resultCode, data, this, new AccountImporter.IAccountAccessGranted() {
+private void handleResult(SingleSignOnAccount ssoAccount) {
+    if (ssoAccount == null) {
+        // Import flow was canceled by user or an error
+        return;
+    }
 
-        @Override
-        public void accountAccessGranted(SingleSignOnAccount account) {
-            final var context = getApplicationContext();
+    // As this library supports multiple accounts we created some helper methods if you only want to use one.
+    // The following line stores the selected account as the "default" account which can be queried by using
+    // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
+    SingleAccountHelper.commitCurrentAccount(context, account.name);
 
-            // As this library supports multiple accounts we created some helper methods if you only want to use one.
-            // The following line stores the selected account as the "default" account which can be queried by using
-            // the SingleAccountHelper.getCurrentSingleSignOnAccount(context) method
-            SingleAccountHelper.commitCurrentAccount(context, account.name);
+    // Get the "default" account
+    SingleSignOnAccount ssoAccount = null;
+    try {
+        ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
+    } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException e) {
+        UiExceptionManager.showDialogForException(context, e);
+    }
 
-            // Get the "default" account
-            SingleSignOnAccount ssoAccount = null;
-            try {
-                ssoAccount = SingleAccountHelper.getCurrentSingleSignOnAccount(context);
-            } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException e) {
-                UiExceptionManager.showDialogForException(context, e);
-            }
+    final var nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create());
 
-            final var nextcloudAPI = new NextcloudAPI(context, ssoAccount, new GsonBuilder().create());
-
-            // TODO … (see code in section 4 and below)
-        }
-    });
+    // TODO … (see code in section 4 and below)
 }
-
-@Override
-public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    AccountImporter.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-}
-
-// Complete example: https://github.com/nextcloud/news-android/blob/890828441ba0c8a9b90afe56f3e08ed63366ece5/News-Android-App/src/main/java/de/luhmer/owncloudnewsreader/LoginDialogActivity.java#L470-L475
-
 ```
 
 ### 4) How to get account information?
