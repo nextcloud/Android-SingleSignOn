@@ -46,7 +46,7 @@ public class ImportSsoAccountActivity extends AppCompatActivity {
             UiExceptionManager.showDialogForException(this, ssoException, t -> finish());
 
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            Log.e(TAG, throwable.getMessage(), throwable);
             finish();
         }
     }
@@ -60,7 +60,7 @@ public class ImportSsoAccountActivity extends AppCompatActivity {
             AccountImporter.onRequestPermissionsResult(requestCode, permissions, grantResults, this, null, t -> finish());
 
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            Log.e(TAG, throwable.getMessage(), throwable);
             finish();
         }
     }
@@ -83,7 +83,7 @@ public class ImportSsoAccountActivity extends AppCompatActivity {
             finish();
 
         } catch (Throwable t) {
-            t.printStackTrace();
+            Log.e(TAG, t.getMessage(), t);
             finish();
         }
     }
