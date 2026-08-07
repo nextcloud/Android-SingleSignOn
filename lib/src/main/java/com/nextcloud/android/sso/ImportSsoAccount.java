@@ -1,3 +1,9 @@
+/*
+ * Nextcloud Android SingleSignOn Library
+ *
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 package com.nextcloud.android.sso;
 
 import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO;
