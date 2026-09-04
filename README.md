@@ -264,10 +264,7 @@ if (VersionCheckHelper.verifyMinVersion(context, MIN_NEXTCLOUD_FILES_APP_VERSION
 ```
 
 ## R8/ProGuard
-
-R8 and ProGuard rules are bundled into [SSO](lib/consumer-proguard-rules.pro).
-The bundled rules do **not** cover enabled obfuscation.
-Therefore it is **recommended** to add `-dontobfuscate` to your app-specific proguard rules.
+The rules needed to make SSO work with R8 and ProGuard are [bundled into the library](lib/consumer-proguard-rules.pro).
 
 With [R8 full mode](https://r8.googlesource.com/r8/+/refs/heads/master/compatibility-faq.md#r8-full-mode) being enabled by default since [AGP 8.0](https://developer.android.com/build/releases/gradle-plugin#default-changes), you will probably need to handle following app-specific rules yourself (or disable full mode):
 
