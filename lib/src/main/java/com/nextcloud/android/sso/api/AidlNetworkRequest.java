@@ -25,6 +25,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -229,10 +230,23 @@ public class AidlNetworkRequest extends NetworkRequest {
         return (T) new ObjectInputStream(is).readObject();
     }
 
-    private ExceptionResponse deserializeObjectV2(InputStream is) throws IOException, ClassNotFoundException {
+    @VisibleForTesting
+    static ExceptionResponse deserializeObjectV2(InputStream is) throws IOException, ClassNotFoundException {
         final ObjectInputStream ois = new ObjectInputStream(is);
         final ArrayList<PlainHeader> headerList = new ArrayList<>();
-        final Exception exception = (Exception) ois.readObject();
+        Exception exception;
+        try {
+            exception = (Exception) ois.readObject();
+        } catch (ClassNotFoundException e) {
+            // The server app serializes the original exception object. If its class - or any
+            // class in its cause chain - only exists in the server app (e.g.
+            // com.owncloud.android.lib.common.network.CertificateCombinedException on SSL errors),
+            // deserialization fails here. Surface a plain exception carrying the original type
+            // name instead of a ClassNotFoundException that hides the actual error.
+            exception = new Exception("The Nextcloud Files app responded with an error that could not"
+                    + " be read by this app: " + e.getMessage()
+                    + ". Check the server connection (e.g. SSL certificate) or the Files app log for the actual error.");
+        }
 
         if (exception == null) {
             final String headers = (String) ois.readObject();
@@ -275,7 +289,7 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
     }
 
-    private record ExceptionResponse(
+    record ExceptionResponse(
         @NonNull ArrayList<PlainHeader> headers,
         @Nullable Exception exception
     ) {
