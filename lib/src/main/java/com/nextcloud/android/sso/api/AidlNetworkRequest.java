@@ -49,7 +49,8 @@ public class AidlNetworkRequest extends NetworkRequest {
     private static final String TAG = AidlNetworkRequest.class.getCanonicalName();
 
     private IInputStreamService mService = null;
-    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
+    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether the service connection has been established
+    private final AtomicBoolean mBindingRequested = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
 
     AidlNetworkRequest(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull NextcloudAPI.ApiConnectedListener callback) {
         super(context, account, callback);
@@ -62,12 +63,19 @@ public class AidlNetworkRequest extends NetworkRequest {
         public void onServiceConnected(ComponentName className, IBinder service) {
             Log.d(TAG, "[onServiceConnected] called from Thread: [" + Thread.currentThread().getName() + "] with IBinder [" + className.toString() + "]: " + service);
 
+            final NextcloudAPI.ApiConnectedListener callback = mCallback;
+            if (mDestroyed || callback == null) {
+                // API has been closed while the connection was still being established
+                Log.w(TAG, "[onServiceConnected] API already closed - ignoring connection to [" + className + "]");
+                return;
+            }
+
             mService = IInputStreamService.Stub.asInterface(service);
             mBound.set(true);
             synchronized (mBound) {
                 mBound.notifyAll();
             }
-            mCallback.onConnected();
+            callback.onConnected();
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -106,6 +114,7 @@ public class AidlNetworkRequest extends NetworkRequest {
                 throw new IllegalStateException("Binding to AccountManagerService returned false");
             } else {
                 Log.d(TAG, "[connect] Bound to AccountManagerService successfully");
+                mBindingRequested.set(true);
             }
         } catch (SecurityException e) {
             Log.e(TAG, "[connect] can't bind to AccountManagerService, check permission in Manifest");
@@ -128,17 +137,19 @@ public class AidlNetworkRequest extends NetworkRequest {
     }
 
     private void unbindService() {
-        // Unbind from the service
-        if (mBound.get()) {
+        // Unbind whenever a binding has been requested: the ServiceConnection stays registered
+        // even if the connection has not been established yet and would otherwise still receive
+        // onServiceConnected() after this API has been closed
+        if (mBindingRequested.getAndSet(false)) {
             if (mContext != null) {
                 Log.d(TAG, "[unbindService] Unbinding AccountManagerService");
                 mContext.unbindService(mConnection);
             } else {
                 Log.e(TAG, "[unbindService] Context was null, cannot unbind nextcloud single sign-on service connection!");
             }
-            mBound.set(false);
-            mService = null;
         }
+        mBound.set(false);
+        mService = null;
     }
 
     private void waitForApi() throws NextcloudApiNotRespondingException {
