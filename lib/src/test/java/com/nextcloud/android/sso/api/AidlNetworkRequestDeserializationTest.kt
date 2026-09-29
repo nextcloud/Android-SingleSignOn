@@ -17,7 +17,7 @@ import java.io.ByteArrayOutputStream
 import java.io.ObjectOutputStream
 import java.nio.charset.StandardCharsets
 
-class AidlNetworkRequestTest {
+class AidlNetworkRequestDeserializationTest {
 
     /**
      * Exception class only used to be renamed in the serialized stream, simulating an exception
