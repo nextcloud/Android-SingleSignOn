@@ -25,6 +25,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -48,7 +49,8 @@ public class AidlNetworkRequest extends NetworkRequest {
     private static final String TAG = AidlNetworkRequest.class.getCanonicalName();
 
     private IInputStreamService mService = null;
-    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
+    private final AtomicBoolean mBound = new AtomicBoolean(false); // Flag indicating whether the service connection has been established
+    private final AtomicBoolean mBindingRequested = new AtomicBoolean(false); // Flag indicating whether we have called bind on the service
 
     AidlNetworkRequest(@NonNull Context context, @NonNull SingleSignOnAccount account, @NonNull NextcloudAPI.ApiConnectedListener callback) {
         super(context, account, callback);
@@ -61,12 +63,19 @@ public class AidlNetworkRequest extends NetworkRequest {
         public void onServiceConnected(ComponentName className, IBinder service) {
             Log.d(TAG, "[onServiceConnected] called from Thread: [" + Thread.currentThread().getName() + "] with IBinder [" + className.toString() + "]: " + service);
 
+            final NextcloudAPI.ApiConnectedListener callback = mCallback;
+            if (mDestroyed || callback == null) {
+                // API has been closed while the connection was still being established
+                Log.w(TAG, "[onServiceConnected] API already closed - ignoring connection to [" + className + "]");
+                return;
+            }
+
             mService = IInputStreamService.Stub.asInterface(service);
             mBound.set(true);
             synchronized (mBound) {
                 mBound.notifyAll();
             }
-            mCallback.onConnected();
+            callback.onConnected();
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -105,6 +114,7 @@ public class AidlNetworkRequest extends NetworkRequest {
                 throw new IllegalStateException("Binding to AccountManagerService returned false");
             } else {
                 Log.d(TAG, "[connect] Bound to AccountManagerService successfully");
+                mBindingRequested.set(true);
             }
         } catch (SecurityException e) {
             Log.e(TAG, "[connect] can't bind to AccountManagerService, check permission in Manifest");
@@ -127,17 +137,19 @@ public class AidlNetworkRequest extends NetworkRequest {
     }
 
     private void unbindService() {
-        // Unbind from the service
-        if (mBound.get()) {
+        // Unbind whenever a binding has been requested: the ServiceConnection stays registered
+        // even if the connection has not been established yet and would otherwise still receive
+        // onServiceConnected() after this API has been closed
+        if (mBindingRequested.getAndSet(false)) {
             if (mContext != null) {
                 Log.d(TAG, "[unbindService] Unbinding AccountManagerService");
                 mContext.unbindService(mConnection);
             } else {
                 Log.e(TAG, "[unbindService] Context was null, cannot unbind nextcloud single sign-on service connection!");
             }
-            mBound.set(false);
-            mService = null;
         }
+        mBound.set(false);
+        mService = null;
     }
 
     private void waitForApi() throws NextcloudApiNotRespondingException {
@@ -229,10 +241,23 @@ public class AidlNetworkRequest extends NetworkRequest {
         return (T) new ObjectInputStream(is).readObject();
     }
 
-    private ExceptionResponse deserializeObjectV2(InputStream is) throws IOException, ClassNotFoundException {
+    @VisibleForTesting
+    static ExceptionResponse deserializeObjectV2(InputStream is) throws IOException, ClassNotFoundException {
         final ObjectInputStream ois = new ObjectInputStream(is);
         final ArrayList<PlainHeader> headerList = new ArrayList<>();
-        final Exception exception = (Exception) ois.readObject();
+        Exception exception;
+        try {
+            exception = (Exception) ois.readObject();
+        } catch (ClassNotFoundException e) {
+            // The server app serializes the original exception object. If its class - or any
+            // class in its cause chain - only exists in the server app (e.g.
+            // com.owncloud.android.lib.common.network.CertificateCombinedException on SSL errors),
+            // deserialization fails here. Surface a plain exception carrying the original type
+            // name instead of a ClassNotFoundException that hides the actual error.
+            exception = new Exception("The Nextcloud Files app responded with an error that could not"
+                    + " be read by this app: " + e.getMessage()
+                    + ". Check the server connection (e.g. SSL certificate) or the Files app log for the actual error.");
+        }
 
         if (exception == null) {
             final String headers = (String) ois.readObject();
@@ -275,7 +300,7 @@ public class AidlNetworkRequest extends NetworkRequest {
         }
     }
 
-    private record ExceptionResponse(
+    record ExceptionResponse(
         @NonNull ArrayList<PlainHeader> headers,
         @Nullable Exception exception
     ) {
