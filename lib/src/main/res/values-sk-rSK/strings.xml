@@ -34,7 +34,7 @@
     <string name="nextcloud_files_app_account_permission_not_granted_message">Musíte prijať požadované právomoci, aby ste mohli používať funkciu Single Sign On.</string>
 
     <string name="nextcloud_http_request_failed_title">Požiadavka zlyhala</string>
-    <string name="nextcloud_http_request_failed_message" formatted="true">Chyba pri HTTP požiadavke, HTTP status kód: %1$d</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Požiadavka HTTP zlyhala so stavovým kódom %1$d</string>
 
     <string name="nextcloud_files_app_no_store_installed_title">Nextcloud Súbory sú potrebné.</string>
     <string name="nextcloud_files_app_no_store_installed_message">Na pokračovanie, prosím, najprv nainštalujte aplikáciu Nextcloud Files na svoje zariadenie.</string>
