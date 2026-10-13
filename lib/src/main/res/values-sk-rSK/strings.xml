@@ -23,7 +23,7 @@
     <string name="token_mismatch_message">Poskytnutý overovací token sa nezhoduje alebo nie je tomuto balíčku umožnené túto akciu uskutočniť</string>
 
     <string name="nextcloud_files_app_not_installed_title">Nextcloud Súbory nie sú nainštalované</string>
-    <string name="nextcloud_files_app_not_installed_message">Táto aplikácia závisí na aplikácii Nextcloud Files. Prosím, nainštalujte ju, aby ste mohli používať túto aplikáciu.</string>
+    <string name="nextcloud_files_app_not_installed_message">Táto aplikácia závisí od aplikácie Nextcloud Files. Prosím, nainštalujte ju, aby ste mohli používať túto aplikáciu.</string>
     <string name="nextcloud_files_app_not_installed_action">Inštalovať</string>
 
     <string name="nextcloud_files_app_account_not_found_title">Účet sa nenašiel</string>
