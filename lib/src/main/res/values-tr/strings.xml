@@ -17,7 +17,7 @@
     <string name="no_current_account_selected_exception_action">Belgeler</string>
 
     <string name="android_get_accounts_permission_not_granted_exception_title">İzin verilmemiş</string>
-    <string name="android_get_accounts_permission_not_granted_exception_message">Bu aygıt üzerinde Nextcloud Tek oturum açma özelliğini kullanabilmek için hesaplarınıza erişim izni vermelisiniz</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Bu aygıt üzerinde Nextcloud Tek oturum açma özelliğini kullanabilmek için hesaplarınıza erişme izni vermelisiniz</string>
 
     <string name="token_mismatch_title">Kimlik doğrulama sorunu</string>
     <string name="token_mismatch_message">Belirtilen kimlik doğrulama kodu eşleşmiyor ya da paket adının bu işlemi yapmasına izin verilmiyor</string>
