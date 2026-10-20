@@ -251,15 +251,21 @@ final var nextcloudRequest = new NextcloudRequest.Builder()
         .build();
 ```
 
-For the `MOVE` method, the `Destination` and `Overwrite` additional parameters must be specified:
+For the `MOVE` method, the `Destination` and `Overwrite` params must be added:
 
 ```
 final var nextcloudRequest = new NextcloudRequest.Builder()
-        .setMethod("MOVE")
-        .setUrl(Uri.encode("/remote.php/webdav/" + remotePath, "/"))
-        .setAdditionalParameter(NextcloudRequest.ADDITIONAL_PARAMETER_MOVE_DESTINATION, "/remote.php/webdav/" + destinationPath)
-        .setAdditionalParameter(NextcloudRequest.ADDITIONAL_PARAMETER_MOVE_OVERWRITE, true)
-        .build();
+    .setMethod("MOVE")
+    .setUrl(Uri.encode("/remote.php/webdav/" + remotePath, "/"))
+    .setAdditionalParameter(
+        NextcloudRequest.ADDITIONAL_PARAMETER_MOVE_DESTINATION, 
+        "/remote.php/webdav/" + destinationPath
+    )
+    .setAdditionalParameter(
+        NextcloudRequest.ADDITIONAL_PARAMETER_MOVE_OVERWRITE, 
+        true
+    )
+    .build();
 ```
 
 
