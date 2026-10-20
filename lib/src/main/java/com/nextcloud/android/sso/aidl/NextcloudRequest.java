@@ -34,9 +34,15 @@ public class NextcloudRequest implements Serializable {
 
     private static final long serialVersionUID = 215521212534240L; //assign a long value
 
+    public static final String ADDITIONAL_PARAMETER_MOVE_DESTINATION = "Destination";
+    public static final String ADDITIONAL_PARAMETER_MOVE_OVERWRITE = "Overwrite";
+
+
     private String method;
     private Map<String, List<String>> header = new HashMap<>();
     private Map<String, String> parameter = new HashMap<>();
+    private Map<String, String> additionalParameter = new HashMap<>();
+
     private String requestBody;
     private String url;
     private String token;
@@ -120,6 +126,16 @@ public class NextcloudRequest implements Serializable {
             nullCheck(parameter);
             ncr.parameter.put(parameter.key, parameter.value);
             ncr.parameterV2.add(parameter);
+            return this;
+        }
+
+
+        public Builder setAdditionalParameters(Map<String, String> ap) {
+            ncr.additionalParameter = ap;
+            return this;
+        }
+        public Builder setAdditionalParameter(String key, String value) {
+            ncr.additionalParameter.put(key, value);
             return this;
         }
 
@@ -207,6 +223,13 @@ public class NextcloudRequest implements Serializable {
 
     public Map<String, List<String>> getHeader() {
         return this.header;
+    }
+
+    public Map<String, String> getAdditionalParameters() {
+        return this.additionalParameter;
+    }
+    public String getAdditionalParameter(String key) {
+        return this.additionalParameter.get(key);
     }
 
     public Collection<QueryParam> getParameterV2() {
