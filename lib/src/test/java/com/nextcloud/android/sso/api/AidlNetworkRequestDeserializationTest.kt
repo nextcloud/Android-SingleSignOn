@@ -18,13 +18,14 @@ import java.io.ObjectOutputStream
 import java.nio.charset.StandardCharsets
 
 class AidlNetworkRequestDeserializationTest {
-
     /**
      * Exception class only used to be renamed in the serialized stream, simulating an exception
      * type that exists in the Files app but not in the client app (e.g.
      * `com.owncloud.android.lib.common.network.CertificateCombinedException`).
      */
-    class OnlyInFilesAppException(message: String) : Exception(message)
+    class OnlyInFilesAppException(
+        message: String
+    ) : Exception(message)
 
     @Test
     fun deserializeObjectV2ExceptionClassMissingInClientAppReturnsReadableException() {
@@ -69,7 +70,10 @@ class AidlNetworkRequestDeserializationTest {
     }
 
     /** Mirrors `InputStreamBinder#serializeObjectToInputStreamV2` in the Files app. */
-    private fun serialize(exception: Exception?, headers: String): ByteArray {
+    private fun serialize(
+        exception: Exception?,
+        headers: String
+    ): ByteArray {
         val baos = ByteArrayOutputStream()
         ObjectOutputStream(baos).use { oos ->
             oos.writeObject(exception)
@@ -78,7 +82,11 @@ class AidlNetworkRequestDeserializationTest {
         return baos.toByteArray()
     }
 
-    private fun replaceBytes(data: ByteArray, search: String, replace: String): ByteArray {
+    private fun replaceBytes(
+        data: ByteArray,
+        search: String,
+        replace: String
+    ): ByteArray {
         val searchBytes = search.toByteArray(StandardCharsets.US_ASCII)
         val replaceBytes = replace.toByteArray(StandardCharsets.US_ASCII)
         assertEquals(searchBytes.size, replaceBytes.size)
