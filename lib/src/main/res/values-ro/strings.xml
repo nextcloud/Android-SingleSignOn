@@ -5,15 +5,52 @@
       ~ SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
       ~ SPDX-License-Identifier: GPL-3.0-or-later
     -->
+    <string name="close">Închide</string>
+
+    <string name="network_error_title">Eroare de rețea</string>
+    <string name="retry_action">Reîncearcă</string>
+
+    <string name="unknown_error_title">Eroare necunoscută</string>
+
+    <string name="no_current_account_selected_exception_title">Niciun cont selectat</string>
+    <string name="no_current_account_selected_exception_message">Trebuie să setezi contul curent înainte de a efectua această operație. Consultă documentația pentru utilizarea corectă.</string>
     <string name="no_current_account_selected_exception_action">Documentație</string>
 
-    <string name="token_mismatch_message">Token-ul de autentificare primit nu se potrivește sau numele pachetului nu are permisiunea să îndeplinească acțiunea asta</string>
+    <string name="android_get_accounts_permission_not_granted_exception_title">Permisiunea nu a fost acordată</string>
+    <string name="android_get_accounts_permission_not_granted_exception_message">Pentru a folosi autentificarea unică (Single Sign On) Nextcloud pe acest dispozitiv, trebuie să acorzi permisiunea de acces la conturile tale</string>
 
-    <string name="nextcloud_http_request_failed_message" formatted="true">Cererea HTTP a eșuat, codul de stare HTTP: %1$d</string>
+    <string name="token_mismatch_title">Eroare la autentificare</string>
+    <string name="token_mismatch_message">Tokenul de autentificare furnizat nu se potrivește sau numele pachetului nu are permisiunea de a efectua această acțiune</string>
 
+    <string name="nextcloud_files_app_not_installed_title">Nextcloud Files nu este instalat</string>
+    <string name="nextcloud_files_app_not_installed_message">Această aplicație depinde de aplicația Nextcloud Files. Instaleaz-o pentru a putea folosi această aplicație.</string>
+    <string name="nextcloud_files_app_not_installed_action">Instalează</string>
+
+    <string name="nextcloud_files_app_account_not_found_title">Contul nu a fost găsit</string>
+    <string name="nextcloud_files_app_account_not_found_message">Contul solicitat nu a fost găsit în aplicația Nextcloud Files</string>
+    <string name="nextcloud_files_app_account_not_found_with_account_message" formatted="true">Contul %1$s nu a fost găsit în aplicația Nextcloud Files</string>
+
+    <string name="nextcloud_files_app_account_permission_not_granted_title">Permisiunea nu a fost acordată</string>
+    <string name="nextcloud_files_app_account_permission_not_granted_message">Trebuie să accepți permisiunile solicitate pentru a folosi funcția de autentificare unică (Single Sign On).</string>
+
+    <string name="nextcloud_http_request_failed_title">Solicitarea a eșuat</string>
+    <string name="nextcloud_http_request_failed_message" formatted="true">Solicitarea HTTP a eșuat cu codul de stare HTTP: %1$d</string>
+
+    <string name="nextcloud_files_app_no_store_installed_title">Este necesară aplicația Nextcloud Files</string>
+    <string name="nextcloud_files_app_no_store_installed_message">Pentru a continua, instalează mai întâi aplicația Nextcloud Files pe dispozitiv.</string>
+    <string name="nextcloud_files_app_no_store_installed_action">Instrucțiuni</string>
+
+    <string name="nextcloud_unsupported_method_action">Contact</string>
+
+    <string name="nextcloud_files_app_not_supported_title">Actualizează aplicația Nextcloud Files</string>
+    <string name="nextcloud_files_app_not_supported_message">Aplicația Nextcloud Files are o versiune mai veche, care nu acceptă încă funcția de autentificare unică (Single Sign On).</string>
+    <string name="nextcloud_files_app_not_supported_action">Actualizează</string>
+
+    <string name="nextcloud_files_api_not_responding_title">API-ul nu răspunde</string>
+    <string name="nextcloud_files_api_not_responding_message">API-ul aplicației Nextcloud Files nu răspunde. Cel mai probabil, cauza este optimizarea bateriei pe telefon. Încearcă să dezactivezi optimizarea bateriei pentru ambele aplicații (Nextcloud Files și aceasta). În toate celelalte cazuri, încearcă să golești spațiul de stocare al ambelor aplicații.</string>
     <string name="nextcloud_files_api_not_responding_action">Setări</string>
 
-    <string name="sso_canceled">Importul SSO a fost anulat.</string>
-    <string name="sso_canceled_message">Importul SSO a fost anulat de utilizator.</string>
+    <string name="sso_canceled">Importul SSO a fost anulat</string>
+    <string name="sso_canceled_message">Importul SSO a fost anulat de utilizator</string>
 
     </resources>
