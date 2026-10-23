@@ -235,7 +235,7 @@ public class MyActivity extends AppCompatActivity {
 
 #### 5.3) **WebDAV**
 
-Currently the following `WebDAV` Methods are supported: `PROPFIND` / `MKCOL`
+Currently the following `WebDAV` Methods are supported: `PROPFIND`, `MKCOL`, `MOVE`.
 
 The following examples shows how to use the `PROPFIND` method with a depth of 0.
 
@@ -250,6 +250,24 @@ final var nextcloudRequest = new NextcloudRequest.Builder()
         .setUrl(Uri.encode("/remote.php/webdav/" + remotePath, "/"))
         .build();
 ```
+
+For the `MOVE` method, the `Destination` and `Overwrite` params must be added:
+
+```
+final var nextcloudRequest = new NextcloudRequest.Builder()
+    .setMethod("MOVE")
+    .setUrl(Uri.encode("/remote.php/webdav/" + remotePath, "/"))
+    .setAdditionalParameter(
+        NextcloudRequest.ADDITIONAL_PARAMETER_MOVE_DESTINATION, 
+        "/remote.php/webdav/" + destinationPath
+    )
+    .setAdditionalParameter(
+        NextcloudRequest.ADDITIONAL_PARAMETER_MOVE_OVERWRITE, 
+        true
+    )
+    .build();
+```
+
 
 ## Additional info
 
