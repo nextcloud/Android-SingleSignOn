@@ -9,9 +9,6 @@
  */
 package com.nextcloud.android.sso.api;
 
-import static com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil.pipeFrom;
-import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,12 +20,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 import com.nextcloud.android.sso.FilesAppTypeRegistry;
 import com.nextcloud.android.sso.aidl.IInputStreamService;
 import com.nextcloud.android.sso.aidl.NextcloudRequest;
@@ -43,7 +35,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+
+import static com.nextcloud.android.sso.aidl.ParcelFileDescriptorUtil.pipeFrom;
+import static com.nextcloud.android.sso.exceptions.SSOException.parseNextcloudCustomException;
 
 public class AidlNetworkRequest extends NetworkRequest {
     private static final String TAG = AidlNetworkRequest.class.getCanonicalName();
@@ -264,8 +264,8 @@ public class AidlNetworkRequest extends NetworkRequest {
             final ArrayList<?> list = new Gson().fromJson(headers, ArrayList.class);
 
             for (Object o : list) {
-                final LinkedTreeMap<?, ?> treeMap = (LinkedTreeMap<?, ?>) o;
-                headerList.add(new PlainHeader((String) treeMap.get("name"), (String) treeMap.get("value")));
+                final LinkedHashMap<?, ?> hashMap = (LinkedHashMap<?, ?>) o;
+                headerList.add(new PlainHeader((String) hashMap.get("name"), (String) hashMap.get("value")));
             }
         }
 
