@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -222,18 +223,18 @@ public class NextcloudRequest implements Serializable {
     }
 
     public Map<String, List<String>> getHeader() {
-        return this.header;
+        return Collections.unmodifiableMap(this.header);
     }
 
     public Map<String, String> getAdditionalParameters() {
-        return this.additionalParameter;
+        return Collections.unmodifiableMap(this.additionalParameter);
     }
     public String getAdditionalParameter(String key) {
         return this.additionalParameter.get(key);
     }
 
     public Collection<QueryParam> getParameterV2() {
-        return this.parameterV2;
+        return Collections.unmodifiableCollection(this.parameterV2);
     }
 
     public String getRequestBody() {
