@@ -223,7 +223,7 @@ public class NextcloudRequest implements Serializable {
     }
 
     public Map<String, List<String>> getHeader() {
-        return Collections.unmodifiableMap(this.header);
+        return this.header;
     }
 
     public Map<String, String> getAdditionalParameters() {
@@ -234,7 +234,7 @@ public class NextcloudRequest implements Serializable {
     }
 
     public Collection<QueryParam> getParameterV2() {
-        return Collections.unmodifiableCollection(this.parameterV2);
+        return this.parameterV2;
     }
 
     public String getRequestBody() {
