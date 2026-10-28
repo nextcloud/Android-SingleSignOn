@@ -35,7 +35,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import androidx.annotation.NonNull;
@@ -264,8 +264,8 @@ public class AidlNetworkRequest extends NetworkRequest {
             final ArrayList<?> list = new Gson().fromJson(headers, ArrayList.class);
 
             for (Object o : list) {
-                final LinkedHashMap<?, ?> hashMap = (LinkedHashMap<?, ?>) o;
-                headerList.add(new PlainHeader((String) hashMap.get("name"), (String) hashMap.get("value")));
+                final Map<?, ?> header = (Map<?, ?>) o;
+                headerList.add(new PlainHeader((String) header.get("name"), (String) header.get("value")));
             }
         }
 
