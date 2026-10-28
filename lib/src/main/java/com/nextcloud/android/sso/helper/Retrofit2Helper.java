@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import okhttp3.Headers;
 import okhttp3.Protocol;
 import okhttp3.Request;
@@ -36,6 +37,11 @@ import retrofit2.Response;
 public final class Retrofit2Helper {
 
     private Retrofit2Helper() {
+    }
+
+    @Nullable
+    public static Throwable getException(@NonNull Response<?> response) {
+        return response.raw().request().tag(Throwable.class);
     }
 
     public static <T> Call<T> WrapInCall(final NextcloudAPI nextcloudAPI,
@@ -115,7 +121,10 @@ public final class Retrofit2Helper {
                         .code(statusCode)
                         .message(throwable.getMessage() + Arrays.toString(throwable.getStackTrace()))
                         .protocol(Protocol.HTTP_1_1)
-                        .request(new Request.Builder().url("http://example.com" + (path.startsWith("/") ? path : "/" + path)).build())
+                        .request(new Request.Builder()
+                            .url("http://example.com" + (path.startsWith("/") ? path : "/" + path))
+                            .tag(Throwable.class, throwable)
+                            .build())
                         .build());
             }
         };
