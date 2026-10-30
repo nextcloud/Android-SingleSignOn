@@ -88,14 +88,14 @@ public class MainActivity extends AppCompatActivity {
                 );
             } catch (Exception e) {
                 runOnUiThread(() -> ((TextView) findViewById(R.id.result)).setText(e.getMessage()));
-                e.printStackTrace();
+                Log.e(TAG, e.getMessage(), e);
             }
 
             /*
              * If you need to make multiple calls, keep the NextcloudAPI open as long as you
              * can. This way the services will stay active and the connection between the
              * files app and your app is already established when you make subsequent requests.
-             * Otherwise you'll have to bind to the service again and again for each request.
+             * Otherwise, you'll have to bind to the service again and again for each request.
              *
              * @see https://github.com/nextcloud/Android-SingleSignOn/issues/120#issuecomment-540069990
              */

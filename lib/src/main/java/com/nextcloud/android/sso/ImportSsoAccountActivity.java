@@ -12,6 +12,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
@@ -21,6 +22,7 @@ import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 /// This is a Trampoline Activity that takes care about requesting all necessary permissions and guiding the user through the complete import flow.
 /// It is extremely important to catch *any* error and finish this activity because otherwise, the Trampoline Activity will stay on top but transparent, so users can't see it and users can't interact with their (visible) 3rd party app anymore.
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 public class ImportSsoAccountActivity extends AppCompatActivity {
 
     private static final String TAG = ImportSsoAccountActivity.class.getSimpleName();
@@ -35,18 +37,16 @@ public class ImportSsoAccountActivity extends AppCompatActivity {
 
         try {
             AccountImporter.checkAndroidAccountPermissions(this);
-            //noinspection removal
             AccountImporter.pickNewAccount(this);
 
         } catch (AndroidGetAccountsPermissionNotGranted e) {
-            //noinspection removal
             AccountImporter.requestAndroidAccountPermissionsAndPickAccount(this);
 
         } catch (SSOException ssoException) {
             UiExceptionManager.showDialogForException(this, ssoException, t -> finish());
 
-        } catch (Throwable throwable) {
-            Log.e(TAG, throwable.getMessage(), throwable);
+        } catch (Exception exception) {
+            Log.e(TAG, exception.getMessage(), exception);
             finish();
         }
     }
@@ -70,9 +70,9 @@ public class ImportSsoAccountActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         try {
-            AccountImporter.onActivityResult(requestCode, resultCode, data, this, null, ssoAccount -> {
+            AccountImporter.onActivityResult(requestCode, resultCode, data, this, ssoAccount -> {
                 final var result = new Intent();
-                result.putExtra(Constants.NEXTCLOUD_SSO, ssoAccount);
+                result.putExtra(Constants.INTERNAL_NEXTCLOUD_SSO, ssoAccount);
                 setResult(RESULT_OK, result);
                 finish();
             }, t -> finish());
