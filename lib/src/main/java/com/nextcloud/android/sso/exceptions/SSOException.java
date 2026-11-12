@@ -89,12 +89,12 @@ public class SSOException extends Exception {
         }
 
         return switch (message) {
-            case Constants.EXCEPTION_INVALID_TOKEN -> new TokenMismatchException(context);
-            case Constants.EXCEPTION_ACCOUNT_NOT_FOUND -> new NextcloudFilesAppAccountNotFoundException(context);
-            case Constants.EXCEPTION_UNSUPPORTED_METHOD -> new NextcloudUnsupportedMethodException(context);
-            case Constants.EXCEPTION_INVALID_REQUEST_URL ->
+            case Constants.INTERNAL_EXCEPTION_INVALID_TOKEN -> new TokenMismatchException(context);
+            case Constants.INTERNAL_EXCEPTION_ACCOUNT_NOT_FOUND -> new NextcloudFilesAppAccountNotFoundException(context);
+            case Constants.INTERNAL_EXCEPTION_UNSUPPORTED_METHOD -> new NextcloudUnsupportedMethodException(context);
+            case Constants.INTERNAL_EXCEPTION_INVALID_REQUEST_URL ->
                 new NextcloudInvalidRequestUrlException(context, exception.getCause());
-            case Constants.EXCEPTION_HTTP_REQUEST_FAILED -> {
+            case Constants.INTERNAL_EXCEPTION_HTTP_REQUEST_FAILED -> {
                 Throwable rootCause = exception.getCause();
                 if (rootCause != null && rootCause.getMessage() != null) {
                     int statusCode = Integer.parseInt(rootCause.getMessage());
@@ -104,7 +104,7 @@ public class SSOException extends Exception {
                     yield new UnknownErrorException(message);
                 }
             }
-            case Constants.EXCEPTION_ACCOUNT_ACCESS_DECLINED ->
+            case Constants.INTERNAL_EXCEPTION_ACCOUNT_ACCESS_DECLINED ->
                 new NextcloudFilesAppAccountPermissionNotGrantedException(context);
             default -> {
                 if (isNetworkConnectivityError(exception)) {

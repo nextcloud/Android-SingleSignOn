@@ -11,10 +11,10 @@ package com.nextcloud.android.sso;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
-import static com.nextcloud.android.sso.Constants.NEXTCLOUD_FILES_ACCOUNT;
-import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO;
-import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO_EXCEPTION;
-import static com.nextcloud.android.sso.Constants.SSO_SHARED_PREFERENCE;
+import static com.nextcloud.android.sso.Constants.INTERNAL_NEXTCLOUD_FILES_ACCOUNT;
+import static com.nextcloud.android.sso.Constants.INTERNAL_NEXTCLOUD_SSO;
+import static com.nextcloud.android.sso.Constants.INTERNAL_NEXTCLOUD_SSO_EXCEPTION;
+import static com.nextcloud.android.sso.Constants.INTERNAL_SSO_SHARED_PREFERENCE;
 
 import android.Manifest;
 import android.accounts.Account;
@@ -51,6 +51,7 @@ import com.nextcloud.android.sso.ui.UiExceptionManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 import io.reactivex.annotations.Nullable;
@@ -68,7 +69,7 @@ public class AccountImporter {
     private static SharedPreferences SHARED_PREFERENCES;
 
     public static boolean accountsToImportAvailable(Context context) {
-        return findAccounts(context).size() > 0;
+        return !findAccounts(context).isEmpty();
     }
 
     /**
@@ -78,15 +79,14 @@ public class AccountImporter {
      * In real live applications, you won't import an account on each app start, but remember the imported account via SingleAccountHelper.
      *
      * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount} - this method will be private in the future
      */
-    @Deprecated(forRemoval = true)
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public static void pickNewAccount(Activity activity) throws NextcloudFilesAppNotInstalledException,
             AndroidGetAccountsPermissionNotGranted {
         checkAndroidAccountPermissions(activity);
 
         if (appInstalledOrNot(activity)) {
-            Intent intent = AccountManager.newChooseAccountIntent(null, null, FilesAppTypeRegistry.getInstance().getAccountTypes(), 
+            Intent intent = AccountManager.newChooseAccountIntent(null, null, FilesAppTypeRegistry.getInstance().getAccountTypes(),
                     true, null, AUTH_TOKEN_SSO, null, null);
             activity.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
         } else {
@@ -95,36 +95,12 @@ public class AccountImporter {
     }
 
     /**
-     * Prompt dialog to select existing or create a new account
-     * As soon as an account has been imported, we will continue in #onActivityResult()
-     * <p>
-     * In real live applications, you won't import an account on each app start, but remember the imported account via SingleAccountHelper.
-     *
      * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount}
      */
-    @Deprecated(forRemoval = true)
-    public static void pickNewAccount(Fragment fragment) throws NextcloudFilesAppNotInstalledException,
-            AndroidGetAccountsPermissionNotGranted {
-        checkAndroidAccountPermissions(fragment.getContext());
-
-        if (appInstalledOrNot(fragment.requireContext())) {
-            Intent intent = AccountManager.newChooseAccountIntent(null, null, FilesAppTypeRegistry.getInstance().getAccountTypes(),
-                    true, null, AUTH_TOKEN_SSO, null, null);
-            fragment.startActivityForResult(intent, CHOOSE_ACCOUNT_SSO);
-        } else {
-            throw new NextcloudFilesAppNotInstalledException(fragment.requireContext());
-        }
-    }
-
-    /**
-     * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount}
-     */
-    @Deprecated(forRemoval = true)
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public static void requestAndroidAccountPermissionsAndPickAccount(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.GET_ACCOUNTS},
-                REQUEST_GET_ACCOUNTS_PERMISSION);
+            REQUEST_GET_ACCOUNTS_PERMISSION);
     }
 
     @RestrictTo(RestrictTo.Scope.LIBRARY)
@@ -153,7 +129,7 @@ public class AccountImporter {
                 returnValue = true;
                 break;
             } catch (PackageManager.NameNotFoundException e) {
-                Log.v(TAG, e.getMessage());
+                Log.v(TAG, Optional.ofNullable(e.getMessage()).orElse(e.toString()));
             }
         }
         return returnValue;
@@ -210,21 +186,17 @@ public class AccountImporter {
         throw new NextcloudFilesAppAccountNotFoundException(context, accountName);
     }
 
-    /**
-     * @deprecated Visibility will be private in the future
-     */
-    @Deprecated(forRemoval = true)
-    public static SingleSignOnAccount extractSingleSignOnAccountFromResponse(Intent intent, Context context) {
-        Bundle future = intent.getBundleExtra(NEXTCLOUD_SSO);
+    private static SingleSignOnAccount extractSingleSignOnAccountFromResponse(Intent intent, Context context) {
+        Bundle future = intent.getBundleExtra(INTERNAL_NEXTCLOUD_SSO);
 
         String accountName = future.getString(AccountManager.KEY_ACCOUNT_NAME);
-        String userId = future.getString(Constants.SSO_USER_ID);
+        String userId = future.getString(Constants.INTERNAL_SSO_USER_ID);
         if (userId == null) {
             // backwards compatibility
             userId = future.getString("username");
         }
-        String token = future.getString(Constants.SSO_TOKEN);
-        String serverUrl = future.getString(Constants.SSO_SERVER_URL);
+        String token = future.getString(Constants.INTERNAL_SSO_TOKEN);
+        String serverUrl = future.getString(Constants.INTERNAL_SSO_SERVER_URL);
         String type = future.getString("accountType");
 
         SharedPreferences mPrefs = getSharedPreferences(context);
@@ -238,69 +210,35 @@ public class AccountImporter {
         return ssoAccount;
     }
 
-    /**
-     * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount} - Visibility will be private in the future.
-     */
-    @Deprecated
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public interface IAccountAccessGranted {
         void accountAccessGranted(SingleSignOnAccount singleSignOnAccount);
     }
 
-    /**
-     * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount}
-     */
-    @Deprecated
-    public static void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity,
-                                        IAccountAccessGranted callback) throws AccountImportCancelledException {
-        onActivityResult(requestCode, resultCode, data, activity, null, callback, t -> {});
-    }
-
-    /**
-     * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount}
-     */
-    @Deprecated
-    public static void onActivityResult(int requestCode, int resultCode, Intent data, Fragment fragment,
-                                        IAccountAccessGranted callback) throws AccountImportCancelledException {
-        onActivityResult(requestCode, resultCode, data, null, fragment, callback, t -> {});
-    }
-
     @RestrictTo(RestrictTo.Scope.LIBRARY)
-    public static void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity,
-                                 Fragment fragment, IAccountAccessGranted successCallback, Consumer<Throwable> failureCallback)
+    public static void onActivityResult(int requestCode, int resultCode, Intent data, Activity activity, IAccountAccessGranted successCallback, Consumer<Throwable> failureCallback)
             throws AccountImportCancelledException {
-        Context context = (activity != null) ? activity : fragment.getContext();
 
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case CHOOSE_ACCOUNT_SSO:
                     try {
-                        if (activity != null) {
-                            requestAuthToken(activity, data);
-                        } else {
-                            requestAuthToken(fragment, data);
-                        }
+                        requestAuthToken(activity, data);
                     } catch (NextcloudFilesAppNotSupportedException |
                              NextcloudFilesAppAccountPermissionNotGrantedException e) {
-                        UiExceptionManager.showDialogForException(context, e, failureCallback::accept);
+                        UiExceptionManager.showDialogForException(activity, e, failureCallback::accept);
                     }
                     break;
                 case REQUEST_AUTH_TOKEN_SSO:
-                    SingleSignOnAccount singleSignOnAccount = extractSingleSignOnAccountFromResponse(data, context);
+                    SingleSignOnAccount singleSignOnAccount = extractSingleSignOnAccountFromResponse(data, activity);
                     successCallback.accountAccessGranted(singleSignOnAccount);
                     break;
                 case REQUEST_GET_ACCOUNTS_PERMISSION:
                     try {
-                        if (activity != null) {
-                            pickNewAccount(activity);
-                        } else {
-                            pickNewAccount(fragment);
-                        }
+                        pickNewAccount(activity);
                     } catch (NextcloudFilesAppNotInstalledException |
                              AndroidGetAccountsPermissionNotGranted e) {
-                        UiExceptionManager.showDialogForException(context, e, failureCallback::accept);
+                        UiExceptionManager.showDialogForException(activity, e, failureCallback::accept);
                     }
                     break;
                 default:
@@ -310,21 +248,20 @@ public class AccountImporter {
             switch (requestCode) {
                 case CHOOSE_ACCOUNT_SSO:
                     // nothing to do here
-                    throw new AccountImportCancelledException(context);
+                    throw new AccountImportCancelledException(activity);
                 case REQUEST_AUTH_TOKEN_SSO:
                     try {
-                        handleFailedAuthRequest(context, data);
+                        handleFailedAuthRequest(activity, data);
                     } catch (SSOException e) {
-                        UiExceptionManager.showDialogForException(context, e, failureCallback::accept);
+                        UiExceptionManager.showDialogForException(activity, e, failureCallback::accept);
                     } catch (Exception e) {
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-                        //e.printStackTrace();
-                        Log.e(TAG, e.getMessage());
+                        Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.e(TAG, e.getMessage(), e);
                         failureCallback.accept(e);
                     }
                     break;
                 case REQUEST_GET_ACCOUNTS_PERMISSION:
-                    UiExceptionManager.showDialogForException(context, new AndroidGetAccountsPermissionNotGranted(context), failureCallback::accept);
+                    UiExceptionManager.showDialogForException(activity, new AndroidGetAccountsPermissionNotGranted(activity), failureCallback::accept);
                     break;
                 default:
                     break;
@@ -332,45 +269,22 @@ public class AccountImporter {
         }
     }
 
-    /**
-     * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount}
-     */
-    @Deprecated
-    public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults, Activity activity) {
-        onRequestPermissionsResult(requestCode, permissions, grantResults, activity, null, t -> {});
-    }
-
-    /**
-     * @see <a href="https://developer.android.com/training/basics/intents/result"><code>ActivityResultContract</code></a>
-     * @deprecated Use {@link ImportSsoAccount}
-     */
-    @Deprecated
-    public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults, Fragment fragment) {
-        onRequestPermissionsResult(requestCode, permissions, grantResults, null, fragment, t -> {});
-    }
-
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults, Activity activity, Fragment fragment, Consumer<Throwable> failureCallback) {
-        Context context = (activity != null) ? activity : fragment.getContext();
-
+        //noinspection SwitchStatementWithTooFewBranches
         switch (requestCode) {
             case REQUEST_GET_ACCOUNTS_PERMISSION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permissions have been granted.. start pick account dialog
+                    // Permissions have been granted… start pick account dialog
                     try {
-                        if (activity != null) {
-                            pickNewAccount(activity);
-                        } else {
-                            pickNewAccount(fragment);
-                        }
+                        pickNewAccount(activity);
                     } catch (NextcloudFilesAppNotInstalledException |
                              AndroidGetAccountsPermissionNotGranted e) {
-                        UiExceptionManager.showDialogForException(context, e, failureCallback::accept);
+                        UiExceptionManager.showDialogForException(activity, e, failureCallback::accept);
                     }
                 } else {
-                    // user declined the permission request..
-                    UiExceptionManager.showDialogForException(context, new AndroidGetAccountsPermissionNotGranted(context), failureCallback::accept);
+                    // user declined the permission request…
+                    UiExceptionManager.showDialogForException(activity, new AndroidGetAccountsPermissionNotGranted(activity), failureCallback::accept);
                 }
                 break;
             default:
@@ -379,13 +293,9 @@ public class AccountImporter {
 
     }
 
-    /**
-     * @deprecated Will be private in the future
-     */
-    @Deprecated
-    public static void handleFailedAuthRequest(@NonNull Context context, @Nullable Intent data) throws SSOException {
+    private static void handleFailedAuthRequest(@NonNull Context context, @Nullable Intent data) throws SSOException {
         if (data != null) {
-            String exception = data.getStringExtra(NEXTCLOUD_SSO_EXCEPTION);
+            String exception = data.getStringExtra(INTERNAL_NEXTCLOUD_SSO_EXCEPTION);
             throw SSOException.parseNextcloudCustomException(context, new Exception(exception));
         } else {
             Log.e(TAG, "handleFailedAuthRequest failed - data is null");
@@ -435,7 +345,7 @@ public class AccountImporter {
         Intent authIntent = new Intent();
         authIntent.setComponent(new ComponentName(componentName,
                 "com.owncloud.android.ui.activity.SsoGrantPermissionActivity"));
-        authIntent.putExtra(NEXTCLOUD_FILES_ACCOUNT, account);
+        authIntent.putExtra(INTERNAL_NEXTCLOUD_FILES_ACCOUNT, account);
         return authIntent;
     }
 
@@ -443,7 +353,7 @@ public class AccountImporter {
         if (SHARED_PREFERENCES != null) {
             return SHARED_PREFERENCES;
         } else {
-            return context.getSharedPreferences(SSO_SHARED_PREFERENCE, Context.MODE_PRIVATE);
+            return context.getSharedPreferences(INTERNAL_SSO_SHARED_PREFERENCE, Context.MODE_PRIVATE);
         }
     }
 

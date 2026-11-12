@@ -7,9 +7,9 @@
  */
 package com.nextcloud.android.sso;
 
-import java.io.Serializable;
-
 import androidx.annotation.Nullable;
+
+import java.io.Serializable;
 
 public class QueryParam implements Serializable {
 
@@ -29,8 +29,7 @@ public class QueryParam implements Serializable {
             return false;
         }
 
-        if (obj instanceof QueryParam) {
-            QueryParam other = (QueryParam) obj;
+        if (obj instanceof QueryParam other) {
             return this.key.equals(other.key) && this.value.equals(other.value);
         } else {
             return false;
