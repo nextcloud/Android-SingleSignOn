@@ -6,7 +6,7 @@
  */
 package com.nextcloud.android.sso;
 
-import static com.nextcloud.android.sso.Constants.NEXTCLOUD_SSO;
+import static com.nextcloud.android.sso.Constants.INTERNAL_NEXTCLOUD_SSO;
 
 import android.app.Activity;
 import android.content.Context;
@@ -35,7 +35,7 @@ public class ImportSsoAccount extends ActivityResultContract<Void, SingleSignOnA
     @Override
     public SingleSignOnAccount parseResult(int resultCode, @Nullable Intent intent) {
         if (resultCode == Activity.RESULT_OK && intent != null) {
-            return (SingleSignOnAccount) intent.getSerializableExtra(NEXTCLOUD_SSO);
+            return (SingleSignOnAccount) intent.getSerializableExtra(INTERNAL_NEXTCLOUD_SSO);
         }
 
         return null;
